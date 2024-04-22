@@ -107,7 +107,7 @@ const HomePage = () => {
                         </div>
                     </div>
 
-                    <div className="highlight-section">
+                    {/* <div className="highlight-section">
                         <div className="highlight-1">
                             <div className="highlight-1-header">Lorem ipsum</div>
                             <span
@@ -132,7 +132,8 @@ const HomePage = () => {
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit
                             </span>
                         </div>
-                    </div>
+                    </div> */}
+
                 </div>
                 <div className="our-team-section">
                     <div className="our-team-heading">Lorem ipsum dolor</div>
