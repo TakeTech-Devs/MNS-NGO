@@ -234,13 +234,13 @@
 
 .home-page .carousel-heading {
   margin-bottom: 29px;
-  margin-top: -150px;
+  margin-top: -70px;
   display: inline-block;
   align-self: flex-start;
   overflow-wrap: break-word;
   font-family: 'Inter';
   font-weight: 600;
-  font-size: 40px;
+  font-size: 38px;
   color: #FFFFFF;
 }
 
@@ -252,7 +252,7 @@
   overflow-wrap: break-word;
   font-family: 'Inter';
   font-weight: 300;
-  font-size: 30px;
+  font-size: 28px;
   color: #FFFFFF;
 }
 
@@ -328,7 +328,7 @@
   overflow-wrap: break-word;
   font-family: 'Inter';
   font-weight: 600;
-  font-size: 30px;
+  font-size: 28px;
   color: #FFFFFF;
 }
 
@@ -338,17 +338,17 @@
   overflow-wrap: break-word;
   font-family: 'Inter';
   font-weight: 600;
-  font-size: 30px;
+  font-size: 28px;
   color: #FFFFFF;
 }
 
 .home-page .highlight-3-header {
-  margin: 0 0 11px 3.1px;
+  margin: 0 0 11px 12px;
   display: inline-block;
   overflow-wrap: break-word;
   font-family: 'Inter';
   font-weight: 600;
-  font-size: 30px;
+  font-size: 28px;
   color: #FFFFFF;
 }
 
@@ -357,7 +357,7 @@
   overflow-wrap: break-word;
   font-family: 'Inter';
   font-weight: 300;
-  font-size: 25px;
+  font-size: 23px;
   color: #FFFFFF;
   margin-left: 35px;
 }
@@ -366,7 +366,7 @@
   overflow-wrap: break-word;
   font-family: 'Inter';
   font-weight: 300;
-  font-size: 25px;
+  font-size: 23px;
   color: #FFFFFF;
   margin-left: 35px;
 }
@@ -375,7 +375,7 @@
   overflow-wrap: break-word;
   font-family: 'Inter';
   font-weight: 300;
-  font-size: 25px;
+  font-size: 23px;
   color: #FFFFFF;
   margin-left: 40px;
 }
@@ -636,7 +636,8 @@
 
 .home-page .our-achievement-svg-2-2 {
   width: 211.5px;
-  height: 160px;
+  height: 200px;
+  margin-top: -15px;
 }
 
 .home-page .our-achievement-svg-3 {
@@ -652,6 +653,7 @@
 .home-page .our-achievement-svg-3-3 {
   width: 170.3px;
   height: 170px;
+  margin-top: -15px;
 }
 
 .home-page .our-achievement-text-section {
