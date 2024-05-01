@@ -5,6 +5,10 @@
     height: 109px;
 }
 
+.about-us-page a{
+    text-decoration: none;
+}
+
 .about-us-page .home {
     margin: 5px 29.9px 4px 0;
     display: inline-block;

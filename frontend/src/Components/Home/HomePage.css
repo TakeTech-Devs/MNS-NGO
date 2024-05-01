@@ -112,6 +112,10 @@
   box-sizing: border-box;
 }
 
+.home-page a{
+  text-decoration: none;
+}
+
 .home-page .home {
   overflow-wrap: break-word;
   font-family: 'Inter';
@@ -240,7 +244,7 @@
   overflow-wrap: break-word;
   font-family: 'Inter';
   font-weight: 600;
-  font-size: 38px;
+  font-size: 30px;
   color: #FFFFFF;
 }
 
@@ -252,7 +256,7 @@
   overflow-wrap: break-word;
   font-family: 'Inter';
   font-weight: 300;
-  font-size: 28px;
+  font-size: 24px;
   color: #FFFFFF;
 }
 
@@ -395,7 +399,7 @@
   overflow-wrap: break-word;
   font-family: 'Inter';
   font-weight: 600;
-  font-size: 40px;
+  font-size: 35px;
   color: #145A98;
 }
 
@@ -406,7 +410,7 @@
   overflow-wrap: break-word;
   font-family: 'Inter';
   font-weight: 300;
-  font-size: 30px;
+  font-size: 27px;
   color: #3D76AF;
 }
 
@@ -429,14 +433,14 @@
   background: url('../../assets/images/rectangle7.png') 50% / cover no-repeat, linear-gradient(#D9D9D9, #D9D9D9);
   margin: 3px 46px 4px 0;
   width: 110%;
-  height: 423px;
+  height: 358px;
 }
 
 .home-page .our-team-content {
   margin-right: 0px;
   font-family: 'Inter';
   font-weight: 300;
-  font-size: 30px;
+  font-size: 25px;
   color: #3D76AF;
 }
 
@@ -455,7 +459,7 @@
   overflow-wrap: break-word;
   font-family: 'Inter';
   font-weight: 600;
-  font-size: 40px;
+  font-size: 35px;
   color: #145A98;
 }
 
@@ -466,7 +470,7 @@
   overflow-wrap: break-word;
   font-family: 'Inter';
   font-weight: 300;
-  font-size: 30px;
+  font-size: 27px;
   color: #3D76AF;
   width: 1000px;
 }
@@ -585,7 +589,7 @@
   overflow-wrap: break-word;
   font-family: 'Inter';
   font-weight: 600;
-  font-size: 40px;
+  font-size: 35px;
   color: #145A98;
 }
 
@@ -596,7 +600,7 @@
   overflow-wrap: break-word;
   font-family: 'Inter';
   font-weight: 300;
-  font-size: 30px;
+  font-size: 27px;
   color: #3D76AF;
   width: 900px;
 }
@@ -816,7 +820,7 @@
   overflow-wrap: break-word;
   font-family: 'Inter';
   font-weight: 600;
-  font-size: 40px;
+  font-size: 35px;
   color: #145A98;
 }
 
@@ -827,7 +831,7 @@
   overflow-wrap: break-word;
   font-family: 'Inter';
   font-weight: 300;
-  font-size: 30px;
+  font-size: 24px;
   color: #3D76AF;
 }
 

@@ -30,7 +30,7 @@
     overflow-wrap: break-word;
     font-family: 'Inter';
     font-weight: 400;
-    font-size: 25px;
+    font-size: 20px;
     line-height: 1.4;
     color: rgba(255, 255, 255, 0.8);
     width: 40%;
@@ -50,7 +50,7 @@
     overflow-wrap: break-word;
     font-family: 'Inter';
     font-weight: 400;
-    font-size: 25px;
+    font-size: 20px;
     line-height: 1.5;
     color: #FFFFFF;
   }
@@ -70,50 +70,51 @@
     background: url('../../assets/images/email2.png') 50% / cover no-repeat;
     position: absolute;
     left: -45px;
-    bottom: 0px;
-    width: 35.8px;
-    height: 35.8px;
+    bottom: 5px;
+    width: 30.8px;
+    height: 30.8px;
   }
   
    .email-link {
-    margin: 9px 8.5px 5.5px 0;
+    margin: 9px 8.5px 5.5px -9px;
     display: inline-block;
     overflow-wrap: break-word;
     font-family: 'Inter';
     font-weight: 400;
-    font-size: 23px;
+    font-size: 20px;
     color: #FFFFFF;
   }
   
    .instagram {
     background: url('../../assets/images/image5.png') 50% / cover no-repeat;
-    margin: 0 12px 4.5px 0;
-    width: 39px;
-    height: 38px;
+    margin: 4px 12px 0 0;
+    bottom: 50px;
+    width: 32px;
+    height: 32px;
   }
   
    .instagram-link {
-    margin: 9px 10.5px 5.5px 0;
+    margin: 9px 10.5px 5.5px -9px;
     display: inline-block;
     overflow-wrap: break-word;
     font-family: 'Inter';
     font-weight: 400;
-    font-size: 23px;
+    font-size: 20px;
     color: #FFFFFF;
   }
   
    .whatsapp {
     background: url('../../assets/images/image6.png') 50% / cover no-repeat;
-    margin: 0 9px 4.5px 0;
-    width: 38px;
-    height: 38px;
+    margin: 4px 5px 0 0;
+    width: 32px;
+    height: 32px;
   }
   
    .whatsapp-link {
     margin: 9px 0 5.5px 0;
     font-family: 'Inter';
     font-weight: 400;
-    font-size: 23px;
+    font-size: 20px;
     color: #FFFFFF;
   }
   
@@ -141,29 +142,29 @@
     overflow-wrap: break-word;
     font-family: 'Inter';
     font-weight: 400;
-    font-size: 20px;
+    font-size: 16px;
     color: #FFFFFF;
   }
   
   .powered-by-take-tech-devs {
     font-family: 'Inter';
     font-weight: 400;
-    font-size: 20px;
     line-height: 1.333;
     color: #321910;
+    font-size: 16px;
   }
   
    .poweredby {
     overflow-wrap: break-word;
     font-family: 'Poppins';
     font-weight: 400;
-    font-size: 20px;
+    /* font-size: 20px; */
     color: #FFFFFF;
   }
   
   .poweredby span {
     font-family: 'Inter';
     font-weight: 400;
-    font-size: 20px;
+    /* font-size: 20px; */
     line-height: 1.333;
   }

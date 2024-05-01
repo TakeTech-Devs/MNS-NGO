@@ -62,14 +62,14 @@ const HomePage = () => {
                             <div className="navbar">
                                 <div className="navbar-link">
                                     <div className="home-active">
-                                        <span className="home"> Home </span>
+                                        <a href='#' className="home"> Home </a>
                                     </div>
-                                    <div className="about-us">About Us</div>
-                                    <div className="grievance">Grievance</div>
-                                    <div className="services">Services</div>
-                                    <div className="governing-body">Governing Body</div>
-                                    <div className="gallery">Gallery</div>
-                                    <div className="contact-us">Contact Us</div>
+                                    <a href='/about' className="about-us">About Us</a>
+                                    <a href='#' className="grievance">Grievance</a>
+                                    <a href='#' className="services">Services</a>
+                                    <a href='#' className="governing-body">Governing Body</a>
+                                    <a href='#' className="gallery">Gallery</a>
+                                    <a href='#' className="contact-us">Contact Us</a>
                                 </div>
                                 <div className="donate-section">
                                     <div className="phone">
