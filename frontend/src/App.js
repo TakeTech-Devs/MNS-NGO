@@ -16,7 +16,7 @@ function App() {
           <Route path="/carousel" element={<CarouselForm />} />
         </Routes>
       </Router>
-          <Form />
+          {/* <Form /> */}
           <Footer />
     </>
   );

@@ -16,6 +16,7 @@
   padding: 34px 35px 138px 31px;
   box-sizing: border-box;
   z-index: 1;
+  height: 100vh;
 }
 
 .background-image {
@@ -233,6 +234,7 @@
 
 .home-page .carousel-heading {
   margin-bottom: 29px;
+  margin-top: -150px;
   display: inline-block;
   align-self: flex-start;
   overflow-wrap: break-word;
@@ -243,7 +245,7 @@
 }
 
 .home-page .carousel-caption {
-  margin-bottom: 217px;
+  /* margin-bottom: 217px; */
   margin-right: 800px;
   display: inline-block;
   align-self: flex-start;
@@ -262,13 +264,15 @@
   column-gap: 15px;
   width: 150px;
   box-sizing: border-box;
+  /* background-color: #000000; */
 }
 
 .home-page .ellipse {
   border-radius: 9px;
   background: #FFFFFF;
-  width: 18px;
-  height: 18px;
+  width: 12px;
+  height: 12px;
+
 }
 
 .indicator.active {
@@ -616,8 +620,8 @@
 }
 
 .home-page .our-achievement-svg-1-1 {
-  width: 217px;
-  height: 253.5px;
+  width: 170px;
+  height: 206.5px;
 }
 
 .home-page .our-achievement-svg-2 {
@@ -631,8 +635,8 @@
 }
 
 .home-page .our-achievement-svg-2-2 {
-  width: 277.5px;
-  height: 207px;
+  width: 211.5px;
+  height: 160px;
 }
 
 .home-page .our-achievement-svg-3 {
@@ -646,8 +650,8 @@
 }
 
 .home-page .our-achievement-svg-3-3 {
-  width: 197.3px;
-  height: 207px;
+  width: 170.3px;
+  height: 170px;
 }
 
 .home-page .our-achievement-text-section {
@@ -666,6 +670,7 @@
   box-sizing: border-box;
   /* margin-right: 50px; */
   margin-left: -116px;
+  margin-top: -50px;
 }
 
 .home-page .our-achievement-text-1-heading {
@@ -695,6 +700,7 @@
   align-items: center;
   box-sizing: border-box;
   margin-left: 50px;
+  margin-top: -50px;
 }
 
 .home-page .our-achievement-text-2-heading {
@@ -724,6 +730,7 @@
   align-items: center;
   box-sizing: border-box;
   margin-right: -50px;
+  margin-top: -50px;
 }
 
 .home-page .our-achievement-text-3-heading {
