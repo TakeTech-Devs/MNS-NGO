@@ -27,9 +27,9 @@ const About = () => {
                                 </div>
                                 <div className="container-1">+000 000 0000</div>
                             </div>
-                            <div className="group-2">
-                                <span className="donate">Donate</span>
-                            </div>
+                            <button className="group-2">Donate
+                                {/* <span className="donate">Donate</span> */}
+                            </button>
                         </div>
                     </div>
                 </div>

@@ -82,9 +82,9 @@ const HomePage = () => {
                                         </div>
                                         <div className="navbar">+000 000 0000</div>
                                     </div>
-                                    <div className="donatebtn">
-                                        <span className="donate"> Donate </span>
-                                    </div>
+                                    <button className="donatebtn">Donate
+                                        {/* <span className="donate"> Donate </span> */}
+                                    </button>
                                 </div>
                             </div>
                         </div>
