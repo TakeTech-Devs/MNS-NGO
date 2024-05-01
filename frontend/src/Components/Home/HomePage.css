@@ -66,8 +66,9 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 1374px;
+  /* width: 1374px; */
   box-sizing: border-box;
+  padding-left: 39px;
 }
 
 .home-page .logo-1 {
@@ -91,6 +92,7 @@
   flex-direction: column;
   align-items: flex-end;
   box-sizing: border-box;
+  padding-right: 41px;
 }
 
 .home-page .navbar-link {
@@ -193,7 +195,7 @@
 }
 
 .home-page .phone {
-  margin: 9px 38.2px 9px 0;
+  margin: 9px 5px 9px 0;
   display: flex;
   flex-direction: row;
   box-sizing: border-box;
@@ -223,22 +225,29 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
-  padding: 10px 13.5px 10px 13px;
+  padding: 13px 18px 12px 18px;
   box-sizing: border-box;
+  color:#FFFFFF;
+  font-family: 'Inter';
+  font-weight: 500;
+  font-size: 25px;
+  text-transform: uppercase;
+  overflow-wrap: break-word;
+  border: none;
 }
 
-.home-page .donate {
+/* .home-page .donate {
   overflow-wrap: break-word;
   font-family: 'Inter';
   font-weight: 700;
   font-size: 30px;
   text-transform: uppercase;
   color: #FFFFFF;
-}
+} */
 
 .home-page .carousel-heading {
   margin-bottom: 29px;
-  margin-top: -70px;
+  margin-top: -50px;
   display: inline-block;
   align-self: flex-start;
   overflow-wrap: break-word;

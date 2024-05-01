@@ -70,9 +70,9 @@
     background: url('../../assets/images/email2.png') 50% / cover no-repeat;
     position: absolute;
     left: -45px;
-    bottom: 5px;
-    width: 30.8px;
-    height: 30.8px;
+    bottom: 3px;
+    width: 30px;
+    height: 30px;
   }
   
    .email-link {
