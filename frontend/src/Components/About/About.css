@@ -135,14 +135,19 @@
     box-sizing: border-box;
 }
 
-/* .about-us-page .donate {
+.about-caption{
+    margin-left: 54px;
+    margin-right: 65px;
     overflow-wrap: break-word;
     font-family: 'Inter';
-    font-weight: 700;
-    font-size: 30px;
-    text-transform: uppercase;
+    font-weight: 400;
+    font-size: 25px;
     color: #FFFFFF;
-} */
+    text-align: center;
+    width: 900px;
+    /* z-index: 1; */
+    padding-top: 30px;
+}
 
 .about-us-page .group-2 {
     background: #145A98;
@@ -226,17 +231,7 @@
     font-weight: 300;
     font-size: 27px;
     color: #3D76AF;
-    width: 1000px;
-}
-
-.about-us-page .lorem-ipsum-dolor-sit-amet-consectetur-adipiscing-elit-sed-do-eiusmod-tempor-incididunt-ut-labore-et-dolore-magna-aliqua-lorem-ipsum-dolor-sit-amet-consectetur-adipiscing-elit-sed-do-eiusmod-tempor-incididunt-ut-labore-et-dolore-magna-aliqua-lorem-ipsum-dolor-sit-amet-consectetur-adipiscing-elit-sed-do-eiusmod-tempor-incididunt-ut-labore-et-dolore-magna-aliqua-lorem-ipsum-dolor-sit-amet-consectetur-adipiscing-elit-sed-do-eiusmod-tempor-incididunt-ut-labore-et-dolore-magna-aliqua-lorem-ipsum-dolor-sit-amet-consectetur-adipiscing-elit-sed-do-eiusmod-tempor-incididuntu {
-    margin: 0 11.9px 113px 40px;
-    display: inline-block;
-    overflow-wrap: break-word;
-    font-family: 'Inter';
-    font-weight: 300;
-    font-size: 25px;
-    color: #3D76AF;
+    width: 1350px;
 }
 
 .about-us-page .rectangle-7 {
@@ -338,7 +333,7 @@
 
 .about-us-page .lorem-ipsum-dolor-15 {
     position: relative;
-    margin: 0 0 171px 95px;
+    margin: 0 0 171px 0px;
     display: inline-block;
     overflow-wrap: break-word;
     font-family: 'Inter';
@@ -348,7 +343,7 @@
 }
 
 .about-us-page .lorem-ipsum-dolor-19 {
-    margin: 0 0 124px 19.9px;
+    margin: 0 0 124px 0px;
     display: inline-block;
     text-align: center;
     overflow-wrap: break-word;
@@ -377,6 +372,7 @@
     font-weight: 600;
     font-size: 35px;
     color: #145A98;
+    margin-right: 115px;
 }
 
 .about-us-page .container-6 {
@@ -407,7 +403,7 @@
 }
 
 .about-us-page .lorem-ipsum-dolor-16 {
-    margin-left: 29.1px;
+    margin-left: 40px;
     overflow-wrap: break-word;
     font-family: 'Inter';
     font-weight: 600;
@@ -418,14 +414,14 @@
 .about-us-page .lorem-ipsum-dolor-sit-amet-consectetur-adipiscing-elit-sed-do-eiusmod-tempor-incididunt-ut-labore-et-dolore-magna-aliqua-1 {
     position: absolute;
     top: 78px;
-    right: 120px;
+    right: 180px;
     text-align: center;
     overflow-wrap: break-word;
     font-family: 'Inter';
     font-weight: 300;
     font-size: 27px;
     color: #3D76AF;
-    width: 1000px;
+    width: 875px;
 }
 
 .about-us-page .group-36 {
@@ -467,7 +463,7 @@
     font-weight: 300;
     font-size: 27px;
     color: #FFFFFF;
-    width: 1000px;
+    width: 1050px;
 }
 
 .about-us-page .group-37 {

@@ -1,4 +1,3 @@
-// import './App.css';
 import CarouselForm from './Components/Admin/CarouselForm';
 import HomePage from './Components/Home/HomePage';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
@@ -16,7 +15,7 @@ function App() {
           <Route path="/carousel" element={<CarouselForm />} />
         </Routes>
       </Router>
-          {/* <Form /> */}
+          <Form />
           <Footer />
     </>
   );
