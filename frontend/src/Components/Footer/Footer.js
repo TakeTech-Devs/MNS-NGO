@@ -11,15 +11,15 @@ const Footer = () => {
 
                 <div className="footer-link">
                     <a href="/about" className="footer-link-other">About Us</a>
-                    <a href="#" className="footer-link-other">Our Mission</a>
-                    <a href="#" className="footer-link-other">Our Services</a>
-                    <a href="#" className="footer-link-other">Contact Us</a>
+                    <a href="/#" className="footer-link-other">Our Mission</a>
+                    <a href="/#" className="footer-link-other">Our Services</a>
+                    <a href="/#" className="footer-link-other">Contact Us</a>
                 </div>
                 <div className="footer-link">
-                    <a href="#" className="footer-link-other">Privacy Policy</a>
-                    <a href="#" className="footer-link-other">Terms of Service</a>
-                    <a href="#" className="footer-link-other">FAQs</a>
-                    <a href="#" className="footer-link-other">Blog</a>
+                    <a href="/#" className="footer-link-other">Privacy Policy</a>
+                    <a href="/#" className="footer-link-other">Terms of Service</a>
+                    <a href="/#" className="footer-link-other">FAQs</a>
+                    <a href="/#" className="footer-link-other">Blog</a>
                 </div>
                 {/* <div className="footer-link"> */}
                 <div className="footer-link-other"><b style={{ marginLeft: "348px" }}>DONATE</b></div>
@@ -36,7 +36,7 @@ const Footer = () => {
             <div className="footer-section-2">
                 <span className="copyright-section"> Copyright © 2024 Comapny </span>
                 <p className="poweredby">
-                    <span>Powered By</span><span > TakeTech Devs</span>
+                    <span>Powered By</span><span style={{color: "black"}}> TakeTech Devs</span>
                 </p>
             </div>
         </div>

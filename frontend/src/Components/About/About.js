@@ -14,11 +14,11 @@ const About = () => {
                             <div className="container-4">
                                 <a href="/about" className="about-us">About Us</a>
                             </div>
-                            <a href="#" className="services">Services</a>
-                            <a href="#" className="grievance">Grievance</a>
-                            <a href="#" className="governing-body">Governing Body</a>
-                            <a href="#" className="gallery">Gallery</a>
-                            <a href="#" className="contact-us">Contact Us</a>
+                            <a href="/#" className="services">Services</a>
+                            <a href="/#" className="grievance">Grievance</a>
+                            <a href="/#" className="governing-body">Governing Body</a>
+                            <a href="/#" className="gallery">Gallery</a>
+                            <a href="/#" className="contact-us">Contact Us</a>
                         </div>
                         <div className="container">
                             <div className="group-29">

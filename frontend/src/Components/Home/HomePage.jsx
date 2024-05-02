@@ -65,11 +65,11 @@ const HomePage = () => {
                                         <a href='#' className="home"> Home </a>
                                     </div>
                                     <a href='/about' className="about-us">About Us</a>
-                                    <a href='#' className="grievance">Grievance</a>
-                                    <a href='#' className="services">Services</a>
-                                    <a href='#' className="governing-body">Governing Body</a>
-                                    <a href='#' className="gallery">Gallery</a>
-                                    <a href='#' className="contact-us">Contact Us</a>
+                                    <a href='/#' className="grievance">Grievance</a>
+                                    <a href='/#' className="services">Services</a>
+                                    <a href='/#' className="governing-body">Governing Body</a>
+                                    <a href='/#' className="gallery">Gallery</a>
+                                    <a href='/#' className="contact-us">Contact Us</a>
                                 </div>
                                 <div className="donate-section">
                                     <div className="phone">
