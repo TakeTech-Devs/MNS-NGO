@@ -336,7 +336,7 @@
 }
 
 .home-page .highlight-1-header {
-  margin: 0 0 11px 3.1px;
+  margin: 0 60px 11px 0;
   display: inline-block;
   overflow-wrap: break-word;
   font-family: 'Inter';
@@ -346,7 +346,7 @@
 }
 
 .home-page .highlight-2-header {
-  margin: 0 0 11px 3.1px;
+  margin: 0 10px 11px 0;
   display: inline-block;
   overflow-wrap: break-word;
   font-family: 'Inter';
@@ -356,7 +356,7 @@
 }
 
 .home-page .highlight-3-header {
-  margin: 0 0 11px 12px;
+  margin: 0 0 11px 50px;
   display: inline-block;
   overflow-wrap: break-word;
   font-family: 'Inter';
@@ -372,7 +372,9 @@
   font-weight: 300;
   font-size: 23px;
   color: #FFFFFF;
-  margin-left: 35px;
+  /* margin-left: 30px; */
+  margin-right: 60px;
+  text-align: center;
 }
 
 .home-page .highlight-2-caption {
@@ -381,7 +383,8 @@
   font-weight: 300;
   font-size: 23px;
   color: #FFFFFF;
-  margin-left: 35px;
+  margin-left: -10px;
+  text-align: center;
 }
 
 .home-page .highlight-3-caption {
@@ -391,6 +394,7 @@
   font-size: 23px;
   color: #FFFFFF;
   margin-left: 40px;
+  text-align: center;
 }
 
 .home-page .our-team-section{
@@ -413,7 +417,7 @@
 }
 
 .home-page .our-team-caption {
-  margin: 0 0 62px 25.6px;
+  margin: 0 285px 62px 285px;
   display: inline-block;
   text-align: center;
   overflow-wrap: break-word;
@@ -611,7 +615,7 @@
   font-weight: 300;
   font-size: 27px;
   color: #3D76AF;
-  width: 900px;
+  /* width: 888px; */
 }
 
 .home-page .our-achievement-svg-section {
@@ -664,8 +668,8 @@
 }
 
 .home-page .our-achievement-svg-3-3 {
-  width: 170.3px;
-  height: 170px;
+  width: 190px;
+  height: 190px;
   margin-top: -15px;
 }
 
@@ -689,7 +693,7 @@
 }
 
 .home-page .our-achievement-text-1-heading {
-  margin: 0 100px 11px 3.1px;
+  margin: 0 10px 11px 0px;
   display: inline-block;
   overflow-wrap: break-word;
   font-family: 'Inter';
@@ -706,7 +710,7 @@
   color: #145A98;
   /* width: 430px; */
   text-align: center;
-  margin-right: 90px;
+  margin-right: 14px;
 }
 
 .home-page .our-achievement-text-2 {
@@ -719,7 +723,7 @@
 }
 
 .home-page .our-achievement-text-2-heading {
-  margin: 0 10px 11px -120px;
+  margin: 0 -180px 11px 62px;
   display: inline-block;
   overflow-wrap: break-word;
   font-family: 'Inter';
@@ -736,7 +740,8 @@
   color: #145A98;
   /* width: 430px; */
   text-align: center;
-  margin-right: 115px;
+  margin-right: -188px;
+  margin-left: 44px;
 }
 
 .home-page .our-achievement-text-3 {
@@ -749,7 +754,7 @@
 }
 
 .home-page .our-achievement-text-3-heading {
-  margin: 0 0 11px 45px;
+  margin: 0 -206px 11px 110px;
   display: inline-block;
   overflow-wrap: break-word;
   font-family: 'Inter';
@@ -766,6 +771,7 @@
   color: #145A98;
   text-align: center;
   margin-right: -50px;
+  margin-left: 262px;
 }
 
 .home-page .img-section {
@@ -811,7 +817,9 @@
   font-weight: 300;
   font-size: 30px;
   color: #FFFFFF;
-  /* margin-left: 100px; */
+  margin-left: -16px;
+  /* margin-right: 4px; */
+  text-align: center;
 }
 
 .home-page .brand-section {
@@ -834,7 +842,7 @@
 }
 
 .home-page .brand-section-caption{
-  margin: 0 0 86px 3px;
+  margin: 0 322px 86px 323px;
   display: inline-block;
   text-align: center;
   overflow-wrap: break-word;

@@ -3,40 +3,26 @@ import "./Footer.css"
 
 const Footer = () => {
     return (
+
         <div className="footer-section">
-            <div className="logo-2"></div>
+            <a href='/' className="logo-2"></a>
+            <div className="footer-details">Empowering communities, fostering change, together.</div>
             <div className="footer-container">
-                <div
-                    className="footer-details"
-                >
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                    eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem
-                    ipsum dolor sit amet, consectetur adipiscin. Lorem ipsum dolor sit
-                    amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                    ut labore et dolore magna aliqua.
+
+                <div className="footer-link">
+                    <a href="/about" className="footer-link-other">About Us</a>
+                    <a href="#" className="footer-link-other">Our Mission</a>
+                    <a href="#" className="footer-link-other">Our Services</a>
+                    <a href="#" className="footer-link-other">Contact Us</a>
                 </div>
                 <div className="footer-link">
-                    <div className="footer-link-other">Lorem ipsum</div>
-                    <div className="footer-link-other">Lorem ipsum</div>
-                    <div className="footer-link-other">Lorem ipsum</div>
-                    <div className="footer-link-other">Lorem ipsum</div>
-                    <div className="footer-link-other">Lorem ipsum</div>
-                    <div className="footer-link-other">Lorem ipsum</div>
+                    <a href="#" className="footer-link-other">Privacy Policy</a>
+                    <a href="#" className="footer-link-other">Terms of Service</a>
+                    <a href="#" className="footer-link-other">FAQs</a>
+                    <a href="#" className="footer-link-other">Blog</a>
                 </div>
-                <div className="footer-link">
-                    <div className="footer-link-other">Lorem ipsum dolor</div>
-                    <div className="footer-link-other">Lorem ipsum dolor</div>
-                    <div className="footer-link-other">Lorem ipsum dolor</div>
-                    <div className="footer-link-other">Lorem ipsum dolor</div>
-                    <div className="footer-link-other">Lorem ipsum dolor</div>
-                </div>
-                <div className="footer-link">
-                    <div className="footer-link-other">Lorem ipsum dolor</div>
-                    <div className="footer-link-other">Lorem ipsum dolor</div>
-                    <div className="footer-link-other">Lorem ipsum dolor</div>
-                    <div className="footer-link-other">Lorem ipsum dolor</div>
-                    <div className="footer-link-other">Lorem ipsum dolor</div>
-                </div>
+                {/* <div className="footer-link"> */}
+                <div className="footer-link-other"><b style={{ marginLeft: "348px" }}>DONATE</b></div>
             </div>
             <div className="footer-social-link">
                 <div className="email-2"></div>

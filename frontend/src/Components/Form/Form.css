@@ -1,268 +1,54 @@
- .group-128 {
-    background: #3D76AF;
-    position: relative;
-    margin-bottom: 151px;
+
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #3D76AF;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 100px;
+}
+
+h1 {
+    text-align: center;
+    color: white;
+}
+
+form {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    padding: 58px 0 39px 0;
-    width: 1120px;
-    box-sizing: border-box;
-    margin-left: 210px;
-}
- .lorem-ipsum-dolor-21 {
-    margin: 0 0 88px 10.1px;
-    display: inline-block;
-    overflow-wrap: break-word;
-    font-family: 'Inter';
-    font-weight: 600;
-    font-size: 40px;
-    color: #FFFFFF;
-}
- .group-43 {
-    margin: 0 1px 77px 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: fit-content;
-    box-sizing: border-box;
-}
- .group-38 {
-    margin-bottom: 36px;
-    display: flex;
-    flex-direction: column;
-    width: fit-content;
-    box-sizing: border-box;
 }
 
- .lorem-ipsum-8 {
-    margin: 0 3.3px 21px 3.3px;
-    display: inline-block;
-    align-self: flex-start;
-    overflow-wrap: break-word;
-    font-family: 'Inter';
-    font-weight: 500;
-    font-size: 30px;
-    color: #FFFFFF;
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #ffffff;
 }
 
- .line-2 {
-    background: #FFFFFF;
-    width: 786px;
-    height: 3px;
+input,
+textarea {
+  border: none;
+  border-bottom: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 15px;
+  /* Remove borders on other three sides */
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  background-color: #3D76AF;
+  outline: none;
 }
 
- .group-39 {
-    margin-bottom: 34px;
-    display: flex;
-    flex-direction: column;
-    width: fit-content;
-    box-sizing: border-box;
-}
- .lorem-ipsum-9 {
-    margin: 0 4.5px 23px 4.5px;
-    display: inline-block;
-    align-self: flex-start;
-    overflow-wrap: break-word;
-    font-family: 'Inter';
-    font-weight: 500;
-    font-size: 30px;
-    color: #FFFFFF;
+button {
+    color: #3D76AF;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100px;
+    margin: 0 auto;
 }
 
- .line-3 {
-    background: #FFFFFF;
-    width: 786px;
-    height: 3px;
-}
-
- .group-40 {
-    margin-bottom: 30px;
-    display: flex;
-    flex-direction: column;
-    width: fit-content;
-    box-sizing: border-box;
-}
-
- .lorem-ipsum-10 {
-    margin: 0 3.3px 27px 3.3px;
-    display: inline-block;
-    align-self: flex-start;
-    overflow-wrap: break-word;
-    font-family: 'Inter';
-    font-weight: 500;
-    font-size: 30px;
-    color: #FFFFFF;
-}
-
- .line-4 {
-    background: #FFFFFF;
-    width: 786px;
-    height: 3px;
-}
-
- .group-42 {
-    display: flex;
-    flex-direction: column;
-    width: fit-content;
-    box-sizing: border-box;
-}
-
- .group-41 {
-    margin-bottom: 35px;
-    display: flex;
-    flex-direction: column;
-    width: fit-content;
-    box-sizing: border-box;
-}
-
- .lorem-ipsum-12 {
-    margin: 0 3.3px 22px 3.3px;
-    display: inline-block;
-    align-self: flex-start;
-    overflow-wrap: break-word;
-    font-family: 'Inter';
-    font-weight: 500;
-    font-size: 30px;
-    color: #FFFFFF;
-}
-
- .line-5 {
-    background: #FFFFFF;
-    width: 786px;
-    height: 3px;
-}
-
- .lorem-ipsum-11 {
-    margin: 0 3.3px 28px 3.3px;
-    display: inline-block;
-    align-self: flex-start;
-    overflow-wrap: break-word;
-    font-family: 'Inter';
-    font-weight: 500;
-    font-size: 30px;
-    color: #FFFFFF;
-}
-
- .line-6 {
-    background: #FFFFFF;
-    width: 786px;
-    height: 3px;
-}
-
- .group-44 {
-    background: #FFFFFF;
-    position: relative;
-    margin: 0 2px 98px 0;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    padding: 15px 26.3px 15px 20px;
-    box-sizing: border-box;
-}
- .lorem-ipsum-13 {
-    overflow-wrap: break-word;
-    font-family: 'Inter';
-    font-weight: 600;
-    font-size: 40px;
-    color: #145A98;
-}
- .container-3 {
-    margin-left: 0.1px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 786.9px;
-    box-sizing: border-box;
-}
-
- .group-121 {
-    display: flex;
-    flex-direction: column;
-    box-sizing: border-box;
-}
-
- .loremipsumdolor {
-    margin-bottom: 11px;
-    display: inline-block;
-    overflow-wrap: break-word;
-    font-family: 'Inter';
-    font-weight: 300;
-    font-size: 30px;
-    color: #FFFFFF;
-}
-
- .container-2 {
-    margin: 0 0.4px;
-    align-self: flex-start;
-    overflow-wrap: break-word;
-    font-family: 'Inter';
-    font-weight: 300;
-    font-size: 30px;
-    color: #FFFFFF;
-}
- .group-120 {
-    position: relative;
-    margin-top: 51px;
-    display: flex;
-    flex-direction: row;
-    width: 155px;
-    height: fit-content;
-    box-sizing: border-box;
-}
- .group-10 {
-    position: relative;
-    margin: 2.9px 12.2px 1px 0;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    width: 28.8px;
-    height: 28.2px;
-    box-sizing: border-box;
-}
-
- .ellipse-1 {
-    position: relative;
-    width: 28.8px;
-    height: 28.2px;
-}
-
- .email-1 {
-    background: url('../../assets/images/email1.png') 50% / cover no-repeat;
-    position: absolute;
-    left: 50%;
-    bottom: 0px;
-    translate: -50% 0;
-    width: 28.8px;
-    height: 28.2px;
-}
-
- .linkedin-25 {
-    background: url('../../assets/images/linkedin25.png') 50% / cover no-repeat;
-    margin-right: 11.5px;
-    width: 32px;
-    height: 32px;
-}
-
- .whatsapp-5 {
-    background: url('../../assets/images/whatsapp5.png') 50% / cover no-repeat;
-    margin: 2.9px 14.2px 2.4px 0;
-    width: 27.3px;
-    height: 26.7px;
-}
-
- .facebook-5 {
-    background: url('../../assets/images/facebook5.png') 50% / cover no-repeat;
-    margin-top: 3px;
-    width: 29px;
-    height: 29px;
-}
-
- .ellipse-14 {
-    border-radius: 14.6px;
-    position: absolute;
-    left: 0px;
-    bottom: 0.7px;
-    width: 29.3px;
-    height: 29.3px;
+button:hover {
+    background-color: #0056b3;
 }

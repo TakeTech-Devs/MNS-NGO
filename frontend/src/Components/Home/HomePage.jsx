@@ -24,11 +24,11 @@ const HomePage = () => {
 
     const nextSlide = useCallback(() => {
         if (currentIndex < totalSlides - 1) {
-          setCurrentIndex(currentIndex + 1);
+            setCurrentIndex(currentIndex + 1);
         } else {
-          setCurrentIndex(0);
+            setCurrentIndex(0);
         }
-      }, [currentIndex, totalSlides]);
+    }, [currentIndex, totalSlides]);
 
     function prevSlide() {
         if (currentIndex > 0) {
@@ -41,7 +41,7 @@ const HomePage = () => {
     useEffect(() => {
         const interval = setInterval(nextSlide, 5000);
         return () => clearInterval(interval);
-      }, [currentIndex, nextSlide]);
+    }, [currentIndex, nextSlide]);
     return (
         <>
             <div className="home-page">
@@ -58,7 +58,7 @@ const HomePage = () => {
                         <button className="next-btn" onClick={nextSlide}>&#10095;</button>
 
                         <div className="navbar-section">
-                            <div className="logo-1"></div>
+                            <a href='/' className="logo-1"></a>
                             <div className="navbar">
                                 <div className="navbar-link">
                                     <div className="home-active">
@@ -89,12 +89,11 @@ const HomePage = () => {
                             </div>
                         </div>
 
-                        <div className="carousel-heading">Lorem ipsum dolor</div>
+                        <div className="carousel-heading">Empowering Communities, Transforming Lives</div>
                         <div
                             className="carousel-caption"
                         >
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                            eiusmod tempor incididunt ut labore et dolore magna aliqua 6363.
+                            Join Mallarpur Naisuva in our mission to break the cycle of poverty and foster inclusive development.
                         </div>
                         <div className="carousel-indicate">
                             {Array.from({ length: totalSlides }).map((_, index) => (
@@ -109,67 +108,58 @@ const HomePage = () => {
 
                     <div className="highlight-section">
                         <div className="highlight-1">
-                            <div className="highlight-1-header">Lorem ipsum</div>
+                            <div className="highlight-1-header">Compassion</div>
                             <span
                                 className="highlight-1-caption"
                             >
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                                Embracing empathy, fostering kindness
                             </span>
                         </div>
                         <div className="highlight-2">
-                            <div className="highlight-2-header">Lorem ipsum</div>
+                            <div className="highlight-2-header">Integrity</div>
                             <span
                                 className="highlight-2-caption"
                             >
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                                Upholding ethics, ensuring trustworthiness
                             </span>
                         </div>
                         <div className="highlight-3">
-                            <div className="highlight-3-header">Lorem ipsum</div>
+                            <div className="highlight-3-header">Empowerment</div>
                             <span
                                 className="highlight-3-caption"
                             >
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                                Inspiring growth, nurturing resilience
                             </span>
                         </div>
                     </div>
 
                 </div>
                 <div className="our-team-section">
-                    <div className="our-team-heading">Lorem ipsum dolor</div>
+                    <div className="our-team-heading">About Mallarpur Naisuva</div>
                     <div
                         className="our-team-caption"
                     >
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                        eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                        Empowering communities, transforming lives. Join us in breaking the cycle of poverty and fostering inclusive development.
                     </div>
                     <div className="our-team-container">
                         <div className="our-team-img"></div>
                         <span
                             className="our-team-content"
                         >
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                            eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem
-                            ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                            tempor incididunt ut labore et dolore magna aliqua.<br />
+                            Mallarpur Naisuva is a beacon of hope, dedicated to uplifting the most vulnerable segments of our society. Founded on principles of compassion and social responsibility, our journey began with a vision to extend a helping hand to those in dire need – the poor, elderly, sick, women, and children. <br />
                             <br />
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                            eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem
-                            ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                            tempor incididunt ut labore et dolore magna aliqua.<br />
-                            <br />
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                            eiusmod tempor incididuntu.
+                            Established under the West Bengal Societies Registration Act (XXI) of 1961, Mallarpur Naisuva embodies a commitment to transparency, integrity, and unwavering dedication to our cause. For over three decades, we have remained steadfast in our mission to foster a society where every individual can thrive with dignity.
+
+
                         </span>
                     </div>
                 </div>
                 <div className="our-work-section">
-                    <div className="our-work-heading">Lorem ipsum dolor</div>
+                    <div className="our-work-heading">Our Services</div>
                     <div
                         className="our-work-caption"
                     >
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                        eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                        Empowering Communities Through Compassionate Initiatives
                     </div>
                     <div className="our-work">
                         <div className="our-work-1-container">
@@ -184,72 +174,69 @@ const HomePage = () => {
                             <div className="our-work-3-rectangle"></div>
                             <span className="our-work-3-caption"> Lorem ipsum dolor </span>
                         </div>
-                        
+
                     </div>
                 </div>
                 <div className="our-achievement">
-                    <div className="our-achievement-heading">Lorem ipsum dolor</div>
+                    <div className="our-achievement-heading">Vision of the Organization</div>
                     <div
                         className="our-achievement-caption"
                     >
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                        eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                        Organization aims to break the vicious cycle of poverty and social isolation and to restore hope for a better future. We believe that every person has the right to access resources and opportunities in order to live and develop with dignity and to become an active and contributing member of our society.
                     </div>
                     <div className="our-achievement-svg-section">
                         <div className="our-achievement-svg-1">
-                            <img className="our-achievement-svg-1-1" src={SVG1} alt='svg1'/>
+                            <img className="our-achievement-svg-1-1" src={SVG3} alt='svg1' />
                         </div>
                         <div className="our-achievement-svg-2">
-                            <img className="our-achievement-svg-2-2" src={SVG2} alt='svg2'/>
+                            <img className="our-achievement-svg-2-2" src={SVG2} alt='svg2' />
                         </div>
                         <div className="our-achievement-svg-3">
-                            <img className="our-achievement-svg-3-3" src={SVG3} alt='svg3'/>
+                            <img className="our-achievement-svg-3-3" src={SVG1} alt='svg3' />
                         </div>
                     </div>
                     <div className="our-achievement-text-section">
                         <div className="our-achievement-text-1">
-                            <div className="our-achievement-text-1-heading">Lorem ipsum</div>
+                            <div className="our-achievement-text-1-heading">People's Organizations</div>
                             <span
                                 className="our-achievement-text-1-caption"
                             >
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                                We empower individuals and build their capacities.
                             </span>
                         </div>
                         <div className="our-achievement-text-2">
-                            <div className="our-achievement-text-2-heading">Lorem ipsum</div>
+                            <div className="our-achievement-text-2-heading">Empowering Women</div>
                             <span
                                 className="our-achievement-text-2-caption"
                             >
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                                We support women to reach their full potential.
                             </span>
                         </div>
                         <div className="our-achievement-text-3">
-                            <div className="our-achievement-text-3-heading">Lorem ipsum</div>
+                            <div className="our-achievement-text-3-heading">Sustainable Development</div>
                             <span
                                 className="our-achievement-text-3-caption"
                             >
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                                We implement sustainable models for community health and rural development.
                             </span>
                         </div>
                     </div>
                 </div>
                 <div className="img-section">
                     <div className="img-section-overlay"></div>
-                    <div className="img-section-heading">Lorem ipsum dolor</div>
+                    <div className="img-section-heading">Join Us in Creating Positive Change</div>
                     <span
                         className="img-section-caption"
                     >
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                        eiusmod tempor incididu
+                        Join Mallarpur Naisuva in our mission to empower communities, uplift the vulnerable, and build a brighter future for all.
                     </span>
                 </div>
                 <div className="brand-section">
-                    <div className="brand-section-heading">Lorem ipsum dolor</div>
+                    <div className="brand-section-heading">Our Collaborative Partners</div>
                     <div
                         className="brand-section-caption"
                     >
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                        eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                        We are proud to collaborate with the following brands and organizations who share our commitment to positive change:
                     </div>
                     <div className="brand-logo-section">
                         <div className="brand-logo-top">
