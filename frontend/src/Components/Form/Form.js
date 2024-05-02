@@ -2,7 +2,8 @@ import React from 'react';
 import "./Form.css";
 import img1 from '../../assets/images/email2.png';
 import img2 from '../../assets/images/image6.png';
-import img3 from '../../assets/images/facebook5.png'
+import img3 from '../../assets/images/facebook5.png';
+import img4 from '../../assets/images/linkedin25.png';
 
 const Form = () => {
     return (
@@ -30,6 +31,7 @@ const Form = () => {
                 </div>
                 <div className="right-align">
                     <img src={img1} alt="Footer Image" />
+                    <img src={img4} alt="Footer Image" />
                     <img src={img2} alt="Footer Image" />
                     <img src={img3} alt="Footer Image" />
                 </div>
