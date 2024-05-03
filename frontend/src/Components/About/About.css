@@ -328,35 +328,35 @@
 }
 
 .about-us-page .dreaming-about-future-occupation {
-    background: url('../../assets/images/dreamingAboutFutureOccupation.png') 50% / contain no-repeat;
+    background: url('../../assets/vectors/empowerment.svg') 50% / contain no-repeat;
     position: absolute;
     left: 0px;
-    bottom: 341px;
-    width: 468px;
-    height: 468px;
+    bottom: 450px;
+    width: 330px;
+    height: 330px;
 }
 
 .about-us-page .educational-video-for-online-education {
-    background: url('../../assets/images/educationalVideoForOnlineEducation.png') 50% / contain no-repeat;
+    background: url('../../assets/vectors/compassion.svg') 50% / contain no-repeat;
     position: absolute;
-    top: 0px;
-    right: 341px;
-    width: 499px;
-    height: 499px;
+    top: 12px;
+    right: 458px;
+    width: 329px;
+    height: 330px;  
 }
 
 .about-us-page .playing-basketball {
-    background: url('../../assets/images/playingBasketball.png') 50% / contain no-repeat;
+    background: url('../../assets/vectors/integrity.svg') 50% / contain no-repeat;
     position: absolute;
-    right: 0px;
-    bottom: 347px;
-    width: 456px;
-    height: 456px;
+    right: -44px;
+    bottom: 450px;
+    width: 330px;
+    height: 330px;
 }
 
 .about-us-page .compassion-section {
     position: relative;
-    margin: 0 0 171px 0px;
+    margin: -150px 0 310px 40px;
     display: inline-block;
     overflow-wrap: break-word;
     font-family: 'Inter';
@@ -366,7 +366,7 @@
 }
 
 .about-us-page .our-values-section {
-    margin: 0 0 124px 0px;
+    margin: 0px 0 65px 54px;
     display: inline-block;
     text-align: center;
     overflow-wrap: break-word;
@@ -386,6 +386,7 @@
     font-weight: 600;
     font-size: 35px;
     color: #145A98;
+    margin-bottom: 100px;
 }
 
 .about-us-page .integrity-section {
@@ -395,7 +396,7 @@
     font-weight: 600;
     font-size: 35px;
     color: #145A98;
-    margin-right: 115px;
+    margin-right: 7px;
 }
 
 .about-us-page .empowerment-integrity-section {
@@ -408,8 +409,8 @@
 }
 
 .about-us-page .team-working-on-aproject-together {
-    background: url('../../assets/images/teamWorkingOnAprojectTogether.png') 50% / contain no-repeat;
-    margin-left: 31.9px;
+    background: url('../../assets/vectors/collaboration.svg') 50% / contain no-repeat;
+    margin-left: 30px;
     width: 434px;
     height: 295px;
 }
@@ -432,6 +433,8 @@
     font-weight: 600;
     font-size: 35px;
     color: #145A98;
+    margin-bottom: -75px;
+    margin-top:12px;
 }
 
 .about-us-page .our-values-caption {
@@ -499,6 +502,7 @@
     padding: 458px 0 67px 0;
     width: 100%;
     box-sizing: border-box;
+    margin-top: 40px;
 }
 
 .about-us-page .logo-2 {
@@ -909,8 +913,8 @@
 }
 
 .circle {
-    width: 900px;
-    height: 900px;
+    width: 1000px;
+    height: 950px;
     border-radius: 50%;
     border: 8px dashed #82a8c8;
     margin-top: 130px;
