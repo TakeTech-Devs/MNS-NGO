@@ -38,6 +38,7 @@
   background-color: rgba(0, 0, 0, 0.5);
 }
 
+
 .prev-btn,
 .next-btn {
   position: absolute;
@@ -103,22 +104,19 @@
   box-sizing: border-box;
 }
 
-.home-page .home-active {
-  background: #3D76AF;
-  position: relative;
-  margin-right: 32px;
+.navbar-link {
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  padding: 4px 9.9px 5px 11px;
+  gap: 15px;
+}
+
+.navbar-link .home-active {
+  background: #3D76AF;
+  padding: 0px 9.9px 3px 11px;
   box-sizing: border-box;
+  bottom: 5px;
 }
 
-.home-page a{
-  text-decoration: none;
-}
-
-.home-page .home {
+.home-page a {
   overflow-wrap: break-word;
   font-family: 'Inter';
   font-weight: 700;
@@ -126,65 +124,6 @@
   color: #FFFFFF;
 }
 
-.home-page .about-us {
-  margin: 4px 32.3px 5px 0;
-  display: inline-block;
-  overflow-wrap: break-word;
-  font-family: 'Inter';
-  font-weight: 700;
-  font-size: 22px;
-  color: #FFFFFF;
-}
-
-.home-page .grievance {
-  margin: 4px 32.4px 5px 0;
-  display: inline-block;
-  overflow-wrap: break-word;
-  font-family: 'Inter';
-  font-weight: 700;
-  font-size: 22px;
-  color: #FFFFFF;
-}
-
-.home-page .services {
-  margin: 4px 32.8px 5px 0;
-  display: inline-block;
-  overflow-wrap: break-word;
-  font-family: 'Inter';
-  font-weight: 700;
-  font-size: 22px;
-  color: #FFFFFF;
-}
-
-.home-page .governing-body {
-  margin: 4px 32.3px 5px 0;
-  display: inline-block;
-  overflow-wrap: break-word;
-  font-family: 'Inter';
-  font-weight: 700;
-  font-size: 22px;
-  color: #FFFFFF;
-}
-
-.home-page .gallery {
-  margin: 4px 32.1px 5px 0;
-  display: inline-block;
-  overflow-wrap: break-word;
-  font-family: 'Inter';
-  font-weight: 700;
-  font-size: 22px;
-  color: #FFFFFF;
-}
-
-.home-page .contact-us {
-  margin: 4px 0 5px 0;
-  display: inline-block;
-  overflow-wrap: break-word;
-  font-family: 'Inter';
-  font-weight: 700;
-  font-size: 22px;
-  color: #FFFFFF;
-}
 
 .home-page .donate-section {
   margin: 0 0px;
@@ -227,7 +166,7 @@
   justify-content: center;
   padding: 13px 18px 12px 18px;
   box-sizing: border-box;
-  color:#FFFFFF;
+  color: #FFFFFF;
   font-family: 'Inter';
   font-weight: 500;
   font-size: 25px;
@@ -247,13 +186,13 @@
 
 .home-page .carousel-heading {
   margin-bottom: 29px;
-  margin-top: -50px;
+  margin-top: -70px;
   display: inline-block;
   align-self: flex-start;
   overflow-wrap: break-word;
   font-family: 'Inter';
   font-weight: 600;
-  font-size: 30px;
+  font-size: 45px;
   color: #FFFFFF;
 }
 
@@ -270,6 +209,7 @@
 }
 
 .home-page .carousel-indicate {
+  margin-top: 60px;
   margin-left: 4px;
   display: flex;
   flex-direction: row;
@@ -292,7 +232,7 @@
   background-color: #145A98;
 }
 
-.home-page .highlight-section {
+/* .home-page .highlight-section {
   box-shadow: 10px 4px 16.8px 0px rgba(0, 0, 0, 0.5);
   background: #145A98;
   position: absolute;
@@ -372,7 +312,6 @@
   font-weight: 300;
   font-size: 23px;
   color: #FFFFFF;
-  /* margin-left: 30px; */
   margin-right: 60px;
   text-align: center;
 }
@@ -395,9 +334,82 @@
   color: #FFFFFF;
   margin-left: 40px;
   text-align: center;
+} */
+
+.home-page .highlight-section {
+  box-shadow: 10px 4px 16.8px 0px rgba(0, 0, 0, 0.5);
+  background: #145A98;
+  position: absolute;
+  left: 35px;
+  right: 35px;
+  bottom: -25px;
+  display: flex;
+  flex-direction: row;
+  padding: 23px 116.4px 23px 111px;
+  box-sizing: border-box;
+  z-index: 1;
 }
 
-.home-page .our-team-section{
+.home-page .highlight-1,
+.home-page .highlight-2,
+.home-page .highlight-3 {
+  margin-right: 85.4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 1;
+  flex-basis: 323.6px;
+  box-sizing: border-box;
+}
+
+.home-page .highlight-1-header,
+.home-page .highlight-2-header,
+.home-page .highlight-3-header {
+  margin: 0 0 11px;
+  display: inline-block;
+  overflow-wrap: break-word;
+  font-family: 'Inter';
+  font-weight: 600;
+  font-size: 28px;
+  color: #FFFFFF;
+}
+
+.home-page .highlight-1-header {
+  margin-right: 60px;
+}
+
+.home-page .highlight-2-header {
+  margin-right: 10px;
+}
+
+.home-page .highlight-3-header {
+  margin-left: 50px;
+}
+
+.home-page .highlight-1-caption,
+.home-page .highlight-2-caption,
+.home-page .highlight-3-caption {
+  overflow-wrap: break-word;
+  font-family: 'Inter';
+  font-weight: 300;
+  font-size: 23px;
+  color: #FFFFFF;
+  text-align: center;
+}
+
+.home-page .highlight-1-caption {
+  margin-right: 60px;
+}
+
+.home-page .highlight-2-caption {
+  margin-left: -10px;
+}
+
+.home-page .highlight-3-caption {
+  margin-left: 40px;
+}
+
+.home-page .our-team-section {
   margin: 0 76.6px 98px 51px;
   display: flex;
   flex-direction: column;
@@ -458,7 +470,7 @@
 }
 
 .home-page .our-work-section {
-  margin-bottom: 78px;
+  margin-bottom: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -466,7 +478,7 @@
   box-sizing: border-box;
 }
 
-.home-page .our-work-heading{
+.home-page .our-work-heading {
   margin: 0 0 30px 24.1px;
   display: inline-block;
   overflow-wrap: break-word;
@@ -496,6 +508,58 @@
   box-sizing: border-box;
   justify-content: center;
 }
+
+
+
+.slider {
+  margin: 0 20px;
+  /* overflow:"hidden"; */
+  /* padding:2rem 0; */
+  position: relative;
+  display: inline-block;
+}
+
+.slider img {
+  /* width: 100%; */
+  width: 493px;
+  height: 493px;
+  /* border-radius:10px; */
+  object-fit: cover;
+  display: block;
+
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(180deg, rgba(217, 217, 217, 0) 39.9%, #145A98 100%);
+  pointer-events: none;
+}
+
+.text {
+  position: absolute;
+    bottom: 0; /* Adjust as needed */
+    left: 75%;
+    transform: translateX(-50%);
+    color: white; /* Text color */
+    padding: 10px; /* Padding inside the text container */
+    pointer-events: none; /* Allows clicking through the text */
+    font-family: 'Inter';
+    font-weight: 600;
+    font-size: 20px;
+    color: #FFFFFF;
+    width: 100%;
+}
+
+
+
+
+/* .react-multi-carousel-list {
+padding: 0rem 0 2rem 0;
+} */
 
 .home-page .our-work-1-container {
   background: url('../../assets/images/rectangle8.png') 45% / cover no-repeat, linear-gradient(#D9D9D9, #D9D9D9);
@@ -527,7 +591,7 @@
   color: #FFFFFF;
 }
 
-.home-page .our-work-2-container{
+.home-page .our-work-2-container {
   background: url('../../assets/images/rectangle9.png') 50% / cover no-repeat, linear-gradient(#D9D9D9, #D9D9D9);
   position: relative;
   display: flex;
@@ -587,192 +651,88 @@
   color: #FFFFFF;
 }
 
-.home-page .our-achievement {
-  margin: 0 85.4px 139px 79px;
+.our-achievement {
+  padding: 20px;
+  margin-bottom: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 1275.6px;
-  box-sizing: border-box;
 }
 
-.home-page .our-achievement-heading {
-  margin: 0 0 30px 86px;
-  display: inline-block;
-  overflow-wrap: break-word;
+.our-achievement-heading {
   font-family: 'Inter';
   font-weight: 600;
   font-size: 35px;
   color: #145A98;
+  margin-bottom: 10px;
 }
 
-.home-page .our-achievement-caption {
-  margin: 0 0 87.2px 100px;
-  display: inline-block;
+.our-achievement-caption {
   text-align: center;
   overflow-wrap: break-word;
   font-family: 'Inter';
   font-weight: 300;
   font-size: 27px;
   color: #3D76AF;
-  /* width: 888px; */
+  margin-bottom: 50px;
 }
 
-.home-page .our-achievement-svg-section {
-  margin: 0 0 71.4px 100px;
+
+.our-achievement-svg-section {
+  text-align: center;
   display: flex;
-  flex-direction: row;
-  width: 1160.2px;
-  box-sizing: border-box;
 }
 
-.home-page .our-achievement-svg-1 {
-  margin-right: 229px;
+.our-achievement-svg-1 {
+  margin-bottom: 10px;
+  flex: 1;
+}
+
+.our-achievement-svg-1:not(:last-child) {
+  margin-right: 450px;
+}
+
+
+.our-achievement-svg-1-1 {
+  width: 100px;
+  height: 100px;
+}
+
+
+.our-achievement-text-section {
+  text-align: center;
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  width: 217px;
-  height: 253.5px;
-  box-sizing: border-box;
-}
-
-.home-page .our-achievement-svg-1-1 {
-  width: 170px;
-  height: 206.5px;
-}
-
-.home-page .our-achievement-svg-2 {
-  margin: 23.3px 239.4px 23.2px 0;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  width: 277.5px;
-  height: 207px;
-  box-sizing: border-box;
-}
-
-.home-page .our-achievement-svg-2-2 {
-  width: 211.5px;
-  height: 200px;
-  margin-top: -15px;
-}
-
-.home-page .our-achievement-svg-3 {
-  margin: 23.3px 0 23.2px 0;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  width: 197.3px;
-  height: 207px;
-  box-sizing: border-box;
-}
-
-.home-page .our-achievement-svg-3-3 {
-  width: 190px;
-  height: 190px;
-  margin-top: -15px;
-}
-
-.home-page .our-achievement-text-section {
-  display: flex;
-  flex-direction: row;
+  flex-wrap: wrap;
   justify-content: space-between;
-  width: auto;
-  box-sizing: border-box;
-  margin-left: 165px;
 }
 
-.home-page .our-achievement-text-1 {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  box-sizing: border-box;
-  /* margin-right: 50px; */
-  margin-left: -116px;
-  margin-top: -50px;
+.our-achievement-text-1 {
+  margin-bottom: 10px;
+  flex: 1;
+  max-width: 30%;
 }
 
-.home-page .our-achievement-text-1-heading {
-  margin: 0 10px 11px 0px;
-  display: inline-block;
-  overflow-wrap: break-word;
+.our-achievement-text-1:not(:last-child) {
+  margin-right: 180px;
+}
+
+
+.our-achievement-text-1-heading {
   font-family: 'Inter';
   font-weight: 600;
-  font-size: 30px;
-  color: #145A98;
-}
-
-.home-page .our-achievement-text-1-caption {
-  overflow-wrap: break-word;
-  font-family: 'Inter';
-  font-weight: 300;
   font-size: 25px;
   color: #145A98;
-  /* width: 430px; */
-  text-align: center;
-  margin-right: 14px;
+  margin-bottom: 10px;
 }
 
-.home-page .our-achievement-text-2 {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  box-sizing: border-box;
-  margin-left: 50px;
-  margin-top: -50px;
-}
-
-.home-page .our-achievement-text-2-heading {
-  margin: 0 -180px 11px 62px;
-  display: inline-block;
-  overflow-wrap: break-word;
-  font-family: 'Inter';
-  font-weight: 600;
-  font-size: 30px;
-  color: #145A98;
-}
-
-.home-page .our-achievement-text-2-caption {
-  overflow-wrap: break-word;
+.our-achievement-text-1-caption {
   font-family: 'Inter';
   font-weight: 300;
-  font-size: 25px;
-  color: #145A98;
-  /* width: 430px; */
-  text-align: center;
-  margin-right: -188px;
-  margin-left: 44px;
-}
-
-.home-page .our-achievement-text-3 {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  box-sizing: border-box;
-  margin-right: -50px;
-  margin-top: -50px;
-}
-
-.home-page .our-achievement-text-3-heading {
-  margin: 0 -206px 11px 110px;
-  display: inline-block;
-  overflow-wrap: break-word;
-  font-family: 'Inter';
-  font-weight: 600;
-  font-size: 30px;
-  color: #145A98;
-}
-
-.home-page .our-achievement-text-3-caption {
-  overflow-wrap: break-word;
-  font-family: 'Inter';
-  font-weight: 300;
-  font-size: 25px;
+  font-size: 20px;
   color: #145A98;
   text-align: center;
-  margin-right: -50px;
-  margin-left: 262px;
 }
+
 
 .home-page .img-section {
   background: url(../../assets/images/rectangle11.png) 20% / cover no-repeat, linear-gradient(#D9D9D9, #D9D9D9);
@@ -841,7 +801,7 @@
   color: #145A98;
 }
 
-.home-page .brand-section-caption{
+.home-page .brand-section-caption {
   margin: 0 322px 86px 323px;
   display: inline-block;
   text-align: center;

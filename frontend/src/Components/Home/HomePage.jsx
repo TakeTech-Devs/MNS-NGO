@@ -4,6 +4,92 @@ import PhoneSVG from "../../assets/vectors/vector_x2.svg";
 import SVG1 from "../../assets/vectors/vector2_x2.svg";
 import SVG2 from "../../assets/vectors/group_x2.svg";
 import SVG3 from "../../assets/vectors/vector1_x2.svg";
+import Carousel from 'react-multi-carousel';
+import "react-multi-carousel/lib/styles.css";
+import img1 from "../../assets/images/rectangle8.png";
+import img2 from "../../assets/images/rectangle9.png";
+import img3 from "../../assets/images/rectangle10.png";
+
+const responsive = {
+    desktop: {
+        breakpoint: { max: 3000, min: 1024 },
+        items: 3,
+        slidesToSlide: 3// optional, default to 1.
+    },
+    tablet: {
+        breakpoint: { max: 1024, min: 768 },
+        items: 3,
+        slidesToSlide: 3 // optional, default to 1.
+    },
+    mobile: {
+        breakpoint: { max: 767, min: 464 },
+        items: 2,
+        slidesToSlide: 1 // optional, default to 1.
+    }
+}
+
+// const sliderImageUrl = [
+//     //First image url
+//     {
+//         url: "../../assets/images/rectangle8.png",
+//     },
+//     //Second image url
+//     {
+//         url: "../../assets/images/rectangle9.png",
+//     },
+//     //Third image url
+//     {
+//         url: "../../assets/images/rectangle10.png",
+//     },
+//     //First image url
+//     {
+//         url: "../../assets/images/rectangle9.png",
+//     },
+
+//     {
+//         url: "../../assets/images/rectangle8.png",
+//     },
+//     //Second image url
+//     //Third image url
+//     {
+//         url: "../../assets/images/rectangle10.png",
+//     },
+// ];
+
+const sliderImageUrl = [
+   {
+    url: img1,
+    text:"FINANCIAL INCLUSION",
+   },
+   {
+    url: img2,
+    text:"EDUCATIONAL ACTIVITY",
+   },
+   {
+    url: img3,
+    text:"HEALTH ABD HYGIENE",
+   },
+   {
+    url: img2,
+    text:"AWARENESS PROGRAMMS",
+   },
+   {
+    url: img3,
+    text:"WOMEN EMPOWERMENT",
+   },
+   {
+    url: img1,
+    text:"YOUTH DEVELOPMENT",
+   },
+   {
+    url: img3,
+    text:"CHILD DEVELOPMENT",
+   },
+   {
+    url: img1,
+    text:"AGRICULTURAL DEVELOPMENT",
+   },
+  ];
 
 
 const HomePage = () => {
@@ -154,6 +240,7 @@ const HomePage = () => {
                         </span>
                     </div>
                 </div>
+
                 <div className="our-work-section">
                     <div className="our-work-heading">Our Services</div>
                     <div
@@ -161,7 +248,9 @@ const HomePage = () => {
                     >
                         Empowering Communities Through Compassionate Initiatives
                     </div>
-                    <div className="our-work">
+
+
+                    {/* <div className="our-work">
                         <div className="our-work-1-container">
                             <div className="our-work-1-rectangle"></div>
                             <span className="our-work-1-caption"> Lorem ipsum dolor </span>
@@ -174,54 +263,67 @@ const HomePage = () => {
                             <div className="our-work-3-rectangle"></div>
                             <span className="our-work-3-caption"> Lorem ipsum dolor </span>
                         </div>
+                    </div> */}
 
-                    </div>
                 </div>
-                <div className="our-achievement">
-                    <div className="our-achievement-heading">Vision of the Organization</div>
-                    <div
-                        className="our-achievement-caption"
-                    >
+                <div className="parent">
+                        <Carousel
+                            responsive={responsive}
+                            autoPlay={true}
+                            swipeable={true}
+                            draggable={true}
+                            // showDots={true}
+                            infinite={true}
+                            partialVisible={false}
+                            arrows={false}
+                            // dotListClass="custom-dot-list-style"
+                        >
+                            {sliderImageUrl.map((item, index) => {
+                                return (
+                                    <div className="slider" key={index}>
+                                        <img src={item.url} alt="movie" />
+                                        <div class="overlay">
+                                        <p class="text">{item.text}</p>
+                                        </div>
+                                    </div>
+                                );
+                            })}
+                        </Carousel>
+                    </div>
+
+                <div class="our-achievement">
+                    <div class="our-achievement-heading">Vision of the Organization</div>
+                    <div class="our-achievement-caption">
                         Organization aims to break the vicious cycle of poverty and social isolation and to restore hope for a better future. We believe that every person has the right to access resources and opportunities in order to live and develop with dignity and to become an active and contributing member of our society.
                     </div>
-                    <div className="our-achievement-svg-section">
-                        <div className="our-achievement-svg-1">
-                            <img className="our-achievement-svg-1-1" src={SVG3} alt='svg1' />
+                    <div class="our-achievement-svg-section">
+                        <div class="our-achievement-svg-1">
+                            <img class="our-achievement-svg-1-1" src={SVG3} alt='svg1' />
                         </div>
-                        <div className="our-achievement-svg-2">
-                            <img className="our-achievement-svg-2-2" src={SVG2} alt='svg2' />
+                        <div class="our-achievement-svg-1">
+                            <img class="our-achievement-svg-1-1" src={SVG2} alt='svg1' />
                         </div>
-                        <div className="our-achievement-svg-3">
-                            <img className="our-achievement-svg-3-3" src={SVG1} alt='svg3' />
+                        <div class="our-achievement-svg-1">
+                            <img class="our-achievement-svg-1-1" src={SVG1} alt='svg1' />
                         </div>
                     </div>
-                    <div className="our-achievement-text-section">
-                        <div className="our-achievement-text-1">
-                            <div className="our-achievement-text-1-heading">People's Organizations</div>
-                            <span
-                                className="our-achievement-text-1-caption"
-                            >
-                                We empower individuals and build their capacities.
-                            </span>
+                    <div class="our-achievement-text-section">
+                        <div class="our-achievement-text-1">
+                            <div class="our-achievement-text-1-heading">People's Organizations</div>
+                            <span class="our-achievement-text-1-caption">We empower individuals and build their capacities.</span>
                         </div>
-                        <div className="our-achievement-text-2">
-                            <div className="our-achievement-text-2-heading">Empowering Women</div>
-                            <span
-                                className="our-achievement-text-2-caption"
-                            >
-                                We support women to reach their full potential.
-                            </span>
+                        <div class="our-achievement-text-1">
+                            <div class="our-achievement-text-1-heading">People's Organizations</div>
+                            <span class="our-achievement-text-1-caption">We empower individuals and build their capacities.</span>
                         </div>
-                        <div className="our-achievement-text-3">
-                            <div className="our-achievement-text-3-heading">Sustainable Development</div>
-                            <span
-                                className="our-achievement-text-3-caption"
-                            >
-                                We implement sustainable models for community health and rural development.
-                            </span>
+                        <div class="our-achievement-text-1">
+                            <div class="our-achievement-text-1-heading">People's Organizations</div>
+                            <span class="our-achievement-text-1-caption">We empower individuals and build their capacities.</span>
                         </div>
                     </div>
                 </div>
+
+
                 <div className="img-section">
                     <div className="img-section-overlay"></div>
                     <div className="img-section-heading">Join Us in Creating Positive Change</div>

@@ -9,19 +9,19 @@ const Form = () => {
         <div class="form-container">
             <h1 className='formheading'>Get in Touch With Us</h1>
             <form className='form'>
-                <label for="name" className='formlable'>Name</label>
-                <input type="text" id="name" name="name" className='forminput' required />
+            {/* <span class='formlable'>Name</span> */}
+                <input type="text" id="name" name="name" className='forminput' placeholder="Name" required />
 
-                <label for="email" className='formlable'>Email</label>
-                <input type="email" id="email" name="email" className='forminput' required />
+                {/* <label for="email" className='formlable'>Email</label> */}
+                <input type="email" id="email" name="email" className='forminput' placeholder='Email' required />
 
-                <label for="phone" className='formlable'>Phone Number</label>
-                <input type="tel" id="phone" name="phone" className='forminput' required />
+                {/* <label for="phone" className='formlable'>Phone Number</label> */}
+                <input type="tel" id="phone" name="phone" className='forminput' placeholder='Phone Number' required />
 
-                <label for="message" className='formlable'>Message</label>
-                <textarea id="message" name="message" className='forminput' rows="4" required></textarea>
+                {/* <label for="message" className='formlable'>Message</label> */}
+                <textarea id="message" name="message" className='forminput' rows="4" placeholder='Message' required></textarea>
 
-                <button type="submit" className='formbtn'>Submit</button>
+                {/* <button type="submit" className='formbtn'>Submit</button> */}
             </form>
             <div className="form-footer">
                 <div className="left-align">
