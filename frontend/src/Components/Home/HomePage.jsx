@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import './HomePage.css';
 import PhoneSVG from "../../assets/vectors/vector_x2.svg";
-import SVG1 from "../../assets/vectors/vector2_x2.svg";
-import SVG2 from "../../assets/vectors/group_x2.svg";
-import SVG3 from "../../assets/vectors/vector1_x2.svg";
+import SVG1 from "../../assets/vectors/saveworld.svg";
+import SVG2 from "../../assets/vectors/capable.svg";
+import SVG3 from "../../assets/vectors/teamwork.svg";
 import Carousel from 'react-multi-carousel';
 import "react-multi-carousel/lib/styles.css";
 import img1 from "../../assets/images/rectangle8.png";
@@ -28,33 +28,6 @@ const responsive = {
     }
 }
 
-// const sliderImageUrl = [
-//     //First image url
-//     {
-//         url: "../../assets/images/rectangle8.png",
-//     },
-//     //Second image url
-//     {
-//         url: "../../assets/images/rectangle9.png",
-//     },
-//     //Third image url
-//     {
-//         url: "../../assets/images/rectangle10.png",
-//     },
-//     //First image url
-//     {
-//         url: "../../assets/images/rectangle9.png",
-//     },
-
-//     {
-//         url: "../../assets/images/rectangle8.png",
-//     },
-//     //Second image url
-//     //Third image url
-//     {
-//         url: "../../assets/images/rectangle10.png",
-//     },
-// ];
 
 const sliderImageUrl = [
    {
@@ -249,22 +222,6 @@ const HomePage = () => {
                         Empowering Communities Through Compassionate Initiatives
                     </div>
 
-
-                    {/* <div className="our-work">
-                        <div className="our-work-1-container">
-                            <div className="our-work-1-rectangle"></div>
-                            <span className="our-work-1-caption"> Lorem ipsum dolor </span>
-                        </div>
-                        <div className="our-work-2-container">
-                            <div className="our-work-2-rectangle"></div>
-                            <span className="our-work-2-caption"> Lorem ipsum dolor </span>
-                        </div>
-                        <div className="our-work-3-container">
-                            <div className="our-work-3-rectangle"></div>
-                            <span className="our-work-3-caption"> Lorem ipsum dolor </span>
-                        </div>
-                    </div> */}
-
                 </div>
                 <div className="parent">
                         <Carousel
@@ -313,12 +270,12 @@ const HomePage = () => {
                             <span class="our-achievement-text-1-caption">We empower individuals and build their capacities.</span>
                         </div>
                         <div class="our-achievement-text-1">
-                            <div class="our-achievement-text-1-heading">People's Organizations</div>
-                            <span class="our-achievement-text-1-caption">We empower individuals and build their capacities.</span>
+                            <div class="our-achievement-text-1-heading">Empowering Women</div>
+                            <span class="our-achievement-text-1-caption">We support women to reach their full potential.</span>
                         </div>
                         <div class="our-achievement-text-1">
-                            <div class="our-achievement-text-1-heading">People's Organizations</div>
-                            <span class="our-achievement-text-1-caption">We empower individuals and build their capacities.</span>
+                            <div class="our-achievement-text-1-heading">Sustainable Development</div>
+                            <span class="our-achievement-text-1-caption">We implement sustainable models for community health and rural development.</span>
                         </div>
                     </div>
                 </div>

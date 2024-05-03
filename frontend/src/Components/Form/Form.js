@@ -22,7 +22,7 @@ const Form = () => {
                 {/* <label for="message" className='formlable'>Message</label> */}
                 <textarea id="message" name="message" className='forminput' rows="4" placeholder='Message' required></textarea>
 
-                {/* <button type="submit" className='formbtn'>Submit</button> */}
+                <button type="submit" className='formbtn'>Submit</button>
             </form>
             <div className="form-footer">
                 <div className="left-align">
