@@ -232,7 +232,7 @@ const HomePage = () => {
                             // showDots={true}
                             infinite={true}
                             partialVisible={false}
-                            arrows={false}
+                            // arrows={false}
                             // dotListClass="custom-dot-list-style"
                         >
                             {sliderImageUrl.map((item, index) => {
