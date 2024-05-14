@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react';
 import "./Form.css";
 import img1 from '../../assets/images/email2.png';

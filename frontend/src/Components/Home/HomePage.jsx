@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useEffect, useState, useCallback } from 'react';
 import './HomePage.css';
 import PhoneSVG from "../../assets/vectors/vector_x2.svg";

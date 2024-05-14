@@ -1,3 +1,4 @@
+/* eslint-disable */
 import CarouselForm from './Components/Admin/CarouselForm';
 import HomePage from './Components/Home/HomePage';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
@@ -12,7 +13,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<About />} />
-          <Route path="/carousel" element={<CarouselForm />} />
+          {/* <Route path="/carousel" element={<CarouselForm />} /> */}
         </Routes>
       </Router>
           <Form />

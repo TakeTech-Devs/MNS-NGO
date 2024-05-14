@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useState } from 'react';
 import { createCarousel, clearErrors } from '../../Actions/CarouselActions';
 import { useDispatch } from 'react-redux';

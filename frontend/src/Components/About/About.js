@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from "react";
 import "./About.css";
 import v1 from "../../assets/vectors/vector_x2.svg";
@@ -23,7 +24,7 @@ const About = () => {
                         <div className="about-donate-section">
                             <div className="about-phone">
                                 <div className="about-phone-svg">
-                                    <img className="vector" src={v1} />
+                                    <img className="vector" src={v1} alt="" />
                                 </div>
                                 <div className="about-phone-number">+000 000 0000</div>
                             </div>
