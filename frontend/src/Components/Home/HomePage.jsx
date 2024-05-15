@@ -30,43 +30,53 @@ const responsive = {
 
 
 const sliderImageUrl = [
-   {
-    url: img1,
-    text:"FINANCIAL INCLUSION",
-   },
-   {
-    url: img2,
-    text:"EDUCATIONAL ACTIVITY",
-   },
-   {
-    url: img3,
-    text:"HEALTH ABD HYGIENE",
-   },
-   {
-    url: img2,
-    text:"AWARENESS PROGRAMMS",
-   },
-   {
-    url: img3,
-    text:"WOMEN EMPOWERMENT",
-   },
-   {
-    url: img1,
-    text:"YOUTH DEVELOPMENT",
-   },
-   {
-    url: img3,
-    text:"CHILD DEVELOPMENT",
-   },
-   {
-    url: img1,
-    text:"AGRICULTURAL DEVELOPMENT",
-   },
-  ];
+    {
+        url: img1,
+        text: "FINANCIAL INCLUSION",
+    },
+    {
+        url: img2,
+        text: "EDUCATIONAL ACTIVITY",
+    },
+    {
+        url: img3,
+        text: "HEALTH ABD HYGIENE",
+    },
+    {
+        url: img2,
+        text: "AWARENESS PROGRAMMS",
+    },
+    {
+        url: img3,
+        text: "WOMEN EMPOWERMENT",
+    },
+    {
+        url: img1,
+        text: "YOUTH DEVELOPMENT",
+    },
+    {
+        url: img3,
+        text: "CHILD DEVELOPMENT",
+    },
+    {
+        url: img1,
+        text: "AGRICULTURAL DEVELOPMENT",
+    },
+];
 
 
 const HomePage = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [isSidePanelOpen, setIsSidePanelOpen] = useState(false);
+
+
+    const toggleSidePanel = () => {
+        setIsSidePanelOpen(!isSidePanelOpen);
+    };
+
+    const closeSidePanel = () => {
+        setIsSidePanelOpen(false);
+    };
 
     const carouselItems = [
         require('../../assets/images/rectangle4.png'),
@@ -119,6 +129,25 @@ const HomePage = () => {
                         <div className="navbar-section">
                             <a href='/' className="logo-1"></a>
                             <div className="navbar">
+
+                                <div class="hamburger-menu" onClick={toggleSidePanel}><i className="fa-solid fa-bars"></i></div>
+                                <div className={`side-panel ${isSidePanelOpen ? 'open' : ''}`}>
+                                    {/* Content of the side panel */}
+                                    <button className="close-button" onClick={closeSidePanel}>
+                                        &times;
+                                    </button>
+
+                                    <div className="side-panel-content">
+                                        <a href='/'>Home</a>
+                                        <a href='/about'>About Us</a>
+                                        <a href='/#'>Grievance</a>
+                                        <a href='/#' className="services">Services</a>
+                                        <a href='/#' className="governing-body">Governing Body</a>
+                                        <a href='/#' className="gallery">Gallery</a>
+                                        <a href='/#' className="contact-us">Contact Us</a>
+                                        {/* Add other navigation links here */}
+                                    </div>
+                                </div>
                                 <div className="navbar-link">
                                     <div className="home-active">
                                         <a href='#' className="home"> Home </a>
@@ -130,6 +159,7 @@ const HomePage = () => {
                                     <a href='/#' className="gallery">Gallery</a>
                                     <a href='/#' className="contact-us">Contact Us</a>
                                 </div>
+
                                 <div className="donate-section">
                                     <div className="phone">
                                         <div className="phone-svg">
@@ -139,12 +169,13 @@ const HomePage = () => {
                                                 alt='phone'
                                             />
                                         </div>
-                                        <div className="navbar">+000 000 0000</div>
+                                        <div className="phone-number">+000 000 0000</div>
                                     </div>
                                     <button className="donatebtn">Donate
                                         {/* <span className="donate"> Donate </span> */}
                                     </button>
                                 </div>
+
                             </div>
                         </div>
 
@@ -165,7 +196,7 @@ const HomePage = () => {
                         </div>
                     </div>
 
-                    <div className="highlight-section">
+                    {/* <div className="highlight-section">
                         <div className="highlight-1">
                             <div className="highlight-1-header">Compassion</div>
                             <span
@@ -190,7 +221,7 @@ const HomePage = () => {
                                 Inspiring growth, nurturing resilience
                             </span>
                         </div>
-                    </div>
+                    </div> */}
 
                 </div>
                 <div className="our-team-section">
@@ -224,36 +255,37 @@ const HomePage = () => {
 
                 </div>
                 <div className="parent">
-                        <Carousel
-                            responsive={responsive}
-                            autoPlay={true}
-                            swipeable={true}
-                            draggable={true}
-                            // showDots={true}
-                            infinite={true}
-                            partialVisible={false}
-                            // arrows={false}
-                            // dotListClass="custom-dot-list-style"
-                        >
-                            {sliderImageUrl.map((item, index) => {
-                                return (
-                                    <div className="slider" key={index}>
-                                        <img src={item.url} alt="movie" />
-                                        <div class="overlay">
+                    <Carousel
+                        responsive={responsive}
+                        autoPlay={true}
+                        swipeable={true}
+                        draggable={true}
+                        // showDots={true}
+                        infinite={true}
+                        partialVisible={false}
+                    // arrows={false}
+                    // dotListClass="custom-dot-list-style"
+                    >
+                        {sliderImageUrl.map((item, index) => {
+                            return (
+                                <div className="slider" key={index}>
+                                    <img src={item.url} alt="movie" />
+                                    <div class="overlay">
                                         <p class="text">{item.text}</p>
-                                        </div>
                                     </div>
-                                );
-                            })}
-                        </Carousel>
-                    </div>
+                                </div>
+                            );
+                        })}
+                    </Carousel>
+                </div>
 
                 <div class="our-achievement">
                     <div class="our-achievement-heading">Vision of the Organization</div>
                     <div class="our-achievement-caption">
                         Organization aims to break the vicious cycle of poverty and social isolation and to restore hope for a better future. We believe that every person has the right to access resources and opportunities in order to live and develop with dignity and to become an active and contributing member of our society.
                     </div>
-                    <div class="our-achievement-svg-section">
+
+                    {/* <div class="our-achievement-svg-section">
                         <div class="our-achievement-svg-1">
                             <img class="our-achievement-svg-1-1" src={SVG3} alt='svg1' />
                         </div>
@@ -277,7 +309,43 @@ const HomePage = () => {
                             <div class="our-achievement-text-1-heading">Sustainable Development</div>
                             <span class="our-achievement-text-1-caption">We implement sustainable models for community health and rural development.</span>
                         </div>
+                    </div> */}
+                    <div class="our-achievement-section">
+                        <div class="our-achievement-item">
+                            <div class="our-achievement-image">
+                                <img src={SVG3} alt='svg1' class="our-achievement-svg-1-1" />
+                            </div>
+                            <div class="our-achievement-text">
+                                <div class="our-achievement-text-heading">People's Organizations</div>
+                                <span class="our-achievement-text-caption">We empower individuals and build their capacities.</span>
+                            </div>
+
+                        </div>
+
+                        <div class="our-achievement-item">
+                            <div class="our-achievement-image">
+                                <img src={SVG2} alt='svg1' class="our-achievement-svg-1-1" />
+                            </div>
+                            <div class="our-achievement-text">
+                                <div class="our-achievement-text-heading">Empowering Women</div>
+                                <span class="our-achievement-text-caption">We support women to reach their full potential.</span>
+                            </div>
+
+                        </div>
+
+                        <div class="our-achievement-item">
+                            <div class="our-achievement-image">
+                                <img src={SVG1} alt='svg1' class="our-achievement-svg-1-1" />
+                            </div>
+                            <div class="our-achievement-text">
+                                <div class="our-achievement-text-heading">Sustainable Development</div>
+                                <span class="our-achievement-text-caption">We implement sustainable models for community health and rural development.</span>
+                            </div>
+
+                        </div>
                     </div>
+
+
                 </div>
 
 
