@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import "./Form.css";
 import img1 from '../../assets/images/email2.png';
 import img2 from '../../assets/images/image6.png';

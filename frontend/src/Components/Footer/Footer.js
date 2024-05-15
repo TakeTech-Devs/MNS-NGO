@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import "./Footer.css"
 import { useLocation } from 'react-router-dom';
 
