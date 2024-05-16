@@ -1,15 +1,44 @@
 /* eslint-disable */
-import React from "react";
+import React, { useState } from 'react';
 import "./About.css";
 import v1 from "../../assets/vectors/vector_x2.svg";
 
 const About = () => {
+    const [isSidePanelOpen, setIsSidePanelOpen] = useState(false);
+
+
+    const toggleSidePanel = () => {
+        setIsSidePanelOpen(!isSidePanelOpen);
+    };
+
+    const closeSidePanel = () => {
+        setIsSidePanelOpen(false);
+    };
+    
     return (
         <div className="about-us-page">
             <div className="about-upper">
                 <div className="about-container">
                     <a href="/" className="logo-1"></a>
                     <div className="about-navbar">
+                        <div class="hamburger-menu" onClick={toggleSidePanel}><i className="fa-solid fa-bars"></i></div>
+                        <div className={`side-panel ${isSidePanelOpen ? 'open' : ''}`}>
+                            {/* Content of the side panel */}
+                            <button className="close-button" onClick={closeSidePanel}>
+                                &times;
+                            </button>
+
+                            <div className="side-panel-content">
+                                <a href='/'>Home</a>
+                                <a href='/about'>About Us</a>
+                                <a href='/#'>Grievance</a>
+                                <a href='/#'>Services</a>
+                                <a href='/#'>Governing Body</a>
+                                <a href='/#'>Gallery</a>
+                                <a href='/#'>Contact Us</a>
+                                {/* Add other navigation links here */}
+                            </div>
+                        </div>
                         <div className="about-navbar-link">
                             <a href="/" className="home">Home</a>
                             <div className="about-active">
@@ -40,15 +69,15 @@ const About = () => {
             <div className="our-story-section">
                 <div className="our-story-heading">Our Story</div>
                 <div className="our-story-caption">
-                Mallarpur Naisuva was founded with a vision to make a difference in the lives of those most in need. What began as a small group of individuals inspired by the spirit of social work has evolved into a full-fledged NGO dedicated to rural development and community empowerment.
+                    Mallarpur Naisuva was founded with a vision to make a difference in the lives of those most in need. What began as a small group of individuals inspired by the spirit of social work has evolved into a full-fledged NGO dedicated to rural development and community empowerment.
                 </div>
                 <div className="our-story-caption">
-                Our vision is to break the cycle of poverty and social isolation, restoring hope for a better future. We envision a world where every person has access to resources and opportunities for development, and where no one is left behind.
+                    Our vision is to break the cycle of poverty and social isolation, restoring hope for a better future. We envision a world where every person has access to resources and opportunities for development, and where no one is left behind.
                 </div>
                 <div className="our-story-caption">
-                Over the years, Mallarpur Naisuva has made significant strides in empowering communities and fostering positive change. From education and healthcare initiatives to women's empowerment programs and environmental conservation efforts, our impact is felt across various sectors.
+                    Over the years, Mallarpur Naisuva has made significant strides in empowering communities and fostering positive change. From education and healthcare initiatives to women's empowerment programs and environmental conservation efforts, our impact is felt across various sectors.
                 </div>
-                
+
                 <div className="container-image-2">
                     <div className="rectangle-7"></div>
                     <div className="rectangle-9"></div>
@@ -75,14 +104,14 @@ const About = () => {
                 </div>
                 <span className="collaboration-section">Collaboration</span>
                 <span className="our-values-caption">
-                At Mallarpur Naisuva, we are guided by a set of core values that shape everything we do
+                    At Mallarpur Naisuva, we are guided by a set of core values that shape everything we do
                 </span>
             </div>
             <div className="get-involved-section">
                 <div className="rectangle-26"></div>
                 <div className="get-involved-heading">Get Involved</div>
                 <span className="get-involved-caption">
-                Join us in our mission to create a brighter future for all. Whether through volunteering, donating, or spreading awareness, your support makes a difference.
+                    Join us in our mission to create a brighter future for all. Whether through volunteering, donating, or spreading awareness, your support makes a difference.
                 </span>
             </div>
         </div>

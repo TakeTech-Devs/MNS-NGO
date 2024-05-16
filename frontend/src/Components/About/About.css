@@ -6,7 +6,7 @@
     z-index: 1;
 }
 
-.about-us-page a{
+.about-us-page a {
     text-decoration: none;
 }
 
@@ -145,14 +145,14 @@
     box-sizing: border-box;
 }
 
-.about-caption{
-    margin-left: 54px;
-    margin-right: 65px;
+.about-caption {
+    /* margin-left: 54px;
+    margin-right: 65px; */
     overflow-wrap: break-word;
     font-family: 'Inter';
     font-weight: 400;
     font-size: 25px;
-    color: #FFFFFF; 
+    color: #FFFFFF;
     text-align: center;
     width: 900px;
     z-index: 1;
@@ -167,7 +167,7 @@
     justify-content: center;
     padding: 13px 18px 12px 18px;
     box-sizing: border-box;
-    color:#FFFFFF;
+    color: #FFFFFF;
     font-family: 'Inter';
     font-weight: 500;
     font-size: 25px;
@@ -233,7 +233,7 @@
     background-color: rgba(0, 0, 0, 0.5);
     bottom: 1px;
     /* z-index: -1; */
-  }
+}
 
 .about-us-page .our-story-heading {
     margin: 0 10.1px 30px 0;
@@ -318,7 +318,7 @@
 }
 
 .about-us-page .our-values-heading {
-    margin: 0 0 93px 60px;
+    margin: 0 0 93px 0px;
     display: inline-block;
     overflow-wrap: break-word;
     font-family: 'Inter';
@@ -342,7 +342,7 @@
     top: 12px;
     right: 458px;
     width: 329px;
-    height: 330px;  
+    height: 330px;
 }
 
 .about-us-page .playing-basketball {
@@ -434,13 +434,13 @@
     font-size: 35px;
     color: #145A98;
     margin-bottom: -75px;
-    margin-top:12px;
+    margin-top: 12px;
 }
 
 .about-us-page .our-values-caption {
     position: absolute;
     top: 78px;
-    right: 180px;
+    /* right: 180px; */
     text-align: center;
     overflow-wrap: break-word;
     font-family: 'Inter';
@@ -918,4 +918,84 @@
     border-radius: 50%;
     border: 8px dashed #82a8c8;
     margin-top: 130px;
+}
+
+.about-us-page .hamburger-menu {
+    display: none;
+    color: #fff;
+    /* Hide hamburger menu on larger screens */
+}
+
+.side-panel {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .about-us-page .about-navbar-link {
+        display: none;
+    }
+
+    .about-us-page .about-navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        /* Align items to the left */
+        margin-bottom: 20px;
+    }
+
+    .about-us-page .hamburger-menu {
+        display: block;
+        position: absolute;
+        top: 20px;
+        /* Adjust the distance from the top */
+        right: 20px;
+        /* Adjust the distance from the right */
+        cursor: pointer;
+    }
+
+    .about-us-page .logo-1 {
+        margin-bottom: 20px;
+        z-index: 1;
+        /* Adjust margin */
+    }
+
+    .side-panel {
+        display: block;
+        position: fixed;
+        top: 0;
+        right: -250px;
+        /* Initially hide the side panel */
+        width: 250px;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        ;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        transition: right 0.3s ease;
+        z-index: 1000;
+    }
+
+    .about-us-page .about-heading {
+        margin-top: -280px;
+    }
+
+    .about-caption {
+        font-size: 18px;
+        /* margin-top: -70px; */
+        width: 350px;
+        padding-top: 30px;
+    }
+
+    .about-us-page .get-involved-caption{
+        width: 330px;
+    }
+
+    .about-us-page .our-values-caption{
+        width: 320px;
+    }
+
+    .about-us-page .our-story-caption{
+        width: 350px;
+    }
+    .about-us-page .educational-video-for-online-education{
+        margin-top: 100px;
+    }
 }

@@ -197,7 +197,7 @@ const HomePage = () => {
                         </div>
                     </div>
 
-                    <div className="highlight-section">
+                    {/* <div className="highlight-section">
                         <div className="highlight-1">
                             <div className="highlight-1-header">Compassion</div>
                             <span
@@ -222,7 +222,7 @@ const HomePage = () => {
                                 Inspiring growth, nurturing resilience
                             </span>
                         </div>
-                    </div>
+                    </div> */}
 
                 </div>
                 <div className="our-team-section">
