@@ -360,17 +360,18 @@
 }
 
 .home-page .our-team-heading {
-  margin: 0 0 30px 24.8px;
+  margin: 0 0 30px 0px;
   display: inline-block;
   overflow-wrap: break-word;
   font-family: 'Inter';
   font-weight: 600;
   font-size: 35px;
   color: #145A98;
+  text-align: center;
 }
 
 .home-page .our-team-caption {
-  margin: 0 285px 62px 285px;
+  margin: 0 0px 62px 0px;
   display: inline-block;
   text-align: center;
   overflow-wrap: break-word;
@@ -378,6 +379,7 @@
   font-weight: 300;
   font-size: 27px;
   color: #3D76AF;
+  width: 860px;
 }
 
 .home-page .our-team-container {
@@ -420,17 +422,18 @@
 }
 
 .home-page .our-work-heading {
-  margin: 0 0 30px 24.1px;
+  margin: 0 0 32px 0px;
   display: inline-block;
   overflow-wrap: break-word;
   font-family: 'Inter';
   font-weight: 600;
   font-size: 35px;
   color: #145A98;
+  text-align: center;
 }
 
 .home-page .our-work-caption {
-  margin: 0 0 75px 25px;
+  margin: 0 0 75px 0px;
   display: inline-block;
   text-align: center;
   overflow-wrap: break-word;
@@ -751,13 +754,14 @@ padding: 0rem 0 2rem 0;
 
 .home-page .img-section-heading {
   position: relative;
-  margin: 0 2.9px 23px 0;
+  margin: 0 0px 23px 0;
   display: inline-block;
   overflow-wrap: break-word;
   font-family: 'Inter';
   font-weight: 600;
   font-size: 40px;
   color: #FFFFFF;
+  text-align: center;
   /* margin-left: 120px; */
 }
 
@@ -768,7 +772,7 @@ padding: 0rem 0 2rem 0;
   font-weight: 300;
   font-size: 30px;
   color: #FFFFFF;
-  margin-left: -16px;
+  /* margin-left: -16px; */
   /* margin-right: 4px; */
   text-align: center;
 }
@@ -1142,10 +1146,16 @@ padding: 0rem 0 2rem 0;
 
   .home-page .our-team-content{
     width: 350px;
+    margin-top: 25px;
   }
+
+  /* .home-page .our-work-heading{
+    margin-right: 35px;
+  } */
 
   .home-page .our-work-caption {
     width: 400px;
+    /* margin-right: 35px; */
   }
 
   .our-achievement {
@@ -1175,6 +1185,21 @@ padding: 0rem 0 2rem 0;
   .our-achievement-text {
     text-align: center;
   }
+
+  .our-achievement-image img {
+    text-align: center;
+    margin-left: 25px;
+  }
+
+  .our-achievement-text-heading {
+    text-align: center;
+    margin-left: 25px;
+  }  
+
+  .our-achievement-text-caption {
+    text-align: center;
+    margin-left: 50px;
+  }  
   
   /* .our-achievement-text-heading {
     font-family: 'Inter';
@@ -1202,6 +1227,14 @@ padding: 0rem 0 2rem 0;
   
   .our-achievement-item {
     width: 100%;
+  }
+
+  .home-page .img-section-heading{
+    width: 375px;
+  }
+
+  .home-page .img-section-caption{
+    width: 400px;
   }
 
 }
