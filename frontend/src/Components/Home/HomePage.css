@@ -273,18 +273,18 @@
 }
 
 .home-page .highlight-1 {
-  margin-right: 70px;
+  /* margin-right: 70px; */
   display: flex;
   flex-direction: column;
   align-items: center;
   flex-grow: 1;
   flex-basis: 323.6px;
   box-sizing: border-box;
-  margin-left: -50px;
+  /* margin-left: -50px; */
 }
 
 .home-page .highlight-2 {
-  margin-right: 70px;
+  /* margin-right: 70px; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -294,7 +294,7 @@
 }
 
 .home-page .highlight-3 {
-  margin-right: -5px;
+  /* margin-right: -5px; */
   display: flex;
   flex-direction: column;
   align-items: center;
