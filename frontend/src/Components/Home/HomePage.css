@@ -115,7 +115,7 @@
   /* Hide hamburger menu on larger screens */
 }
 
-.side-panel{
+.side-panel {
   display: none;
 }
 
@@ -150,23 +150,23 @@
   box-sizing: border-box;
 } */
 
-.home-page .phone{
+.home-page .phone {
   font-size: 0;
   margin-top: 8px;
 }
 
-.home-page .phone > div {
+.home-page .phone>div {
   display: inline-block;
   vertical-align: middle;
 }
 
 .home-page .phone-number {
-  display: inline-block; 
+  display: inline-block;
   vertical-align: middle;
   font-weight: 500;
-  font-size: 25px; 
+  font-size: 25px;
   font-family: 'Inter';
-  color: #fff; 
+  color: #fff;
   margin-right: 12px;
 }
 
@@ -360,17 +360,18 @@
 }
 
 .home-page .our-team-heading {
-  margin: 0 0 30px 24.8px;
+  margin: 0 0 30px 0px;
   display: inline-block;
   overflow-wrap: break-word;
   font-family: 'Inter';
   font-weight: 600;
   font-size: 35px;
   color: #145A98;
+  text-align: center;
 }
 
 .home-page .our-team-caption {
-  margin: 0 285px 62px 285px;
+  margin: 0 0px 62px 0px;
   display: inline-block;
   text-align: center;
   overflow-wrap: break-word;
@@ -378,6 +379,7 @@
   font-weight: 300;
   font-size: 27px;
   color: #3D76AF;
+  width: 860px;
 }
 
 .home-page .our-team-container {
@@ -420,17 +422,18 @@
 }
 
 .home-page .our-work-heading {
-  margin: 0 0 30px 24.1px;
+  margin: 0 0 32px 0px;
   display: inline-block;
   overflow-wrap: break-word;
   font-family: 'Inter';
   font-weight: 600;
   font-size: 35px;
   color: #145A98;
+  text-align: center;
 }
 
 .home-page .our-work-caption {
-  margin: 0 0 75px 25px;
+  margin: 0 0 75px 0px;
   display: inline-block;
   text-align: center;
   overflow-wrap: break-word;
@@ -691,7 +694,8 @@ padding: 0rem 0 2rem 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-right: 20px; /* Adjust as needed for spacing between items */
+  margin-right: 20px;
+  /* Adjust as needed for spacing between items */
 }
 
 .our-achievement-text {
@@ -711,7 +715,8 @@ padding: 0rem 0 2rem 0;
   font-weight: 300;
   font-size: 20px;
   color: #145A98;
-  width: 400px; /* Add width property */
+  width: 400px;
+  /* Add width property */
   margin: 0px 30px 0px 30px;
 }
 
@@ -751,13 +756,14 @@ padding: 0rem 0 2rem 0;
 
 .home-page .img-section-heading {
   position: relative;
-  margin: 0 2.9px 23px 0;
+  margin: 0 0px 23px 0;
   display: inline-block;
   overflow-wrap: break-word;
   font-family: 'Inter';
   font-weight: 600;
   font-size: 40px;
   color: #FFFFFF;
+  text-align: center;
   /* margin-left: 120px; */
 }
 
@@ -768,7 +774,7 @@ padding: 0rem 0 2rem 0;
   font-weight: 300;
   font-size: 30px;
   color: #FFFFFF;
-  margin-left: -16px;
+  /* margin-left: -16px; */
   /* margin-right: 4px; */
   text-align: center;
 }
@@ -997,6 +1003,7 @@ padding: 0rem 0 2rem 0;
     font-size: 18px;
     /* Adjust font size */
     margin-right: 0;
+    margin-top: 10px;
     /* Remove right margin */
   }
 
@@ -1034,7 +1041,7 @@ padding: 0rem 0 2rem 0;
     /* Initially hide the side panel */
     width: 250px;
     height: 100%;
-    background-color: #fff;
+    background: rgba(0, 0, 0, 0.8);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     transition: right 0.3s ease;
     z-index: 1000;
@@ -1044,7 +1051,7 @@ padding: 0rem 0 2rem 0;
     right: 0;
   }
 
-  .close-button {
+  /* .close-button {
     position: absolute;
     top: 20px;
     right: 20px;
@@ -1054,8 +1061,8 @@ padding: 0rem 0 2rem 0;
     cursor: pointer;
     padding: 0;
     z-index: 1100;
-    /* Ensure close button is above side panel */
-  }
+    Ensure close button is above side panel
+  } */
 
   .side-panel-content {
     padding: 20px;
@@ -1064,15 +1071,16 @@ padding: 0rem 0 2rem 0;
   .side-panel-content a {
     display: block;
     margin-bottom: 10px;
-    color: #333;
+    color: #fff;
     text-decoration: none;
     font-size: 18px;
   }
 
-  .side-panel-content a:hover {
-    color: #007bff; /* Change color on hover */
-  }
-  
+  /* .side-panel-content a:hover {
+    color: #007bff;
+    Change color on hover
+  } */
+
   /* .home-page  .donate-section {
     display: flex;
     flex-direction: row;
@@ -1093,89 +1101,114 @@ padding: 0rem 0 2rem 0;
   .home-page .donate-section {
     display: flex;
     flex-direction: row;
-    align-items: center; /* Align items vertically */
-    justify-content: space-between; /* Distribute items along the main axis */
+    align-items: center;
+    /* Align items vertically */
+    justify-content: space-between;
+    /* Distribute items along the main axis */
     margin-bottom: 50px;
     margin-top: 50px;
   }
 
   .phone {
     display: flex;
-    align-items: center; /* Align items vertically */
+    align-items: center;
+    /* Align items vertically */
     position: absolute;
     left: 20px;
   }
 
-  .donatebtn{
+  .donatebtn {
     position: absolute;
     right: 20px;
   }
 
 
-  .home-page .carousel-heading{
+  .home-page .carousel-heading {
     margin-top: 100px;
   }
 
-  .home-page .carousel-caption{
-    margin-top: 10px;
-  }
-
   .home-page .our-team-section {
-    margin: 0 20px 50px 20px; /* Adjust margins for smaller screens */
-    width: auto; /* Reset width to auto for better responsiveness */
+    margin: 0 20px 50px 20px;
+    /* Adjust margins for smaller screens */
+    width: auto;
+    /* Reset width to auto for better responsiveness */
     text-align: center;
   }
-  
-  .home-page .our-team-caption{
+
+  .home-page .our-team-caption {
     width: 400px;
   }
 
-  .home-page .our-team-container{
+  .home-page .our-team-container {
     display: flex;
     flex-direction: column;
   }
 
-  .home-page .our-team-img{
+  .home-page .our-team-img {
     width: 100%;
     margin-bottom: 20px;
   }
 
-  .home-page .our-team-content{
+  .home-page .our-team-content {
     width: 350px;
+    margin-top: 25px;
   }
+
+  /* .home-page .our-work-heading{
+    margin-right: 35px;
+  } */
 
   .home-page .our-work-caption {
     width: 400px;
+    /* margin-right: 35px; */
   }
 
   .our-achievement {
-    padding: 10px; /* Adjust padding for smaller screens */
-    margin-bottom: 10px; /* Adjust margin for smaller screens */
-    margin-top: 20px; /* Adjust margin for smaller screens */
+    padding: 10px;
+    /* Adjust padding for smaller screens */
+    margin-bottom: 10px;
+    /* Adjust margin for smaller screens */
+    margin-top: 20px;
+    /* Adjust margin for smaller screens */
     text-align: center;
   }
 
-  .our-achievement-caption{
+  .our-achievement-caption {
     width: 330px;
   }
-  
+
   .our-achievement-section {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
-  
+
   .our-achievement-item {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-bottom: 20px;
   }
-  
+
   .our-achievement-text {
     text-align: center;
   }
-  
+
+  .our-achievement-image img {
+    text-align: center;
+    margin-left: 25px;
+  }
+
+  .our-achievement-text-heading {
+    text-align: center;
+    margin-left: 25px;
+  }
+
+  .our-achievement-text-caption {
+    text-align: center;
+    margin-left: 50px;
+  }
+
   /* .our-achievement-text-heading {
     font-family: 'Inter';
     font-weight: 600;
@@ -1199,9 +1232,34 @@ padding: 0rem 0 2rem 0;
     flex-direction: column;
     align-items: center;
   }
-  
+
   .our-achievement-item {
     width: 100%;
+  }
+
+  .home-page .img-section-heading {
+    width: 375px;
+  }
+
+  .home-page .img-section-caption {
+    width: 400px;
+  }
+
+  .close-button {
+    font-size: 30px;
+    background: none;
+    border: none;
+    color: #fff;
+    align-self: flex-end;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1100;
   }
 
 }
