@@ -571,6 +571,7 @@ ul.highlight-section li h2{margin-block-end: 0px;}
   .our-achievement ul li{width: 100%;}
   .home-page .img-section{padding: 130px 5% 20px 5%;margin-block-end: 0px;}
   .home-page .img-section-heading{font-size: 25px; margin-block-end: 0px;}
+  .slider img{height: 300px;}
   .home-page .brand-section{margin-block: 50px;}
   .brand-logo-section ul{gap: 10px;}
   .brand-logo-section ul li{width: calc((100% - 10px) / 2);font-size: 20px;}
