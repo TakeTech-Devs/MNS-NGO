@@ -1,54 +1,79 @@
 /* eslint-disable */
 import React from 'react'
-import "./Footer.css"
+import "./Footer.css";
+import logo from "../../assets/images/logo2.jpeg";
+import instagram from "../../assets/images/image5.png";
+import whatsapp from "../../assets/images/whatsapp5.png";
+import facebook from "../../assets/images/facebook5.png";
+import linkedin from "../../assets/images/linkedin25.png";
 
 const Footer = () => {
     return (
-
         <>
-        <div className="footer-section">
-            <div>
-                <a href='/' className="logo-2"></a>
-                <div className="footer-details">Empowering communities, fostering change, together.</div>
+        <footer>
+            <div className='footer-description'>
+                <a href='/' className="footer-logo">
+                    <img src={logo} alt="Brand-Logo" />
+                </a>
+                <p>Empowering communities, fostering change, together.</p>
             </div>
-            
-            <div className="footer-container">
-
-                <div className="footer-link">
-                    <a href="/about" className="footer-link-other">About Us</a>
-                    <a href="/#" className="footer-link-other">Our Mission</a>
-                    <a href="/#" className="footer-link-other">Our Services</a>
-                    <a href="/#" className="footer-link-other">Contact Us</a>
+            <div className='footer-links'>
+                <ul>
+                    <li>
+                        <a href="/about">About Us</a>
+                    </li>
+                    <li>
+                        <a href="/#">Our Mission</a>
+                    </li>
+                    <li>
+                        <a href="/#">Our Services</a>
+                    </li>
+                    <li>
+                        <a href="/#">Contact Us</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <a href="/about">Privacy Policy</a>
+                    </li>
+                    <li>
+                        <a href="/#">Terms of Service</a>
+                    </li>
+                    <li>
+                        <a href="/#">FAQs</a>
+                    </li>
+                    <li>
+                        <a href="/#">Blog</a>
+                    </li>
+                </ul>
+                <div>
+                    <p>DONATE:</p>
+                    <ol>
+                        <li>
+                            <img src={instagram} alt="Footer Image" />
+                        </li>
+                        <li>
+                            <img src={facebook} alt="Footer Image" />
+                        </li>
+                        <li>
+                            <img src={whatsapp} alt="Footer Image" />
+                        </li>
+                        <li>
+                            <img src={linkedin} alt="Footer Image" />
+                        </li>
+                    </ol>
                 </div>
-                <div className="footer-link">
-                    <a href="/#" className="footer-link-other">Privacy Policy</a>
-                    <a href="/#" className="footer-link-other">Terms of Service</a>
-                    <a href="/#" className="footer-link-other">FAQs</a>
-                    <a href="/#" className="footer-link-other">Blog</a>
-                </div>
-                <div className="footer-social-link">
-                    <div className="email-2"></div>
-                    <div className="instagram"></div>
-                    <div className="whatsapp"></div>
-                   
-                </div>
-                {/* <div className="footer-link"> */}
-                
+        
             </div>
-       
-         
+        </footer>
+        <div className='copyright'>
+            <p>
+               Copyright © 2024 Comapny
+            </p>
+            <p>
+                Powered By<span> TakeTech Devs</span>
+            </p>
         </div>
-   
-
-            <div className='copyright'>
-                <div className="footer-link-other"><b style={{ marginLeft: "348px" }}>DONATE</b></div>
-                <div className="footer-section-2">
-                    <span className="copyright-section"> Copyright © 2024 Comapny </span>
-                    <p className="poweredby">
-                        <span>Powered By</span><span style={{color: "black"}}> TakeTech Devs</span>
-                    </p>
-                </div>
-            </div>
         </>
     )
 }

@@ -404,7 +404,7 @@ padding: 0rem 0 2rem 0;
   margin-bottom: 100px;
   flex-direction: column;
   align-items: center;
-  padding: 500px 0px 40px 0px;
+  padding: 500px 5% 40px 5%;
   position: relative;
   display: flex;
   justify-content: center;
@@ -477,19 +477,19 @@ margin-block-end: 10px;
 
 
 /* Prity's CSS Start From Here */
-.home-page .navbar-section{position:absolute;top:20px;left:0;width:100%;z-index:2;display:flex;flex-direction:row;justify-content:space-between;padding-inline:3%}
-.home-page .logo-1{background:url(../../assets/images/logo2.jpeg) 50%/cover no-repeat;width:90px;height:85px}
-.home-page .navbar{font-family:Inter;font-weight:400;font-size:16px;color:#fff;display:flex;flex-direction:column;align-items:flex-end; justify-content: center;}
+.navbar-section{position:absolute;top:20px;left:0;width:100%;z-index:2;display:flex;flex-direction:row;justify-content:space-between;padding-inline:3%}
+.logo-1{background:url(../../assets/images/logo2.jpeg) 50%/cover no-repeat;width:90px;height:85px}
+.navbar{font-family:Inter;font-weight:400;font-size:16px;color:#fff;display:flex;flex-direction:column;align-items:flex-end; justify-content: center;}
 .navbar-link{margin-bottom:10px;display:flex;flex-direction:row;width:fit-content;}
-.home-page .navbar-link a{padding: 4px 15px;}
-.home-page .navbar-link a.active{background-color: #145A98; border-radius: 5px;}
+.navbar-link a{padding: 4px 15px;}
+.navbar-link a.active{background-color: #145A98; border-radius: 5px;}
 .navbar-link .home-active{background:#3d76af}
-.home-page a{font-family:Inter;font-size:16px;color:#fff}
-.home-page .donate-section{display:flex;flex-direction:row;width:fit-content;gap: 15px;}
-.home-page .phone{display:flex;align-items: center;}
-.home-page .phone-svg{transform:rotate(18.253deg);margin-right:4.7px;display:flex;align-items: center; justify-content:center;width:33.4px;height:38px;}
-.home-page .phonesvg{transform:rotate(314deg);width:22px;height:30px}
-.home-page .donatebtn{border-radius:5px;background:#145a98;position:relative;display:flex;flex-direction:row;justify-content:center;padding:8px 20px;color:#fff;font-family:Inter;font-weight:500;font-size:16px;text-transform:uppercase;border:none}
+.navbar-link a{font-family:Inter;font-size:16px;color:#fff;text-decoration: none;}
+.donate-section{display:flex;flex-direction:row;width:fit-content;gap: 15px;}
+.phone{display:flex;align-items: center;}
+.phone-svg{transform:rotate(18.253deg);margin-right:4.7px;display:flex;align-items: center; justify-content:center;width:33.4px;height:38px;}
+.phonesvg{transform:rotate(314deg);width:22px;height:30px}
+.donatebtn{border-radius:5px;background:#145a98;position:relative;display:flex;flex-direction:row;justify-content:center;padding:8px 20px;color:#fff;font-family:Inter;font-weight:500;font-size:16px;text-transform:uppercase;border:none}
 
 
 
@@ -540,14 +540,28 @@ ul.highlight-section{padding:40px 10px;flex-direction: column;gap: 15px;margin-b
 ul.highlight-section li{width: 100%;}
 ul.highlight-section li h2{margin-block-end: 0px;}
 .our-achievement ul li .our-achievement-svg{height: 60px; width: 60px; margin-block-end: 8px;}
-.home-page .img-section{padding: 250px 0px 40px 0px;}
+.home-page .img-section{padding: 250px 5% 40px 5%;}
 .brand-logo-section ul{gap: 15px;}
 .brand-logo-section ul li{width: calc((100% - 45px) / 3);font-size: 30px;}
 }
 
 @media only screen and (max-width: 767px) {
+  .donatebtn{font-size: 12px;padding: 6px 12px;}
+  .logo-1{width: 62px;height: 57px;}
+  .phone .navbar{font-size: 12px;}
+  .phonesvg{width: 15px;height: 18px;}
+  .phone-svg{margin-inline-end: -8px;}
+  .navbar-link a{font-size: 14px;}
+  .donate-section{gap: 8px;}
+  ul.highlight-section{margin-inline: 5%;}
+  .home-page .carousel{padding-inline: 12%;}
+  .home-page .carousel-caption{font-size: 14px;}
   .home-page .carousel-heading{font-size: 25px;}
+  .home-page .carousel-indicate{column-gap: 8px;}
+  .prev-btn, .next-btn {padding: 11px;}
+  .home-page .ellipse{width: 7px;height: 7px;}
   .home-page .our-team-heading{font-size: 25px; margin-block-end: 0px;}
+  .home-page .our-team-img{flex: 0 0 200px;height: 200px;}
 .home-page .our-team-section{margin-block: 50px;}
 .home-page .our-team-caption{margin-block-end: 16px;}
   .home-page .our-team-container{flex-direction: column;}
@@ -555,7 +569,7 @@ ul.highlight-section li h2{margin-block-end: 0px;}
   .our-achievement{margin-block: 50px;}
   .our-achievement ul{flex-direction: column;margin-block-start: 16px;}
   .our-achievement ul li{width: 100%;}
-  .home-page .img-section{padding: 130px 0px 20px 0px;margin-block-end: 0px;}
+  .home-page .img-section{padding: 130px 5% 20px 5%;margin-block-end: 0px;}
   .home-page .img-section-heading{font-size: 25px; margin-block-end: 0px;}
   .home-page .brand-section{margin-block: 50px;}
   .brand-logo-section ul{gap: 10px;}

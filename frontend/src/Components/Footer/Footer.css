@@ -1,177 +1,26 @@
- .footer-section {
-   background: #145A98;
-   position: relative;
-   display: flex;
- 
-   padding: 24px 0 22px 0;
-   width: 100%;
-   box-sizing: border-box;
- }
+footer{background:#3D76AF;display:flex;padding-block:40px;padding-inline:3%;width:100%; gap: 90px;color: #fff; font-size: 14px;}
+.footer-logo{display:flex;width:100px;height:100px; margin-block-end: 20px;}
+.footer-logo img{height: 100%; width: 100%; object-fit: contain;}
+.line-1{background:rgba(255,255,255,.5);margin-bottom:26px;width:100%;height:1px}
+.footer-links{display: flex;width: 100%; justify-content: space-between;}
+.footer-links ul, .footer-links ol{list-style: none;}
+.footer-links ul li a{color: #fff; font-size: 14px; text-decoration: none;margin-block-end: 4px;display: block;}
+.footer-links ul li:hover a{text-decoration: underline;}
+.footer-links ol{display: flex; gap: 15px;margin-block-start: 16px;}
+.footer-links ol li{height: 30px; width: 30px;}
+.footer-links ol li img{height: 100%; width: 100%; object-fit: contain;}
+.copyright{background-color: #145A98; display: flex; justify-content: space-between; font-size: 14px; color: #fff; padding-block: 10px; padding-inline: 3%;}
+.copyright p span{color: #000;}
 
- .logo-2 {display: flex;
-   background: url('../../assets/images/logo2.jpeg') 50% / cover no-repeat;
-   margin: 0 58px 39px 58px;
-   align-self: flex-start;
-   width: 108px;
-   height: 109px;
- }
+@media only screen and (max-width: 991px) {
+  footer{gap: 40px;}
+}
 
- .footer-container {
-
-   display: flex;
-   flex-direction: row;
-   width: fit-content;
-   box-sizing: border-box;
- }
-
- .footer-details {
-
-
-
-   font-family: 'Inter';
-   font-weight: 400;
-   font-size: 20px;
-   line-height: 1.4;
-   color: rgba(255, 255, 255, 0.8);
-
- }
-
- .footer-link {
-
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   box-sizing: border-box;
- }
-
- .footer-link-other {
-   margin-bottom: 2px;
-   display: inline-block;
- 
-   font-family: 'Inter';
-   font-weight: 400;
-   font-size: 20px;
-   line-height: 1.5;
-   color: #FFFFFF;
-   text-align: center;
-
- }
-
- a {
-   text-decoration: none;
-   cursor: pointer;
- }
-
- .footer-social-link {
-   position: relative;
-   display: flex;
-   flex-direction: row;
-   align-self: flex-end;
-   width: fit-content;
-
- }
-
- .email-2 {
-   background: url('../../assets/images/email2.png') 50% / cover no-repeat;
-   position: absolute;
-   left: -45px;
-   bottom: 3px;
-   width: 30px;
-   height: 30px;
- }
-
- .email-link {
-   margin: 9px 8.5px 5.5px -9px;
-   display: inline-block;
-   overflow-wrap: break-word;
-   font-family: 'Inter';
-   font-weight: 400;
-   font-size: 20px;
-   color: #FFFFFF;
- }
-
- .instagram {
-   background: url('../../assets/images/image5.png') 50% / cover no-repeat;
-   margin: 4px 12px 0 0;
-   bottom: 50px;
-   width: 32px;
-   height: 32px;
- }
-
- .instagram-link {
-   margin: 9px 10.5px 5.5px -9px;
-   display: inline-block;
-   overflow-wrap: break-word;
-   font-family: 'Inter';
-   font-weight: 400;
-   font-size: 20px;
-   color: #FFFFFF;
- }
-
- .whatsapp {
-   background: url('../../assets/images/image6.png') 50% / cover no-repeat;
-   margin: 4px 5px 0 0;
-   width: 32px;
-   height: 32px;
- }
-
- .whatsapp-link {
-   margin: 9px 0 5.5px 0;
-   font-family: 'Inter';
-   font-weight: 400;
-   font-size: 20px;
-   color: #FFFFFF;
- }
-
-
-
- .line-1 {
-   background: rgba(255, 255, 255, 0.5);
-   margin-bottom: 26px;
-   width: 100%;
-   height: 1px;
- }
-
- .footer-section-2 {
-   margin: 0 54px 0 58px;
-   display: flex;
-   flex-direction: row;
-   justify-content: space-between;
-   width: 1328px;
-   box-sizing: border-box;
- }
-
- .copyright-section {
-   margin-right: 12px;
-   /* width: 1056.3px; */
-   overflow-wrap: break-word;
-   font-family: 'Inter';
-   font-weight: 400;
-   font-size: 16px;
-   color: #FFFFFF;
- }
-
- .powered-by-take-tech-devs {
-   font-family: 'Inter';
-   font-weight: 400;
-   line-height: 1.333;
-   color: #321910;
-   font-size: 16px;
- }
-
- .poweredby {
-   overflow-wrap: break-word;
-   font-family: 'Poppins';
-   font-weight: 400;
-   /* font-size: 20px; */
-   color: #FFFFFF;
- }
-
- .poweredby span {
-   font-family: 'Inter';
-   font-weight: 400;
-   /* font-size: 20px; */
-   line-height: 1.333;
- }
-
- .copyright{background-color: #145A98;}
+@media only screen and (max-width: 767px) {
+  footer{flex-direction: column; gap:20px;padding-block: 20px;}
+  .footer-logo{height: 67px;}
+  .footer-description{display: flex;}
+  .footer-logo{margin-inline-end: 16px; margin-block-end: 0px;}
+  .footer-links ol{flex-direction: column; align-items: end;}
+  .copyright{font-size: 9px;padding-block: 8px;}
+}
