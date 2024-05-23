@@ -919,10 +919,11 @@ ul.highlight-section li h2 {
     height: 7px;
   }
   .home-page .navbar-section {
-    flex-direction: column;
-    align-items: flex-start;
+    /* flex-direction: column;
+    align-items: flex-start; */
     /* Align items to the left */
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
+    padding-right: 50px;
   }
   .home-page .navbar-link {
     display: none;
