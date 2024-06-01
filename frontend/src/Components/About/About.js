@@ -1,51 +1,62 @@
 /* eslint-disable */
 import React from "react";
 import "./About.css";
-import v1 from "../../assets/vectors/vector_x2.svg";
+import "./../Home/HomePage.css";
+import PhoneSVG from "../../assets/vectors/vector_x2.svg";
 
 const About = () => {
+    const toggleMenu = () => {
+        setMenuOpen(!menuOpen);
+    };
     return (
         <div className="about-us-page">
             <div className="about-upper">
-                <div className="about-container">
-                    <a href="/" className="logo-1"></a>
-                    <div className="about-navbar">
-                        <div className="about-navbar-link">
-                            <a href="/" className="home">Home</a>
-                            <div className="about-active">
-                                <a href="/about" className="about-us">About Us</a>
-                            </div>
-                            <a href="/#" className="services">Services</a>
-                            <a href="/#" className="grievance">Grievance</a>
-                            <a href="/#" className="governing-body">Governing Body</a>
-                            <a href="/#" className="gallery">Gallery</a>
-                            <a href="/#" className="contact-us">Contact Us</a>
+                <div className="navbar-section">
+                    <a href='/' className="logo-1"></a>
+                    <div className="navbar">
+                        <div className="navbar-link">
+                            <a href='#'> Home </a>
+                            <a href='/about' className="active">About Us</a>
+                            <a href='/#'>Grievance</a>
+                            <a href='/#'>Services</a>
+                            <a href='/#'>Governing Body</a>
+                            <a href='/#'>Gallery</a>
+                            <a href='/#'>Contact Us</a>
                         </div>
-                        <div className="about-donate-section">
-                            <div className="about-phone">
-                                <div className="about-phone-svg">
-                                    <img className="vector" src={v1} alt="" />
+                        <div className="donate-section">
+                            <div className="phone">
+                                <div className="phone-svg">
+                                    <img
+                                        className="phonesvg"
+                                        src={PhoneSVG}
+                                        alt='phone'
+                                    />
                                 </div>
-                                <div className="about-phone-number">+000 000 0000</div>
+                                <div className="navbar">+000 000 0000</div>
                             </div>
-                            <button className="about-donatebtn">Donate
-                                {/* <span className="donate">Donate</span> */}
-                            </button>
+                            <button className="donatebtn">Donate</button>
+                            <div class="menu-icon" onClick={toggleMenu}>
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <span className="about-heading">About Us</span>
-                <span className="about-caption">Welcome to Mallarpur Naisuva, where our mission is to empower communities, uplift the vulnerable, and create positive change in society.</span>
+                <div>
+                    <span className="our-team-heading">About Us</span>
+                    <span className="our-team-caption">Welcome to Mallarpur Naisuva, where our mission is to empower communities, uplift the vulnerable, and create positive change in society.</span>
+                </div>
             </div>
-            <div className="our-story-section">
-                <div className="our-story-heading">Our Story</div>
-                <div className="our-story-caption">
+            <div className="our-story-section our-achievement">
+                <div className="our-team-heading">Our Story</div>
+                <div className="our-team-caption">
                 Mallarpur Naisuva was founded with a vision to make a difference in the lives of those most in need. What began as a small group of individuals inspired by the spirit of social work has evolved into a full-fledged NGO dedicated to rural development and community empowerment.
                 </div>
-                <div className="our-story-caption">
+                <div className="our-team-caption">
                 Our vision is to break the cycle of poverty and social isolation, restoring hope for a better future. We envision a world where every person has access to resources and opportunities for development, and where no one is left behind.
                 </div>
-                <div className="our-story-caption">
+                <div className="our-team-caption">
                 Over the years, Mallarpur Naisuva has made significant strides in empowering communities and fostering positive change. From education and healthcare initiatives to women's empowerment programs and environmental conservation efforts, our impact is felt across various sectors.
                 </div>
                 

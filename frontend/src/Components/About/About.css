@@ -1,57 +1,5 @@
-.about-us-page .logo-1 {
-    background: url('../../assets/images/logo2.jpeg') 50% / cover no-repeat;
-    margin-bottom: 42.1px;
-    width: 108px;
-    height: 109px;
-    z-index: 1;
-}
 
-.about-us-page a{
-    text-decoration: none;
-}
 
-.about-us-page .home {
-    margin: 5px 29.9px 4px 0;
-    display: inline-block;
-    overflow-wrap: break-word;
-    font-family: 'Inter';
-    font-weight: 700;
-    font-size: 22px;
-    color: #FFFFFF;
-    z-index: 1;
-}
-
-.about-us-page .about-us {
-    overflow-wrap: break-word;
-    font-family: 'Inter';
-    font-weight: 700;
-    font-size: 22px;
-    color: #FFFFFF;
-    z-index: 1;
-}
-
-.about-us-page .about-active {
-    background: #3D76AF;
-    position: relative;
-    margin-right: 29px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    padding: 4px 7.3px 5px 8px;
-    box-sizing: border-box;
-    z-index: 1;
-}
-
-.about-us-page .grievance {
-    margin: 5px 32.4px 4px 0;
-    display: inline-block;
-    overflow-wrap: break-word;
-    font-family: 'Inter';
-    font-weight: 700;
-    font-size: 22px;
-    color: #FFFFFF;
-    z-index: 1;
-}
 
 .about-us-page .services {
     margin: 5px 32.8px 4px 0;
@@ -222,7 +170,7 @@
     padding: 34px 35px 80px 31px;
     width: 100%;
     box-sizing: border-box;
-    max-height: 100vh;
+    height: 100vh;
 }
 
 .about-us-page .about-upper::before {
@@ -235,27 +183,9 @@
     /* z-index: -1; */
   }
 
-.about-us-page .our-story-heading {
-    margin: 0 10.1px 30px 0;
-    display: inline-block;
-    overflow-wrap: break-word;
-    font-family: 'Inter';
-    font-weight: 600;
-    font-size: 35px;
-    color: #145A98;
-}
 
-.about-us-page .our-story-caption {
-    margin: 0 1px 47px 0;
-    display: inline-block;
-    text-align: center;
-    overflow-wrap: break-word;
-    font-family: 'Inter';
-    font-weight: 300;
-    font-size: 27px;
-    color: #3D76AF;
-    width: 1350px;
-}
+
+
 
 .about-us-page .rectangle-7 {
     background: url('../../assets/images/rectangle71.png') 50% / cover no-repeat, linear-gradient(#D9D9D9, #D9D9D9);
@@ -299,12 +229,9 @@
 
 .about-us-page .our-story-section {
     position: relative;
-    margin: 0 58px 129px 59px;
-    display: flex;
-    flex-direction: column;
     align-items: center;
     padding-bottom: 376px;
-    width: fit-content;
+
     box-sizing: border-box;
 }
 
@@ -905,8 +832,7 @@
 
 .about-us-page {
     background: #FFFFFF;
-    display: flex;
-    flex-direction: column;
+
     align-items: center;
     max-width: 100%;
     box-sizing: border-box;

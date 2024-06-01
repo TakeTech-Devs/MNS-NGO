@@ -112,38 +112,38 @@ const HomePage = () => {
         <>
             <div className="home-page">
                 <div className="upper-section">
-                <div className="navbar-section">
-                            <a href='/' className="logo-1"></a>
-                            <div className="navbar">
-                                <div className="navbar-link">
-                                    <a href='#' className="active"> Home </a>
-                                    <a href='/about' >About Us</a>
-                                    <a href='/#'>Grievance</a>
-                                    <a href='/#'>Services</a>
-                                    <a href='/#'>Governing Body</a>
-                                    <a href='/#'>Gallery</a>
-                                    <a href='/#'>Contact Us</a>
+                    <div className="navbar-section">
+                        <a href='/' className="logo-1"></a>
+                        <div className="navbar">
+                            <div className="navbar-link">
+                                <a href='#' className="active"> Home </a>
+                                <a href='/about' >About Us</a>
+                                <a href='/#'>Grievance</a>
+                                <a href='/#'>Services</a>
+                                <a href='/#'>Governing Body</a>
+                                <a href='/#'>Gallery</a>
+                                <a href='/#'>Contact Us</a>
+                            </div>
+                            <div className="donate-section">
+                                <div className="phone">
+                                    <div className="phone-svg">
+                                        <img
+                                            className="phonesvg"
+                                            src={PhoneSVG}
+                                            alt='phone'
+                                        />
+                                    </div>
+                                    <div className="navbar">+000 000 0000</div>
                                 </div>
-                                <div className="donate-section">
-                                    <div className="phone">
-                                        <div className="phone-svg">
-                                            <img
-                                                className="phonesvg"
-                                                src={PhoneSVG}
-                                                alt='phone'
-                                            />
-                                        </div>
-                                        <div className="navbar">+000 000 0000</div>
-                                    </div>
-                                    <button className="donatebtn">Donate</button>
-                                    <div class="menu-icon" onClick={toggleMenu}>
-                                        <div class="bar"></div>
-                                        <div class="bar"></div>
-                                        <div class="bar"></div>
-                                    </div>
+                                <button className="donatebtn">Donate</button>
+                                <div class="menu-icon" onClick={toggleMenu}>
+                                    <div class="bar"></div>
+                                    <div class="bar"></div>
+                                    <div class="bar"></div>
                                 </div>
                             </div>
                         </div>
+                    </div>
                     <div className="carousel">
                         {carouselItems.map((item, index) => (
                             <div
@@ -173,8 +173,6 @@ const HomePage = () => {
                             ))}
                         </div>
                     </div>
-
-                
                 </div>
                 <div>
                     <ul className="highlight-section">

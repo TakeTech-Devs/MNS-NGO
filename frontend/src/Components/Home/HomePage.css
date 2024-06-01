@@ -173,7 +173,7 @@ position: absolute; left: 50%; transform: translateX(-50%); bottom:140px;
   box-sizing: border-box;
 }
 
-.home-page .our-team-heading {
+.our-team-heading {
 margin-block-end: 10px;
 text-align: center;
   overflow-wrap: break-word;
@@ -183,7 +183,7 @@ text-align: center;
   color: #145A98;
 }
 
-.home-page .our-team-caption {
+.our-team-caption {
 
   display: inline-block;
   text-align: center;
@@ -560,10 +560,10 @@ ul.highlight-section li h2{margin-block-end: 0px;}
   .home-page .carousel-indicate{column-gap: 8px;}
   .prev-btn, .next-btn {padding: 11px;}
   .home-page .ellipse{width: 7px;height: 7px;}
-  .home-page .our-team-heading{font-size: 25px; margin-block-end: 0px;}
+ .our-team-heading{font-size: 25px; margin-block-end: 0px;}
   .home-page .our-team-img{flex: 0 0 200px;height: 200px;}
 .home-page .our-team-section{margin-block: 50px;}
-.home-page .our-team-caption{margin-block-end: 16px;}
+.our-team-caption{margin-block-end: 16px;}
   .home-page .our-team-container{flex-direction: column;}
   .home-page .our-team-img{margin-inline-end: 0px;width: 100%; margin-block-end: 20px;}
   .our-achievement{margin-block: 50px;}
