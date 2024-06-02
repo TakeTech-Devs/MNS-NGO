@@ -1,7 +1,6 @@
 /* eslint-disable */
 import React, { useEffect, useState, useCallback } from 'react';
 import './HomePage.css';
-import PhoneSVG from "../../assets/vectors/vector_x2.svg";
 import SVG1 from "../../assets/vectors/saveworld.svg";
 import SVG2 from "../../assets/vectors/capable.svg";
 import SVG3 from "../../assets/vectors/teamwork.svg";
@@ -10,6 +9,7 @@ import "react-multi-carousel/lib/styles.css";
 import img1 from "../../assets/images/rectangle8.png";
 import img2 from "../../assets/images/rectangle9.png";
 import img3 from "../../assets/images/rectangle10.png";
+import Navbar from '../Navbar/Navbar';
 
 const responsive = {
     desktop: {
@@ -68,16 +68,6 @@ const sliderImageUrl = [
 
 const HomePage = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
-    const [isSidePanelOpen, setIsSidePanelOpen] = useState(false);
-
-
-    const toggleSidePanel = () => {
-        setIsSidePanelOpen(!isSidePanelOpen);
-    };
-
-    const closeSidePanel = () => {
-        setIsSidePanelOpen(false);
-    };
 
     const carouselItems = [
         require('../../assets/images/rectangle4.png'),
@@ -120,90 +110,40 @@ const HomePage = () => {
     // };
     return (
         <>
+            <Navbar />
             <div className="home-page">
-                <div className="upper-section">
-                    <div className="navbar-section">
-                        <a href='/' className="logo-1"></a>
-                        <div className="navbar">
-                            <div className="navbar-link">
-                                <a href='#' className="active"> Home </a>
-                                <a href='/about' >About Us</a>
-                                <a href='/#'>Grievance</a>
-                                <a href='/#'>Services</a>
-                                <a href='/#'>Governing Body</a>
-                                <a href='/#'>Gallery</a>
-                                <a href='/#'>Contact Us</a>
-                            </div>
-                            <div className="donate-section">
-                                <div className="phone">
-                                    <div className="phone-svg">
-                                        <img
-                                            className="phonesvg"
-                                            src={PhoneSVG}
-                                            alt='phone'
-                                        />
-                                    </div>
-                                    <div className="navbar">+000 000 0000</div>
-                                </div>
-                                <button className="donatebtn">Donate</button>
-                                {/* <div class="menu-icon" onClick={toggleMenu}>
-                                        <div class="bar"></div>
-                                        <div class="bar"></div>
-                                        <div class="bar"></div>
-                                    </div> */}
-                                <div class="hamburger-menu" onClick={toggleSidePanel}><i className="fa-solid fa-bars"></i></div>
-                                <div className={`side-panel ${isSidePanelOpen ? 'open' : ''}`}>
-                                    {/* Content of the side panel */}
-                                    <button className="close-button" onClick={closeSidePanel}>
-                                        &times;
-                                    </button>
+                <div className="carousel">
+                    {carouselItems.map((item, index) => (
+                        <div
+                            key={index}
+                            className="background-image"
+                            style={{ backgroundImage: `url(${item})`, display: index === currentIndex ? 'block' : 'none' }}
+                        ></div>
+                    ))}
+                    <button className="prev-btn" onClick={prevSlide}>&#10094;</button>
+                    <button className="next-btn" onClick={nextSlide}>&#10095;</button>
 
-                                    <div className="side-panel-content">
-                                        <a href='/'>Home</a>
-                                        <a href='/about'>About Us</a>
-                                        <a href='/#'>Grievance</a>
-                                        <a href='/#' className="services">Services</a>
-                                        <a href='/#' className="governing-body">Governing Body</a>
-                                        <a href='/#' className="gallery">Gallery</a>
-                                        <a href='/#' className="contact-us">Contact Us</a>
-                                        {/* Add other navigation links here */}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
+
+                    <div className="carousel-heading">Empowering Communities, Transforming Lives</div>
+                    <div
+                        className="carousel-caption"
+                    >
+                        Join Mallarpur Naisuva in our mission to break the cycle of poverty and foster inclusive development.
                     </div>
-                    <div className="carousel">
-                        {carouselItems.map((item, index) => (
+                    <div className="carousel-indicate">
+                        {Array.from({ length: totalSlides }).map((_, index) => (
                             <div
                                 key={index}
-                                className="background-image"
-                                style={{ backgroundImage: `url(${item})`, display: index === currentIndex ? 'block' : 'none' }}
+                                className={`ellipse indicator ${index === currentIndex ? 'active' : ''}`}
+                                onClick={() => goToSlide(index)}
                             ></div>
                         ))}
-                        <button className="prev-btn" onClick={prevSlide}>&#10094;</button>
-                        <button className="next-btn" onClick={nextSlide}>&#10095;</button>
-
-
-
-                        <div className="carousel-heading">Empowering Communities, Transforming Lives</div>
-                        <div
-                            className="carousel-caption"
-                        >
-                            Join Mallarpur Naisuva in our mission to break the cycle of poverty and foster inclusive development.
-                        </div>
-                        <div className="carousel-indicate">
-                            {Array.from({ length: totalSlides }).map((_, index) => (
-                                <div
-                                    key={index}
-                                    className={`ellipse indicator ${index === currentIndex ? 'active' : ''}`}
-                                    onClick={() => goToSlide(index)}
-                                ></div>
-                            ))}
-                        </div>
                     </div>
-
-
                 </div>
+
+
+
                 <div>
                     <ul className="highlight-section">
                         <li>

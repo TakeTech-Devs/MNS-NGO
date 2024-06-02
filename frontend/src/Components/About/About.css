@@ -10,140 +10,6 @@
     text-decoration: none;
 }
 
-.about-us-page .home {
-    margin: 5px 29.9px 4px 0;
-    display: inline-block;
-    overflow-wrap: break-word;
-    font-family: 'Inter';
-    font-weight: 700;
-    font-size: 22px;
-    color: #FFFFFF;
-    z-index: 1;
-}
-
-.about-us-page .about-us {
-    overflow-wrap: break-word;
-    font-family: 'Inter';
-    font-weight: 700;
-    font-size: 22px;
-    color: #FFFFFF;
-    z-index: 1;
-}
-
-.about-us-page .about-active {
-    background: #3D76AF;
-    position: relative;
-    margin-right: 29px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    padding: 4px 7.3px 5px 8px;
-    box-sizing: border-box;
-    z-index: 1;
-}
-
-.about-us-page .grievance {
-    margin: 5px 32.4px 4px 0;
-    display: inline-block;
-    overflow-wrap: break-word;
-    font-family: 'Inter';
-    font-weight: 700;
-    font-size: 22px;
-    color: #FFFFFF;
-    z-index: 1;
-}
-
-.about-us-page .services {
-    margin: 5px 32.8px 4px 0;
-    display: inline-block;
-    overflow-wrap: break-word;
-    font-family: 'Inter';
-    font-weight: 700;
-    font-size: 22px;
-    color: #FFFFFF;
-    z-index: 1;
-}
-
-.about-us-page .governing-body {
-    margin: 5px 32.3px 4px 0;
-    display: inline-block;
-    overflow-wrap: break-word;
-    font-family: 'Inter';
-    font-weight: 700;
-    font-size: 22px;
-    color: #FFFFFF;
-    z-index: 1;
-}
-
-.about-us-page .gallery {
-    margin: 5px 32.1px 4px 0;
-    display: inline-block;
-    overflow-wrap: break-word;
-    font-family: 'Inter';
-    font-weight: 700;
-    font-size: 22px;
-    color: #FFFFFF;
-    z-index: 1;
-}
-
-.about-us-page .contact-us {
-    margin: 5px 0 4px 0;
-    display: inline-block;
-    overflow-wrap: break-word;
-    font-family: 'Inter';
-    font-weight: 700;
-    font-size: 22px;
-    color: #FFFFFF;
-    z-index: 1;
-}
-
-.about-us-page .about-navbar-link {
-    margin-bottom: 33px;
-    display: flex;
-    flex-direction: row;
-    width: fit-content;
-    box-sizing: border-box;
-}
-
-.about-us-page .vector {
-    transform: rotate(4.52deg);
-    width: 33.4px;
-    height: 38px;
-}
-
-.about-us-page .about-phone-svg {
-    transform: rotate(18.253deg);
-    margin-right: 4.7px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    width: 33.4px;
-    height: 38px;
-    box-sizing: border-box;
-}
-
-.about-us-page .about-phone-number {
-    margin: 4px 0;
-    display: inline-block;
-    overflow-wrap: break-word;
-    font-family: 'Inter';
-    font-weight: 400;
-    font-size: 25px;
-    color: #FFFFFF;
-    margin-top: 5px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    box-sizing: border-box;
-    z-index: 1;
-}
-
-.about-us-page .about-phone {
-    margin: 9px 38.2px 9px 0;
-    display: flex;
-    flex-direction: row;
-    box-sizing: border-box;
-}
 
 .about-caption {
     /* margin-left: 54px;
@@ -159,36 +25,12 @@
     padding-top: 20px;
 }
 
-.about-us-page .about-donatebtn {
-    background: #145A98;
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    padding: 13px 18px 12px 18px;
-    box-sizing: border-box;
-    color: #FFFFFF;
-    font-family: 'Inter';
-    font-weight: 500;
-    font-size: 25px;
-    text-transform: uppercase;
-    overflow-wrap: break-word;
-    border: none;
-}
 
 .about-us-page .container {
     margin: 0 0px;
     display: flex;
     flex-direction: row;
     width: fit-content;
-    box-sizing: border-box;
-}
-
-.about-us-page .about-navbar {
-    margin-top: 4px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
     box-sizing: border-box;
 }
 
@@ -920,59 +762,7 @@
     margin-top: 130px;
 }
 
-.about-us-page .hamburger-menu {
-    display: none;
-    color: #fff;
-    /* Hide hamburger menu on larger screens */
-}
-
-.side-panel {
-    display: none;
-}
-
 @media (max-width: 768px) {
-    .about-us-page .about-navbar-link {
-        display: none;
-    }
-
-    .about-us-page .about-navbar {
-        flex-direction: column;
-        align-items: flex-start;
-        /* Align items to the left */
-        margin-bottom: 20px;
-    }
-
-    .about-us-page .hamburger-menu {
-        display: block;
-        position: absolute;
-        top: 20px;
-        /* Adjust the distance from the top */
-        right: 20px;
-        /* Adjust the distance from the right */
-        cursor: pointer;
-    }
-
-    .about-us-page .logo-1 {
-        margin-bottom: 20px;
-        z-index: 1;
-        /* Adjust margin */
-    }
-
-    .side-panel {
-        display: block;
-        position: fixed;
-        top: 0;
-        right: -250px;
-        /* Initially hide the side panel */
-        width: 250px;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.8);
-        ;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        transition: right 0.3s ease;
-        z-index: 1000;
-    }
-
     .about-us-page .about-heading {
         margin-top: -280px;
     }

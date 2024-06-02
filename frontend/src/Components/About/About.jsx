@@ -1,67 +1,16 @@
 /* eslint-disable */
 import React, { useState } from 'react';
 import "./About.css";
-import v1 from "../../assets/vectors/vector_x2.svg";
-
-const About = () => {
-    const [isSidePanelOpen, setIsSidePanelOpen] = useState(false);
+import Navbar from '../Navbar/Navbar';
 
 
-    const toggleSidePanel = () => {
-        setIsSidePanelOpen(!isSidePanelOpen);
-    };
-
-    const closeSidePanel = () => {
-        setIsSidePanelOpen(false);
-    };
-    
+const About = () => { 
     return (
+        <>
+        <Navbar />
         <div className="about-us-page">
             <div className="about-upper">
                 <div className="about-container">
-                    <a href="/" className="logo-1"></a>
-                    <div className="about-navbar">
-                        <div class="hamburger-menu" onClick={toggleSidePanel}><i className="fa-solid fa-bars"></i></div>
-                        <div className={`side-panel ${isSidePanelOpen ? 'open' : ''}`}>
-                            {/* Content of the side panel */}
-                            <button className="close-button" onClick={closeSidePanel}>
-                                &times;
-                            </button>
-
-                            <div className="side-panel-content">
-                                <a href='/'>Home</a>
-                                <a href='/about'>About Us</a>
-                                <a href='/#'>Grievance</a>
-                                <a href='/#'>Services</a>
-                                <a href='/#'>Governing Body</a>
-                                <a href='/#'>Gallery</a>
-                                <a href='/#'>Contact Us</a>
-                                {/* Add other navigation links here */}
-                            </div>
-                        </div>
-                        <div className="about-navbar-link">
-                            <a href="/" className="home">Home</a>
-                            <div className="about-active">
-                                <a href="/about" className="about-us">About Us</a>
-                            </div>
-                            <a href="/#" className="services">Services</a>
-                            <a href="/#" className="grievance">Grievance</a>
-                            <a href="/#" className="governing-body">Governing Body</a>
-                            <a href="/#" className="gallery">Gallery</a>
-                            <a href="/#" className="contact-us">Contact Us</a>
-                        </div>
-                        <div className="about-donate-section">
-                            <div className="about-phone">
-                                <div className="about-phone-svg">
-                                    <img className="vector" src={v1} alt="" />
-                                </div>
-                                <div className="about-phone-number">+000 000 0000</div>
-                            </div>
-                            <button className="about-donatebtn">Donate
-                                {/* <span className="donate">Donate</span> */}
-                            </button>
-                        </div>
-                    </div>
                 </div>
                 <span className="about-heading">About Us</span>
                 <span className="about-caption">Welcome to Mallarpur Naisuva, where our mission is to empower communities, uplift the vulnerable, and create positive change in society.</span>
@@ -115,6 +64,7 @@ const About = () => {
                 </span>
             </div>
         </div>
+        </>
     );
 };
 
