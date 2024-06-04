@@ -31,11 +31,11 @@ const About = () => {
 				</div>
 
 				<div className="container-image-2">
-					<div className="rectangle-7"></div>
-					<div className="rectangle-9"></div>
+					<img className="rectangle-7" src="../../assets/images/rectangle71.png" style={{background:"50% / cover no-repeat, linear-gradient(#D9D9D9, #D9D9D9)"}}/>
+					<img className="rectangle-9" src="../../assets/images/rectangle91.png" style={{background:"50% / cover no-repeat, linear-gradient(#D9D9D9, #D9D9D9)"}}/>
+					<img className="rectangle-8" src="../../assets/images/rectangle81.png" style={{background:"50% / cover no-repeat, linear-gradient(#D9D9D9, #D9D9D9)"}}/>
+					<img className="rectangle-10" src="../../assets/images/rectangle101.png" style={{background:"50% / cover no-repeat, linear-gradient(#D9D9D9, #D9D9D9)"}}/>
 				</div>
-				<div className="rectangle-8"></div>
-				<div className="rectangle-10"></div>
 			</div>
 			
 			<div className="OurValues">

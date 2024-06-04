@@ -16,8 +16,8 @@
 .about-us-page .about-upper p {
     position: relative;
     z-index: 2;
-    padding-left: 10%;
-    padding-right: 10%;
+    padding-left: 15%;
+    padding-right: 15%;
     display: inline-block;
     align-self: flex-start;
     overflow-wrap: break-word;
@@ -39,7 +39,7 @@
     font-size: 45px;
     color: #FFFFFF;
     text-align: center;
-    padding-top: 500px;
+    padding-top: 300px;
 }
 
 .about-us-page .about-upper::before {
@@ -71,44 +71,39 @@
     color: #3D76AF;
 }
 
-.about-us-page .rectangle-7 {
-    background: url('../../assets/images/rectangle71.png') 50% / cover no-repeat, linear-gradient(#D9D9D9, #D9D9D9);
-    margin-right: 113px;
-    width: 493px;
-    height: 497px;
-}
-
-.about-us-page .rectangle-9 {
-    background: url('../../assets/images/rectangle91.png') 50% / cover no-repeat, linear-gradient(#D9D9D9, #D9D9D9);
+.container-image-2 {
     position: relative;
-    width: 493px;
-    height: 497px;
+    width: 800px;
+    height: 530px;
+    margin-left: 100px;
 }
 
-.about-us-page .container-image-2 {
-    display: flex;
-    flex-direction: row;
-    align-self: flex-start;
-    width: 1099px;
-    box-sizing: border-box;
-}
-
-.about-us-page .rectangle-8 {
-    background: url('../../assets/images/rectangle81.png') 50% / cover no-repeat, linear-gradient(#D9D9D9, #D9D9D9);
+.container-image-2 img {
     position: absolute;
-    left: 267px;
-    bottom: 51px;
-    width: 493px;
-    height: 497px;
+    width: 575px;
+    height: 500px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
 }
 
-.about-us-page .rectangle-10 {
-    background: url('../../assets/images/rectangle101.png') 50% / cover no-repeat, linear-gradient(#D9D9D9, #D9D9D9);
-    position: absolute;
-    right: 0px;
-    bottom: 0px;
-    width: 493px;
-    height: 497px;
+.rectangle-7 {
+    top: 0px;
+    left: -30px;
+}
+
+.rectangle-9 {
+    top: 0;
+    left: 570px;
+}
+
+.rectangle-8 {
+    top: 400px;
+    left: 20px;
+}
+
+.rectangle-10 {
+    top: 400px;
+    left: 620px;
 }
 
 .about-us-page .our-story-section {
@@ -163,187 +158,11 @@
     margin-top: 40px;
 }
 
-.about-us-page .logo-2 {
-    background: url('../../assets/images/logo2.jpeg') 50% / cover no-repeat;
-    margin: 0 58px 39px 58px;
-    align-self: flex-start;
-    width: 108px;
-    height: 109px;
-}
-
-.about-us-page .lorem-ipsum-dolor-sit-amet-consectetur-adipiscing-elit-sed-do-eiusmod-tempor-incididunt-ut-labore-et-dolore-magna-aliqua-lorem-ipsum-dolor-sit-amet-consectetur-adipiscin-lorem-ipsum-dolor-sit-amet-consectetur-adipiscing-elit-sed-do-eiusmod-tempor-incididunt-ut-labore-et-dolore-magna-aliqua {
-    margin: 4px 88.6px 0 0;
-    display: inline-block;
-    overflow-wrap: break-word;
-    font-family: 'Inter';
-    font-weight: 400;
-    font-size: 25px;
-    line-height: 1.4;
-    color: rgba(255, 255, 255, 0.8);
-}
-
-.about-us-page .about-donatebtn1 {
-    margin: 2px 77.3px 44px 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    box-sizing: border-box;
-}
-
-.about-us-page .lorem-ipsum-dolor {
-    position: relative;
-    overflow-wrap: break-word;
-    font-family: 'Inter';
-    font-weight: 400;
-    font-size: 25px;
-    line-height: 1.5;
-    color: #FFFFFF;
-}
-
-.about-us-page .group-19 {
-    position: relative;
-    margin-bottom: 96px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    height: 188px;
-    box-sizing: border-box;
-}
-
-.about-us-page .about-phone-number {
-    display: flex;
-    flex-direction: row;
-    width: fit-content;
-    box-sizing: border-box;
-}
-
-.about-us-page .ellipse-19 {
-    position: relative;
-    margin: 7.1px 12.6px 0 0;
-    width: 34.4px;
-    height: 35.4px;
-}
-
-.about-us-page .lorem-ipsum-6 {
-    margin: 9px 8.5px 5.5px 0;
-    display: inline-block;
-    overflow-wrap: break-word;
-    font-family: 'Inter';
-    font-weight: 400;
-    font-size: 23px;
-    color: #FFFFFF;
-}
-
-.about-us-page .image-5 {
-    background: url('../../assets/images/image5.png') 50% / cover no-repeat;
-    margin: 0 12px 4.5px 0;
-    width: 39px;
-    height: 38px;
-}
-
-.about-us-page .lorem-ipsum-7 {
-    margin: 9px 10.5px 5.5px 0;
-    display: inline-block;
-    overflow-wrap: break-word;
-    font-family: 'Inter';
-    font-weight: 400;
-    font-size: 23px;
-    color: #FFFFFF;
-}
-
-.about-us-page .image-6 {
-    background: url('../../assets/images/image6.png') 50% / cover no-repeat;
-    margin: 0 9px 4.5px 0;
-    width: 38px;
-    height: 38px;
-}
-
-.about-us-page .about-donate-section {
-    margin: 9px 0 5.5px 0;
-    display: flex;
-    flex-direction: row;
-    overflow-wrap: break-word;
-    font-family: 'Inter';
-    font-weight: 400;
-    font-size: 23px;
-    color: #FFFFFF;
-}
-
-.about-us-page .email-2 {
-    background: url('../../assets/images/email1.png') 50% / cover no-repeat;
-    position: absolute;
-    left: 0px;
-    bottom: 0px;
-    width: 35.8px;
-    height: 35.8px;
-}
-
-.about-us-page .group-18 {
-    position: relative;
-    margin: 0 54.9px 33.5px 54.9px;
-    display: flex;
-    flex-direction: row;
-    align-self: flex-end;
-    padding: 0 0 0px 1px;
-    width: fit-content;
-    box-sizing: border-box;
-}
-
-.about-us-page .line-1 {
-    background: rgba(255, 255, 255, 0.5);
-    margin-bottom: 26px;
-    width: 100%;
-    height: 1px;
-}
-
-.about-us-page .copyright-2024-comapny {
-    margin-right: 12px;
-    width: 1056.3px;
-    overflow-wrap: break-word;
-    font-family: 'Inter';
-    font-weight: 400;
-    font-size: 20px;
-    color: #FFFFFF;
-}
-
-.about-us-page .powered-by-take-tech-devs {
-    overflow-wrap: break-word;
-    font-family: 'Poppins';
-    font-weight: 400;
-    font-size: 20px;
-    color: #FFFFFF;
-}
-
-.powered-by-take-tech-devs-sub67 {
-    font-family: 'Inter';
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 1.333;
-}
-
-.powered-by-take-tech-devs {
-    font-family: 'Inter';
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 1.333;
-    color: #321910;
-}
-
 .about-us-page .container-2 {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
-    box-sizing: border-box;
-}
-
-.about-us-page .about-donatebtn2 {
-    background: #145A98;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    padding: 24px 0 22px 0;
-    width: fit-content;
     box-sizing: border-box;
 }
 
@@ -354,15 +173,7 @@
     box-sizing: border-box;
 }
 
-.circle {
-    width: 1000px;
-    height: 950px;
-    border-radius: 50%;
-    border: 8px dashed #82a8c8;
-    margin-top: 130px
-}
-
-.OurValues-caption{
+.OurValues-caption {
     text-align: center;
     overflow-wrap: break-word;
     font-family: 'Inter';
@@ -467,5 +278,98 @@
 
     100% {
         transform: rotate(0deg);
+    }
+}
+
+@media only screen and (max-width: 991px) {
+    body {
+      font-size: 14px;
+    }
+
+    .container-image-2 {
+        position: relative;
+        width: 600px;
+        height: 950px;
+        margin-left: 0px;
+    }
+    
+    .container-image-2 img {
+        position: absolute;
+        width: 500px;
+        height: 450px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .rectangle-7 {
+        top: 0px;
+        left: 20px;
+    }
+    
+    .rectangle-9 {
+        top: 250px;
+        left: 330px;
+    }
+    
+    .rectangle-8 {
+        top: 600px;
+        left: 20px;
+    }
+    
+    .rectangle-10 {
+        top: 890px;
+        left: 330px;
+    }
+
+}
+
+@media only screen and (max-width: 767px) {
+    .Values {
+        height: 335px;
+        width: 335px;
+        border-radius: 50%;
+        border: 2px dashed #145A98;
+        margin: 0 auto;
+        position: relative;
+        list-style: none;
+        animation: circlePath 30s infinite linear;
+        margin-block-start: 80px;
+    }
+
+    .Values li.ValuePoints .ValueImage {
+        height: 50px;
+        width: 100px;
+    }
+
+    .container-image-2{
+        position: relative;
+        width: 250px;
+        height: 400px;
+        top: 50px;
+    }
+    .container-image-2 img {
+        position: absolute;
+        width: 250px;
+        height: 250px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .rectangle-7 {
+        top: -60px;
+        left: 0px;
+    }
+    
+    .rectangle-9 {
+        top: 130px;
+        left: 100px;
+    }
+    
+    .rectangle-8 {
+        top: 340px;
+        left: 0px;
+    }
+    
+    .rectangle-10 {
+        top: 550px;
+        left: 100px;
     }
 }
