@@ -23,8 +23,10 @@ app.use(fileUpload());
 
 //Import Route
 const carousel = require("./routes/carouselRoute");
+const about = require("./routes/aboutRoute");
 
 app.use("/api/v1/carousel", carousel);
+app.use("/api/v1/about", about);
 
 
 
