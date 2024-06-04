@@ -1,7 +1,6 @@
 /* eslint-disable */
 import React, { useEffect, useState, useCallback } from 'react';
 import './HomePage.css';
-import PhoneSVG from "../../assets/vectors/vector_x2.svg";
 import SVG1 from "../../assets/vectors/saveworld.svg";
 import SVG2 from "../../assets/vectors/capable.svg";
 import SVG3 from "../../assets/vectors/teamwork.svg";
@@ -10,6 +9,7 @@ import "react-multi-carousel/lib/styles.css";
 import img1 from "../../assets/images/rectangle8.png";
 import img2 from "../../assets/images/rectangle9.png";
 import img3 from "../../assets/images/rectangle10.png";
+import Navbar from '../Navbar/Navbar';
 
 const responsive = {
     desktop: {
@@ -19,12 +19,12 @@ const responsive = {
     },
     tablet: {
         breakpoint: { max: 1024, min: 768 },
-        items: 3,
-        slidesToSlide: 3 // optional, default to 1.
+        items: 2,
+        slidesToSlide: 2 // optional, default to 1.
     },
     mobile: {
         breakpoint: { max: 767, min: 464 },
-        items: 2,
+        items: 1,
         slidesToSlide: 1 // optional, default to 1.
     }
 }
@@ -68,16 +68,6 @@ const sliderImageUrl = [
 
 const HomePage = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
-    const [isSidePanelOpen, setIsSidePanelOpen] = useState(false);
-
-
-    const toggleSidePanel = () => {
-        setIsSidePanelOpen(!isSidePanelOpen);
-    };
-
-    const closeSidePanel = () => {
-        setIsSidePanelOpen(false);
-    };
 
     const carouselItems = [
         require('../../assets/images/rectangle4.png'),
@@ -112,118 +102,63 @@ const HomePage = () => {
         const interval = setInterval(nextSlide, 5000);
         return () => clearInterval(interval);
     }, [currentIndex, nextSlide]);
+
+    // const [menuOpen, setMenuOpen] = useState(false);
+
+    // const toggleMenu = () => {
+    //     setMenuOpen(!menuOpen);
+    // };
     return (
         <>
+            <Navbar />
             <div className="home-page">
-                <div className="upper-section">
-                    <div className="carousel">
-                        {carouselItems.map((item, index) => (
+                <div className="carousel">
+                    {carouselItems.map((item, index) => (
+                        <div
+                            key={index}
+                            className="background-image"
+                            style={{ backgroundImage: `url(${item})`, display: index === currentIndex ? 'block' : 'none' }}
+                        ></div>
+                    ))}
+                    <button className="prev-btn" onClick={prevSlide}>&#10094;</button>
+                    <button className="next-btn" onClick={nextSlide}>&#10095;</button>
+
+
+
+                    <div className="carousel-heading">Empowering Communities, Transforming Lives</div>
+                    <div
+                        className="carousel-caption"
+                    >
+                        Join Mallarpur Naisuva in our mission to break the cycle of poverty and foster inclusive development.
+                    </div>
+                    <div className="carousel-indicate">
+                        {Array.from({ length: totalSlides }).map((_, index) => (
                             <div
                                 key={index}
-                                className="background-image"
-                                style={{ backgroundImage: `url(${item})`, display: index === currentIndex ? 'block' : 'none' }}
+                                className={`ellipse indicator ${index === currentIndex ? 'active' : ''}`}
+                                onClick={() => goToSlide(index)}
                             ></div>
                         ))}
-                        <button className="prev-btn" onClick={prevSlide}>&#10094;</button>
-                        <button className="next-btn" onClick={nextSlide}>&#10095;</button>
-
-                        <div className="navbar-section">
-                            <a href='/' className="logo-1"></a>
-                            <div className="navbar">
-
-                                <div class="hamburger-menu" onClick={toggleSidePanel}><i className="fa-solid fa-bars"></i></div>
-                                <div className={`side-panel ${isSidePanelOpen ? 'open' : ''}`}>
-                                    {/* Content of the side panel */}
-                                    <button className="close-button" onClick={closeSidePanel}>
-                                        &times;
-                                    </button>
-
-                                    <div className="side-panel-content">
-                                        <a href='/'>Home</a>
-                                        <a href='/about'>About Us</a>
-                                        <a href='/#'>Grievance</a>
-                                        <a href='/#' className="services">Services</a>
-                                        <a href='/#' className="governing-body">Governing Body</a>
-                                        <a href='/#' className="gallery">Gallery</a>
-                                        <a href='/#' className="contact-us">Contact Us</a>
-                                        {/* Add other navigation links here */}
-                                    </div>
-                                </div>
-                                <div className="navbar-link">
-                                    <div className="home-active">
-                                        <a href='#' className="home"> Home </a>
-                                    </div>
-                                    <a href='/about' className="about-us">About Us</a>
-                                    <a href='/#' className="grievance">Grievance</a>
-                                    <a href='/#' className="services">Services</a>
-                                    <a href='/#' className="governing-body">Governing Body</a>
-                                    <a href='/#' className="gallery">Gallery</a>
-                                    <a href='/#' className="contact-us">Contact Us</a>
-                                </div>
-
-                                <div className="donate-section">
-                                    <div className="phone">
-                                        <div className="phone-svg">
-                                            <img
-                                                className="phonesvg"
-                                                src={PhoneSVG}
-                                                alt='phone'
-                                            />
-                                        </div>
-                                        <div className="phone-number">+000 000 0000</div>
-                                    </div>
-                                    <button className="donatebtn">Donate
-                                        {/* <span className="donate"> Donate </span> */}
-                                    </button>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <div className="carousel-heading">Empowering Communities, Transforming Lives</div>
-                        <div
-                            className="carousel-caption"
-                        >
-                            Join Mallarpur Naisuva in our mission to break the cycle of poverty and foster inclusive development.
-                        </div>
-                        <div className="carousel-indicate">
-                            {Array.from({ length: totalSlides }).map((_, index) => (
-                                <div
-                                    key={index}
-                                    className={`ellipse indicator ${index === currentIndex ? 'active' : ''}`}
-                                    onClick={() => goToSlide(index)}
-                                ></div>
-                            ))}
-                        </div>
                     </div>
+                </div>
 
-                    <div className="highlight-section">
-                        <div className="highlight-1">
-                            <div className="highlight-1-header">Compassion</div>
-                            <span
-                                className="highlight-1-caption"
-                            >
-                                Embracing empathy, fostering kindness
-                            </span>
-                        </div>
-                        <div className="highlight-2">
-                            <div className="highlight-2-header">Integrity</div>
-                            <span
-                                className="highlight-2-caption"
-                            >
-                                Upholding ethics, ensuring trustworthiness
-                            </span>
-                        </div>
-                        <div className="highlight-3">
-                            <div className="highlight-3-header">Empowerment</div>
-                            <span
-                                className="highlight-3-caption"
-                            >
-                                Inspiring growth, nurturing resilience
-                            </span>
-                        </div>
-                    </div>
 
+
+                <div>
+                    <ul className="highlight-section">
+                        <li>
+                            <h2>Compassion</h2>
+                            <p>Embracing empathy, fostering kindness</p>
+                        </li>
+                        <li>
+                            <h2>Integrity</h2>
+                            <p> Upholding ethics, ensuring trustworthiness</p>
+                        </li>
+                        <li>
+                            <h2>Empowerment</h2>
+                            <p>Inspiring growth, nurturing resilience</p>
+                        </li>
+                    </ul>
                 </div>
                 <div className="our-team-section">
                     <div className="our-team-heading">About Mallarpur Naisuva</div>
@@ -233,23 +168,26 @@ const HomePage = () => {
                         Empowering communities, transforming lives. Join us in breaking the cycle of poverty and fostering inclusive development.
                     </div>
                     <div className="our-team-container">
-                        <div className="our-team-img"></div>
-                        <span
-                            className="our-team-content"
-                        >
-                            Mallarpur Naisuva is a beacon of hope, dedicated to uplifting the most vulnerable segments of our society. Founded on principles of compassion and social responsibility, our journey began with a vision to extend a helping hand to those in dire need – the poor, elderly, sick, women, and children. <br />
-                            <br />
-                            Established under the West Bengal Societies Registration Act (XXI) of 1961, Mallarpur Naisuva embodies a commitment to transparency, integrity, and unwavering dedication to our cause. For over three decades, we have remained steadfast in our mission to foster a society where every individual can thrive with dignity.
+                        <div className="our-team-img">
 
+                        </div>
+                        <div className="our-team-content">
+                            <p>
+                                Mallarpur Naisuva is a beacon of hope, dedicated to uplifting the most vulnerable segments of our society. Founded on principles of compassion and social responsibility, our journey began with a vision to extend a helping hand to those in dire need – the poor, elderly, sick, women, and children.
+                            </p>
 
-                        </span>
+                            <p>
+                                Established under the West Bengal Societies Registration Act (XXI) of 1961, Mallarpur Naisuva embodies a commitment to transparency, integrity, and unwavering dedication to our cause. For over three decades, we have remained steadfast in our mission to foster a society where every individual can thrive with dignity.
+                            </p>
+
+                        </div>
                     </div>
                 </div>
 
                 <div className="our-work-section">
-                    <div className="our-work-heading">Our Services</div>
+                    <div className="our-team-heading">Our Services</div>
                     <div
-                        className="our-work-caption"
+                        className="our-team-caption"
                     >
                         Empowering Communities Through Compassionate Initiatives
                     </div>
@@ -281,72 +219,33 @@ const HomePage = () => {
                 </div>
 
                 <div class="our-achievement">
-                    <div class="our-achievement-heading">Vision of the Organization</div>
-                    <div class="our-achievement-caption">
+                    <div class="our-team-heading">Vision of the Organization</div>
+                    <div class="our-team-caption">
                         Organization aims to break the vicious cycle of poverty and social isolation and to restore hope for a better future. We believe that every person has the right to access resources and opportunities in order to live and develop with dignity and to become an active and contributing member of our society.
                     </div>
-
-                    {/* <div class="our-achievement-svg-section">
-                        <div class="our-achievement-svg-1">
-                            <img class="our-achievement-svg-1-1" src={SVG3} alt='svg1' />
-                        </div>
-                        <div class="our-achievement-svg-1">
-                            <img class="our-achievement-svg-1-1" src={SVG2} alt='svg1' />
-                        </div>
-                        <div class="our-achievement-svg-1">
-                            <img class="our-achievement-svg-1-1" src={SVG1} alt='svg1' />
-                        </div>
-                    </div>
-                    <div class="our-achievement-text-section">
-                        <div class="our-achievement-text-1">
-                            <div class="our-achievement-text-1-heading">People's Organizations</div>
-                            <span class="our-achievement-text-1-caption">We empower individuals and build their capacities.</span>
-                        </div>
-                        <div class="our-achievement-text-1">
-                            <div class="our-achievement-text-1-heading">Empowering Women</div>
-                            <span class="our-achievement-text-1-caption">We support women to reach their full potential.</span>
-                        </div>
-                        <div class="our-achievement-text-1">
-                            <div class="our-achievement-text-1-heading">Sustainable Development</div>
-                            <span class="our-achievement-text-1-caption">We implement sustainable models for community health and rural development.</span>
-                        </div>
-                    </div> */}
-                    <div class="our-achievement-section">
-                        <div class="our-achievement-item">
-                            <div class="our-achievement-image">
-                                <img src={SVG3} alt='svg1' class="our-achievement-svg-1-1" />
+                    <ul>
+                        <li>
+                            <div class="our-achievement-svg">
+                                <img src={SVG3} alt='svg1' />
                             </div>
-                            <div class="our-achievement-text">
-                                <div class="our-achievement-text-heading">People's Organizations</div>
-                                <span class="our-achievement-text-caption">We empower individuals and build their capacities.</span>
+                            <h3>People's Organizations</h3>
+                            <p>We empower individuals and build their capacities.</p>
+                        </li>
+                        <li>
+                            <div class="our-achievement-svg">
+                                <img src={SVG2} alt='svg1' />
                             </div>
-
-                        </div>
-
-                        <div class="our-achievement-item">
-                            <div class="our-achievement-image">
-                                <img src={SVG2} alt='svg1' class="our-achievement-svg-1-1" />
+                            <h3>Empowering Women</h3>
+                            <p>We support women to reach their full potential.</p>
+                        </li>
+                        <li>
+                            <div class="our-achievement-svg">
+                                <img src={SVG1} alt='svg1' />
                             </div>
-                            <div class="our-achievement-text">
-                                <div class="our-achievement-text-heading">Empowering Women</div>
-                                <span class="our-achievement-text-caption">We support women to reach their full potential.</span>
-                            </div>
-
-                        </div>
-
-                        <div class="our-achievement-item">
-                            <div class="our-achievement-image">
-                                <img src={SVG1} alt='svg1' class="our-achievement-svg-1-1" />
-                            </div>
-                            <div class="our-achievement-text">
-                                <div class="our-achievement-text-heading">Sustainable Development</div>
-                                <span class="our-achievement-text-caption">We implement sustainable models for community health and rural development.</span>
-                            </div>
-
-                        </div>
-                    </div>
-
-
+                            <h3>Sustainable Development</h3>
+                            <p>We implement sustainable models for community health and rural development.</p>
+                        </li>
+                    </ul>
                 </div>
 
 
@@ -360,41 +259,39 @@ const HomePage = () => {
                     </span>
                 </div>
                 <div className="brand-section">
-                    <div className="brand-section-heading">Our Collaborative Partners</div>
+                    <div className="our-team-heading">Our Collaborative Partners</div>
                     <div
-                        className="brand-section-caption"
+                        className="our-team-caption"
                     >
                         We are proud to collaborate with the following brands and organizations who share our commitment to positive change:
                     </div>
                     <div className="brand-logo-section">
-                        <div className="brand-logo-top">
-                            <div className="brand-logo-top-container-1">
+                        <ul>
+                            <li className="brand-logo-top-container-1">
                                 <span className="brand"> BRAND </span>
-                            </div>
-                            <div className="brand-logo-top-container-2">
+                            </li>
+                            <li className="brand-logo-top-container-2">
                                 <span className="brand-1"> BRAND </span>
-                            </div>
-                            <div className="brand-logo-top-container-3">
+                            </li>
+                            <li className="brand-logo-top-container-3">
                                 <span className="brand-2"> BRAND </span>
-                            </div>
-                            <div className="brand-logo-top-container-4">
+                            </li>
+                            <li className="brand-logo-top-container-4">
                                 <span className="brand-3"> BRAND </span>
-                            </div>
-                        </div>
-                        <div className="brand-logo-bottom">
-                            <div className="brand-logo-bottom-container-1">
+                            </li>
+                            <li className="brand-logo-bottom-container-1">
                                 <span className="brand-4"> BRAND </span>
-                            </div>
-                            <div className="brand-logo-bottom-container-2">
+                            </li>
+                            <li className="brand-logo-bottom-container-2">
                                 <span className="brand-5"> BRAND </span>
-                            </div>
-                            <div className="brand-logo-bottom-container-3">
+                            </li>
+                            <li className="brand-logo-bottom-container-3">
                                 <span className="brand-6"> BRAND </span>
-                            </div>
-                            <div className="brand-logo-bottom-container-4">
+                            </li>
+                            <li className="brand-logo-bottom-container-4">
                                 <span className="brand-7"> BRAND </span>
-                            </div>
-                        </div>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
