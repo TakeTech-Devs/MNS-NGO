@@ -1,0 +1,111 @@
+.service-upper {
+    background: url('../../assets/images/service.png') 50% / cover no-repeat, linear-gradient(#D9D9D9, #D9D9D9);
+    position: relative;
+    margin-bottom: 67px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 34px 35px 80px 31px;
+    width: 100%;
+    box-sizing: border-box;
+    justify-content: center;
+    height: 100vh;
+}
+
+.service-upper p {
+    position: relative;
+    z-index: 2;
+    padding-left: 15%;
+    padding-right: 15%;
+    display: inline-block;
+    align-self: flex-start;
+    overflow-wrap: break-word;
+    font-family: 'Inter';
+    font-weight: 300;
+    font-size: 24px;
+    color: #FFFFFF;
+    text-align: center;
+}
+
+.service-upper h2 {
+    position: relative;
+    z-index: 2;
+    margin-bottom: 16px;
+    line-height: 1.2;
+    overflow-wrap: break-word;
+    font-family: 'Inter';
+    font-weight: 600;
+    font-size: 45px;
+    color: #FFFFFF;
+    text-align: center;
+    padding-top: 300px;
+}
+
+.service-upper::before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.5);
+    bottom: 1px;
+}
+
+.our-service {
+    margin-block: 30px;
+    padding-inline: 5%;
+}
+
+.image-gallery {
+    text-align: center;
+    padding: 20px;
+    margin-bottom: 100px;
+}
+
+.image-gallery h1 {
+    margin-block-end: 10px;
+    text-align: center;
+    overflow-wrap: break-word;
+    font-family: 'Inter';
+    font-weight: 600;
+    font-size: 35px;
+    color: #145A98;
+}
+
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    justify-items: center;
+}
+
+.image-container {
+    position: relative;
+    margin: 20px;
+}
+
+.image-container img {
+    width: 200px;
+    height: 150px;
+    object-fit: cover;
+    cursor: pointer;
+    border-radius: 20px;
+}
+
+.image-container p {
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+.dropdown {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    padding: 10px;
+    width: 200px;
+    text-align: left;
+  }

@@ -46,14 +46,14 @@ const Navbar = () => {
                                 Grievance
                             </Link>
                             <Link
-                                to='/services'
-                                className={activeLink === '/services' ? 'active' : ''}
+                                to='/service'
+                                className={activeLink === '/service' ? 'active' : ''}
                             >
                                 Services
                             </Link>
                             <Link
-                                to='/governing-body'
-                                className={activeLink === '/governing-body' ? 'active' : ''}
+                                to='/governing'
+                                className={activeLink === '/governing' ? 'active' : ''}
                             >
                                 Governing Body
                             </Link>
@@ -109,14 +109,14 @@ const Navbar = () => {
                                         Grievance
                                     </Link>
                                     <Link
-                                        to='/services'
-                                        className={activeLink === '/services' ? 'active' : ''}
+                                        to='/service'
+                                        className={activeLink === '/service' ? 'active' : ''}
                                     >
                                         Services
                                     </Link>
                                     <Link
-                                        to='/governing-body'
-                                        className={activeLink === '/governing-body' ? 'active' : ''}
+                                        to='/governing'
+                                        className={activeLink === '/governing' ? 'active' : ''}
                                     >
                                         Governing Body
                                     </Link>
