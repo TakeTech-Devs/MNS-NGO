@@ -93,7 +93,9 @@
 
 .image-container p {
     margin-top: 10px;
-    font-size: 16px;
+    font-family: 'Inter';
+    font-weight: 300;
+    color: #3D76AF;
 }
 
 .dropdown {

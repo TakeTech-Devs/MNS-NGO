@@ -84,7 +84,7 @@ const Service = () => {
                                     <p>{image.text}</p>
                                 </div>
                             )}
-                            <p>Lorem ipsum dolor</p>
+                            <p>Services</p>
                         </div>
                     ))}
                 </div>
