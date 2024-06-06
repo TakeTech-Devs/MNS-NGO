@@ -10,6 +10,7 @@ import Governing from './Components/Governing/Governing';
 import Grievance from './Components/Grievance/Grievance';
 import Gallery from './Components/Gallery/Gallery';
 import Contact from './Components/Contact/Contact';
+import F1 from './Components/Folder/f1';
 
 function AppContent() {
   const location = useLocation();
@@ -26,6 +27,7 @@ function AppContent() {
         <Route path="/governing" element={<Governing />} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/f1" element={<F1 />} />
       </Routes>
       {!isGrievancePage && <Form />}
       <Footer />
