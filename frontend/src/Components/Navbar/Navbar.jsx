@@ -81,7 +81,7 @@ const Navbar = () => {
                                 </div>
                                 <div className="navbar">+000 000 0000</div>
                             </div>
-                            <button className="donatebtn">Donate</button>
+                            <button type="submit" className="donatebtn">Donate</button>
                             <div className="hamburger-menu" onClick={toggleSidePanel}>
                                 <i className="fa-solid fa-bars"></i>
                             </div>
