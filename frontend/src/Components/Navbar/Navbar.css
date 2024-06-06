@@ -222,6 +222,6 @@
         border: none;
         cursor: pointer;
         padding: 0;
-        z-index: 1100;
+        z-index: 100;
     }
 }
