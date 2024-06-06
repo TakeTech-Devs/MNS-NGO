@@ -1,7 +1,6 @@
 /* eslint-disable */
 import React, { useEffect, useState, useCallback } from 'react';
 import './HomePage.css';
-import PhoneSVG from "../../assets/vectors/vector_x2.svg";
 import SVG1 from "../../assets/vectors/saveworld.svg";
 import SVG2 from "../../assets/vectors/capable.svg";
 import SVG3 from "../../assets/vectors/teamwork.svg";
@@ -10,6 +9,7 @@ import "react-multi-carousel/lib/styles.css";
 import img1 from "../../assets/images/rectangle8.png";
 import img2 from "../../assets/images/rectangle9.png";
 import img3 from "../../assets/images/rectangle10.png";
+import Navbar from '../Navbar/Navbar';
 
 const responsive = {
     desktop: {
@@ -31,39 +31,39 @@ const responsive = {
 
 
 const sliderImageUrl = [
-   {
-    url: img1,
-    text:"FINANCIAL INCLUSION",
-   },
-   {
-    url: img2,
-    text:"EDUCATIONAL ACTIVITY",
-   },
-   {
-    url: img3,
-    text:"HEALTH ABD HYGIENE",
-   },
-   {
-    url: img2,
-    text:"AWARENESS PROGRAMMS",
-   },
-   {
-    url: img3,
-    text:"WOMEN EMPOWERMENT",
-   },
-   {
-    url: img1,
-    text:"YOUTH DEVELOPMENT",
-   },
-   {
-    url: img3,
-    text:"CHILD DEVELOPMENT",
-   },
-   {
-    url: img1,
-    text:"AGRICULTURAL DEVELOPMENT",
-   },
-  ];
+    {
+        url: img1,
+        text: "FINANCIAL INCLUSION",
+    },
+    {
+        url: img2,
+        text: "EDUCATIONAL ACTIVITY",
+    },
+    {
+        url: img3,
+        text: "HEALTH ABD HYGIENE",
+    },
+    {
+        url: img2,
+        text: "AWARENESS PROGRAMMS",
+    },
+    {
+        url: img3,
+        text: "WOMEN EMPOWERMENT",
+    },
+    {
+        url: img1,
+        text: "YOUTH DEVELOPMENT",
+    },
+    {
+        url: img3,
+        text: "CHILD DEVELOPMENT",
+    },
+    {
+        url: img1,
+        text: "AGRICULTURAL DEVELOPMENT",
+    },
+];
 
 
 const HomePage = () => {
@@ -103,77 +103,47 @@ const HomePage = () => {
         return () => clearInterval(interval);
     }, [currentIndex, nextSlide]);
 
-    const [menuOpen, setMenuOpen] = useState(false);
+    // const [menuOpen, setMenuOpen] = useState(false);
 
-    const toggleMenu = () => {
-        setMenuOpen(!menuOpen);
-    };
+    // const toggleMenu = () => {
+    //     setMenuOpen(!menuOpen);
+    // };
     return (
         <>
+            <Navbar />
             <div className="home-page">
-                <div className="upper-section">
-                    <div className="navbar-section">
-                        <a href='/' className="logo-1"></a>
-                        <div className="navbar">
-                            <div className="navbar-link">
-                                <a href='#' className="active"> Home </a>
-                                <a href='/about' >About Us</a>
-                                <a href='/#'>Grievance</a>
-                                <a href='/#'>Services</a>
-                                <a href='/#'>Governing Body</a>
-                                <a href='/#'>Gallery</a>
-                                <a href='/#'>Contact Us</a>
-                            </div>
-                            <div className="donate-section">
-                                <div className="phone">
-                                    <div className="phone-svg">
-                                        <img
-                                            className="phonesvg"
-                                            src={PhoneSVG}
-                                            alt='phone'
-                                        />
-                                    </div>
-                                    <div className="navbar">+000 000 0000</div>
-                                </div>
-                                <button className="donatebtn">Donate</button>
-                                <div class="menu-icon" onClick={toggleMenu}>
-                                    <div class="bar"></div>
-                                    <div class="bar"></div>
-                                    <div class="bar"></div>
-                                </div>
-                            </div>
-                        </div>
+                <div className="carousel">
+                    {carouselItems.map((item, index) => (
+                        <div
+                            key={index}
+                            className="background-image"
+                            style={{ backgroundImage: `url(${item})`, display: index === currentIndex ? 'block' : 'none' }}
+                        ></div>
+                    ))}
+                    <button className="prev-btn" onClick={prevSlide}>&#10094;</button>
+                    <button className="next-btn" onClick={nextSlide}>&#10095;</button>
+
+
+
+                    <div className="carousel-heading">Empowering Communities, Transforming Lives</div>
+                    <div
+                        className="carousel-caption"
+                    >
+                        Join Mallarpur Naisuva in our mission to break the cycle of poverty and foster inclusive development.
                     </div>
-                    <div className="carousel">
-                        {carouselItems.map((item, index) => (
+                    <div className="carousel-indicate">
+                        {Array.from({ length: totalSlides }).map((_, index) => (
                             <div
                                 key={index}
-                                className="background-image"
-                                style={{ backgroundImage: `url(${item})`, display: index === currentIndex ? 'block' : 'none' }}
+                                className={`ellipse indicator ${index === currentIndex ? 'active' : ''}`}
+                                onClick={() => goToSlide(index)}
                             ></div>
                         ))}
-                        <button className="prev-btn" onClick={prevSlide}>&#10094;</button>
-                        <button className="next-btn" onClick={nextSlide}>&#10095;</button>
-
-                      
-
-                        <div className="carousel-heading">Empowering Communities, Transforming Lives</div>
-                        <div
-                            className="carousel-caption"
-                        >
-                            Join Mallarpur Naisuva in our mission to break the cycle of poverty and foster inclusive development.
-                        </div>
-                        <div className="carousel-indicate">
-                            {Array.from({ length: totalSlides }).map((_, index) => (
-                                <div
-                                    key={index}
-                                    className={`ellipse indicator ${index === currentIndex ? 'active' : ''}`}
-                                    onClick={() => goToSlide(index)}
-                                ></div>
-                            ))}
-                        </div>
                     </div>
                 </div>
+
+
+
                 <div>
                     <ul className="highlight-section">
                         <li>
@@ -199,17 +169,17 @@ const HomePage = () => {
                     </div>
                     <div className="our-team-container">
                         <div className="our-team-img">
-                        
+
                         </div>
                         <div className="our-team-content">
-                        <p>
-                        Mallarpur Naisuva is a beacon of hope, dedicated to uplifting the most vulnerable segments of our society. Founded on principles of compassion and social responsibility, our journey began with a vision to extend a helping hand to those in dire need – the poor, elderly, sick, women, and children. 
-                        </p>
-                       
-                        <p>
-                        Established under the West Bengal Societies Registration Act (XXI) of 1961, Mallarpur Naisuva embodies a commitment to transparency, integrity, and unwavering dedication to our cause. For over three decades, we have remained steadfast in our mission to foster a society where every individual can thrive with dignity.
-                        </p>
-                          
+                            <p>
+                                Mallarpur Naisuva is a beacon of hope, dedicated to uplifting the most vulnerable segments of our society. Founded on principles of compassion and social responsibility, our journey began with a vision to extend a helping hand to those in dire need – the poor, elderly, sick, women, and children.
+                            </p>
+
+                            <p>
+                                Established under the West Bengal Societies Registration Act (XXI) of 1961, Mallarpur Naisuva embodies a commitment to transparency, integrity, and unwavering dedication to our cause. For over three decades, we have remained steadfast in our mission to foster a society where every individual can thrive with dignity.
+                            </p>
+
                         </div>
                     </div>
                 </div>
@@ -232,15 +202,15 @@ const HomePage = () => {
                         // showDots={true}
                         infinite={true}
                         partialVisible={false}
-                        // arrows={false}
-                        // dotListClass="custom-dot-list-style"
+                    // arrows={false}
+                    // dotListClass="custom-dot-list-style"
                     >
                         {sliderImageUrl.map((item, index) => {
                             return (
                                 <div className="slider" key={index}>
                                     <img src={item.url} alt="movie" />
                                     <div class="overlay">
-                                    <p class="text">{item.text}</p>
+                                        <p class="text">{item.text}</p>
                                     </div>
                                 </div>
                             );
