@@ -13,8 +13,8 @@ const About = () => {
 		setMenuOpen(!menuOpen);
 	};
 	return (
-		<div className="about-us-page">
-			<div className="about-upper">
+		<>
+			<div className="commonBanner-wrapper about">
 				<div className="navbar-section">
 					<a href='/' className="logo-1"></a>
 					<div className="navbar">
@@ -47,12 +47,12 @@ const About = () => {
 						</div>
 					</div>
 				</div>
-				<div>
-					<h2 className="our-team-heading">About Us</h2>
+				<div className="common-banner">
+					<h1 className="our-team-heading">About Us</h1>
 					<p className="our-team-caption">Welcome to Mallarpur Naisuva, where our mission is to empower communities, uplift the vulnerable, and create positive change in society.</p>
 				</div>
 			</div>
-			<div className="our-story-section our-achievement">
+			<div className="our-achievement">
 				<div className="our-team-heading">Our Story</div>
 				<div className="our-team-caption">
 					Mallarpur Naisuva was founded with a vision to make a difference in the lives of those most in need. What began as a small group of individuals inspired by the spirit of social work has evolved into a full-fledged NGO dedicated to rural development and community empowerment.
@@ -64,12 +64,12 @@ const About = () => {
 					Over the years, Mallarpur Naisuva has made significant strides in empowering communities and fostering positive change. From education and healthcare initiatives to women's empowerment programs and environmental conservation efforts, our impact is felt across various sectors.
 				</div>
 
-				<div className="container-image-2">
+				{/* <div className="container-image-2">
 					<div className="rectangle-7"></div>
 					<div className="rectangle-9"></div>
 				</div>
 				<div className="rectangle-8"></div>
-				<div className="rectangle-10"></div>
+				<div className="rectangle-10"></div> */}
 			</div>
 			
 			<div className="OurValues">
@@ -110,14 +110,16 @@ const About = () => {
 
 			</div>
 			
-			<div className="get-involved-section">
-				<div className="rectangle-26"></div>
-				<div className="get-involved-heading">Get Involved</div>
-				<span className="get-involved-caption">
-					Join us in our mission to create a brighter future for all. Whether through volunteering, donating, or spreading awareness, your support makes a difference.
-				</span>
-			</div>
-		</div>
+			<div className="img-section about">
+					<div className="img-section-overlay"></div>
+					<div className="img-section-heading">Get Involved</div>
+					<span
+						className="img-section-caption"
+					>
+						Join us in our mission to create a brighter future for all. Whether through volunteering, donating, or spreading awareness, your support makes a difference.
+					</span>
+				</div>
+		</>
 	);
 };
 
