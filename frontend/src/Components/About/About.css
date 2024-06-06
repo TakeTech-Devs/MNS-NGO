@@ -89,10 +89,10 @@
     .about-us-page .commonBanner-wrapper {height:52vh; justify-content:flex-end; padding:30px 5%;}
     .OurValues {margin-block:50px;}
     .Values {height:270px; width:270px;}
-    .Values li.ValuePoints:nth-child(1) {top:-30px; left:40%;}
-    .Values li.ValuePoints:nth-child(2) {bottom:-30px; left:40%;}
-    .Values li.ValuePoints:nth-child(3) {left:-30px; top:40%;}
-    .Values li.ValuePoints:nth-child(4) {right:-30px; top:40%;}
+    .Values li.ValuePoints:nth-child(1) {top:-30px;}
+    .Values li.ValuePoints:nth-child(2) {bottom:-30px;}
+    .Values li.ValuePoints:nth-child(3) {left:-30px;}
+    .Values li.ValuePoints:nth-child(4) {right:-30px;}
     .Values li.ValuePoints {padding:4px;}
     .Values li.ValuePoints .ValueImage {height:45px; width:45px;}
     .Values li.ValuePoints p {font-size:11px;}
