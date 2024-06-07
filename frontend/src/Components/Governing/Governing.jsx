@@ -1,5 +1,4 @@
 import React from 'react'
-import "./Governing.css"
 import "./../Home/HomePage.css";
 import "./../About/About.css";
 
