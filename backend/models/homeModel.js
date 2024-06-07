@@ -1,99 +1,99 @@
 const mongoose = require('mongoose');
 
 const homeSchema = new mongoose.Schema({
-    highlightHeaderFirst: {
+    carouselImage:[
+        {
+            public_id: {
+                type: String,
+                required: true
+            },
+            url: {
+                type: String,
+                required: true
+            }
+        }
+    ],
+    carouselText:{
         type: String,
-        //required: true
+    },
+    highlightHeaderFirst: {
+        type: String
     },
     highlightCaptionFirst: {
-        type: String,
-        //required: true
+        type: String
     },
     highlightHeaderSecond: {
-        type: String,
-        //required: true
+        type: String
     },
     highlightCaptionSecond: {
-        type: String,
-        //required: true
+        type: String
     },
     highlightHeaderThird: {
-        type: String,
-        //required: true
+        type: String
     },
     highlightCaptionThird: {
-        type: String,
-        //required: true
+        type: String
     },
     aboutHeader: {
         type: String,
-        //required: true,
     },
     aboutCaption: {
         type: String,
-        //required: true,
     },
     aboutContent: {
         type: String,
-        //required: true,
     },
     aboutImage: {
         public_id: {
             type: String,
-            //required: true,
+
             default: null
         },
         url: {
             type: String,
-            //required: true,
+
             default: null
         },
     },
     servicesHeader: {
         type: String,
-        //required: true,
     },
     servicesCaption: {
         type: String,
-        //required: true,
     },
     visionHeader:{
         type: String,
-        //required: true,
     },
     visionCaption:{
         type: String,
-        //required: true,
     },
     visionImageFirst:{
         public_id: {
             type: String,
-            //required: true,
+
             default: null
         },
         url: {
             type: String,
-            //required: true,
+
             default: null
         },
     },
     visionHeaderFirst:{
         type: String,
-        //required: true,
     },
     visionCaptionFirst:{
         type: String,
-        //required: true,
     },
     visionImageSecond:{
         public_id: {
             type: String,
-            //required: true,
+
             default: null
         },
         url: {
             type: String,
-            //required: true,
+
             default: null
         },
     },
@@ -103,45 +103,40 @@ const homeSchema = new mongoose.Schema({
     },
     visionCaptionSecond:{
         type: String,
-        //required: true,
     },
     visionImageThird:{
         public_id: {
             type: String,
-            //required: true,
+
             default: null
         },
         url: {
             type: String,
-            //required: true,
+
             default: null
         },
     },
     visionHeaderThird:{
         type: String,
-        //required: true,
     },
     visionCaptionThird:{
         type: String,
-        //required: true,
     },
     joinUsHeader:{
         type: String,
-        //required: true,
     },
     joinUsCaption:{
         type: String,
-        //required: true,
     },
     joinUsImage:{
         public_id: {
             type: String,
-            //required: true,
+
             default: null
         },
         url: {
             type: String,
-            //required: true,
+
             default: null
         },
     }

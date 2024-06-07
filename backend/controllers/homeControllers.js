@@ -4,6 +4,58 @@ const Home = require('../models/homeModel');
 
 
 
+// Carousel Section
+
+exports.carouselSection = catchAsyncError(async(req,res,next) =>{
+    let images = req.files.carouselImage;
+
+    if (!images) {
+        return res.status(400).json({
+            success: false,
+            message: "No images uploaded"
+        });
+    }
+
+    if (!Array.isArray(images)) {
+        images = [images];
+    }
+
+    const imagesLinks = [];
+
+    for (let i = 0; i < images.length; i++) {
+        const result = await cloudinary.v2.uploader.upload(images[i].tempFilePath, {
+            folder: 'MNS/carousel',
+        });
+
+        imagesLinks.push({
+            public_id: result.public_id,
+            url: result.secure_url,
+        });
+    }
+
+    const { carouselText } = req.body;
+
+    const update = {
+        carouselText,
+        carouselImage: imagesLinks,
+    };
+
+    const options = {
+        new: true,
+        upsert: true,
+        useFindAndModify: false,
+    };
+
+    const carouselSection = await Home.findOneAndUpdate({}, update, options);
+
+    res.status(200).json({
+        success: true,
+        carouselSection,
+    });
+
+})
+
+
 // Highlight Section
 
 exports.highlightSection = catchAsyncError(async (req, res, next) => {
