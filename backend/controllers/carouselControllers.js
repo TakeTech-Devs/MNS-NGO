@@ -1,5 +1,5 @@
 const catchAsyncError = require('../middleware/catchAsyncError');
-const Carousel = require('../models/carouselModels');
+const Carousel = require('../models/carouselModel');
 const cloudinary = require('cloudinary');
 
 
