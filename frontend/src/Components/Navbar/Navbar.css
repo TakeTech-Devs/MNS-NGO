@@ -102,7 +102,8 @@
     font-weight: 500;
     font-size: 16px;
     text-transform: uppercase;
-    border: none
+    border: none;
+    cursor: pointer;
 }
 
 .home-page .hamburger-menu {
@@ -184,10 +185,11 @@
         /* Initially hide the side panel */
         width: 250px;
         height: 100%;
-        background: rgba(0, 0, 0, 0.8);
+        /* background: rgba(0, 0, 0, 0.8); */
+        background: #145A98;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         transition: right 0.3s ease;
-        z-index: 1000;
+        z-index: 100;
     }
 
     .side-panel.open {
@@ -220,6 +222,6 @@
         border: none;
         cursor: pointer;
         padding: 0;
-        z-index: 1100;
+        z-index: 100;
     }
 }

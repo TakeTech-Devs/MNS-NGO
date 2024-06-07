@@ -23,13 +23,13 @@ const Footer = () => {
                             <a href="/about">About Us</a>
                         </li>
                         <li>
-                            <a href="/#">Our Mission</a>
+                            <a href="/governing">Our Mission</a>
                         </li>
                         <li>
-                            <a href="/#">Our Services</a>
+                            <a href="/service">Our Services</a>
                         </li>
                         <li>
-                            <a href="/#">Contact Us</a>
+                            <a href="/contact">Contact Us</a>
                         </li>
                     </ul>
                     <ul>
