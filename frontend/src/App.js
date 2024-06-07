@@ -11,6 +11,7 @@ import Grievance from './Components/Grievance/Grievance';
 import Gallery from './Components/Gallery/Gallery';
 import Contact from './Components/Contact/Contact';
 import F1 from './Components/Folder/f1';
+import Header from './Components/Header/Header';
 
 function AppContent() {
   const location = useLocation();
@@ -18,6 +19,7 @@ function AppContent() {
 
   return (
     <>
+    <Header />
       <Routes>
         <Route path="/admin" element={<Dashboard />} />
         <Route path="/" element={<HomePage />} />

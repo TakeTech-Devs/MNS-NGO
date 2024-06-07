@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-import "./Service.css"
-import Navbar from '../Navbar/Navbar'
 import img1 from "../../assets/images/image1.png"
 import img2 from "../../assets/images/image2.png"
 import img3 from "../../assets/images/image3.png"
 import img4 from "../../assets/images/image4.png"
 import img5 from "../../assets/images/image51.png"
 import img6 from "../../assets/images/image61.png"
+import "./Service.css"
+import "./../Home/HomePage.css";
+import "./../About/About.css";
 
 const Service = () => {
     const [selectedImage, setSelectedImage] = useState(null);
@@ -50,13 +51,12 @@ const Service = () => {
 
     return (
         <>
-            <Navbar />
-            <div className="service-upper">
-                <div>
-                    <h2 className="our-team-heading">Services</h2>
-                    <p className="our-team-caption">Welcome to Mallarpur Naisuva, where our mission is to empower communities, uplift the vulnerable, and create positive change in society.</p>
-                </div>
-            </div>
+            <div className="commonBanner-wrapper service">
+				<div className="common-banner">
+					<h1 className="our-team-heading">Services</h1>
+					<p className="our-team-caption">Welcome to Mallarpur Naisuva, where our mission is to empower communities, uplift the vulnerable, and create positive change in society.</p>
+				</div>
+			</div>
             <div className="our-story-section our-service">
                 <div className="our-team-heading">Our Story</div>
                 <div className="our-team-caption">

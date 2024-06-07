@@ -1,11 +1,11 @@
 import React, { Children } from 'react'
-import Navbar from '../Navbar/Navbar'
+import Header from '../Header/Header'
 import Footer from '../Footer/Footer'
 
 const Layout = (Children) => {
   return (
     <>
-    <Navbar />
+    <Header />
     <section>
         {Children}
     </section>
