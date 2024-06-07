@@ -45,7 +45,7 @@
 .commonBanner-wrapper p {
     color: #fff;
     position: relative;
-    z-index: 2;
+    /* z-index: 2; */
 }
 
 .commonBanner-wrapper h2 {
@@ -69,7 +69,7 @@
     font-size: 80px;
     color: #fff;
     position: relative;
-    z-index: 2;
+    /* z-index: 2; */
 }
 
 .OurValues {
