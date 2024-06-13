@@ -1,6 +1,4 @@
 import React from 'react'
-import "./Gallery.css"
-import Navbar from '../Navbar/Navbar'
 import g1 from "../../assets/images/g1.png"
 import g2 from "../../assets/images/g2.png"
 import g3 from "../../assets/images/g3.png"
@@ -10,17 +8,19 @@ import g6 from "../../assets/images/g6.png"
 import g7 from "../../assets/images/g7.png"
 import g8 from "../../assets/images/g8.png"
 import g9 from "../../assets/images/g9.png"
+import "./Gallery.css"
+import "./../About/About.css";
+import "./../Home/HomePage.css";
 
 const Gallery = () => {
     return (
         <>
-            <Navbar />
-            <div className="gallery-upper">
-                <div>
-                    <h2 className="our-team-heading">Gallery</h2>
-                    <p className="our-team-caption">Welcome to Mallarpur Naisuva, where our mission is to empower communities, uplift the vulnerable, and create positive change in society.</p>
-                </div>
-            </div>
+            <div className="commonBanner-wrapper gallery">
+				<div className="common-banner">
+					<h1 className="our-team-heading">Gallery</h1>
+					<p className="our-team-caption">Welcome to Mallarpur Naisuva, where our mission is to empower communities, uplift the vulnerable, and create positive change in society.</p>
+				</div>
+			</div>
             <div className="our-story-section our-service">
                 <div className="our-team-heading">Gallery</div>
                 <div className="our-team-caption">

@@ -9,7 +9,7 @@ import "react-multi-carousel/lib/styles.css";
 import img1 from "../../assets/images/rectangle8.png";
 import img2 from "../../assets/images/rectangle9.png";
 import img3 from "../../assets/images/rectangle10.png";
-import Navbar from '../Navbar/Navbar';
+
 
 const responsive = {
 	desktop: {
@@ -110,7 +110,6 @@ const HomePage = () => {
 	// };
 	return (
 		<>
-			<Navbar />
 			<div className="home-page">
 				<div className="carousel">
 					{carouselItems.map((item, index) => (
