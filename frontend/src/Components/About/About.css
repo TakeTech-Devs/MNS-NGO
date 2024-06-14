@@ -1,222 +1,60 @@
-/* Kaustav's Css START from here */
-.commonBanner-wrapper.contact {
-    background: url('../../assets/images/contact.png') 50% / cover no-repeat, linear-gradient(#D9D9D9, #D9D9D9);
-}
-
-.commonBanner-wrapper.gallery {
-    background: url('../../assets/images/gallery.png') 50% / cover no-repeat, linear-gradient(#D9D9D9, #D9D9D9);
-}
-
-.commonBanner-wrapper.governing {
-    background: url('../../assets/images/gb.png') 50% / cover no-repeat, linear-gradient(#D9D9D9, #D9D9D9);
-}
-
-.commonBanner-wrapper.grievance {
-    background: url('../../assets/images/grivance.png') 50% / cover no-repeat, linear-gradient(#D9D9D9, #D9D9D9);
-}
-
-.commonBanner-wrapper.service {
-    background: url('../../assets/images/service.png') 50% / cover no-repeat, linear-gradient(#D9D9D9, #D9D9D9);
-}
-
-/* Prity's Css START from here */
-.img-section.about {
-    background: url('../../assets/images/rectangle25.png'), linear-gradient(#D9D9D9, #D9D9D9);
-}
-
-.commonBanner-wrapper {
-    position: relative;
-    margin-bottom: 67px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 34px 35px 80px 31px;
-    width: 100%;
-    box-sizing: border-box;
-    justify-content: end;
-    height: 100vh;
-}
-
-.commonBanner-wrapper.about {
-    background: url('../../assets/images/rectangle41.png') 50% / cover no-repeat, linear-gradient(#D9D9D9, #D9D9D9);
-}
-
-.commonBanner-wrapper h2,
-.commonBanner-wrapper p {
-    color: #fff;
-    position: relative;
-    /* z-index: 2; */
-}
-
-.commonBanner-wrapper h2 {
-    font-size: 4vw;
-}
-
-.commonBanner-wrapper::before {
-    content: "";
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    background-color: rgba(0, 0, 0, 0.5);
-    bottom: 1px;
-}
-
-.ValuePoints-wrapper {
-    position: relative;
-}
-
-.common-banner h1 {
-    font-size: 80px;
-    color: #fff;
-    position: relative;
-    /* z-index: 2; */
-}
-
-.OurValues {
-    margin-block: 100px;
-    padding-inline: 5%;
-}
-
-.Values {
-    height: 600px;
-    width: 600px;
-    border-radius: 50%;
-    border: 2px dashed #145A98;
-    margin: 0 auto;
-    position: relative;
-    list-style: none;
-    animation: circlePath 30s infinite linear;
-    margin-block-start: 80px;
-}
-
-.Values li.ValuePoints {
-    position: absolute;
-    animation: circlePathBack 30s infinite linear;
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-    background-color: #fff;
-    padding: 10px;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.Values li.ValuePoints:nth-child(1) {
-    top: -50px;
-    left: 40%;
-}
-
-.Values li.ValuePoints:nth-child(2) {
-    bottom: -50px;
-    left: 40%;
-}
-
-.Values li.ValuePoints:nth-child(3) {
-    left: -50px;
-    top: 40%;
-}
-
-.Values li.ValuePoints:nth-child(4) {
-    right: -50px;
-    top: 40%;
-}
-
-.Values li.ValuePoints .ValueImage {
-    height: 100px;
-    width: 100px;
-}
-
-.Values li.ValuePoints .ValueImage img {
-    height: 100%;
-    width: 100%;
-    object-fit: contain;
-}
-
-.Values li.ValuePoints p {
-    color: #145A98;
-    font-size: 14px;
-    text-align: center;
-    font-weight: 600;
-}
-
-.ValueHead {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    top: 50%;
-    color: #145A98;
-    font-weight: 600;
-    font-size: 20px;
-}
+.commonBanner-wrapper.contact {background:url('../../assets/images/contact.png') 50% / cover no-repeat, linear-gradient(#D9D9D9, #D9D9D9);}
+.commonBanner-wrapper.gallery {background:url('../../assets/images/gallery.png') 50% / cover no-repeat, linear-gradient(#D9D9D9, #D9D9D9);}
+.commonBanner-wrapper.governing {background:url('../../assets/images/gb.png') 50% / cover no-repeat, linear-gradient(#D9D9D9, #D9D9D9);}
+.commonBanner-wrapper.grievance {background:url('../../assets/images/grivance.png') 50% / cover no-repeat, linear-gradient(#D9D9D9, #D9D9D9);}
+.commonBanner-wrapper.service {background:url('../../assets/images/service.png') 50% / cover no-repeat, linear-gradient(#D9D9D9, #D9D9D9);}
+.img-section.about {background:url('../../assets/images/rectangle25.png'), linear-gradient(#D9D9D9, #D9D9D9);}
+.commonBanner-wrapper {position:relative; margin-bottom:67px; display:flex; flex-direction:column; align-items:center; padding:34px 35px 80px 31px; width:100%; box-sizing:border-box; justify-content:end; height:100vh;}
+.commonBanner-wrapper.about {background:url('../../assets/images/rectangle41.png') 50% / cover no-repeat, linear-gradient(#D9D9D9, #D9D9D9);}
+.commonBanner-wrapper h2, .commonBanner-wrapper p {color:#fff; position:relative;}
+.commonBanner-wrapper h2 {font-size:4vw;}
+.commonBanner-wrapper::before {content:""; width:100%; height:100%; position:absolute; background-color:rgba(0, 0, 0, 0.5); bottom:1px;}
+.ValuePoints-wrapper {position:relative;}
+.common-banner h1 {font-size:80px; color:#fff; position:relative;}
+.OurValues {margin-block:100px; padding-inline:5%;}
+.Values {height:600px; width:600px; border-radius:50%; border:2px dashed #145A98; margin:0 auto; position:relative; list-style:none; animation:circlePath 30s infinite linear; margin-block-start:80px;}
+.Values li.ValuePoints {position:absolute; animation:circlePathBack 30s infinite linear; box-shadow:rgba(149, 157, 165, 0.2) 0px 8px 24px; background-color:#fff; padding:10px; border-radius:10px; display:flex; flex-direction:column; justify-content:center; align-items:center;}
+.Values li.ValuePoints:nth-child(1) {top:-50px; left:40%;}
+.Values li.ValuePoints:nth-child(2) {bottom:-50px; left:40%;}
+.Values li.ValuePoints:nth-child(3) {left:-50px; top:40%;}
+.Values li.ValuePoints:nth-child(4) {right:-50px; top:40%;}
+.Values li.ValuePoints .ValueImage {height:100px; width:100px;}
+.Values li.ValuePoints .ValueImage img {height:100%; width:100%; object-fit:contain;}
+.Values li.ValuePoints p {color:#145A98; font-size:14px; text-align:center; font-weight:600;}
+.ValueHead {position:absolute; left:50%; transform:translateX(-50%); top:50%; color:#145A98; font-weight:600; font-size:20px;}
 
 @keyframes circlePath {
-    0% {
-        transform: rotate(0deg);
-    }
-
-    100% {
-        transform: rotate(360deg);
-    }
+0% {transform:rotate(0deg);}
+100% {transform:rotate(360deg);}
 }
 
 @keyframes circlePathBack {
-    0% {
-        transform: rotate(360deg);
-    }
-
-    100% {
-        transform: rotate(0deg);
-    }
+0% {transform:rotate(360deg);}
+100% {transform:rotate(0deg);}
 }
 
+.about-gallery{padding-inline-start: 15%; height: 500px; display: flex; align-items: center;}
+.about-gallery-background{width: 30%;}
+.about-gallery-background h2{text-align: start;}
+.about-gallery-wrapper{width: 70%;height: 100%;display: flex; flex-wrap: wrap;}
+.about-gallery-img-one{height: 60%; width: 60%; border: 15px solid #fff;padding-inline-start: 15%;}
+.about-gallery-img-two{height: 60%; width: 40%;padding-block: 5% 10%;}
+.about-gallery-img-two:after{}
+.about-gallery-img-three{height: 40%; width: 40%; border: 5px solid #fff; margin-block-start: -10%;}
+.about-gallery-img-four{height: 40%; width: 40%; border: 5px solid #fff;}
+.about-gallery-img-four:after{}
+.about-gallery-img-one img, .about-gallery-img-two img, .about-gallery-img-three img, .about-gallery-img-four img{height: 100%; width: 100%; object-fit: cover;}
+
 @media only screen and (max-width: 767px) {
-    .common-banner h1 {
-        font-size: 40px;
-    }
-
-    .about-us-page .commonBanner-wrapper {
-        height: 52vh;
-        justify-content: flex-end;
-        padding: 30px 5%;
-    }
-
-    .OurValues {
-        margin-block: 50px;
-    }
-
-    .Values {
-        height: 270px;
-        width: 270px;
-    }
-
-    .Values li.ValuePoints:nth-child(1) {
-        top: -30px;
-    }
-
-    .Values li.ValuePoints:nth-child(2) {
-        bottom: -30px;
-    }
-
-    .Values li.ValuePoints:nth-child(3) {
-        left: -30px;
-    }
-
-    .Values li.ValuePoints:nth-child(4) {
-        right: -30px;
-    }
-
-    .Values li.ValuePoints {
-        padding: 4px;
-    }
-
-    .Values li.ValuePoints .ValueImage {
-        height: 45px;
-        width: 45px;
-    }
-
-    .Values li.ValuePoints p {
-        font-size: 11px;
-    }
-
+.common-banner h1 {font-size:40px;}
+.about-us-page .commonBanner-wrapper {height:52vh; justify-content:flex-end; padding:30px 5%;}
+.OurValues {margin-block:50px;}
+.Values {height:270px; width:270px;}
+.Values li.ValuePoints:nth-child(1) {top:-30px;}
+.Values li.ValuePoints:nth-child(2) {bottom:-30px;}
+.Values li.ValuePoints:nth-child(3) {left:-30px;}
+.Values li.ValuePoints:nth-child(4) {right:-30px;}
+.Values li.ValuePoints {padding:4px;}
+.Values li.ValuePoints .ValueImage {height:45px; width:45px;}
+.Values li.ValuePoints p {font-size:11px;}
 }
