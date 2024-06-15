@@ -7,6 +7,9 @@ import Empowerment from "../../assets/vectors/empowerment.svg"
 import Integrity from "../../assets/vectors/integrity.svg"
 import Collaboration from "../../assets/vectors/collaboration.svg"
 import rectangle from "../../assets/images/rectangle8.png"
+import rectangletwo from "../../assets/images/rectangle9.png"
+import rectanglethree from "../../assets/images/rectangle10.png"
+import rectanglefour from "../../assets/images/rectangle101.png"
 
 const About = () => {
 	return (
@@ -40,15 +43,15 @@ const About = () => {
 						</div>
 						<div className="about-gallery-img-two">
 							<div className="about-gallery-img-wrap">
-								<img src={rectangle}/>
+								<img src={rectangletwo}/>
 							</div>
 						</div>
 						<div className="about-gallery-img-three">
-							<img src={rectangle}/>
+							<img src={rectanglethree}/>
 						</div>
 						<div className="about-gallery-img-four">
 							<div className="about-gallery-img-wrap">
-								<img src={rectangle}/>
+								<img src={rectanglefour}/>
 							</div>
 						</div>
 						<div className="about-gallery-dot-one">
