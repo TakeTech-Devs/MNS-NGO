@@ -8,7 +8,7 @@
 .commonBanner-wrapper.about {background:url('../../assets/images/rectangle41.png') 50% / cover no-repeat, linear-gradient(#D9D9D9, #D9D9D9);}
 .commonBanner-wrapper h2, .commonBanner-wrapper p {color:#fff; position:relative;}
 .commonBanner-wrapper h2 {font-size:4vw;}
-.commonBanner-wrapper::before {content:""; width:100%; height:100%; position:absolute; background-color:rgba(0, 0, 0, 0.5); bottom:1px;}
+.commonBanner-wrapper::before {content:""; width:100%; height:100%; position:absolute; background-color:rgba(0, 0, 0, 0.5); bottom:0; left: 0;}
 .ValuePoints-wrapper {position:relative;z-index: 2;}
 .common-banner h1 {font-size:80px; color:#fff; position:relative;}
 .OurValues {padding-block:100px; padding-inline:5%;position: relative;overflow: hidden;}
@@ -50,6 +50,16 @@
 .about-gallery-img-four{height: 40%; width: 40%; border: 5px solid #fff;}
 .about-gallery-img-one img, .about-gallery-img-two img, .about-gallery-img-three img, .about-gallery-img-four img{height: 100%; width: 100%; object-fit: cover;position: relative; z-index: 2;}
 
+
+
+@media only screen and (max-width: 991px) {
+.about-gallery{display: block;}
+.about-gallery-background, .about-gallery-wrapper{width: 100%;}
+.about-gallery{height: auto;}
+.commonBanner-wrapper{height: 70vh;padding: 34px 5% 27px 5%;}
+}
+
+
 @media only screen and (max-width: 767px) {
 .common-banner h1 {font-size:40px;}
 .about-us-page .commonBanner-wrapper {height:52vh; justify-content:flex-end; padding:30px 5%;}
@@ -62,4 +72,9 @@
 .Values li.ValuePoints {padding:4px;}
 .Values li.ValuePoints .ValueImage {height:45px; width:45px;}
 .Values li.ValuePoints p {font-size:11px;}
+.about-gallery .our-team-heading{padding-inline-start: 15%;}
+.about-gallery-img-one:after{ bottom: -38%;height: 57px;width: 53px;}
+.about-gallery-img-three:after{    bottom: -26%;height: 62px;width: 46px;}
+.about-gallery{padding-inline-start: 5%;}
+.about-gallery::after{top: 0; transform: translateY(0);}
 }
