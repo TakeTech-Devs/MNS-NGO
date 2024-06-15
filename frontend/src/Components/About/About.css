@@ -9,9 +9,10 @@
 .commonBanner-wrapper h2, .commonBanner-wrapper p {color:#fff; position:relative;}
 .commonBanner-wrapper h2 {font-size:4vw;}
 .commonBanner-wrapper::before {content:""; width:100%; height:100%; position:absolute; background-color:rgba(0, 0, 0, 0.5); bottom:1px;}
-.ValuePoints-wrapper {position:relative;}
+.ValuePoints-wrapper {position:relative;z-index: 2;}
 .common-banner h1 {font-size:80px; color:#fff; position:relative;}
-.OurValues {margin-block:100px; padding-inline:5%;}
+.OurValues {padding-block:100px; padding-inline:5%;position: relative;overflow: hidden;}
+.OurValues::after{content:'';position: absolute; height: 46%; width: 111%; bottom: 0; left: -45px; background-image: url(../../assets/images/grayWavedot.svg); background-repeat: no-repeat; background-size: cover;opacity: 0.3;}
 .Values {height:600px; width:600px; border-radius:50%; border:2px dashed #145A98; margin:0 auto; position:relative; list-style:none; animation:circlePath 30s infinite linear; margin-block-start:80px;}
 .Values li.ValuePoints {position:absolute; animation:circlePathBack 30s infinite linear; box-shadow:rgba(149, 157, 165, 0.2) 0px 8px 24px; background-color:#fff; padding:10px; border-radius:10px; display:flex; flex-direction:column; justify-content:center; align-items:center;}
 .Values li.ValuePoints:nth-child(1) {top:-50px; left:40%;}
@@ -33,22 +34,26 @@
 100% {transform:rotate(0deg);}
 }
 
-.about-gallery{padding-inline-start: 15%; height: 500px; display: flex; align-items: center;}
+.about-gallery{padding-inline-start: 15%; height: 500px; display: flex; align-items: center; padding-inline-end: calc(5% + 10px);position: relative;}
+.about-gallery::after{content: ''; position: absolute; left: 0; top: 50%;transform: translateY(-50%);height: 40%; width: 13%; background-image: url(../../assets/images/bluedotstwo.svg); background-repeat: no-repeat; background-size: contain;}
 .about-gallery-background{width: 30%;}
 .about-gallery-background h2{text-align: start;}
 .about-gallery-wrapper{width: 70%;height: 100%;display: flex; flex-wrap: wrap;}
-.about-gallery-img-one{height: 60%; width: 60%; border: 15px solid #fff;padding-inline-start: 15%;}
-.about-gallery-img-two{height: 60%; width: 40%;padding-block: 5% 10%;}
-.about-gallery-img-two:after{}
-.about-gallery-img-three{height: 40%; width: 40%; border: 5px solid #fff; margin-block-start: -10%;}
+.about-gallery-img-one{height: 60%; width: 60%; border: 15px solid #fff;padding-inline-start: 15%;position: relative;}
+.about-gallery-img-one:after{content:''; position: absolute; right: -20%; bottom: -10%; height: 100px; width: 100px; background-image: url(../../assets/images/blueDots.svg);z-index: 4;background-repeat: no-repeat; background-size: contain;}
+.about-gallery-img-one::before{content:''; position: absolute; left: 0; top: -24%; height: 150px; width: 150px; background-image: url(../../assets/images/bluedotstriangle.svg);z-index: 4;background-repeat: no-repeat; background-size: contain;opacity: 0.5;}
+.about-gallery-img-two{height: 60%; width: 40%;padding-block: 5% 10%;position: relative;}
+.about-gallery-img-wrap{height: 100%; width: 100%; position: relative;}
+.about-gallery-img-wrap:after{content: ''; position: absolute; height: 100%; width: 100%; right: -10px; top: 10px; border: 1px solid #145A98;}
+.about-gallery-img-three{height: 40%; width: 40%; border: 5px solid #fff; margin-block-start: -10%;position: relative;z-index: 5;}
+.about-gallery-img-three:after{content:''; position: absolute; right: -20%; bottom: -10%; height: 80px; width: 80px; background-image: url(../../assets/images/blueDots.svg);z-index: 4;background-repeat: no-repeat; background-size: contain;}
 .about-gallery-img-four{height: 40%; width: 40%; border: 5px solid #fff;}
-.about-gallery-img-four:after{}
-.about-gallery-img-one img, .about-gallery-img-two img, .about-gallery-img-three img, .about-gallery-img-four img{height: 100%; width: 100%; object-fit: cover;}
+.about-gallery-img-one img, .about-gallery-img-two img, .about-gallery-img-three img, .about-gallery-img-four img{height: 100%; width: 100%; object-fit: cover;position: relative; z-index: 2;}
 
 @media only screen and (max-width: 767px) {
 .common-banner h1 {font-size:40px;}
 .about-us-page .commonBanner-wrapper {height:52vh; justify-content:flex-end; padding:30px 5%;}
-.OurValues {margin-block:50px;}
+.OurValues {padding-block:50px;}
 .Values {height:270px; width:270px;}
 .Values li.ValuePoints:nth-child(1) {top:-30px;}
 .Values li.ValuePoints:nth-child(2) {bottom:-30px;}

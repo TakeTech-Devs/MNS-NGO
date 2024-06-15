@@ -28,7 +28,9 @@ const About = () => {
 				<div className="our-team-caption">
 					Over the years, Mallarpur Naisuva has made significant strides in empowering communities and fostering positive change. From education and healthcare initiatives to women's empowerment programs and environmental conservation efforts, our impact is felt across various sectors.
 				</div>
-				<div className="about-gallery">
+			
+			</div>
+			<div className="about-gallery">
 					<div className="about-gallery-background">
 						<h2 class="our-team-heading">We done with <br/>Your help!</h2>
 					</div>
@@ -37,13 +39,17 @@ const About = () => {
 							<img src={rectangle}/>
 						</div>
 						<div className="about-gallery-img-two">
-							<img src={rectangle}/>
+							<div className="about-gallery-img-wrap">
+								<img src={rectangle}/>
+							</div>
 						</div>
 						<div className="about-gallery-img-three">
 							<img src={rectangle}/>
 						</div>
 						<div className="about-gallery-img-four">
-							<img src={rectangle}/>
+							<div className="about-gallery-img-wrap">
+								<img src={rectangle}/>
+							</div>
 						</div>
 						<div className="about-gallery-dot-one">
 						</div>
@@ -53,8 +59,6 @@ const About = () => {
 						</div>
 					</div>
 				</div>
-			</div>
-
 			<div className="OurValues">
 				<div className="our-team-heading">Our Values</div>
 				<p className="our-team-caption">
