@@ -32,11 +32,13 @@ const carousel = require("./routes/carouselRoute");
 const home = require("./routes/homeRoute");
 const about = require("./routes/aboutRoute");
 const grievance = require("./routes/grievanceRoute");
+const services = require("./routes/servicesRoute");
 
 app.use("/api/v1/carousel", carousel);
 app.use("/api/v1/home", home);
 app.use("/api/v1/about", about);
 app.use("/api/v1/grievance", grievance);
+app.use("/api/v1/services", services)
 
 
 
