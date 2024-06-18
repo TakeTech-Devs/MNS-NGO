@@ -6,6 +6,10 @@ import Compassion from "../../assets/vectors/compassion.svg"
 import Empowerment from "../../assets/vectors/empowerment.svg"
 import Integrity from "../../assets/vectors/integrity.svg"
 import Collaboration from "../../assets/vectors/collaboration.svg"
+import rectangle from "../../assets/images/rectangle8.png"
+import rectangletwo from "../../assets/images/rectangle9.png"
+import rectanglethree from "../../assets/images/rectangle10.png"
+import rectanglefour from "../../assets/images/rectangle101.png"
 
 const About = () => {
 	return (
@@ -27,15 +31,37 @@ const About = () => {
 				<div className="our-team-caption">
 					Over the years, Mallarpur Naisuva has made significant strides in empowering communities and fostering positive change. From education and healthcare initiatives to women's empowerment programs and environmental conservation efforts, our impact is felt across various sectors.
 				</div>
-
-				{/* <div className="container-image-2">
-					<div className="rectangle-7"></div>
-					<div className="rectangle-9"></div>
-				</div>
-				<div className="rectangle-8"></div>
-				<div className="rectangle-10"></div> */}
+			
 			</div>
-
+			<div className="about-gallery">
+					<div className="about-gallery-background">
+						<h2 class="our-team-heading">We done with <br/>Your help!</h2>
+					</div>
+					<div className="about-gallery-wrapper">
+						<div className="about-gallery-img-one">
+							<img src={rectangle}/>
+						</div>
+						<div className="about-gallery-img-two">
+							<div className="about-gallery-img-wrap">
+								<img src={rectangletwo}/>
+							</div>
+						</div>
+						<div className="about-gallery-img-three">
+							<img src={rectanglethree}/>
+						</div>
+						<div className="about-gallery-img-four">
+							<div className="about-gallery-img-wrap">
+								<img src={rectanglefour}/>
+							</div>
+						</div>
+						<div className="about-gallery-dot-one">
+						</div>
+						<div className="about-gallery-dot-two">
+						</div>
+						<div className="about-gallery-dot-three">
+						</div>
+					</div>
+				</div>
 			<div className="OurValues">
 				<div className="our-team-heading">Our Values</div>
 				<p className="our-team-caption">
