@@ -130,3 +130,134 @@ exports.updateServicesBodySection = catchAsyncError(async(req,res,next) =>{
         servicesBody
     });
 })
+
+// Our Services Section
+
+exports.ourServicesSection = catchAsyncError(async(req, res, next) =>{
+    let images = req.files.ourServicesImage;
+
+    if (!images) {
+        return res.status(400).json({
+            success: false,
+            message: "No images uploaded"
+        });
+    }
+
+    if (!Array.isArray(images)) {
+        images = [images];
+    }
+
+    const { ourServicesHeader, ourServicesCaption } = req.body;
+
+    if (!ourServicesCaption) {
+        return res.status(400).json({
+            success: false,
+            message: "No captions provided"
+        });
+    }
+
+    const captions = Array.isArray(ourServicesCaption) ? ourServicesCaption : [ourServicesCaption];
+
+    if (images.length !== captions.length) {
+        return res.status(400).json({
+            success: false,
+            message: "The number of images must be equal to the number of captions"
+        });
+    }
+
+    const imagesLinks = [];
+
+    for (let i = 0; i < images.length; i++) {
+        const result = await cloudinary.v2.uploader.upload(images[i].tempFilePath, {
+            folder: 'MNS/Services/services',
+        });
+
+        imagesLinks.push({
+            public_id: result.public_id,
+            url: result.secure_url,
+        });
+    }
+
+    const update = {
+        ourServicesHeader,
+        ourServicesImage: imagesLinks,
+        ourServicesCaption: captions,
+    };
+
+    const options = {
+        new: true,
+        upsert: true,
+        useFindAndModify: false,
+    };
+
+    const serviceSection = await Services.findOneAndUpdate({}, update, options);
+
+    res.status(200).json({
+        success: true,
+        serviceSection,
+    });
+})
+
+
+exports.updateOurServicesSection = catchAsyncError(async(req,res,next) =>{
+    const { ourServicesHeader, ourServicesCaption } = req.body;
+    const newServiceData = {
+        ourServicesHeader,
+        ourServicesCaption: Array.isArray(ourServicesCaption) ? ourServicesCaption : [ourServicesCaption]
+    };
+
+    // Validate that images and captions are both provided and match in length
+    if (req.files && req.files.ourServicesImage) {
+        let images = req.files.ourServicesImage;
+        if (!Array.isArray(images)) {
+            images = [images];
+        }
+
+        if (images.length !== newServiceData.ourServicesCaption.length) {
+            return res.status(400).json({
+                success: false,
+                message: "The number of images must be equal to the number of captions"
+            });
+        }
+
+        const service = await Services.findById(req.params.id);
+
+        // Check if the service section exists
+        if (!service) {
+            return res.status(404).json({
+                success: false,
+                message: "Service section not found"
+            });
+        }
+
+        // Delete existing images from Cloudinary
+        for (const image of service.ourServicesImage) {
+            await cloudinary.uploader.destroy(image.public_id);
+        }
+
+        // Upload new images to Cloudinary and prepare new image data
+        const imagesLinks = [];
+        for (let i = 0; i < images.length; i++) {
+            const result = await cloudinary.v2.uploader.upload(images[i].tempFilePath, {
+                folder: 'MNS/Services/services',
+            });
+            imagesLinks.push({
+                public_id: result.public_id,
+                url: result.secure_url,
+            });
+        }
+
+        newServiceData.ourServicesImage = imagesLinks;
+    }
+
+    const updatedService = await Services.findByIdAndUpdate(req.params.id, newServiceData, {
+        new: true,
+        runValidators: true,
+        useFindAndModify: false,
+    });
+
+    res.status(200).json({
+        success: true,
+        service: updatedService,
+    });
+})
