@@ -3,28 +3,50 @@ const mongoose = require('mongoose');
 const aboutSchema = new mongoose.Schema({
     header: {
         type: String,
-        required: true,
     },
     caption: {
         type: String,
-        required: true,
     },
-    content: {
-        type: String,
-        required: true,
-    },
-    image: {
+    headerImage: {
         public_id: {
             type: String,
-            required: true,
             default: null
         },
         url: {
             type: String,
-            required: true,
             default: null
         },
     },
+    ourStoryHeader: {
+        type: String,
+    },
+    ourStoryContent: {
+        type: String,
+    },
+    ourValuesHeader: {
+        type: String,
+    },
+    ourValuesContent: {
+        type: String,
+    },
+    getInvolvedHeader: {
+        type: String,
+    },
+    getInvolvedCaption: {
+        type: String,
+    },
+    getInvolvedImage: {
+        public_id: {
+            type: String,
+
+            default: null
+        },
+        url: {
+            type: String,
+
+            default: null
+        },
+    }
 });
 
 module.exports = mongoose.model("About", aboutSchema);
