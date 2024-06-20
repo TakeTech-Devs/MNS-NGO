@@ -26,21 +26,6 @@ const servicesSchema = new mongoose.Schema({
     ourServicesHeader:{
         type: String,
     },
-    ourServicesImage:[
-        {
-            public_id: {
-                type: String,
-                required: true
-            },
-            url: {
-                type: String,
-                required: true
-            }
-        }
-    ],
-    ourServicesCaption:{
-        type: [String],
-    }
 })
 
 module.exports = mongoose.model("Services", servicesSchema);
