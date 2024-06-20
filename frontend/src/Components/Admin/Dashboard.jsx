@@ -1,33 +1,19 @@
-import React from 'react'
-import Sidebar from './Sidebar';
+import React from 'react';
 import './Dashboard.css';
+import Sidebar from './Sidebar';
+import AdminHeader from './AdminHeader';
+import AdminContent from './AdminContent';
 
 const Dashboard = () => {
   return (
-    <div>
+    <div className="admin-dashboard">
       <Sidebar />
-      <div className='content'>
-        <main>
-          <div class="header">
-            <div class="left">
-              <h1>Dashboard</h1>
-              <ul class="breadcrumb">
-                <li><a href="#">
-                  Analytics
-                </a></li>
-                /
-                <li><a href="#" class="active">Shop</a></li>
-              </ul>
-            </div>
-            <a href="#" class="report">
-              <i class='bx bx-cloud-download'></i>
-              <span>Download CSV</span>
-            </a>
-          </div>
-        </main>
+      <div className="admin-main">
+        <AdminHeader />
+        <AdminContent />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Dashboard
+export default Dashboard;

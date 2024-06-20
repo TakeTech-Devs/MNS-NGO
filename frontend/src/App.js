@@ -16,10 +16,11 @@ import Header from './Components/Header/Header';
 function AppContent() {
   const location = useLocation();
   const isGrievancePage = location.pathname === '/grievance';
+  const isAdminPage = location.pathname === '/admin';
 
   return (
     <>
-    <Header />
+      {!isAdminPage && <Header />}
       <Routes>
         <Route path="/admin" element={<Dashboard />} />
         <Route path="/" element={<HomePage />} />
@@ -31,8 +32,8 @@ function AppContent() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/f1" element={<F1 />} />
       </Routes>
-      {!isGrievancePage && <Form />}
-      <Footer />
+      {!isGrievancePage && !isAdminPage && <Form />}
+      {!isAdminPage && <Footer />}
     </>
   );
 }

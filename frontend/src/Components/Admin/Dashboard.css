@@ -1,54 +1,10 @@
-.content main{
-    width: 100%;
-    padding: 36px 24px;
-    max-height: calc(100vh - 56px);
+.admin-dashboard {
+  display: flex;
+  height: 100vh;
 }
 
-.content main .header{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    grid-gap: 16px;
-    flex-wrap: wrap;
-    margin-left: 45px;
-}
-
-.content main .header .left h1{
-    font-size: 36px;
-    font-weight: 600;
-    margin-bottom: 10px;
-    color: var(--dark);
-}
-
-.content main .header .left .breadcrumb{
-    display: flex;
-    align-items: center;
-    grid-gap: 16px;
-}
-
-.content main .header .left .breadcrumb li{
-    color: var(--dark);
-}
-
-.content main .header .left .breadcrumb li a{
-    color: var(--dark-grey);
-    pointer-events: none;
-}
-
-.content main .header .left .breadcrumb li a.active{
-    color: var(--primary);
-    pointer-events: none;
-}
-
-.content main .header .report{
-    height: 36px;
-    padding: 0 16px;
-    border-radius: 36px;
-    background: var(--primary);
-    color: var(--light);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    grid-gap: 10px;
-    font-weight: 500;
+.admin-main {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }

@@ -1,0 +1,17 @@
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f8f9fa;
+  padding: 15px;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.admin-header-right {
+  display: flex;
+  align-items: center;
+}
+
+.admin-header-right span {
+  margin-left: 10px;
+}
