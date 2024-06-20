@@ -46,7 +46,6 @@ const aboutSchema = new mongoose.Schema({
 
             default: null
         },
-    }
 });
 
 module.exports = mongoose.model("About", aboutSchema);
