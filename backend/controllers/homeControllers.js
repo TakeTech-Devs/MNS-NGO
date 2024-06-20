@@ -166,12 +166,12 @@ exports.aboutSection = catchAsyncError(async (req, res, next) => {
 })
 
 
-exports.getHomeSection = catchAsyncError(async (req, res, next) => {
-    const about = await Home.find();
+exports.getHomePage = catchAsyncError(async (req, res, next) => {
+    const home = await Home.find();
 
     res.status(200).json({
         success: true,
-        about,
+        home,
     });
 })
 
