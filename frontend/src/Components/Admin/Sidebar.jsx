@@ -14,10 +14,13 @@ const Sidebar = () => {
       <div className={`sidebar ${isOpen ? 'open' : ''}`}>
         <Link to='/' className="logo1"></Link>
         <ul>
-          <li>Dashboard</li>
-          <li>Users</li>
-          <li>Reports</li>
-          <li>Settings</li>
+          <li>Home</li>
+          <li>About Us</li>
+          <li>Grievance</li>
+          <li>Services</li>
+          <li>Governing Body</li>
+          <li>Gallery</li>
+          <li>Contact Us</li>
           <li>Logout</li>
         </ul>
       </div>

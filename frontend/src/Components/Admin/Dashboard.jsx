@@ -2,7 +2,7 @@ import React from 'react';
 import './Dashboard.css';
 import Sidebar from './Sidebar';
 import AdminHeader from './AdminHeader';
-import AdminContent from './AdminContent';
+import AdminHome from './AdminHome';
 
 const Dashboard = () => {
   return (
@@ -10,7 +10,7 @@ const Dashboard = () => {
       <Sidebar />
       <div className="admin-main">
         <AdminHeader />
-        <AdminContent />
+        <AdminHome />
       </div>
     </div>
   );
