@@ -6,14 +6,14 @@ const Grievance = require('../models/grievanceModel');
 // Header Section
 
 exports.grievanceHeaderSection = catchAsyncError(async(req,res,next) =>{
-    if (!req.files || !req.files.headerImage) {
+    if (!req.files || !req?.files?.headerImage) {
         return res.status(400).json({
             success: false,
             message: "Missing required parameter - filess"
         });
     }
 
-    const file = req.files.headerImage;
+    const file = req?.files?.headerImage;
 
     const headerImage = await cloudinary.v2.uploader.upload(
         file.tempFilePath, {
@@ -43,6 +43,7 @@ exports.grievanceHeaderSection = catchAsyncError(async(req,res,next) =>{
 
     res.status(200).json({
         success: true,
+        message: "Grievance Header Add",
         grievanceHeader
     })
 
@@ -50,11 +51,11 @@ exports.grievanceHeaderSection = catchAsyncError(async(req,res,next) =>{
 
 exports.updateGrievanceHeaderSection = catchAsyncError(async(req,res,nect)=>{
     const newHeader = {
-        header: req.body.header,
-        caption: req.body.caption,
+        header: req?.body?.header,
+        caption: req?.body?.caption,
     }
 
-    if (req.files && req.files.headerImage) {
+    if (req.files && req?.files?.headerImage) {
         const aboutHeader = await Grievance.findById(req.params.id);
 
         const imageID = aboutHeader.headerImage.public_id;
@@ -62,7 +63,7 @@ exports.updateGrievanceHeaderSection = catchAsyncError(async(req,res,nect)=>{
 
         await cloudinary.uploader.destroy(imageID);
 
-        const file = req.files.headerImage;
+        const file = req?.files?.headerImage;
 
         const Image = await cloudinary.v2.uploader.upload(
             file.tempFilePath, {
@@ -84,6 +85,7 @@ exports.updateGrievanceHeaderSection = catchAsyncError(async(req,res,nect)=>{
 
     res.status(200).json({
         success: true,
+        message: "Grievance Header Updated",
         grievanceHeader
     });
 })
@@ -108,6 +110,7 @@ exports.grievanceBodySection = catchAsyncError(async(req,res,next) =>{
 
     res.status(200).json({
         success: true,
+        message: "Grievance Body Add",
         grievanceBody
     })
 
@@ -116,8 +119,8 @@ exports.grievanceBodySection = catchAsyncError(async(req,res,next) =>{
 exports.updateGrievanceBodySection = catchAsyncError(async(req,res,next) =>{
     
     const newBody ={
-        grievanceBodyHeader: req.body.grievanceBodyHeader,
-        grievanceBodyContent: req.body.grievanceBodyContent
+        grievanceBodyHeader: req?.body?.grievanceBodyHeader,
+        grievanceBodyContent: req?.body?.grievanceBodyContent
     }
 
     const grievanceBody = await Grievance.findByIdAndUpdate(req.params.id, newBody, {
@@ -128,7 +131,17 @@ exports.updateGrievanceBodySection = catchAsyncError(async(req,res,next) =>{
 
     res.status(200).json({
         success: true,
+        message: "Grievance Body Updated",
         grievanceBody
     });
 
+})
+
+exports.getGrievancePage = catchAsyncError(async(req,res,next) =>{
+    const grievance = await Grievance.find();
+
+    res.status(200).json({
+        success: true,
+        grievance,
+    })
 })

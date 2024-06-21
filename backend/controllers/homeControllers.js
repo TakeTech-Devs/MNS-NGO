@@ -8,7 +8,7 @@ const HomeCarousel = require('../models/homeServicesCarouselModel')
 // Carousel Section
 
 exports.carouselSection = catchAsyncError(async(req,res,next) =>{
-    let images = req.files.carouselImage;
+    let images = req?.files?.carouselImage;
 
     if (!images) {
         return res.status(400).json({
@@ -25,7 +25,7 @@ exports.carouselSection = catchAsyncError(async(req,res,next) =>{
 
     for (let i = 0; i < images.length; i++) {
         const result = await cloudinary.v2.uploader.upload(images[i].tempFilePath, {
-            folder: 'MNS/carousel',
+            folder: 'MNS/Home/carousel',
         });
 
         imagesLinks.push({
@@ -51,6 +51,7 @@ exports.carouselSection = catchAsyncError(async(req,res,next) =>{
 
     res.status(200).json({
         success: true,
+        message: "Home Carousel Add",
         carouselSection,
     });
 
@@ -88,6 +89,7 @@ exports.highlightSection = catchAsyncError(async (req, res, next) => {
 
     res.status(200).json({
         success: true,
+        message: "Highlight Add",
         highlight
     });
 
@@ -96,12 +98,12 @@ exports.highlightSection = catchAsyncError(async (req, res, next) => {
 
 exports.updatehighlightSection = catchAsyncError(async (req, res, next) => {
     const newHighlight = {
-        highlightHeaderFirst: req.body.highlightHeaderFirst,
-        highlightCaptionFirst: req.body.highlightCaptionFirst,
-        highlightHeaderSecond: req.body.highlightHeaderSecond,
-        highlightCaptionSecond: req.body.highlightCaptionSecond,
-        highlightHeaderThird: req.body.highlightHeaderThird,
-        highlightCaptionThird: req.body.highlightCaptionThird,
+        highlightHeaderFirst: req?.body?.highlightHeaderFirst,
+        highlightCaptionFirst: req?.body?.highlightCaptionFirst,
+        highlightHeaderSecond: req?.body?.highlightHeaderSecond,
+        highlightCaptionSecond: req?.body?.highlightCaptionSecond,
+        highlightHeaderThird: req?.body?.highlightHeaderThird,
+        highlightCaptionThird: req?.body?.highlightCaptionThird,
     }
 
     const highlight = await Home.findByIdAndUpdate(req.params.id, newHighlight, {
@@ -112,6 +114,7 @@ exports.updatehighlightSection = catchAsyncError(async (req, res, next) => {
 
     res.status(200).json({
         success: true,
+        message: "Highlight Update",
         highlight
     });
 })
@@ -120,18 +123,18 @@ exports.updatehighlightSection = catchAsyncError(async (req, res, next) => {
 
 exports.aboutSection = catchAsyncError(async (req, res, next) => {
 
-    if (!req.files || !req.files.aboutImage) {
+    if (!req.files || !req?.files?.aboutImage) {
         return res.status(400).json({
             success: false,
             message: "Missing required parameter - filess"
         });
     }
 
-    const file = req.files.aboutImage;
+    const file = req?.files?.aboutImage;
 
     const aboutImage = await cloudinary.v2.uploader.upload(
         file.tempFilePath, {
-        folder: 'MNS/about',
+        folder: 'MNS/Home/about',
     }
     )
 
@@ -161,30 +164,21 @@ exports.aboutSection = catchAsyncError(async (req, res, next) => {
 
     res.status(200).json({
         success: true,
+        message: "About Us Add",
         aboutSection
     });
 
 })
 
 
-exports.getHomePage = catchAsyncError(async (req, res, next) => {
-    const home = await Home.find();
-
-    res.status(200).json({
-        success: true,
-        home,
-    });
-})
-
-
 exports.updateAboutSection = catchAsyncError(async (req, res, next) => {
     const newAbout = {
-        aboutHeader: req.body.aboutHeader,
-        aboutCaption: req.body.aboutCaption,
-        aboutContent: req.body.aboutContent,
+        aboutHeader: req?.body?.aboutHeader,
+        aboutCaption: req?.body?.aboutCaption,
+        aboutContent: req?.body?.aboutContent,
     }
 
-    if (req.files && req.files.aboutImage) {
+    if (req.files && req?.files?.aboutImage) {
         const about = await Home.findById(req.params.id);
 
         // Check if the about section exists
@@ -199,11 +193,11 @@ exports.updateAboutSection = catchAsyncError(async (req, res, next) => {
 
         await cloudinary.uploader.destroy(imageID);
 
-        const file = req.files.aboutImage;
+        const file = req?.files?.aboutImage;
 
         const Image = await cloudinary.v2.uploader.upload(
             file.tempFilePath, {
-            folder: 'MNS/about',
+            folder: 'MNS/Home/about',
         }
         )
 
@@ -221,6 +215,7 @@ exports.updateAboutSection = catchAsyncError(async (req, res, next) => {
 
     res.status(200).json({
         success: true,
+        message: "About Us Update",
         about
     });
 })
@@ -246,6 +241,7 @@ exports.servicesSection = catchAsyncError(async (req, res, next) => {
 
     res.status(200).json({
         success: true,
+        message: "Services Add",
         services
     })
 
@@ -253,8 +249,8 @@ exports.servicesSection = catchAsyncError(async (req, res, next) => {
 
 exports.updateServices = catchAsyncError(async (req, res, next) => {
     const newServices = {
-        servicesHeader: req.body.servicesHeader,
-        servicesCaption: req.body.servicesCaption
+        servicesHeader: req?.body?.servicesHeader,
+        servicesCaption: req?.body?.servicesCaption
     };
 
     const services = await Home.findByIdAndUpdate(req.params.id, newServices, {
@@ -265,12 +261,13 @@ exports.updateServices = catchAsyncError(async (req, res, next) => {
 
     res.status(200).json({
         success: true,
+        message: "Services Update",
         services
     });
 })
 
 exports.servicesCarousel = catchAsyncError(async(req,res,next)=>{
-    if (!req.files || !req.files.image) {
+    if (!req.files || !req?.files?.image) {
         return res.status(400).json({
             success: false,
             message: "Missing required parameter - filess"
@@ -278,7 +275,7 @@ exports.servicesCarousel = catchAsyncError(async(req,res,next)=>{
     }
 
     const { title } = req.body;
-    const imageFile = req.files.image;
+    const imageFile = req?.files?.image;
 
     const serviceImage = await cloudinary.v2.uploader.upload(imageFile.tempFilePath, {
         folder: 'MNS/Home/services'
@@ -294,6 +291,7 @@ exports.servicesCarousel = catchAsyncError(async(req,res,next)=>{
 
     res.status(200).json({
         success: true,
+        message: "Services Carousel Image Add",
         serviceSection
     });
 
@@ -301,7 +299,7 @@ exports.servicesCarousel = catchAsyncError(async(req,res,next)=>{
 
 exports.updateServicesCarousel = catchAsyncError(async(req,res,next) =>{
     const newData = {
-        title: req.body.title,
+        title: req?.body?.title,
     };
 
     const service = await HomeCarousel.findById(req.params.id);
@@ -313,7 +311,7 @@ exports.updateServicesCarousel = catchAsyncError(async(req,res,next) =>{
         });
     }
 
-    if (req.files && req.files.image) {
+    if (req.files && req?.files?.image) {
         const imageID = service.image.public_id;
 
 
@@ -321,7 +319,7 @@ exports.updateServicesCarousel = catchAsyncError(async(req,res,next) =>{
             await cloudinary.v2.uploader.destroy(imageID);
         }
 
-        const imageFile = req.files.image;
+        const imageFile = req?.files?.image;
 
         const serviceImage = await cloudinary.v2.uploader.upload(imageFile.tempFilePath, {
             folder: 'MNS/Home/services'
@@ -340,6 +338,7 @@ exports.updateServicesCarousel = catchAsyncError(async(req,res,next) =>{
 
     res.status(200).json({
         success: true,
+        message: "Services Carousel Image Update",
         serviceSection
     });
 })
@@ -351,32 +350,32 @@ exports.updateServicesCarousel = catchAsyncError(async(req,res,next) =>{
 
 exports.visionSection = catchAsyncError(async (req, res, next) => {
 
-    if (!req.files || !req.files.visionImageFirst || !req.files.visionImageSecond || !req.files.visionImageThird) {
+    if (!req.files || !req?.files?.visionImageFirst || !req?.files?.visionImageSecond || !req?.files?.visionImageThird) {
         return res.status(400).json({
             success: false,
             message: "Missing required parameter - filess"
         });
     }
 
-    const file1 = req.files.visionImageFirst;
+    const file1 = req?.files?.visionImageFirst;
 
     const visionImageFirst = await cloudinary.v2.uploader.upload(
         file1.tempFilePath, {
-        folder: 'MNS/vision',
+        folder: 'MNS/Home/vision',
     }
     )
-    const file2 = req.files.visionImageSecond;
+    const file2 = req?.files?.visionImageSecond;
 
     const visionImageSecond = await cloudinary.v2.uploader.upload(
         file2.tempFilePath, {
-        folder: 'MNS/vision',
+        folder: 'MNS/Home/vision',
     }
     )
-    const file3 = req.files.visionImageThird;
+    const file3 = req?.files?.visionImageThird;
 
     const visionImageThird = await cloudinary.v2.uploader.upload(
         file3.tempFilePath, {
-        folder: 'MNS/vision',
+        folder: 'MNS/Home/vision',
     }
     )
 
@@ -427,6 +426,7 @@ exports.visionSection = catchAsyncError(async (req, res, next) => {
 
     res.status(200).json({
         success: true,
+        message: "Vision Add",
         visionSection
     });
 
@@ -434,17 +434,17 @@ exports.visionSection = catchAsyncError(async (req, res, next) => {
 
 exports.updateVisionSection = catchAsyncError(async (req, res, next) => {
     const newVision = {
-        visionHeader: req.body.visionHeader,
-        visionCaption: req.body.visionCaption,
-        visionHeaderFirst: req.body.visionHeaderFirst,
-        visionCaptionFirst: req.body.visionCaptionFirst,
-        visionHeaderSecond: req.body.visionHeaderSecond,
-        visionCaptionSecond: req.body.visionCaptionSecond,
-        visionHeaderThird: req.body.visionHeaderThird,
-        visionCaptionThird: req.body.visionCaptionThird
+        visionHeader: req?.body?.visionHeader,
+        visionCaption: req?.body?.visionCaption,
+        visionHeaderFirst: req?.body?.visionHeaderFirst,
+        visionCaptionFirst: req?.body?.visionCaptionFirst,
+        visionHeaderSecond: req?.body?.visionHeaderSecond,
+        visionCaptionSecond: req?.body?.visionCaptionSecond,
+        visionHeaderThird: req?.body?.visionHeaderThird,
+        visionCaptionThird: req?.body?.visionCaptionThird
     }
 
-    if (req.files && req.files.visionImageFirst) {
+    if (req.files && req?.files?.visionImageFirst) {
         const vision = await Home.findById(req.params.id);
 
         if (!vision) {
@@ -459,11 +459,11 @@ exports.updateVisionSection = catchAsyncError(async (req, res, next) => {
        await cloudinary.uploader.destroy(imageID);
 
 
-        const file = req.files.visionImageFirst;
+        const file = req?.files?.visionImageFirst;
 
         const Image = await cloudinary.v2.uploader.upload(
             file.tempFilePath, {
-            folder: 'MNS/joinUs',
+            folder: 'MNS/Home/vision',
         }
         )
 
@@ -473,7 +473,7 @@ exports.updateVisionSection = catchAsyncError(async (req, res, next) => {
         }
     }
 
-    if (req.files && req.files.visionImageSecond) {
+    if (req.files && req?.files?.visionImageSecond) {
         const vision = await Home.findById(req.params.id);
 
         if (!vision) {
@@ -488,11 +488,11 @@ exports.updateVisionSection = catchAsyncError(async (req, res, next) => {
        await cloudinary.uploader.destroy(imageID);
 
 
-        const file = req.files.visionImageSecond;
+        const file = req?.files?.visionImageSecond;
 
         const Image= await cloudinary.v2.uploader.upload(
             file.tempFilePath, {
-            folder: 'MNS/vision',
+            folder: 'MNS/Home/vision',
         }
         )
 
@@ -503,7 +503,7 @@ exports.updateVisionSection = catchAsyncError(async (req, res, next) => {
     }
 
 
-    if (req.files && req.files.visionImageThird) {
+    if (req.files && req?.files?.visionImageThird) {
         const vision = await Home.findById(req.params.id);
 
         if (!vision) {
@@ -518,11 +518,11 @@ exports.updateVisionSection = catchAsyncError(async (req, res, next) => {
        await cloudinary.uploader.destroy(imageID);
 
 
-        const file = req.files.visionImageThird;
+        const file = req?.files?.visionImageThird;
 
         const Image = await cloudinary.v2.uploader.upload(
             file.tempFilePath, {
-            folder: 'MNS/vision',
+            folder: 'MNS/Home/vision',
         }
         )
 
@@ -543,6 +543,7 @@ exports.updateVisionSection = catchAsyncError(async (req, res, next) => {
 
     res.status(200).json({
         success: true,
+        message: "Vision Update",
         vision
     });
 
@@ -553,18 +554,18 @@ exports.updateVisionSection = catchAsyncError(async (req, res, next) => {
 
 exports.joinUsSection = catchAsyncError(async(req,res,next) =>{
 
-    if (!req.files || !req.files.joinUsImage) {
+    if (!req.files || !req?.files?.joinUsImage) {
         return res.status(400).json({
             success: false,
             message: "Missing required parameter - filess"
         });
     }
 
-    const file = req.files.joinUsImage;
+    const file = req?.files?.joinUsImage;
 
     const joinUsImage = await cloudinary.v2.uploader.upload(
         file.tempFilePath, {
-        folder: 'MNS/joinUs',
+        folder: 'MNS/Home/joinUs',
     }
     )
 
@@ -593,6 +594,7 @@ exports.joinUsSection = catchAsyncError(async(req,res,next) =>{
 
     res.status(200).json({
         success: true,
+        message: "Join Us Add",
         joinUs
     });
 
@@ -603,11 +605,11 @@ exports.joinUsSection = catchAsyncError(async(req,res,next) =>{
 
 exports.updateJoinUsSection = catchAsyncError(async(req,res,next) =>{
     const newJoinUs = {
-        joinUsHeader: req.body.joinUsHeader,
-        joinUsCaption: req.body.joinUsCaption,
+        joinUsHeader: req?.body?.joinUsHeader,
+        joinUsCaption: req?.body?.joinUsCaption,
     };
 
-    if(req.files && req.files.joinUsImage){
+    if(req.files && req?.files?.joinUsImage){
         const joinUs = await Home.findById(req.params.id);
 
         if(!joinUs){
@@ -621,7 +623,7 @@ exports.updateJoinUsSection = catchAsyncError(async(req,res,next) =>{
 
         await cloudinary.uploader.destroy(imageID);
 
-        const file = req.files.joinUsImage;
+        const file = req?.files?.joinUsImage;
 
         const Image = await cloudinary.v2.uploader.upload(
             file.tempFilePath, {
@@ -643,6 +645,17 @@ exports.updateJoinUsSection = catchAsyncError(async(req,res,next) =>{
 
     res.status(200).json({
         success: true,
+        message: "Join Us Update",
         joinUs
+    });
+})
+
+
+exports.getHomePage = catchAsyncError(async (req, res, next) => {
+    const home = await Home.find();
+
+    res.status(200).json({
+        success: true,
+        home,
     });
 })

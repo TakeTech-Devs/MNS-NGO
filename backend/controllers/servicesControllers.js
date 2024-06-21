@@ -7,14 +7,14 @@ const OurServices = require('../models/ourServicesModel');
 // Header Section
 
 exports.servicesHeaderSection = catchAsyncError(async (req, res, next) => {
-    if (!req.files || !req.files.headerImage) {
+    if (!req.files || !req?.files?.headerImage) {
         return res.status(400).json({
             success: false,
             message: "Missing required parameter - filess"
         });
     }
 
-    const file = req.files.headerImage;
+    const file = req?.files?.headerImage;
 
     const headerImage = await cloudinary.v2.uploader.upload(
         file.tempFilePath, {
@@ -44,6 +44,7 @@ exports.servicesHeaderSection = catchAsyncError(async (req, res, next) => {
 
     res.status(200).json({
         success: true,
+        message: "Services Header Add",
         servicesHeader
     })
 
@@ -51,11 +52,11 @@ exports.servicesHeaderSection = catchAsyncError(async (req, res, next) => {
 
 exports.updateServicesHeaderSection = catchAsyncError(async (req, res, nect) => {
     const newHeader = {
-        header: req.body.header,
-        caption: req.body.caption,
+        header: req?.body?.header,
+        caption: req?.body?.caption,
     }
 
-    if (req.files && req.files.headerImage) {
+    if (req.files && req?.files?.headerImage) {
         const aboutHeader = await Services.findById(req.params.id);
 
         const imageID = aboutHeader.headerImage.public_id;
@@ -63,7 +64,7 @@ exports.updateServicesHeaderSection = catchAsyncError(async (req, res, nect) => 
 
         await cloudinary.uploader.destroy(imageID);
 
-        const file = req.files.headerImage;
+        const file = req?.files?.headerImage;
 
         const Image = await cloudinary.v2.uploader.upload(
             file.tempFilePath, {
@@ -85,6 +86,7 @@ exports.updateServicesHeaderSection = catchAsyncError(async (req, res, nect) => 
 
     res.status(200).json({
         success: true,
+        message: "Services Header Updated",
         servicesHeader
     });
 });
@@ -109,6 +111,7 @@ exports.servicesBodySection = catchAsyncError(async (req, res, next) => {
 
     res.status(200).json({
         success: true,
+        message: "Services Body Add",
         servicesBody
     })
 
@@ -117,8 +120,8 @@ exports.servicesBodySection = catchAsyncError(async (req, res, next) => {
 
 exports.updateServicesBodySection = catchAsyncError(async (req, res, next) => {
     const newData = {
-        servicesBodyHeader: req.body.servicesBodyHeader,
-        servicesBodyContent: req.body.servicesBodyContent
+        servicesBodyHeader: req?.body?.servicesBodyHeader,
+        servicesBodyContent: req?.body?.servicesBodyContent
     }
 
     const servicesBody = await Services.findByIdAndUpdate(req.params.id, newData, {
@@ -129,6 +132,7 @@ exports.updateServicesBodySection = catchAsyncError(async (req, res, next) => {
 
     res.status(200).json({
         success: true,
+        message: "Services Body Updated",
         servicesBody
     });
 })
@@ -137,7 +141,7 @@ exports.updateServicesBodySection = catchAsyncError(async (req, res, next) => {
 
 exports.ourServicesSection = catchAsyncError(async (req, res, next) => {
 
-    if (!req.files || !req.files.image) {
+    if (!req.files || !req?.files?.image) {
         return res.status(400).json({
             success: false,
             message: "Missing required parameter - filess"
@@ -145,7 +149,7 @@ exports.ourServicesSection = catchAsyncError(async (req, res, next) => {
     }
 
     const { title, description } = req.body;
-    const imageFile = req.files.image;
+    const imageFile = req?.files?.image;
 
     const serviceImage = await cloudinary.v2.uploader.upload(imageFile.tempFilePath, {
         folder: 'MNS/Services/services'
@@ -162,6 +166,7 @@ exports.ourServicesSection = catchAsyncError(async (req, res, next) => {
 
     res.status(200).json({
         success: true,
+        message: "Our Services Section Created",
         serviceSection
     });
 
@@ -171,8 +176,8 @@ exports.ourServicesSection = catchAsyncError(async (req, res, next) => {
 
 exports.updateOurServicesSection = catchAsyncError(async (req, res, next) => {
     const newData = {
-        title: req.body.title,
-        description: req.body.description
+        title: req?.body?.title,
+        description: req?.body?.description
     };
 
     const service = await OurServices.findById(req.params.id);
@@ -184,7 +189,7 @@ exports.updateOurServicesSection = catchAsyncError(async (req, res, next) => {
         });
     }
 
-    if (req.files && req.files.image) {
+    if (req.files && req?.files?.image) {
         const imageID = service.image.public_id;
 
 
@@ -192,7 +197,7 @@ exports.updateOurServicesSection = catchAsyncError(async (req, res, next) => {
             await cloudinary.v2.uploader.destroy(imageID);
         }
 
-        const imageFile = req.files.image;
+        const imageFile = req?.files?.image;
 
         const serviceImage = await cloudinary.v2.uploader.upload(imageFile.tempFilePath, {
             folder: 'MNS/Services/services'
@@ -211,7 +216,17 @@ exports.updateOurServicesSection = catchAsyncError(async (req, res, next) => {
 
     res.status(200).json({
         success: true,
+        message: "Service section updated ",
         serviceSection
     });
 
+})
+
+exports.getServicesPage = catchAsyncError(async(req,res,next) =>{
+    const services = await Services.find();
+
+    res.status(200).json({
+        success: true,
+        services,
+    })
 })
