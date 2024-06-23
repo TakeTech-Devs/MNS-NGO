@@ -140,6 +140,8 @@ const homeSchema = new mongoose.Schema({
             default: null
         },
     }
+}, {
+    timestamps: true,
 })
 
 module.exports = mongoose.model("Home", homeSchema);

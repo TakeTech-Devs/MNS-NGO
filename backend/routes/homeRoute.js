@@ -1,5 +1,5 @@
 const express = require('express');
-const { aboutSection, updateAboutSection, highlightSection, getHomeSection, updatehighlightSection, servicesSection, updateServices, visionSection, updateVisionSection, joinUsSection, updateJoinUsSection, carouselSection } = require('../controllers/homeControllers');
+const { aboutSection, updateAboutSection, highlightSection, updatehighlightSection, servicesSection, updateServices, visionSection, updateVisionSection, joinUsSection, updateJoinUsSection, carouselSection, getHomePage } = require('../controllers/homeControllers');
 const router = express.Router();
 
 
@@ -18,7 +18,7 @@ router.route('/update-services/:id').put(updateServices);
 router.route('/update-vision/:id').put(updateVisionSection)
 router.route('/update-joinus/:id').put(updateJoinUsSection);
 
-router.route("/get-home").get(getHomeSection);
+router.route("/get-home").get(getHomePage);
 
 
 module.exports = router; 
