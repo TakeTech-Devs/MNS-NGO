@@ -56,7 +56,7 @@
 
 textarea,
 textarea::placeholder {
-    font-family: 'Inter';
+    font-family: "Poppins", sans-serif;
 }
 
 select {

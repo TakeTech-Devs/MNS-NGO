@@ -6,42 +6,42 @@ body {font-size:18px; line-height:1.5;}
 .prev-btn, .next-btn {position:absolute; top:50%; transform:translateY(-50%); background:#145a98bc; color:rgb(255, 255, 255); border:none; padding:30px; cursor:pointer; z-index:1;}
 .prev-btn {left:0; border-radius:0 5px 5px 0;}
 .next-btn {right:0; border-radius:5px 0 0 5px;}
-.home-page .carousel-heading {margin-bottom:16px; line-height:1.2; overflow-wrap:break-word; font-family:'Inter'; font-weight:600; font-size:45px; color:#FFFFFF;}
-.home-page .carousel-caption {margin-right:50%; display:inline-block; align-self:flex-start; overflow-wrap:break-word; font-family:'Inter'; font-weight:300; font-size:24px; color:#FFFFFF;}
+.home-page .carousel-heading {margin-bottom:16px; line-height:1.2; overflow-wrap:break-word;    font-weight:600; font-size:45px; color:#FFFFFF; font-family: "Arvo", serif;}
+.home-page .carousel-caption {margin-right:50%; display:inline-block; align-self:flex-start; overflow-wrap:break-word;    font-weight:300; font-size:24px; color:#FFFFFF;}
 .home-page .carousel-indicate {justify-content:center; position:absolute; left:50%; transform:translateX(-50%); bottom:140px; display:flex; flex-direction:row; align-self:center; column-gap:15px; width:150px; box-sizing:border-box;}
 .home-page .ellipse {border-radius:9px; background:#FFFFFF; width:12px; height:12px;}
 .indicator.active {background-color:#145A98;}
 .our-team-section {margin-block:100px; padding-inline:5%; display:flex; flex-direction:column; align-items:center; width:fit-content; box-sizing:border-box;}
-.our-team-heading {margin-block-end:10px; text-align:center; overflow-wrap:break-word; font-family:'Inter'; font-weight:600; font-size:35px; color:#145A98;}
-.our-team-caption {text-align:center; overflow-wrap:break-word; font-family:'Inter'; font-weight:300; margin-block-end:40px; color:#3D76AF;}
+.our-team-heading {margin-block-end:10px; text-align:center; overflow-wrap:break-word;    font-weight:600; font-size:35px; color:#145A98;}
+.our-team-caption {text-align:center; overflow-wrap:break-word;    font-weight:300; margin-block-end:40px; color:#3D76AF;}
 .our-team-container {display:flex; flex-direction:row; width:fit-content; box-sizing:border-box;}
-.home-page .container {margin:9px 0 5.5px 0; font-family:'Inter'; font-weight:400; font-size:23px; color:#FFFFFF;}
+.home-page .container {margin:9px 0 5.5px 0;    font-weight:400; font-size:23px; color:#FFFFFF;}
 .home-page .our-team-img {border-radius:20px; background:url('../../assets/images/rectangle7.png') 50% / cover no-repeat, linear-gradient(#D9D9D9, #D9D9D9); margin:3px 20px 4px 0; width:400px; flex:0 0 400px; height:300px;}
-.home-page .our-team-content {display:flex; flex-direction:column; justify-content:center; gap:15px; font-family:'Inter'; font-weight:300; color:#3D76AF;}
+.home-page .our-team-content {display:flex; flex-direction:column; justify-content:center; gap:15px;    font-weight:300; color:#3D76AF;}
 .home-page .our-work-section {padding-inline:5%; margin-bottom:0; display:flex; flex-direction:column; align-items:center; width:100%; box-sizing:border-box;}
 .home-page .our-work {display:flex; flex-direction:row; column-gap:33px; width:100%; box-sizing:border-box; justify-content:center;}
 .slider {border-radius:20px 20px 0px 0px; overflow:hidden; margin:0 12px; position:relative; display:inline-block;}
 .slider img {width:100%; height:493px; object-fit:cover; display:block;}
 .overlay {position:absolute; top:0; left:0; right:0; bottom:0; background:linear-gradient(180deg, rgba(217, 217, 217, 0) 39.9%, #145A98 100%); pointer-events:none;}
-.text {position:absolute; bottom:20px; left:50%; text-align:center; transform:translateX(-50%); color:white; padding:10px; pointer-events:none; font-family:'Inter'; font-weight:600; font-size:20px; color:#FFFFFF; width:100%;}
+.text {position:absolute; bottom:20px; left:50%; text-align:center; transform:translateX(-50%); color:white; padding:10px; pointer-events:none;    font-weight:600; font-size:20px; color:#FFFFFF; width:100%;}
 .navbar-section {position:absolute; top:20px; left:0; width:100%; z-index:2; display:flex; flex-direction:row; justify-content:space-between; padding-inline:3%}
-.logo-1 {background:url(../../assets/images/logo2.jpeg) 50%/cover no-repeat; width:90px; height:85px}
-.navbar {font-family:'Inter'; font-weight:400; font-size:16px; color:#fff; display:flex; flex-direction:column; align-items:flex-end; justify-content:center;}
+.logo-1 {background:url(../../assets/images/logo2.jpeg) 50%/cover no-repeat; width:90px; height:85px; border-radius: 25px;}
+.navbar {   font-weight:400; font-size:16px; color:#fff; display:flex; flex-direction:column; align-items:flex-end; justify-content:center;}
 .navbar-link {margin-bottom:10px; display:flex; flex-direction:row; width:fit-content;}
 .navbar-link a {padding:4px 15px;}
 .navbar-link a.active {background-color:#145A98; border-radius:5px;}
 .navbar-link .home-active {background:#3d76af}
-.navbar-link a {font-family:Inter; font-size:16px; color:#fff; text-decoration:none;}
+.navbar-link a {font-size:16px; color:#fff; text-decoration:none;}
 .donate-section {display:flex; flex-direction:row; width:fit-content; gap:15px;}
 .phone {display:flex; align-items:center;}
 .phone-svg {transform:rotate(18.253deg); margin-right:4.7px; display:flex; align-items:center; justify-content:center; width:33.4px; height:38px;}
 .phonesvg {transform:rotate(314deg); width:22px; height:30px}
-.donatebtn {border-radius:5px; background:#145a98; position:relative; display:flex; flex-direction:row; justify-content:center; padding:8px 20px; color:#fff; font-family:Inter; font-weight:500; font-size:16px; text-transform:uppercase; border:none}
+.donatebtn {border-radius:5px; background:#145a98; position:relative; display:flex; flex-direction:row; justify-content:center; padding:8px 20px; color:#fff;  font-weight:500; font-size:16px; text-transform:uppercase; border:none;font-family: "Poppins", sans-serif;}
 .img-section {margin-bottom:100px; flex-direction:column; align-items:center; padding:500px 5% 40px 5%; position:relative; display:flex; justify-content:center; width:100%; box-sizing:border-box; margin-right:120px;}
 .img-section.home {background:url(../../assets/images/rectangle11.png) 20% / cover no-repeat, linear-gradient(#D9D9D9, #D9D9D9);}
 .img-section-overlay {background:linear-gradient(180deg, rgba(217, 217, 217, 0) 39.9%, #145A98 100%); position:absolute; left:0px; top:0px; right:0px; bottom:0px; height:100%;}
-.img-section-heading {text-align:center; position:relative; margin-block-end:10px; display:inline-block; overflow-wrap:break-word; font-family:'Inter'; font-weight:600; font-size:35px; color:#FFFFFF;}
-.img-section-caption {position:relative; overflow-wrap:break-word; font-family:'Inter'; font-weight:300; color:#FFFFFF; text-align:center;}
+.img-section-heading {text-align:center; position:relative; margin-block-end:10px; display:inline-block; overflow-wrap:break-word;    font-weight:600; font-size:35px; color:#FFFFFF;}
+.img-section-caption {position:relative; overflow-wrap:break-word;    font-weight:300; color:#FFFFFF; text-align:center;}
 ul.highlight-section {box-shadow:10px 4px 16.8px 0 rgba(0, 0, 0, .5); background:#145a98; display:flex; padding:50px 23px; z-index:1; gap:1rem; list-style:none; margin-block-end:80px; margin-inline:10%; margin-block-start:-75px; position:relative; z-index:1; border-radius:20px;}
 ul.highlight-section li {width:calc((100% - 2rem) / 3);}
 ul.highlight-section li h2, ul.highlight-section li p {color:#fff; text-align:center;}
@@ -98,7 +98,7 @@ ul.highlight-section li h2 {margin-block-end:0px;}
 
 @media only screen and (max-width: 767px) {
 .donatebtn {font-size:12px; padding:6px 12px;}
-.logo-1 {width:62px; height:57px;}
+.logo-1 {width:50px; height:47px; border-radius: 15px;}
 .phone .navbar {font-size:12px;}
 .phonesvg {width:15px; height:18px;}
 .phone-svg {margin-inline-end:-8px;}
@@ -125,6 +125,6 @@ ul.highlight-section {margin-inline:5%;}
 .slider img {height:300px;}
 .brand-logo-section ul {gap:10px;}
 .brand-logo-section ul li {width:calc((100% - 10px) / 2); font-size:20px;}
-.hamburger-menu {top:18px;}
+.hamburger-menu {top:13px;}
 .side-panel-content a{font-size: 14px;}
 }
