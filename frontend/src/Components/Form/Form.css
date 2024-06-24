@@ -61,10 +61,10 @@
     margin-top: 12px;
 }
 
-textarea, textarea::placeholder{  font-family: 'Inter';}
+textarea, textarea::placeholder{  font-family: "Poppins", sans-serif;}
 textarea,
 textarea::placeholder {
-    font-family: 'Inter';
+    font-family: "Poppins", sans-serif;
 }
 
 

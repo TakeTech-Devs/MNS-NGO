@@ -1,6 +1,9 @@
 import React from 'react'
 import "./../Home/HomePage.css";
-import "./../About/About.css";
+import "./contact.css"
+import call from "../../assets/images/CALL.png"
+import location from "../../assets/images/PIN.png"
+import email from "../../assets/images/EMAIL.png"
 
 const Contact = () => {
     return (
@@ -11,18 +14,35 @@ const Contact = () => {
 					<p className="our-team-caption">Welcome to Mallarpur Naisuva, where our mission is to empower communities, uplift the vulnerable, and create positive change in society.</p>
 				</div>
 			</div>
-            <div className="our-story-section our-service">
-                <div className="our-team-heading">Our Story</div>
-                <div className="our-team-caption">
-                    Mallarpur Naisuva was founded with a vision to make a difference in the lives of those most in need. What began as a small group of individuals inspired by the spirit of social work has evolved into a full-fledged NGO dedicated to rural development and community empowerment.
-                </div>
-                <div className="our-team-caption">
-                    Our vision is to break the cycle of poverty and social isolation, restoring hope for a better future. We envision a world where every person has access to resources and opportunities for development, and where no one is left behind.
-                </div>
-                <div className="our-team-caption">
-                    Over the years, Mallarpur Naisuva has made significant strides in empowering communities and fostering positive change. From education and healthcare initiatives to women's empowerment programs and environmental conservation efforts, our impact is felt across various sectors.
-                </div>
+            <div className='contact-map'>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d29140.551651296588!2d87.67102279948419!3d24.08147929538105!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f9f79d0fe0b5a1%3A0x3a7802ddd72ad740!2sMallarpur%2C%20West%20Bengal%20731216!5e0!3m2!1sen!2sin!4v1719123965536!5m2!1sen!2sin" ></iframe>
+            <div className='location-details'>
+                <ul className='contact-details'>
+                    <li>
+                    <p>Address</p>
+                        <div className='svg-wrap'>
+                        <img src={location}/>
+                        </div>
+                       
+                    </li>
+                    <li>
+                        <p>+000 000 0000</p>
+                        <div className='svg-wrap'>
+                            <img src={call}/>
+                        </div>
+                       
+                    </li>
+                    <li>
+                    <p>E-mail Address</p>
+                        <div className='svg-wrap'>
+                        <img src={email}/>
+                        </div>
+                       
+                    </li>
+                </ul>
             </div>
+            </div>
+           
         </>
     )
 }
