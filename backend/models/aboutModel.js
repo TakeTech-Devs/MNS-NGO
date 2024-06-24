@@ -17,12 +17,16 @@ const aboutSchema = new mongoose.Schema({
             default: null
         },
     },
-    ourStoryHeader: {
-        type: String,
-    },
-    ourStoryContent: {
-        type: String,
-    },
+    images: [
+        {
+            public_id: {
+                type: String,
+            },
+            url: {
+                type: String,
+            }
+        }
+    ],
     ourValuesHeader: {
         type: String,
     },
@@ -46,6 +50,7 @@ const aboutSchema = new mongoose.Schema({
 
             default: null
         },
+    },
 });
 
 module.exports = mongoose.model("About", aboutSchema);

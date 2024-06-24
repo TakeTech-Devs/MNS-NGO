@@ -94,50 +94,113 @@ exports.updateHeaderSection = catchAsyncError(async (req, res, next) => {
 })
 
 
-// Our Story Section
+// About Image Section
 
-exports.ourStorySection = catchAsyncError(async(req,res,next) => {
 
-    const { ourStoryHeader, ourStoryContent } = req.body
+exports.aboutImageSection = catchAsyncError(async(req, res, next) => {
+    let images = req?.files?.images;
 
-    const update = { ourStoryHeader, ourStoryContent};
+    if (!images) {
+        return res.status(400).json({
+            success: false,
+            message: "No images uploaded"
+        });
+    }
+
+    if (!Array.isArray(images)) {
+        images = [images];
+    }
+
+    // Check that exactly 4 images are uploaded
+    if (images.length !== 4) {
+        return res.status(400).json({
+            success: false,
+            message: "Exactly 4 images must be uploaded"
+        });
+    }
+
+    // Retrieve the existing images from the database
+    const aboutSection = await About.findOne();
+
+    if (aboutSection && aboutSection.images) {
+        // Delete existing images from Cloudinary
+        for (const image of aboutSection.images) {
+            try {
+                await cloudinary.uploader.destroy(image.public_id);
+                console.log(`Deleted old image with public_id: ${image.public_id}`);
+            } catch (error) {
+                console.error(`Error deleting image with public_id: ${image.public_id}`, error);
+                return res.status(500).json({
+                    success: false,
+                    message: "Error deleting old images",
+                    error: error.message,
+                });
+            }
+        }
+    }
+
+    const imagesLinks = [];
+
+    for (let i = 0; i < images.length; i++) {
+        const filePath = images[i].tempFilePath || images[i].path;
+        console.log(`Image ${i + 1} tempFilePath: ${filePath}`);
+
+        if (!filePath) {
+            return res.status(400).json({
+                success: false,
+                message: "File path is missing for image " + (i + 1)
+            });
+        }
+
+        try {
+            const result = await cloudinary.v2.uploader.upload(filePath, {
+                folder: 'MNS/About Us/Image',
+            });
+            console.log(`Uploaded image ${i + 1}: `, result);
+
+            imagesLinks.push({
+                public_id: result.public_id,
+                url: result.secure_url,
+            });
+        } catch (error) {
+            console.error(`Error uploading image ${i + 1}: `, error);
+            return res.status(500).json({
+                success: false,
+                message: "Error uploading image " + (i + 1),
+                error: error.message,
+            });
+        }
+    }
+
+    const update = {
+        images: imagesLinks,
+    };
 
     const options = {
         new: true,
         upsert: true,
-        useFindAndModify: false
+        useFindAndModify: false,
     };
 
-    const ourStory = await About.findOneAndUpdate({}, update, options);
+    try {
+        const aboutImage = await About.findOneAndUpdate({}, update, options);
 
-    res.status(200).json({
-        success: true,
-        message: "Our Story Add",
-        ourStory
-    })
-
+        res.status(200).json({
+            success: true,
+            message: "About Images Added",
+            aboutImage, 
+        });
+    } catch (error) {
+        console.error("Error updating the database: ", error);
+        res.status(500).json({
+            success: false,
+            message: "Error updating the database",
+            error: error.message,
+        });
+    }
 
 })
 
-exports.updateOurStorySection = catchAsyncError(async(req,res,next) =>{
-    const newStory = {
-        ourStoryHeader: req?.body?.ourStoryHeader,
-        ourStoryContent: req?.body?.ourStoryContent,
-    };
-
-    const ourStory = await About.findByIdAndUpdate(req.params.id, newStory,{
-        new: true,
-        runValidators: true,
-        useFindAndModify: true,
-    })
-
-    res.status(200).json({
-        success: true,
-        message: "Our Story Update",
-        ourStory
-    })
-    
-})
 
 
 // Our Values Section
