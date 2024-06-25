@@ -14,16 +14,12 @@ exports.headerSection = catchAsyncError(async (req, res, next) => {
 
     const file = req?.files?.headerImage;
 
-    // Fetch the existing header section
     const goveringHeader = await GoveringBody.findOne();
 
-    // Delete the old image if it exists
     if (goveringHeader && goveringHeader.headerImage && goveringHeader.headerImage.public_id) {
         try {
             await cloudinary.uploader.destroy(goveringHeader.headerImage.public_id);
-            console.log(`Deleted old image with public_id: ${goveringHeader.headerImage.public_id}`);
         } catch (error) {
-            console.error(`Error deleting old image with public_id: ${goveringHeader.headerImage.public_id}`, error);
             return res.status(500).json({
                 success: false,
                 message: "Error deleting old image",
@@ -32,7 +28,6 @@ exports.headerSection = catchAsyncError(async (req, res, next) => {
         }
     }
 
-    // Upload the new image
     let headerImage;
     try {
         headerImage = await cloudinary.v2.uploader.upload(file.tempFilePath, {
@@ -109,4 +104,13 @@ exports.GoveringBodySection = catchAsyncError(async(req,res,next) =>{
         goveringBody
     })
 
+})
+
+exports.getGoveringBodyPage = catchAsyncError(async(req,res,next) =>{
+    const goveringBody = await GoveringBody.find();
+
+    res.status(200).json({
+        success: true,
+        goveringBody,
+    })
 })

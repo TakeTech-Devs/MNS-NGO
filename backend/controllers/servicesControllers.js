@@ -10,19 +10,43 @@ exports.servicesHeaderSection = catchAsyncError(async (req, res, next) => {
     if (!req.files || !req?.files?.headerImage) {
         return res.status(400).json({
             success: false,
-            message: "Missing required parameter - filess"
+            message: "Missing required parameter - files"
         });
     }
 
     const file = req?.files?.headerImage;
 
-    const headerImage = await cloudinary.v2.uploader.upload(
-        file.tempFilePath, {
-        folder: 'MNS/Services/Header',
-    }
-    )
+    // Fetch the existing servicesHeader section
+    const servicesHeaderSection = await Services.findOne();
 
-    const { header, caption } = req.body
+    // Delete the old image if it exists
+    if (servicesHeaderSection && servicesHeaderSection.headerImage && servicesHeaderSection.headerImage.public_id) {
+        try {
+            await cloudinary.uploader.destroy(servicesHeaderSection.headerImage.public_id);
+        } catch (error) {
+            return res.status(500).json({
+                success: false,
+                message: "Error deleting old image",
+                error: error.message,
+            });
+        }
+    }
+
+    // Upload the new image
+    let headerImage;
+    try {
+        headerImage = await cloudinary.v2.uploader.upload(file.tempFilePath, {
+            folder: 'MNS/Services/Header',
+        });
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: "Error uploading new image",
+            error: error.message,
+        });
+    }
+
+    const { header, caption } = req.body;
 
     const update = {
         header,
@@ -31,7 +55,7 @@ exports.servicesHeaderSection = catchAsyncError(async (req, res, next) => {
             public_id: headerImage.public_id,
             url: headerImage.secure_url,
         }
-    }
+    };
 
     const options = {
         new: true,
@@ -39,57 +63,65 @@ exports.servicesHeaderSection = catchAsyncError(async (req, res, next) => {
         useFindAndModify: false
     };
 
-    const servicesHeader = await Services.findOneAndUpdate({}, update, options);
+    try {
+        const updatedServicesHeader = await Services.findOneAndUpdate({}, update, options);
 
-
-    res.status(200).json({
-        success: true,
-        message: "Services Header Add",
-        servicesHeader
-    })
+        res.status(200).json({
+            success: true,
+            message: "Services Header Updated",
+            servicesHeader: updatedServicesHeader,
+        });
+    } catch (error) {
+        console.error("Error updating the database: ", error);
+        res.status(500).json({
+            success: false,
+            message: "Error updating the database",
+            error: error.message,
+        });
+    }
 
 })
 
-exports.updateServicesHeaderSection = catchAsyncError(async (req, res, nect) => {
-    const newHeader = {
-        header: req?.body?.header,
-        caption: req?.body?.caption,
-    }
+// exports.updateServicesHeaderSection = catchAsyncError(async (req, res, nect) => {
+//     const newHeader = {
+//         header: req?.body?.header,
+//         caption: req?.body?.caption,
+//     }
 
-    if (req.files && req?.files?.headerImage) {
-        const aboutHeader = await Services.findById(req.params.id);
+//     if (req.files && req?.files?.headerImage) {
+//         const aboutHeader = await Services.findById(req.params.id);
 
-        const imageID = aboutHeader.headerImage.public_id;
-        console.log(imageID)
+//         const imageID = aboutHeader.headerImage.public_id;
+//         console.log(imageID)
 
-        await cloudinary.uploader.destroy(imageID);
+//         await cloudinary.uploader.destroy(imageID);
 
-        const file = req?.files?.headerImage;
+//         const file = req?.files?.headerImage;
 
-        const Image = await cloudinary.v2.uploader.upload(
-            file.tempFilePath, {
-            folder: 'MNS/Services/Header',
-        }
-        )
+//         const Image = await cloudinary.v2.uploader.upload(
+//             file.tempFilePath, {
+//             folder: 'MNS/Services/Header',
+//         }
+//         )
 
-        newHeader.image = {
-            public_id: Image.public_id,
-            url: Image.secure_url,
-        }
-    }
+//         newHeader.image = {
+//             public_id: Image.public_id,
+//             url: Image.secure_url,
+//         }
+//     }
 
-    const servicesHeader = await Services.findByIdAndUpdate(req.params.id, newHeader, {
-        new: true,
-        runValidators: true,
-        useFindAndModify: true,
-    })
+//     const servicesHeader = await Services.findByIdAndUpdate(req.params.id, newHeader, {
+//         new: true,
+//         runValidators: true,
+//         useFindAndModify: true,
+//     })
 
-    res.status(200).json({
-        success: true,
-        message: "Services Header Updated",
-        servicesHeader
-    });
-});
+//     res.status(200).json({
+//         success: true,
+//         message: "Services Header Updated",
+//         servicesHeader
+//     });
+// });
 
 // Services Body
 
@@ -118,24 +150,24 @@ exports.servicesBodySection = catchAsyncError(async (req, res, next) => {
 })
 
 
-exports.updateServicesBodySection = catchAsyncError(async (req, res, next) => {
-    const newData = {
-        servicesBodyHeader: req?.body?.servicesBodyHeader,
-        servicesBodyContent: req?.body?.servicesBodyContent
-    }
+// exports.updateServicesBodySection = catchAsyncError(async (req, res, next) => {
+//     const newData = {
+//         servicesBodyHeader: req?.body?.servicesBodyHeader,
+//         servicesBodyContent: req?.body?.servicesBodyContent
+//     }
 
-    const servicesBody = await Services.findByIdAndUpdate(req.params.id, newData, {
-        new: true,
-        runValidators: true,
-        useFindAndModify: true,
-    })
+//     const servicesBody = await Services.findByIdAndUpdate(req.params.id, newData, {
+//         new: true,
+//         runValidators: true,
+//         useFindAndModify: true,
+//     })
 
-    res.status(200).json({
-        success: true,
-        message: "Services Body Updated",
-        servicesBody
-    });
-})
+//     res.status(200).json({
+//         success: true,
+//         message: "Services Body Updated",
+//         servicesBody
+//     });
+// })
 
 // Our Services Section
 
