@@ -1,6 +1,7 @@
 const catchAsyncError = require('../middleware/catchAsyncError');
 const cloudinary = require('cloudinary');
 const Home = require('../models/homeModel');
+const HomeCarousel = require('../models/homeServicesCarouselModel')
 
 
 
@@ -267,6 +268,83 @@ exports.updateServices = catchAsyncError(async (req, res, next) => {
         services
     });
 })
+
+exports.servicesCarousel = catchAsyncError(async(req,res,next)=>{
+    if (!req.files || !req.files.image) {
+        return res.status(400).json({
+            success: false,
+            message: "Missing required parameter - filess"
+        });
+    }
+
+    const { title } = req.body;
+    const imageFile = req.files.image;
+
+    const serviceImage = await cloudinary.v2.uploader.upload(imageFile.tempFilePath, {
+        folder: 'MNS/Home/services'
+    });
+    
+    const serviceSection = await HomeCarousel.create({
+        title,
+        image: {
+            public_id: serviceImage.public_id,
+            url: serviceImage.secure_url,
+        },
+    });
+
+    res.status(200).json({
+        success: true,
+        serviceSection
+    });
+
+})
+
+exports.updateServicesCarousel = catchAsyncError(async(req,res,next) =>{
+    const newData = {
+        title: req.body.title,
+    };
+
+    const service = await HomeCarousel.findById(req.params.id);
+
+    if (!service) {
+        return res.status(404).json({
+            success: false,
+            message: "Service section not found"
+        });
+    }
+
+    if (req.files && req.files.image) {
+        const imageID = service.image.public_id;
+
+
+        if (imageID) {
+            await cloudinary.v2.uploader.destroy(imageID);
+        }
+
+        const imageFile = req.files.image;
+
+        const serviceImage = await cloudinary.v2.uploader.upload(imageFile.tempFilePath, {
+            folder: 'MNS/Home/services'
+        });
+
+        newData.image = {
+            public_id: serviceImage.public_id,
+            url: serviceImage.secure_url,
+        };
+    }
+    const serviceSection = await HomeCarousel.findByIdAndUpdate(req.params.id, newData, {
+        new: true,
+        runValidators: true,
+        useFindAndModify: false,
+    });
+
+    res.status(200).json({
+        success: true,
+        serviceSection
+    });
+})
+
+
 
 
 // Vision Section

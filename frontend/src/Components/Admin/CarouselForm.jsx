@@ -70,13 +70,6 @@ const CarouselForm = () => {
         setCarouselInput({ title: "", description: "", myFile: "" });
     }
 
-
-
-
-
-
-
-
     return (
         <div>
             <form onSubmit={submitHandler} encType='multipart/form-data'>

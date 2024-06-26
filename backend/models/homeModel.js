@@ -99,7 +99,6 @@ const homeSchema = new mongoose.Schema({
     },
     visionHeaderSecond:{
         type: String,
-        //required: true,
     },
     visionCaptionSecond:{
         type: String,
