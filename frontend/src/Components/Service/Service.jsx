@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import img1 from "../../assets/images/image1.png"
 import img2 from "../../assets/images/image2.png"
 import img3 from "../../assets/images/image3.png"
@@ -8,9 +8,27 @@ import img6 from "../../assets/images/image61.png"
 import "./Service.css"
 import "./../Home/HomePage.css";
 import "./../About/About.css";
+import { useSelector, useDispatch } from 'react-redux';
+import { getServices, clearErrors } from '../../Actions/ServicesActions';
+
+
 
 const Service = () => {
     const [selectedImage, setSelectedImage] = useState(null);
+
+    const dispatch = useDispatch();
+    const { services, ourServices, loading, error } = useSelector(state => state.services);
+
+    useEffect(() => {
+        dispatch(getServices());
+    }, [dispatch]);
+
+    useEffect(() => {
+        if (error) {
+            alert(error);
+            dispatch(clearErrors());
+        }
+    }, [error, dispatch]);
 
     const images = [
         {
@@ -50,19 +68,22 @@ const Service = () => {
     };
 
     return (
+        services && services.length > 0 && (
         <>
-            <div className="commonBanner-wrapper service">
+            <div className="commonBanner-wrapper service" style={{
+                    background: services.length > 0 ? `url(${services[0].headerImage.url}) 50% / cover no-repeat, linear-gradient(#D9D9D9, #D9D9D9)` : ''
+                }}>
 				<div className="common-banner">
-					<h1 className="our-team-heading">Services</h1>
-					<p className="our-team-caption">Welcome to Mallarpur Naisuva, where our mission is to empower communities, uplift the vulnerable, and create positive change in society.</p>
+					<h1 className="our-team-heading">{services[0].header}</h1>
+					<p className="our-team-caption">{services[0].caption}</p>
 				</div>
 			</div>
          
             <div className="image-gallery">
-                <h1 className='our-team-heading'>Our Services</h1>
-                <p className='our-team-caption'>We are evaluate your organization’s goals.</p>
+                <h1 className='our-team-heading'>{services[0].servicesBodyContent}</h1>
+                <p className='our-team-caption'>{services[0].servicesBodyHeader}</p>
                 <ul className="image-grid">
-                    {images.map((image) => (
+                    {/* {images.map((image) => (
                         <li key={image.id}>
                         <div className='image-box'>
                         <img
@@ -78,10 +99,28 @@ const Service = () => {
                         </div>
                             <p className='service-name'>Services</p>
                         </li>
+                    ))} */}
+                    {ourServices.map((service) => (
+                        <li key={service._id}>
+                            <div className='image-box'>
+                                <img
+                                    src={service.image.url}
+                                    alt={service.title}
+                                    onClick={() => handleClick(service._id)}
+                                />
+                                {selectedImage === service._id && (
+                                    <div className="dropdown">
+                                        <p>{service.description}</p>
+                                    </div>
+                                )}
+                            </div>
+                            <p className='service-name'>{service.title}</p>
+                        </li>
                     ))}
                 </ul>
             </div>
         </>
+        )
     )
 }
 

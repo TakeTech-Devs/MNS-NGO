@@ -255,10 +255,15 @@ exports.updateOurServicesSection = catchAsyncError(async (req, res, next) => {
 })
 
 exports.getServicesPage = catchAsyncError(async(req,res,next) =>{
-    const services = await Services.find();
+    // const services = await Services.find();
+    const [services, ourServices] = await Promise.all([
+        Services.find(),
+        OurServices.find()
+    ])
 
     res.status(200).json({
         success: true,
         services,
+        ourServices
     })
 })

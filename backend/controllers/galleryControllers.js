@@ -3,6 +3,9 @@ const cloudinary = require('cloudinary');
 const Gallery = require("../models/galleryModel");
 const GalleryImage = require('../models/galleryImageModel')
 
+
+// Header Section
+
 exports.headerSection = catchAsyncError(async (req, res, next) => {
     if (!req.files || !req?.files?.headerImage) {
         return res.status(400).json({
@@ -187,7 +190,6 @@ exports.getGalleryPage = catchAsyncError(async(req,res,next) =>{
         GalleryImage.find()
     ]);
 
-    // Send the response with both datasets
     res.status(200).json({
         success: true,
         gallery,

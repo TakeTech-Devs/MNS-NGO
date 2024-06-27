@@ -1,13 +1,29 @@
 /* eslint-disable */
-import React from 'react';
+import React, { useEffect } from 'react';
 import "./Form.css";
 import img1 from '../../assets/images/email2.png';
 import img2 from '../../assets/images/image6.png';
 import img3 from '../../assets/images/facebook5.png';
 import img4 from '../../assets/images/linkedin25.png';
+import { useSelector, useDispatch } from 'react-redux';
+import { getContact, clearErrors } from '../../Actions/ContactActions';
 
 const Form = () => {
+    const dispatch = useDispatch();
+    const { contact, loading, error } = useSelector(state => state.contact)
+
+    useEffect(() => {
+        dispatch(getContact());
+    }, [dispatch]);
+
+    useEffect(() => {
+        if (error) {
+            alert(error);
+            dispatch(clearErrors());
+        }
+    }, [error, dispatch]);
     return (
+        contact && contact.length > 0 && (
         <div class="form-container">
             <h1 className='formheading'>Get in Touch With Us</h1>
             <form className='form'>
@@ -27,8 +43,8 @@ const Form = () => {
             </form>
             <div className="form-footer">
                 <div className="left-align">
-                    <span>loremipsum@dolor</span>
-                    <span>000-000 0000</span>
+                    <span>{contact[0].email}</span>
+                    <span>{contact[0].phone}</span>
                 </div>
                 <div className="right-align">
                     <img src={img1} alt="Footer Image" />
@@ -38,6 +54,7 @@ const Form = () => {
                 </div>
             </div>
         </div>
+        )
     )
 }
 
