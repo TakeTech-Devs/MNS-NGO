@@ -14,14 +14,14 @@ const Sidebar = () => {
       <div className={`sidebar ${isOpen ? 'open' : ''}`}>
         <Link to='/' className="logo1"></Link>
         <ul>
-          <li>Home</li>
-          <li>About Us</li>
-          <li>Grievance</li>
-          <li>Services</li>
-          <li>Governing Body</li>
-          <li>Gallery</li>
-          <li>Contact Us</li>
-          <li>Logout</li>
+          <li><Link to="/home">Home</Link></li>
+          <li><Link>About Us</Link></li>
+          <li><Link>Grievance</Link></li>
+          <li><Link>Services</Link></li>
+          <li><Link>Governing Body</Link></li>
+          <li><Link>Gallery</Link></li>
+          <li><Link>Contact Us</Link></li>
+          <li><Link>Logout</Link></li>
         </ul>
       </div>
       <button className="menu-toggle" onClick={toggleSidebar}>

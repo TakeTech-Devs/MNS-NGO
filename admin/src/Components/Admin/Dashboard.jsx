@@ -10,7 +10,6 @@ const Dashboard = () => {
       <Sidebar />
       <div className="admin-main">
         <AdminHeader />
-        <AdminHome />
       </div>
     </div>
   );
