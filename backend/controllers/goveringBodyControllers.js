@@ -33,9 +33,7 @@ exports.headerSection = catchAsyncError(async (req, res, next) => {
         headerImage = await cloudinary.v2.uploader.upload(file.tempFilePath, {
             folder: 'MNS/Govering Body/Header',
         });
-        console.log(`Uploaded new image: `, headerImage);
     } catch (error) {
-        console.error(`Error uploading new image: `, error);
         return res.status(500).json({
             success: false,
             message: "Error uploading new image",
@@ -69,7 +67,6 @@ exports.headerSection = catchAsyncError(async (req, res, next) => {
             goveringHeader: updatedGoveringHeader,
         });
     } catch (error) {
-        console.error("Error updating the database: ", error);
         res.status(500).json({
             success: false,
             message: "Error updating the database",

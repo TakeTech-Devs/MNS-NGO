@@ -72,7 +72,6 @@ exports.servicesHeaderSection = catchAsyncError(async (req, res, next) => {
             servicesHeader: updatedServicesHeader,
         });
     } catch (error) {
-        console.error("Error updating the database: ", error);
         res.status(500).json({
             success: false,
             message: "Error updating the database",

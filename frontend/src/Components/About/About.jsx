@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React from "react";
+import React, { useEffect } from "react";
 import "./About.css";
 import "./../Home/HomePage.css";
 import Compassion from "../../assets/vectors/compassion.svg"
@@ -10,36 +10,64 @@ import rectangle from "../../assets/images/rectangle8.png"
 import rectangletwo from "../../assets/images/rectangle9.png"
 import rectanglethree from "../../assets/images/rectangle10.png"
 import rectanglefour from "../../assets/images/rectangle101.png"
+import { useSelector, useDispatch } from 'react-redux';
+import { getAbout, clearErrors } from '../../Actions/AboutUsActions';
+
+const values = [
+	{ name: "Compassion", image: Compassion },
+	{ name: "Empowerment", image: Empowerment },
+	{ name: "Integrity", image: Integrity },
+	{ name: "Collaboration", image: Collaboration },
+];
 
 const About = () => {
+
+	const dispatch = useDispatch();
+	const { about, valueImage, error } = useSelector(state => state.about);
+
+	useEffect(() => {
+		dispatch(getAbout());
+	}, [dispatch]);
+
+	useEffect(() => {
+		if (error) {
+			alert(error);
+			dispatch(clearErrors());
+		}
+	}, [error, dispatch]);
+
 	return (
-		<>
-			<div className="commonBanner-wrapper about">
-				<div className="common-banner">
-					<h1 className="our-team-heading">About Us</h1>
-					<p className="our-team-caption">Welcome to Mallarpur Naisuva, where our mission is to empower communities, uplift the vulnerable, and create positive change in society.</p>
-				</div>
-			</div>
-		
-			<div className="about-gallery">
-					<div className="about-gallery-background">
-						<h2 class="our-team-heading">We done with <br/>Your help!</h2>
+		about && about.length > 0 && (
+			<>
+				<div className="commonBanner-wrapper about" style={{
+					background: about.length > 0 ? `url(${about[0].headerImage.url}) 50% / cover no-repeat, linear-gradient(#D9D9D9, #D9D9D9)` : ""
+				}}>
+					<div className="common-banner">
+						<h1 className="our-team-heading">{about[0].header}</h1>
+						<p className="our-team-caption">{about[0].caption}</p>
 					</div>
+				</div>
+
+				<div className="about-gallery">
+					<div className="about-gallery-background">
+						<h2 class="our-team-heading">We done with <br />Your help!</h2>
+					</div>
+
 					<div className="about-gallery-wrapper">
 						<div className="about-gallery-img-one">
-							<img src={rectangle}/>
+							<img src={about[0].images[0].url} />
 						</div>
 						<div className="about-gallery-img-two">
 							<div className="about-gallery-img-wrap">
-								<img src={rectangletwo}/>
+								<img src={about[0].images[1].url} />
 							</div>
 						</div>
 						<div className="about-gallery-img-three">
-							<img src={rectanglethree}/>
+							<img src={about[0].images[2].url} />
 						</div>
 						<div className="about-gallery-img-four">
 							<div className="about-gallery-img-wrap">
-								<img src={rectanglefour}/>
+								<img src={about[0].images[3].url} />
 							</div>
 						</div>
 						<div className="about-gallery-dot-one">
@@ -49,55 +77,45 @@ const About = () => {
 						<div className="about-gallery-dot-three">
 						</div>
 					</div>
-				</div>
-			<div className="OurValues">
-				<div className="our-team-heading">Our Values</div>
-				<p className="our-team-caption">
-					At Mallarpur Naisuva, we are guided by a set of core values that shape everything we do
-				</p>
-				<div className="ValuePoints-wrapper">
-					<ul className="Values">
-						<li className="ValuePoints">
-							<div className="ValueImage">
-								<img src={Compassion} />
-							</div>
-							<p>Compassion</p>
-						</li>
-						<li className="ValuePoints">
-							<div className="ValueImage">
-								<img src={Empowerment} />
-							</div>
-							<p>Empowerment</p>
-						</li>
-						<li className="ValuePoints">
-							<div className="ValueImage">
-								<img src={Integrity} />
-							</div>
-							<p>Integrity</p>
-						</li>
-						<li className="ValuePoints">
-							<div className="ValueImage">
-								<img src={Collaboration} />
-							</div>
-							<p>Collaboration</p>
-						</li>
 
-					</ul>
-					<div className="ValueHead">Our Values</div>
 				</div>
 
-			</div>
+				<div className="OurValues">
+					<div className="our-team-heading">{about[0].ourValuesHeader}</div>
+					<p className="our-team-caption">
+						{about[0].ourValuesContent}
+					</p>
+					<div className="ValuePoints-wrapper">
 
-			<div className="img-section about">
-				<div className="img-section-overlay"></div>
-				<div className="img-section-heading">Get Involved</div>
-				<span
-					className="img-section-caption"
-				>
-					Join us in our mission to create a brighter future for all. Whether through volunteering, donating, or spreading awareness, your support makes a difference.
-				</span>
-			</div>
-		</>
+						<ul className="Values">
+							{valueImage && valueImage.map((value, index) => (
+								<li key={index} className="ValuePoints">
+									<div className="ValueImage">
+										<img src={value.image.url} alt={value.title} />
+									</div>
+									<p>{value.title}</p>
+								</li>
+							))}
+						</ul>
+
+						<div className="ValueHead">{about[0].caption}</div>
+					</div>
+
+				</div>
+
+				<div className="img-section about" style={{
+					background: `url(${about[0].getInvolvedImage.url}) 50% / cover no-repeat, linear-gradient(#D9D9D9, #D9D9D9)`
+				}}>
+					<div className="img-section-overlay"></div>
+					<div className="img-section-heading">{about[0].getInvolvedHeader}</div>
+					<span
+						className="img-section-caption"
+					>
+						{about[0].getInvolvedCaption}
+					</span>
+				</div>
+			</>
+		)
 	);
 };
 

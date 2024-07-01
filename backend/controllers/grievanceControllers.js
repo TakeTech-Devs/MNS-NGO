@@ -69,7 +69,6 @@ exports.grievanceHeaderSection = catchAsyncError(async(req,res,next) =>{
             grievanceHeader: updatedGrievanceHeader,
         });
     } catch (error) {
-        console.error("Error updating the database: ", error);
         res.status(500).json({
             success: false,
             message: "Error updating the database",

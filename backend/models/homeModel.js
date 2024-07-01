@@ -16,6 +16,9 @@ const homeSchema = new mongoose.Schema({
     carouselText:{
         type: String,
     },
+    carouselCaption:{
+        type: String,
+    },
     highlightHeaderFirst: {
         type: String
     },

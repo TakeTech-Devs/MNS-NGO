@@ -1,6 +1,7 @@
 const catchAsyncError = require('../middleware/catchAsyncError');
 const cloudinary = require('cloudinary');
 const About = require('../models/aboutModel');
+const ourValues = require('../models/ourValuesModel');
 
 
 
@@ -37,9 +38,8 @@ exports.headerSection = catchAsyncError(async (req, res, next) => {
         headerImage = await cloudinary.v2.uploader.upload(file.tempFilePath, {
             folder: 'MNS/About Us/Header',
         });
-        console.log(`Uploaded new image: `, headerImage);
     } catch (error) {
-        console.error(`Error uploading new image: `, error);
+
         return res.status(500).json({
             success: false,
             message: "Error uploading new image",
@@ -73,7 +73,6 @@ exports.headerSection = catchAsyncError(async (req, res, next) => {
             aboutHeader: updatedAboutHeader,
         });
     } catch (error) {
-        console.error("Error updating the database: ", error);
         res.status(500).json({
             success: false,
             message: "Error updating the database",
@@ -159,9 +158,7 @@ exports.aboutImageSection = catchAsyncError(async(req, res, next) => {
         for (const image of aboutSection.images) {
             try {
                 await cloudinary.uploader.destroy(image.public_id);
-                console.log(`Deleted old image with public_id: ${image.public_id}`);
             } catch (error) {
-                console.error(`Error deleting image with public_id: ${image.public_id}`, error);
                 return res.status(500).json({
                     success: false,
                     message: "Error deleting old images",
@@ -175,7 +172,6 @@ exports.aboutImageSection = catchAsyncError(async(req, res, next) => {
 
     for (let i = 0; i < images.length; i++) {
         const filePath = images[i].tempFilePath || images[i].path;
-        console.log(`Image ${i + 1} tempFilePath: ${filePath}`);
 
         if (!filePath) {
             return res.status(400).json({
@@ -188,14 +184,12 @@ exports.aboutImageSection = catchAsyncError(async(req, res, next) => {
             const result = await cloudinary.v2.uploader.upload(filePath, {
                 folder: 'MNS/About Us/Image',
             });
-            console.log(`Uploaded image ${i + 1}: `, result);
 
             imagesLinks.push({
                 public_id: result.public_id,
                 url: result.secure_url,
             });
         } catch (error) {
-            console.error(`Error uploading image ${i + 1}: `, error);
             return res.status(500).json({
                 success: false,
                 message: "Error uploading image " + (i + 1),
@@ -223,7 +217,6 @@ exports.aboutImageSection = catchAsyncError(async(req, res, next) => {
             aboutImage, 
         });
     } catch (error) {
-        console.error("Error updating the database: ", error);
         res.status(500).json({
             success: false,
             message: "Error updating the database",
@@ -258,6 +251,83 @@ exports.ourValuesSection = catchAsyncError(async(req,res,next) => {
     })
 
 
+})
+
+exports.ourValuesImages = catchAsyncError(async (req,res,next) =>{
+    if (!req.files || !req?.files?.image) {
+        return res.status(400).json({
+            success: false,
+            message: "Missing required parameter - filess"
+        });
+    }
+
+    const imageFile = req?.files?.image;
+
+    const valueImage = await cloudinary.v2.uploader.upload(imageFile.tempFilePath, {
+        folder: 'MNS/About Us/Value Image'
+    });
+
+    const { title } = req.body
+    
+    const valueImageSection = await ourValues.create({
+        title,
+        image: {
+            public_id: valueImage.public_id,
+            url: valueImage.secure_url,
+        },
+    });
+
+    res.status(200).json({
+        success: true,
+        message: "Value Image Add",
+        valueImageSection
+    });
+})
+
+exports.updateourValuesImages = catchAsyncError(async(req,res,next) =>{
+    const newData = {
+        title: req?.body?.title,
+    };
+
+    const Image = await ourValues.findById(req.params.id);
+
+    if (!Image) {
+        return res.status(404).json({
+            success: false,
+            message: "valueImage section not found"
+        });
+    }
+
+    if (req.files && req?.files?.image) {
+        const imageID = Image.image.public_id;
+
+
+        if (imageID) {
+            await cloudinary.v2.uploader.destroy(imageID);
+        }
+
+        const imageFile = req?.files?.image;
+
+        const valueImage = await cloudinary.v2.uploader.upload(imageFile.tempFilePath, {
+            folder: 'MNS/About Us/Value Image'
+        });
+
+        newData.image = {
+            public_id: valueImage.public_id,
+            url: valueImage.secure_url,
+        };
+    }
+    const valueImageSection = await ourValues.findByIdAndUpdate(req.params.id, newData, {
+        new: true,
+        runValidators: true,
+        useFindAndModify: false,
+    });
+
+    res.status(200).json({
+        success: true,
+        message: "Value Image Update",
+        valueImageSection
+    });
 })
 
 // exports.updateOurValuesSection = catchAsyncError(async(req,res,next) =>{
@@ -349,7 +419,6 @@ exports.getInvolvedSection = catchAsyncError(async(req,res,next) =>{
             involved: updatedGetInvolvedSection,
         });
     } catch (error) {
-        console.error("Error updating the database: ", error);
         res.status(500).json({
             success: false,
             message: "Error updating the database",
@@ -407,10 +476,15 @@ exports.getInvolvedSection = catchAsyncError(async(req,res,next) =>{
 // })
 
 exports.getAboutPage = catchAsyncError(async(req,res,next) =>{
-    const about = await About.find();
+    // const about = await About.find();
+    const [ about, valueImage ] = await Promise.all([
+        About.find(),
+        ourValues.find(),
+    ]) 
 
     res.status(200).json({
         success: true,
         about,
+        valueImage
     })
 })

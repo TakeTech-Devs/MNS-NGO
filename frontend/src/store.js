@@ -7,6 +7,8 @@ import { governingReducer } from './Reducers/GoverningBodyReducer';
 import { grievanceReducer } from './Reducers/GrievanceReducer';
 import { servicesReducer } from './Reducers/ServicesReducer';
 import { galleryReducer } from './Reducers/GalleryReducer';
+import { homeReducer } from './Reducers/HomeReducer';
+import { aboutReducer } from './Reducers/AboutUsReducer';
 
 
 const reducer = combineReducers({
@@ -16,6 +18,8 @@ const reducer = combineReducers({
    grievance: grievanceReducer,
    services: servicesReducer,
    gallery: galleryReducer,
+   home: homeReducer,
+   about: aboutReducer,
 });
 
 

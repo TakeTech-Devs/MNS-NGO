@@ -34,10 +34,11 @@ exports.carouselSection = catchAsyncError(async(req,res,next) =>{
         });
     }
 
-    const { carouselText } = req.body;
+    const { carouselText, carouselCaption } = req.body;
 
     const update = {
         carouselText,
+        carouselCaption,
         carouselImage: imagesLinks,
     };
 
@@ -188,7 +189,6 @@ exports.aboutSection = catchAsyncError(async (req, res, next) => {
             aboutSection: updatedAboutSection,
         });
     } catch (error) {
-        console.error("Error updating the database: ", error);
         res.status(500).json({
             success: false,
             message: "Error updating the database",
@@ -475,7 +475,6 @@ exports.visionSection = catchAsyncError(async (req, res, next) => {
             visionSection: updatedVisionSection,
         });
     } catch (error) {
-        console.error("Error updating the database: ", error);
         res.status(500).json({
             success: false,
             message: "Error updating the database",
@@ -669,7 +668,6 @@ exports.joinUsSection = catchAsyncError(async(req,res,next) =>{
             joinUs: updatedJoinUsSection,
         });
     } catch (error) {
-        console.error("Error updating the database: ", error);
         res.status(500).json({
             success: false,
             message: "Error updating the database",
@@ -730,10 +728,14 @@ exports.joinUsSection = catchAsyncError(async(req,res,next) =>{
 
 
 exports.getHomePage = catchAsyncError(async (req, res, next) => {
-    const home = await Home.find();
+    const [home, homeCarousel] = await Promise.all([
+        Home.find(),
+        HomeCarousel.find(),
+    ]);
 
     res.status(200).json({
         success: true,
         home,
-    });
+        homeCarousel
+    })
 })
