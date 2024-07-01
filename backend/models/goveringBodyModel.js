@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const grievanceSchema = new mongoose.Schema({
+const GoveringBodySchema = new mongoose.Schema({
     header: {
         type: String,
     },
@@ -16,7 +16,13 @@ const grievanceSchema = new mongoose.Schema({
             type: String,
             default: null
         },
+    },
+    goveringBodyHeader:{
+        type: String,
+    },
+    goveringBodyContent:{
+        type: String,
     }
-})
+});
 
-module.exports = mongoose.model("Grievance", grievanceSchema);
+module.exports = mongoose.model("GoveringBody", GoveringBodySchema);

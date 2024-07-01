@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const grievanceSchema = new mongoose.Schema({
+const ContactSchema = new mongoose.Schema({
     header: {
         type: String,
     },
@@ -16,7 +16,13 @@ const grievanceSchema = new mongoose.Schema({
             type: String,
             default: null
         },
+    },
+    phone:{
+        type: String,
+    },
+    email:{
+        type: String,
     }
-})
+});
 
-module.exports = mongoose.model("Grievance", grievanceSchema);
+module.exports = mongoose.model("Contact", ContactSchema);

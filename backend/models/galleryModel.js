@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const grievanceSchema = new mongoose.Schema({
+const GallerySchema = new mongoose.Schema({
     header: {
         type: String,
     },
@@ -16,7 +16,13 @@ const grievanceSchema = new mongoose.Schema({
             type: String,
             default: null
         },
+    },
+    galleryHeader:{
+        type: String,
+    },
+    galleryContent:{
+        type: String,
     }
-})
+});
 
-module.exports = mongoose.model("Grievance", grievanceSchema);
+module.exports = mongoose.model("Gallery", GallerySchema);
