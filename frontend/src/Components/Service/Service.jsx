@@ -80,9 +80,6 @@ const Service = () => {
 			</div>
          
             <div className="image-gallery">
-                <h1 className='our-team-heading'>{services[0].servicesBodyContent}</h1>
-                <p className='our-team-caption'>{services[0].servicesBodyHeader}</p>
-                <ul className="image-grid">
                     {/* {images.map((image) => (
                         <li key={image.id}>
                         <div className='image-box'>
@@ -99,6 +96,7 @@ const Service = () => {
                         </div>
                             <p className='service-name'>Services</p>
                         </li>
+
                     ))} */}
                     {ourServices.map((service) => (
                         <li key={service._id}>

@@ -1,0 +1,10 @@
+.admin-dashboard {
+  display: flex;
+  height: 100vh;
+}
+
+.admin-main {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
