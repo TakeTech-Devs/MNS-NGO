@@ -2,7 +2,6 @@ import React from 'react';
 import './Dashboard.css';
 import Sidebar from './Sidebar';
 import AdminHeader from './AdminHeader';
-import AdminHome from './AdminHome';
 
 const Dashboard = () => {
   return (

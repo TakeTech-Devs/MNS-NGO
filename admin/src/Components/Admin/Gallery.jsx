@@ -7,7 +7,7 @@ import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import './AdminHome.css';
 
-const Home = () => {
+const Gallery = () => {
     const [showFormModal, setShowFormModal] = useState(false);
     const [showUpdateModal, setShowUpdateModal] = useState(false);
 
@@ -71,15 +71,15 @@ const Home = () => {
       <div className="admin-main">
         <AdminHeader />
 
-        {/* Home Header */}
+        {/* Gallery Header */}
         <div className="mb-2 my-3 mx-3">
-            <h2>Home Header</h2>
+            <h2>Gallery Header</h2>
                 <Button variant="primary" size="sm" onClick={handleShowHeaderForm}>
                     Form
                 </Button>
                 <Modal show={showHeaderForm} onHide={handleCloseHeaderUpdate}>
                     <Modal.Header closeButton>
-                        <Modal.Title>Home Header</Modal.Title>
+                        <Modal.Title>Gallery Header</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                         <Form>
@@ -140,15 +140,15 @@ const Home = () => {
                 </table>
             </main>
 
-            {/* Home Highlight */}
+            {/* Gallery Highlight */}
             <div className="mb-2 my-3 mx-3">
-            <h2>Home Highlight</h2>
+            <h2>Gallery Highlight</h2>
                 <Button variant="primary" size="sm" onClick={handleShowHighlightForm}>
                     Form
                 </Button>
                 <Modal show={showHighlightForm} onHide={handleCloseHighlightUpdate}>
                     <Modal.Header closeButton>
-                        <Modal.Title>Home Highlight</Modal.Title>
+                        <Modal.Title>Gallery Highlight</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                         <Form>
@@ -243,16 +243,16 @@ const Home = () => {
             </main>
 
 
-            {/* Home About */}
+            {/* Gallery About */}
 
             <div className="mb-2 my-3 mx-3">
-            <h2>Home About</h2>
+            <h2>Gallery About</h2>
                 <Button variant="primary" size="sm" onClick={handleShowAboutForm}>
                     Form
                 </Button>
                 <Modal show={showAboutForm} onHide={handleCloseAboutUpdate}>
                     <Modal.Header closeButton>
-                        <Modal.Title>Home About</Modal.Title>
+                        <Modal.Title>Gallery About</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                         <Form>
@@ -335,17 +335,17 @@ const Home = () => {
 
 
 
-                {/* Home Services */}
+                {/* Gallery Services */}
 
 
             <div className="mb-2 my-3 mx-3">
-            <h2>Home Services</h2>
+            <h2>Gallery Services</h2>
                 <Button variant="primary" size="sm" onClick={handleShowServicesForm}>
                     Form
                 </Button>
                 <Modal show={showServicesForm} onHide={handleCloseServicesUpdate}>
                     <Modal.Header closeButton>
-                        <Modal.Title>Home Services</Modal.Title>
+                        <Modal.Title>Gallery Services</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                         <Form>
@@ -387,7 +387,7 @@ const Home = () => {
                 </Button>
                 <Modal show={showUpdateModal} onHide={handleCloseUpdateModal}>
                     <Modal.Header closeButton>
-                        <Modal.Title>Home</Modal.Title>
+                        <Modal.Title>Gallery</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                         <Form>
@@ -459,15 +459,15 @@ const Home = () => {
                 </table>
             </main>
 
-                {/* Home Vision */}
+                {/* Gallery Vision */}
             <div className="mb-2 my-3 mx-3">
-            <h2>Home Vision</h2>
+            <h2>Gallery Vision</h2>
                 <Button variant="primary" size="sm" onClick={handleShowVisionForm}>
                     Form
                 </Button>
                 <Modal show={showVisionForm} onHide={handleCloseVisionUpdate}>
                     <Modal.Header closeButton>
-                        <Modal.Title>Home Vision</Modal.Title>
+                        <Modal.Title>Gallery Vision</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                         <Form>
@@ -603,16 +603,16 @@ const Home = () => {
 
 
 
-            {/* Home JoinUs */}
+            {/* Gallery JoinUs */}
 
             <div className="mb-2 my-3 mx-3">
-            <h2>Home JoinUs</h2>
+            <h2>Gallery JoinUs</h2>
                 <Button variant="primary" size="sm" onClick={handleShowJoinUsForm}>
                     Form
                 </Button>
                 <Modal show={showJoinUsForm} onHide={handleCloseJoinUsUpdate}>
                     <Modal.Header closeButton>
-                        <Modal.Title>Home JoinUs</Modal.Title>
+                        <Modal.Title>Gallery JoinUs</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                         <Form>
@@ -691,4 +691,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default Gallery
