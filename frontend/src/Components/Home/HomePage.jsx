@@ -46,11 +46,15 @@ const HomePage = () => {
 	}, [error, dispatch]);
 
 	const nextSlide = useCallback(() => {
-		setCurrentIndex((prevIndex) => (prevIndex + 1) % totalSlides);
-	}, [totalSlides]);
+		if (home?.carouselImage?.length) {
+			setCurrentIndex(prevIndex => (prevIndex + 1) % home.carouselImage.length);
+		}
+	}, [home?.carouselImage?.length]);
 
 	const prevSlide = () => {
-		setCurrentIndex((prevIndex) => (prevIndex - 1 + totalSlides) % totalSlides);
+		if (home?.carouselImage?.length) {
+			setCurrentIndex(prevIndex => (prevIndex - 1 + home.carouselImage.length) % home.carouselImage.length);
+		}
 	};
 
 	useEffect(() => {
@@ -66,29 +70,31 @@ const HomePage = () => {
 	// 	return <div>No data available</div>;
 	// }
 
+	console.log("img", home.carouselImage)
+
 	return (
 		home && (
 			<>
 				<div className="home-page">
 					<div className="carousel">
-					{home.carouselImage?.map((item, index) => (
-                    <div
-                        key={item._id}
-                        className="background-image"
-                        style={{
-                            backgroundImage: `url(${item.url})`,
-                            display: index === currentIndex ? 'block' : 'none'
-                        }}
-                    ></div>
-                ))}
+						{home.carouselImage.map((item, index) => (
+							<div
+								key={item._id}
+								className="background-image"
+								style={{
+									backgroundImage: `url(${item.url})`,
+									display: index === currentIndex ? 'block' : 'none'
+								}}
+							></div>
+						))}
 						<button className="prev-btn" onClick={prevSlide}>&#10094;</button>
 						<button className="next-btn" onClick={nextSlide}>&#10095;</button>
 						<div className="carousel-heading">{home.carouselText}</div>
 						<div className="carousel-caption">
-						{home.carouselCaption}
+							{home.carouselCaption}
 						</div>
 						<div className="carousel-indicate">
-							{Array.from({ length: totalSlides }).map((_, index) => (
+							{Array.from({ length: home.carouselImage.length }).map((_, index) => (
 								<div
 									key={index}
 									className={`ellipse indicator ${index === currentIndex ? 'active' : ''}`}
