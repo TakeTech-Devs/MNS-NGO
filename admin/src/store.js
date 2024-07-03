@@ -1,12 +1,13 @@
 import { legacy_createStore as createStore, combineReducers, applyMiddleware } from 'redux';
 import {thunk} from 'redux-thunk';
 import { composeWithDevTools } from '@redux-devtools/extension';
-import { homeReducer, newHomeData } from './Reducers/HomeReducer';
+import { homeReducer, homeServiceReducer, newHomeData } from './Reducers/HomeReducer';
 
 
 const reducer = combineReducers({
     adminHome: homeReducer,
-    newHomeData: newHomeData
+    newHomeData: newHomeData,
+    homeService: homeServiceReducer,
 })
 
 
