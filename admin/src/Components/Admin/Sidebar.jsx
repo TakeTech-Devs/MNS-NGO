@@ -15,12 +15,12 @@ const Sidebar = () => {
         <Link to='/' className="logo1"></Link>
         <ul>
           <li><Link to="/home">Home</Link></li>
-          <li><Link>About Us</Link></li>
-          <li><Link>Grievance</Link></li>
-          <li><Link>Services</Link></li>
-          <li><Link>Governing Body</Link></li>
-          <li><Link>Gallery</Link></li>
-          <li><Link>Contact Us</Link></li>
+          <li><Link to="/about">About Us</Link></li>
+          <li><Link to="/grievance">Grievance</Link></li>
+          <li><Link to="/services">Services</Link></li>
+          <li><Link to="/governing">Governing Body</Link></li>
+          <li><Link to="/gallery">Gallery</Link></li>
+          <li><Link to="/contact">Contact Us</Link></li>
           <li><Link>Logout</Link></li>
         </ul>
       </div>
