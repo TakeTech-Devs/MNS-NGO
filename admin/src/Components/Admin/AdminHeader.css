@@ -15,3 +15,24 @@
 .admin-header-right span {
   margin-left: 10px;
 }
+
+.admin-header-right ul{
+  list-style: none;
+  padding: 0;
+  width: 100%;
+}
+
+.admin-header-right ul li {
+  padding: 10px;
+  cursor: pointer;
+  background-color: #1e81ce;
+  border-radius: 5px;
+}
+.admin-header-right ul li a {
+  text-decoration: none;
+  color: white;
+}
+
+/* .admin-header-right ul li:hover {
+  background-color: #1e81ce;
+} */

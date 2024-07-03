@@ -8,6 +8,7 @@ import Services from './Components/Admin/Services';
 import Governing from './Components/Admin/Governing';
 import Gallery from './Components/Admin/Gallery';
 import Contact from './Components/Admin/Contact';
+import Login from './Components/Login/Login';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/governing" element={<Governing />} />      
         <Route path="/gallery" element={<Gallery />} />      
         <Route path="/contact" element={<Contact />} />      
+        <Route path="/login" element={<Login />} />      
       </Routes>
     </Router>
   );
