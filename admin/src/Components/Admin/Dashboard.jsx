@@ -7,7 +7,7 @@ const Dashboard = () => {
   return (
     <div className="admin-dashboard">
       <Sidebar />
-      <div className="admin-main">
+      <div className="admin-main" style={{height: "100vh"}}>
         <AdminHeader />
       </div>
     </div>

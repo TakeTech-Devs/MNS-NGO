@@ -81,48 +81,6 @@ exports.headerSection = catchAsyncError(async (req, res, next) => {
     }
 })
 
-// exports.updateHeaderSection = catchAsyncError(async (req, res, next) => {
-//     const newHeader = {
-//         header: req?.body?.header,
-//         caption: req?.body?.caption,
-//     }
-
-//     if (req.files && req?.files?.headerImage) {
-//         const aboutHeader = await About.findById(req.params.id);
-
-//         const imageID = aboutHeader.headerImage.public_id;
-//         console.log(imageID)
-
-//         await cloudinary.uploader.destroy(imageID);
-
-//         const file = req?.files?.headerImage;
-
-//         const Image = await cloudinary.v2.uploader.upload(
-//             file.tempFilePath, {
-//             folder: 'MNS/About Us/Header',
-//         }
-//         )
-
-//         newHeader.image = {
-//             public_id: Image.public_id,
-//             url: Image.secure_url,
-//         }
-//     }
-
-//     const header = await About.findByIdAndUpdate(req.params.id, newHeader, {
-//         new: true,
-//         runValidators: true,
-//         useFindAndModify: true,
-//     })
-
-//     res.status(200).json({
-//         success: true,
-//         message: "About Us Header Update",
-//         header
-//     });
-
-
-// })
 
 
 // About Image Section
@@ -330,25 +288,7 @@ exports.updateourValuesImages = catchAsyncError(async(req,res,next) =>{
     });
 })
 
-// exports.updateOurValuesSection = catchAsyncError(async(req,res,next) =>{
-//     const newValues = {
-//         ourValuesHeader: req?.body?.ourValuesHeader,
-//         ourValuesContent: req?.body?.ourValuesContent,
-//     };
 
-//     const ourValues = await About.findByIdAndUpdate(req.params.id, newValues,{
-//         new: true,
-//         runValidators: true,
-//         useFindAndModify: true,
-//     })
-
-//     res.status(200).json({
-//         success: true,
-//         message: "Our Values Update",
-//         ourValues
-//     })
-
-// })
 
 // Get Involved
 
@@ -362,11 +302,8 @@ exports.getInvolvedSection = catchAsyncError(async(req,res,next) =>{
     }
 
     const file = req?.files?.getInvolvedImage;
-
-    // Fetch the existing getInvolved section
     const getInvolvedSection = await About.findOne();
 
-    // Delete the old image if it exists
     if (getInvolvedSection && getInvolvedSection.getInvolvedImage && getInvolvedSection.getInvolvedImage.public_id) {
         try {
             await cloudinary.uploader.destroy(getInvolvedSection.getInvolvedImage.public_id);
@@ -379,7 +316,7 @@ exports.getInvolvedSection = catchAsyncError(async(req,res,next) =>{
         }
     }
 
-    // Upload the new image
+
     let getInvolvedImage;
     try {
         getInvolvedImage = await cloudinary.v2.uploader.upload(file.tempFilePath, {
@@ -427,56 +364,9 @@ exports.getInvolvedSection = catchAsyncError(async(req,res,next) =>{
     }
 })
 
-// exports.updateGetInvolvedSection = catchAsyncError(async(req,res,next) =>{
-    
-//     const newInvolved = {
-//         getInvolvedHeader: req?.body?.getInvolvedHeader,
-//         getInvolvedCaption: req?.body?.getInvolvedCaption,
-//     }
-
-//     if(req.files && req?.files?.getInvolvedImage){
-//         const getInvolved = await About.findById(req.params.id);
-
-//         if(!getInvolved){
-//             return res.status(404).json({
-//                 success: false,
-//                 message: "Get Involved section not found"
-//             });
-//         }
-
-//         const imageID = getInvolved.getInvolvedImage.public_id;
-
-//         await cloudinary.uploader.destroy(imageID);
-
-//         const file = req?.files?.getInvolvedImage;
-
-//         const Image = await cloudinary.v2.uploader.upload(
-//             file.tempFilePath, {
-//             folder: 'MNS/About Us/Involved',
-//         }
-//         )
-
-//         newInvolved.image = {
-//             public_id: Image.public_id,
-//             url: Image.secure_url,
-//         }
-//     }
-
-//     const involved = await About.findByIdAndUpdate(req.params.id, newInvolved,{
-//         new: true,
-//         runValidators: true,
-//         useFindAndModify: true,
-//     })
-
-//     res.status(200).json({
-//         success: true,
-//         message: "Get Involved Update",
-//         involved,
-//     })
-// })
 
 exports.getAboutPage = catchAsyncError(async(req,res,next) =>{
-    // const about = await About.find();
+
     const [ about, valueImage ] = await Promise.all([
         About.find(),
         ourValues.find(),

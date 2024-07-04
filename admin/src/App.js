@@ -14,8 +14,8 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Dashboard />} />
-        <Route path="/home" element={<Home />} />
+        <Route path="/" element={<Home />} />
+        {/* <Route path="/home" element={<Home />} /> */}
         <Route path="/about" element={<About />} />      
         <Route path="/grievance" element={<Grievance />} />      
         <Route path="/services" element={<Services />} />      

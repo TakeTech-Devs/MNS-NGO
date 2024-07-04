@@ -4,7 +4,7 @@ import "./Login.css"
 const Login = () => {
     return (
         <div className="login-page">
-            <div className="container">
+            <div className="login-container">
                 <div className="signin-form">
                     <h2>Admin Login</h2>
                     <form className='fbtn'>

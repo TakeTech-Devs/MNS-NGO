@@ -97,28 +97,7 @@ exports.highlightSection = catchAsyncError(async (req, res, next) => {
 })
 
 
-// exports.updatehighlightSection = catchAsyncError(async (req, res, next) => {
-//     const newHighlight = {
-//         highlightHeaderFirst: req?.body?.highlightHeaderFirst,
-//         highlightCaptionFirst: req?.body?.highlightCaptionFirst,
-//         highlightHeaderSecond: req?.body?.highlightHeaderSecond,
-//         highlightCaptionSecond: req?.body?.highlightCaptionSecond,
-//         highlightHeaderThird: req?.body?.highlightHeaderThird,
-//         highlightCaptionThird: req?.body?.highlightCaptionThird,
-//     }
 
-//     const highlight = await Home.findByIdAndUpdate(req.params.id, newHighlight, {
-//         new: true,
-//         runValidators: true,
-//         useFindAndModify: true,
-//     })
-
-//     res.status(200).json({
-//         success: true,
-//         message: "Highlight Update",
-//         highlight
-//     });
-// })
 
 // About Section
 
@@ -199,54 +178,6 @@ exports.aboutSection = catchAsyncError(async (req, res, next) => {
 })
 
 
-// exports.updateAboutSection = catchAsyncError(async (req, res, next) => {
-//     const newAbout = {
-//         aboutHeader: req?.body?.aboutHeader,
-//         aboutCaption: req?.body?.aboutCaption,
-//         aboutContent: req?.body?.aboutContent,
-//     }
-
-//     if (req.files && req?.files?.aboutImage) {
-//         const about = await Home.findById(req.params.id);
-
-//         // Check if the about section exists
-//         if (!about) {
-//             return res.status(404).json({
-//                 success: false,
-//                 message: "About section not found"
-//             });
-//         }
-
-//         const imageID = about.aboutImage.public_id;
-
-//         await cloudinary.uploader.destroy(imageID);
-
-//         const file = req?.files?.aboutImage;
-
-//         const Image = await cloudinary.v2.uploader.upload(
-//             file.tempFilePath, {
-//             folder: 'MNS/Home/about',
-//         }
-//         )
-
-//         newAbout.aboutImage = {
-//             public_id: Image.public_id,
-//             url: Image.secure_url,
-//         };
-//     }
-
-//     const about = await Home.findByIdAndUpdate(req.params.id, newAbout, {
-//         new: true,
-//         runValidators: true,
-//         useFindAndModify: true,
-//     })
-
-//     res.status(200).json({
-//         success: true,
-//         message: "About Us Update",
-//         about
-//     });
-// })
 
 
 // Services Section
@@ -275,24 +206,7 @@ exports.servicesSection = catchAsyncError(async (req, res, next) => {
 
 })
 
-// exports.updateServices = catchAsyncError(async (req, res, next) => {
-//     const newServices = {
-//         servicesHeader: req?.body?.servicesHeader,
-//         servicesCaption: req?.body?.servicesCaption
-//     };
 
-//     const services = await Home.findByIdAndUpdate(req.params.id, newServices, {
-//         new: true,
-//         runValidators: true,
-//         useFindAndModify: true
-//     })
-
-//     res.status(200).json({
-//         success: true,
-//         message: "Services Update",
-//         services
-//     });
-// })
 
 exports.servicesCarousel = catchAsyncError(async(req,res,next)=>{
     if (!req.files || !req?.files?.image) {
@@ -484,122 +398,6 @@ exports.visionSection = catchAsyncError(async (req, res, next) => {
 
 })
 
-// exports.updateVisionSection = catchAsyncError(async (req, res, next) => {
-//     const newVision = {
-//         visionHeader: req?.body?.visionHeader,
-//         visionCaption: req?.body?.visionCaption,
-//         visionHeaderFirst: req?.body?.visionHeaderFirst,
-//         visionCaptionFirst: req?.body?.visionCaptionFirst,
-//         visionHeaderSecond: req?.body?.visionHeaderSecond,
-//         visionCaptionSecond: req?.body?.visionCaptionSecond,
-//         visionHeaderThird: req?.body?.visionHeaderThird,
-//         visionCaptionThird: req?.body?.visionCaptionThird
-//     }
-
-//     if (req.files && req?.files?.visionImageFirst) {
-//         const vision = await Home.findById(req.params.id);
-
-//         if (!vision) {
-//             return res.status(404).json({
-//                 success: false,
-//                 message: "Vision section not found"
-//             });
-//         }
-
-//         const imageID = vision.visionImageFirst.public_id;
-
-//        await cloudinary.uploader.destroy(imageID);
-
-
-//         const file = req?.files?.visionImageFirst;
-
-//         const Image = await cloudinary.v2.uploader.upload(
-//             file.tempFilePath, {
-//             folder: 'MNS/Home/vision',
-//         }
-//         )
-
-//         newVision.image = {
-//             public_id: Image.public_id,
-//             url: Image.secure_url,
-//         }
-//     }
-
-//     if (req.files && req?.files?.visionImageSecond) {
-//         const vision = await Home.findById(req.params.id);
-
-//         if (!vision) {
-//             return res.status(404).json({
-//                 success: false,
-//                 message: "Vision section not found"
-//             });
-//         }
-
-//         const imageID = vision.visionImageSecond.public_id;
-
-//        await cloudinary.uploader.destroy(imageID);
-
-
-//         const file = req?.files?.visionImageSecond;
-
-//         const Image= await cloudinary.v2.uploader.upload(
-//             file.tempFilePath, {
-//             folder: 'MNS/Home/vision',
-//         }
-//         )
-
-//         newVision.image = {
-//             public_id: Image.public_id,
-//             url: Image.secure_url,
-//         }
-//     }
-
-
-//     if (req.files && req?.files?.visionImageThird) {
-//         const vision = await Home.findById(req.params.id);
-
-//         if (!vision) {
-//             return res.status(404).json({
-//                 success: false,
-//                 message: "Vision section not found"
-//             });
-//         }
-
-//         const imageID = vision.visionImageThird.public_id;
-
-//        await cloudinary.uploader.destroy(imageID);
-
-
-//         const file = req?.files?.visionImageThird;
-
-//         const Image = await cloudinary.v2.uploader.upload(
-//             file.tempFilePath, {
-//             folder: 'MNS/Home/vision',
-//         }
-//         )
-
-//         newVision.image = {
-//             public_id: Image.public_id,
-//             url: Image.secure_url,
-//         }
-//     }
-
-
-
-
-//     const vision = await Home.findByIdAndUpdate(req.params.id, newVision, {
-//         new: true,
-//         runValidators: true,
-//         useFindAndModify: true,
-//     })
-
-//     res.status(200).json({
-//         success: true,
-//         message: "Vision Update",
-//         vision
-//     });
-
-// })
 
 
 // Join Us
@@ -678,53 +476,6 @@ exports.joinUsSection = catchAsyncError(async(req,res,next) =>{
 
 })
 
-
-// exports.updateJoinUsSection = catchAsyncError(async(req,res,next) =>{
-//     const newJoinUs = {
-//         joinUsHeader: req?.body?.joinUsHeader,
-//         joinUsCaption: req?.body?.joinUsCaption,
-//     };
-
-//     if(req.files && req?.files?.joinUsImage){
-//         const joinUs = await Home.findById(req.params.id);
-
-//         if(!joinUs){
-//             return res.status(404).json({
-//                 success: false,
-//                 message: "Join Us section not found"
-//             });
-//         }
-
-//         const imageID = joinUs.joinUsImage.public_id;
-
-//         await cloudinary.uploader.destroy(imageID);
-
-//         const file = req?.files?.joinUsImage;
-
-//         const Image = await cloudinary.v2.uploader.upload(
-//             file.tempFilePath, {
-//             folder: 'MNS/joinUs',
-//         }
-//         )
-
-//         newJoinUs.image = {
-//             public_id: Image.public_id,
-//             url: Image.secure_url,
-//         }
-//     }
-
-//     const joinUs = await Home.findByIdAndUpdate(req.params.id, newJoinUs, {
-//         new: true,
-//         runValidators: true,
-//         useFindAndModify: true,
-//     })
-
-//     res.status(200).json({
-//         success: true,
-//         message: "Join Us Update",
-//         joinUs
-//     });
-// })
 
 
 exports.getHomePage = catchAsyncError(async (req, res, next) => {

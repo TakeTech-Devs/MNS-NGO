@@ -78,46 +78,7 @@ exports.grievanceHeaderSection = catchAsyncError(async(req,res,next) =>{
 
 })
 
-// exports.updateGrievanceHeaderSection = catchAsyncError(async(req,res,nect)=>{
-//     const newHeader = {
-//         header: req?.body?.header,
-//         caption: req?.body?.caption,
-//     }
 
-//     if (req.files && req?.files?.headerImage) {
-//         const aboutHeader = await Grievance.findById(req.params.id);
-
-//         const imageID = aboutHeader.headerImage.public_id;
-//         console.log(imageID)
-
-//         await cloudinary.uploader.destroy(imageID);
-
-//         const file = req?.files?.headerImage;
-
-//         const Image = await cloudinary.v2.uploader.upload(
-//             file.tempFilePath, {
-//             folder: 'MNS/Grievance/Header',
-//         }
-//         )
-
-//         newHeader.image = {
-//             public_id: Image.public_id,
-//             url: Image.secure_url,
-//         }
-//     }
-
-//     const grievanceHeader = await Grievance.findByIdAndUpdate(req.params.id, newHeader, {
-//         new: true,
-//         runValidators: true,
-//         useFindAndModify: true,
-//     })
-
-//     res.status(200).json({
-//         success: true,
-//         message: "Grievance Header Updated",
-//         grievanceHeader
-//     });
-// })
 
 exports.getGrievancePage = catchAsyncError(async(req,res,next) =>{
     const grievance = await Grievance.find();

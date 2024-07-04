@@ -77,7 +77,7 @@ const HomePage = () => {
 			<>
 				<div className="home-page">
 					<div className="carousel">
-						{home.carouselImage.map((item, index) => (
+						{home?.carouselImage?.map((item, index) => (
 							<div
 								key={item._id}
 								className="background-image"
@@ -94,7 +94,7 @@ const HomePage = () => {
 							{home.carouselCaption}
 						</div>
 						<div className="carousel-indicate">
-							{Array.from({ length: home.carouselImage.length }).map((_, index) => (
+							{Array.from({ length: home?.carouselImage?.length }).map((_, index) => (
 								<div
 									key={index}
 									className={`ellipse indicator ${index === currentIndex ? 'active' : ''}`}

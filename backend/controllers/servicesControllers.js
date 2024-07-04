@@ -16,10 +16,8 @@ exports.servicesHeaderSection = catchAsyncError(async (req, res, next) => {
 
     const file = req?.files?.headerImage;
 
-    // Fetch the existing servicesHeader section
     const servicesHeaderSection = await Services.findOne();
 
-    // Delete the old image if it exists
     if (servicesHeaderSection && servicesHeaderSection.headerImage && servicesHeaderSection.headerImage.public_id) {
         try {
             await cloudinary.uploader.destroy(servicesHeaderSection.headerImage.public_id);
@@ -32,7 +30,6 @@ exports.servicesHeaderSection = catchAsyncError(async (req, res, next) => {
         }
     }
 
-    // Upload the new image
     let headerImage;
     try {
         headerImage = await cloudinary.v2.uploader.upload(file.tempFilePath, {
@@ -81,46 +78,7 @@ exports.servicesHeaderSection = catchAsyncError(async (req, res, next) => {
 
 })
 
-// exports.updateServicesHeaderSection = catchAsyncError(async (req, res, nect) => {
-//     const newHeader = {
-//         header: req?.body?.header,
-//         caption: req?.body?.caption,
-//     }
 
-//     if (req.files && req?.files?.headerImage) {
-//         const aboutHeader = await Services.findById(req.params.id);
-
-//         const imageID = aboutHeader.headerImage.public_id;
-//         console.log(imageID)
-
-//         await cloudinary.uploader.destroy(imageID);
-
-//         const file = req?.files?.headerImage;
-
-//         const Image = await cloudinary.v2.uploader.upload(
-//             file.tempFilePath, {
-//             folder: 'MNS/Services/Header',
-//         }
-//         )
-
-//         newHeader.image = {
-//             public_id: Image.public_id,
-//             url: Image.secure_url,
-//         }
-//     }
-
-//     const servicesHeader = await Services.findByIdAndUpdate(req.params.id, newHeader, {
-//         new: true,
-//         runValidators: true,
-//         useFindAndModify: true,
-//     })
-
-//     res.status(200).json({
-//         success: true,
-//         message: "Services Header Updated",
-//         servicesHeader
-//     });
-// });
 
 // Services Body
 
@@ -149,24 +107,6 @@ exports.servicesBodySection = catchAsyncError(async (req, res, next) => {
 })
 
 
-// exports.updateServicesBodySection = catchAsyncError(async (req, res, next) => {
-//     const newData = {
-//         servicesBodyHeader: req?.body?.servicesBodyHeader,
-//         servicesBodyContent: req?.body?.servicesBodyContent
-//     }
-
-//     const servicesBody = await Services.findByIdAndUpdate(req.params.id, newData, {
-//         new: true,
-//         runValidators: true,
-//         useFindAndModify: true,
-//     })
-
-//     res.status(200).json({
-//         success: true,
-//         message: "Services Body Updated",
-//         servicesBody
-//     });
-// })
 
 // Our Services Section
 
@@ -254,7 +194,6 @@ exports.updateOurServicesSection = catchAsyncError(async (req, res, next) => {
 })
 
 exports.getServicesPage = catchAsyncError(async(req,res,next) =>{
-    // const services = await Services.find();
     const [services, ourServices] = await Promise.all([
         Services.find(),
         OurServices.find()

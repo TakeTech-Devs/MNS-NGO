@@ -41,3 +41,8 @@
 .container:hover .overlay {
     opacity: 1;
 }
+
+.td-img{
+    width: 120px;
+
+}

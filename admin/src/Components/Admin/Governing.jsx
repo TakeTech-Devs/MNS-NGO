@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Sidebar from './Sidebar'
 import AdminHeader from './AdminHeader';
 import { useState } from 'react';
@@ -6,689 +6,259 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import './AdminHome.css';
+import { useSelector, useDispatch } from 'react-redux';
+import { getGoverning, clearErrors, createGoverningHeader, createGoverningBody } from '../../Actions/GoverningAction';
+import { ADD_GOVERNINGBODY_GOVERNING_RESET, ADD_GOVERNINGHEADER_GOVERNING_RESET } from '../../Constants/GoverningConstants';
 
 const Governing = () => {
-    const [showFormModal, setShowFormModal] = useState(false);
-    const [showUpdateModal, setShowUpdateModal] = useState(false);
-
-    const handleCloseFormModal = () => setShowFormModal(false);
-    const handleShowFormModal = () => setShowFormModal(true);
-
-    const handleCloseUpdateModal = () => setShowUpdateModal(false);
-    const handleShowUpdateModal = () => setShowUpdateModal(true);
-
-
     const [showHeaderForm, setShowHeaderForm] = useState(false);
-    const [showHeaderUpdate, setShowHeaderUpdate] = useState(false);
 
 
     const handleShowHeaderForm = () => setShowHeaderForm(true);
     const handleCloseHeaderUpdate = () => setShowHeaderForm(false);
 
-    const [showHighlightForm, setShowHighlightForm] = useState(false);
+    const [showBodyForm, setShowBodyForm] = useState(false);
 
 
 
-    const handleShowHighlightForm = () => setShowHighlightForm(true);
-    const handleCloseHighlightUpdate = () => setShowHighlightForm(false);
+    const handleShowBodyForm = () => setShowBodyForm(true);
+    const handleCloseBodyForm = () => setShowBodyForm(false);
 
-
-    const [showAboutForm, setShowAboutForm] = useState(false);
-
-
-
-    const handleShowAboutForm = () => setShowAboutForm(true);
-    const handleCloseAboutUpdate = () => setShowAboutForm(false);
-
-
-    const [showServicesForm, setShowServicesForm] = useState(false);
+    const [showCarousel, setShowCarousel] = useState(false);
 
 
 
-    const handleShowServicesForm = () => setShowServicesForm(true);
-    const handleCloseServicesUpdate = () => setShowServicesForm(false);
+    const handleShowCarouse = () => setShowCarousel(true);
+    const handleCloseCarouse = () => setShowCarousel(false);
+
+    const dispatch = useDispatch();
+    const { goveringBody, loading, error } = useSelector(state => state.adminGoverning);
+    
+    useEffect(() => {
+        dispatch(getGoverning());
+    }, [dispatch]);
+    
+    useEffect(() => {
+        if (error) {
+            alert(error);
+            dispatch(clearErrors());
+        }
+    }, [error, dispatch]);
+    
+    const { governing, isUpdated, error: governingError} = useSelector(state => state.newGoverningData);
+
+    const [header, setHeader] = useState('');
+    const [caption, setCaption] = useState('');
+    const [headerImage, setHeaderImage] = useState([]);
+
+    const [goveringBodyHeader, setGoveringBodyHeader] = useState('');
+    const [goveringBodyContent, setGoveringBodyContent] = useState('');
+
+    useEffect(() => {
+        if(governing){
+            setHeader(governing.header);
+            setCaption(governing.caption);
+            setGoveringBodyHeader(governing.goveringBodyHeader);
+            setGoveringBodyContent(governing.goveringBodyContent);
+        }
+
+        if (isUpdated) {
+            window.alert('Section updated successfully');
+            dispatch({ type: ADD_GOVERNINGHEADER_GOVERNING_RESET });
+            dispatch({ type: ADD_GOVERNINGBODY_GOVERNING_RESET });
+            window.location.reload()
+        }
+
+        if(governingError){
+            window.alert(governingError);
+            dispatch(clearErrors());
+        }
+    },[dispatch, isUpdated, governing, governingError])
+
+    const handelHeaderImage = (e) => {
+        setHeaderImage(e.target.files[0]);
+    }
 
 
-    const [showVisionForm, setShowVisionForm] = useState(false);
+    const handleHeaderSubmit = (e) => {
+        e.preventDefault();
+        const formData = new FormData();
+        formData.append("header", header);
+        formData.append("caption", caption);
+        formData.append('headerImage', headerImage);
+
+        dispatch(createGoverningHeader(formData));
+    }
+
+
+    const handleBodySubmit = (e) => {
+        e.preventDefault();
+        const formData = new FormData();
+        formData.append("goveringBodyHeader", goveringBodyHeader);
+        formData.append("goveringBodyContent", goveringBodyContent);
+
+        dispatch(createGoverningBody(formData));
+    }
 
 
 
-    const handleShowVisionForm = () => setShowVisionForm(true);
-    const handleCloseVisionUpdate = () => setShowVisionForm(false);
+    return (
+        goveringBody && goveringBody.length > 0 && (
+            <div className="admin-dashboard">
+                <Sidebar />
+                <div className="admin-main" style={{ height: "100vh" }}>
+                    <AdminHeader />
 
-
-    const [showJoinUsForm, setJoinUsVisionForm] = useState(false);
-
-
-
-    const handleShowJoinUsForm = () => setJoinUsVisionForm(true);
-    const handleCloseJoinUsUpdate = () => setJoinUsVisionForm(false);
-
-
-  return (
-    <div className="admin-dashboard">
-      <Sidebar />
-      <div className="admin-main">
-        <AdminHeader />
-
-        {/* Governing Header */}
-        <div className="mb-2 my-3 mx-3">
-            <h2>Governing Header</h2>
-                <Button variant="primary" size="sm" onClick={handleShowHeaderForm}>
-                    Form
-                </Button>
-                <Modal show={showHeaderForm} onHide={handleCloseHeaderUpdate}>
-                    <Modal.Header closeButton>
-                        <Modal.Title>Governing Header</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <Form>
-                            <Form.Group className="mb-3">
-                                <Form.Label>Carousel Image</Form.Label>
-                                <Form.Control
-                                    type="file"
-                                    placeholder="Enter any Image"
-                                />
-                            </Form.Group>
-                            <Form.Group className="mb-3" controlId="formHeadingInput">
-                                <Form.Label>Carousel Heading</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    placeholder="Enter the Heading"
-                                />
-                            </Form.Group>
-                            <Form.Group className="mb-3" controlId="formSubHeadingInput">
-                                <Form.Label>Carousel Caption</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    placeholder="Enter the Caption"
-                                />
-                            </Form.Group>
-                        </Form>
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button variant="secondary" onClick={handleCloseFormModal}>
-                            Close
+                    {/* Governing Header */}
+                    <div className="mb-2 my-3 mx-3">
+                        <h2>Governing Header</h2>
+                        <Button variant="primary" size="sm" onClick={handleShowHeaderForm}>
+                            Add/Update Header
                         </Button>
-                        <Button variant="primary" onClick={handleCloseFormModal}>
-                            Save Changes
+                        <Modal show={showHeaderForm} onHide={handleCloseHeaderUpdate}>
+                            <Modal.Header closeButton>
+                                <Modal.Title>Governing Header</Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>
+                                <Form onSubmit={handleHeaderSubmit}>
+                                    <Form.Group className="mb-3" controlId="formHeadingInput">
+                                        <Form.Label>Heading</Form.Label>
+                                        <Form.Control
+                                            type="text"
+                                            placeholder="Enter the Heading"
+                                            value={header}
+                                            onChange={(e) => setHeader(e.target.value)}
+                                        />
+                                    </Form.Group>
+                                    <Form.Group className="mb-3" controlId="formSubHeadingInput">
+                                        <Form.Label>Caption</Form.Label>
+                                        <Form.Control
+                                            type="text"
+                                            placeholder="Enter the Caption"
+                                            value={caption}
+                                            onChange={(e) => setCaption(e.target.value)}
+                                        />
+                                    </Form.Group>
+                                    <Form.Group className="mb-3">
+                                        <Form.Label>Image</Form.Label>
+                                        <Form.Control
+                                            type="file"
+                                            placeholder="Enter any Image"
+                                            onChange={handelHeaderImage}
+                                        />
+                                    </Form.Group>
+                                    <Button variant="primary" type="submit">
+                                        Submit
+                                    </Button>
+                                </Form>
+                            </Modal.Body>
+                        </Modal>
+                        {' '}
+                    </div>
+
+
+
+
+                    <main className="admin-content">
+                        <table className="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Heading</th>
+                                    <th scope="col">Caption</th>
+                                    <th scope="col">Image</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{goveringBody[0].header}</td>
+                                    <td>{goveringBody[0].caption}</td>
+                                    <td>
+                                        <div class="container">
+                                            <img src={goveringBody[0].headerImage.url} alt="Image" className="image" />
+                                            <div class="overlay">
+                                                <i class="fa-regular fa-eye" onClick={handleShowCarouse}></i>
+                                                <Modal show={showCarousel} onHide={handleCloseCarouse}>
+                                                    <Modal.Header closeButton>
+                                                        {/* <Modal.Title>Home Header</Modal.Title> */}
+                                                    </Modal.Header>
+                                                    <Modal.Body>
+                                                        <img
+                                                            className="d-block w-100"
+                                                            src={goveringBody[0].headerImage.url}
+                                                        />
+                                                    </Modal.Body>
+                                                </Modal>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </main>
+
+                    {/* Governing Highlight */}
+                    <div className="mb-2 my-3 mx-3">
+                        <h2>Governing Body</h2>
+                        <Button variant="primary" size="sm" onClick={handleShowBodyForm}>
+                            Add/Update Body
                         </Button>
-                    </Modal.Footer>
-                </Modal>
-                {' '}
+                        <Modal show={showBodyForm} onHide={handleCloseBodyForm}>
+                            <Modal.Header closeButton>
+                                <Modal.Title>Governing Body</Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>
+                                <Form onSubmit={handleBodySubmit}>
+                                    <Form.Group className="mb-3" controlId="formHeadingInput">
+                                        <Form.Label>Body Header</Form.Label>
+                                        <Form.Control
+                                            type="text"
+                                            placeholder="Enter the Heading"
+                                            value={goveringBodyHeader}
+                                            onChange={(e) => setGoveringBodyHeader(e.target.value)}
+                                        />
+                                    </Form.Group>
+                                    <Form.Group className="mb-3" controlId="formHeadingInput">
+                                        <Form.Label>Body Caption</Form.Label>
+                                        <Form.Control
+                                            type="text"
+                                            placeholder="Enter the Heading"
+                                            value={goveringBodyContent}
+                                            onChange={(e) => setGoveringBodyContent(e.target.value)}
+                                        />
+                                    </Form.Group>
+                                    <Button variant="primary" type="submit">
+                                        Submit
+                                    </Button>
+                                </Form>
+                            </Modal.Body>
+                        </Modal>
+                        {' '}
+                    </div>
+
+
+                    <main className="admin-content">
+                        <table className="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Header</th>
+                                    <th scope="col">Caption</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{goveringBody[0].goveringBodyHeader}</td>
+                                    <td>{goveringBody[0].goveringBodyContent}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </main>
+
+
+
+                </div>
             </div>
-
-
-            
-
-            <main className="admin-content">
-                <table className="table table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col">Carousel Image</th>
-                            <th scope="col">Carousel Heading</th>
-                            <th scope="col">Carousel Caption</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </main>
-
-            {/* Governing Highlight */}
-            <div className="mb-2 my-3 mx-3">
-            <h2>Governing Highlight</h2>
-                <Button variant="primary" size="sm" onClick={handleShowHighlightForm}>
-                    Form
-                </Button>
-                <Modal show={showHighlightForm} onHide={handleCloseHighlightUpdate}>
-                    <Modal.Header closeButton>
-                        <Modal.Title>Governing Highlight</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <Form>
-                            <Form.Group className="mb-3" controlId="formHeadingInput">
-                                <Form.Label>First Header</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    placeholder="Enter the Heading"
-                                />
-                            </Form.Group>
-                            <Form.Group className="mb-3" controlId="formHeadingInput">
-                                <Form.Label>First Caption</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    placeholder="Enter the Heading"
-                                />
-                            </Form.Group>
-                            <Form.Group className="mb-3" controlId="formSubHeadingInput">
-                                <Form.Label>Second Header</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    placeholder="Enter the Sub Heading"
-                                />
-                            </Form.Group>
-                            <Form.Group className="mb-3" controlId="formSubHeadingInput">
-                                <Form.Label>Second Caption</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    placeholder="Enter the Sub Heading"
-                                />
-                            </Form.Group>
-                            <Form.Group className="mb-3" controlId="formSubHeadingInput">
-                                <Form.Label>Third Header</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    placeholder="Enter the Sub Heading"
-                                />
-                            </Form.Group>
-                            <Form.Group className="mb-3" controlId="formSubHeadingInput">
-                                <Form.Label>Third Caption</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    placeholder="Enter the Sub Heading"
-                                />
-                            </Form.Group>
-                        </Form>
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button variant="secondary" onClick={handleCloseFormModal}>
-                            Close
-                        </Button>
-                        <Button variant="primary" onClick={handleCloseFormModal}>
-                            Save Changes
-                        </Button>
-                    </Modal.Footer>
-                </Modal>
-                {' '}
-            </div>
-
-
-            <main className="admin-content">
-                <table className="table table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">First</th>
-                            <th scope="col">Last</th>
-                            <th scope="col">Handle</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </main>
-
-
-            {/* Governing About */}
-
-            <div className="mb-2 my-3 mx-3">
-            <h2>Governing About</h2>
-                <Button variant="primary" size="sm" onClick={handleShowAboutForm}>
-                    Form
-                </Button>
-                <Modal show={showAboutForm} onHide={handleCloseAboutUpdate}>
-                    <Modal.Header closeButton>
-                        <Modal.Title>Governing About</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <Form>
-                           
-                            <Form.Group className="mb-3" controlId="formHeadingInput">
-                                <Form.Label>About Header</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    placeholder="Enter the Heading"
-                                />
-                            </Form.Group>
-                            <Form.Group className="mb-3" controlId="formSubHeadingInput">
-                                <Form.Label>About Caption</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    placeholder="Enter the Sub Heading"
-                                />
-                            </Form.Group>
-                            <Form.Group className="mb-3" controlId="formSubHeadingInput">
-                                <Form.Label>About Content</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    placeholder="Enter the Sub Heading"
-                                />
-                            </Form.Group>
-                            <Form.Group className="mb-3">
-                                <Form.Label>Image</Form.Label>
-                                <Form.Control
-                                    type="file"
-                                    placeholder="Enter any Image"
-                                />
-                            </Form.Group>
-                        </Form>
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button variant="secondary" onClick={handleCloseFormModal}>
-                            Close
-                        </Button>
-                        <Button variant="primary" onClick={handleCloseFormModal}>
-                            Save Changes
-                        </Button>
-                    </Modal.Footer>
-                </Modal>
-                {' '}
-            </div>
-
-
-            <main className="admin-content">
-                <table className="table table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">First</th>
-                            <th scope="col">Last</th>
-                            <th scope="col">Handle</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </main>
-
-
-
-                {/* Governing Services */}
-
-
-            <div className="mb-2 my-3 mx-3">
-            <h2>Governing Services</h2>
-                <Button variant="primary" size="sm" onClick={handleShowServicesForm}>
-                    Form
-                </Button>
-                <Modal show={showServicesForm} onHide={handleCloseServicesUpdate}>
-                    <Modal.Header closeButton>
-                        <Modal.Title>Governing Services</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <Form>
-                            <Form.Group className="mb-3">
-                                <Form.Label>Image</Form.Label>
-                                <Form.Control
-                                    type="file"
-                                    placeholder="Enter any Image"
-                                />
-                            </Form.Group>
-                            <Form.Group className="mb-3" controlId="formHeadingInput">
-                                <Form.Label>Heading</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    placeholder="Enter the Heading"
-                                />
-                            </Form.Group>
-                            <Form.Group className="mb-3" controlId="formSubHeadingInput">
-                                <Form.Label>Sub Heading</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    placeholder="Enter the Sub Heading"
-                                />
-                            </Form.Group>
-                        </Form>
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button variant="secondary" onClick={handleCloseFormModal}>
-                            Close
-                        </Button>
-                        <Button variant="primary" onClick={handleCloseFormModal}>
-                            Save Changes
-                        </Button>
-                    </Modal.Footer>
-                </Modal>
-                {' '}
-                <Button variant="primary" size="sm" onClick={handleShowUpdateModal}>
-                    Update
-                </Button>
-                <Modal show={showUpdateModal} onHide={handleCloseUpdateModal}>
-                    <Modal.Header closeButton>
-                        <Modal.Title>Governing</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <Form>
-                            <Form.Group className="mb-3">
-                                <Form.Label>Image</Form.Label>
-                                <Form.Control
-                                    type="file"
-                                    placeholder="Enter any Image"
-                                />
-                            </Form.Group>
-                            <Form.Group className="mb-3" controlId="updateFormHeadingInput">
-                                <Form.Label>Heading</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    placeholder="Enter the Heading"
-                                />
-                            </Form.Group>
-                            <Form.Group className="mb-3" controlId="updateFormSubHeadingInput">
-                                <Form.Label>Sub Heading</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    placeholder="Enter the Sub Heading"
-                                />
-                            </Form.Group>
-                        </Form>
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button variant="secondary" onClick={handleCloseUpdateModal}>
-                            Close
-                        </Button>
-                        <Button variant="primary" onClick={handleCloseUpdateModal}>
-                            Update
-                        </Button>
-                    </Modal.Footer>
-                </Modal>
-            </div>
-
-
-            <main className="admin-content">
-                <table className="table table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">First</th>
-                            <th scope="col">Last</th>
-                            <th scope="col">Handle</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </main>
-
-                {/* Governing Vision */}
-            <div className="mb-2 my-3 mx-3">
-            <h2>Governing Vision</h2>
-                <Button variant="primary" size="sm" onClick={handleShowVisionForm}>
-                    Form
-                </Button>
-                <Modal show={showVisionForm} onHide={handleCloseVisionUpdate}>
-                    <Modal.Header closeButton>
-                        <Modal.Title>Governing Vision</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <Form>
-                            
-                            <Form.Group className="mb-3" controlId="formHeadingInput">
-                                <Form.Label>Vision Header</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    placeholder="Enter the Heading"
-                                />
-                            </Form.Group>
-                            <Form.Group className="mb-3" controlId="formSubHeadingInput">
-                                <Form.Label>Vision Caption</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    placeholder="Enter the Sub Heading"
-                                />
-                            </Form.Group>
-
-                            <Form.Group className="mb-3">
-                                <Form.Label>First Vision Image</Form.Label>
-                                <Form.Control
-                                    type="file"
-                                    placeholder="Enter any Image"
-                                />
-                            </Form.Group>
-                            <Form.Group className="mb-3" controlId="formHeadingInput">
-                                <Form.Label>First Vision Heading</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    placeholder="Enter the Heading"
-                                />
-                            </Form.Group>
-                            <Form.Group className="mb-3" controlId="formSubHeadingInput">
-                                <Form.Label>First Vision Caption</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    placeholder="Enter the Sub Heading"
-                                />
-                            </Form.Group>
-
-                            <Form.Group className="mb-3">
-                                <Form.Label>Second Vision Image</Form.Label>
-                                <Form.Control
-                                    type="file"
-                                    placeholder="Enter any Image"
-                                />
-                            </Form.Group>
-                            <Form.Group className="mb-3" controlId="formHeadingInput">
-                                <Form.Label>Second Vision Heading</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    placeholder="Enter the Heading"
-                                />
-                            </Form.Group>
-                            <Form.Group className="mb-3" controlId="formSubHeadingInput">
-                                <Form.Label>Second Vision Caption</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    placeholder="Enter the Sub Heading"
-                                />
-                            </Form.Group>
-
-                            <Form.Group className="mb-3">
-                                <Form.Label>Third Vision Image</Form.Label>
-                                <Form.Control
-                                    type="file"
-                                    placeholder="Enter any Image"
-                                />
-                            </Form.Group>
-                            <Form.Group className="mb-3" controlId="formHeadingInput">
-                                <Form.Label>Third Vision Heading</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    placeholder="Enter the Heading"
-                                />
-                            </Form.Group>
-                            <Form.Group className="mb-3" controlId="formSubHeadingInput">
-                                <Form.Label>Third Vision Caption</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    placeholder="Enter the Sub Heading"
-                                />
-                            </Form.Group>
-                            
-                        </Form>
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button variant="secondary" onClick={handleCloseFormModal}>
-                            Close
-                        </Button>
-                        <Button variant="primary" onClick={handleCloseFormModal}>
-                            Save Changes
-                        </Button>
-                    </Modal.Footer>
-                </Modal>
-                {' '}
-            </div>
-
-
-            <main className="admin-content">
-                <table className="table table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">First</th>
-                            <th scope="col">Last</th>
-                            <th scope="col">Handle</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </main>
-
-
-
-            {/* Governing JoinUs */}
-
-            <div className="mb-2 my-3 mx-3">
-            <h2>Governing JoinUs</h2>
-                <Button variant="primary" size="sm" onClick={handleShowJoinUsForm}>
-                    Form
-                </Button>
-                <Modal show={showJoinUsForm} onHide={handleCloseJoinUsUpdate}>
-                    <Modal.Header closeButton>
-                        <Modal.Title>Governing JoinUs</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <Form>
-                            
-                            <Form.Group className="mb-3" controlId="formHeadingInput">
-                                <Form.Label>Join Us Heading</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    placeholder="Enter the Heading"
-                                />
-                            </Form.Group>
-                            <Form.Group className="mb-3" controlId="formSubHeadingInput">
-                                <Form.Label>Join Us Caption</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    placeholder="Enter the Sub Heading"
-                                />
-                            </Form.Group>
-                            <Form.Group className="mb-3">
-                                <Form.Label>Join Us Image</Form.Label>
-                                <Form.Control
-                                    type="file"
-                                    placeholder="Enter any Image"
-                                />
-                            </Form.Group>
-
-                        </Form>
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button variant="secondary" onClick={handleCloseFormModal}>
-                            Close
-                        </Button>
-                        <Button variant="primary" onClick={handleCloseFormModal}>
-                            Save Changes
-                        </Button>
-                    </Modal.Footer>
-                </Modal>
-                {' '}
-            </div>
-
-
-            <main className="admin-content">
-                <table className="table table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">First</th>
-                            <th scope="col">Last</th>
-                            <th scope="col">Handle</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </main>            
-      </div>     
-    </div> 
-  )
+        )
+    )
 }
 
 export default Governing
