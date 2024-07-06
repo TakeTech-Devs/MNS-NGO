@@ -7,7 +7,8 @@ import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import './AdminHome.css';
 import { useSelector, useDispatch } from 'react-redux';
-import { getGallery, clearErrors } from '../../Actions/GalleryActions';
+import { getGallery, clearErrors, createGalleryHeader, createGalleryBody, createGalleryImage, updateGalleryImage } from '../../Actions/GalleryActions';
+import { ADD_ADMIN_GALLERY_BODY_RESET, ADD_ADMIN_GALLERY_IMAGE_RESET, ADD_ADMIN_GALLERYHEADER_RESET, UPDATE_ADMIN_GALLERY_IMAGE_RESET } from '../../Constants/GalleryConstants';
 
 const Gallery = () => {
 
@@ -53,6 +54,120 @@ const Gallery = () => {
     const handleCloseCarouse = () => setShowCarousel(false);
 
 
+    const { gallery: newGallery, isUpdated, error: galleryError, } = useSelector(state => state.newGalleryData);
+
+    const [header, setHeader] = useState('');
+    const [caption, setCaption] = useState('');
+    const [headerImage, setHeaderImage] = useState([]);
+
+    const [galleryHeader, setGalleryHeader] = useState('');
+    const [galleryContent, setGalleryContent] = useState('');
+
+    const [image, setImage] = useState(null);
+
+
+    useEffect(() => {
+        if (newGallery) {
+            setHeader(newGallery.header);
+            setCaption(newGallery.caption);
+            setGalleryHeader(newGallery.galleryHeader);
+            setGalleryContent(newGallery.galleryContent);
+        }
+
+        if (isUpdated) {
+            window.alert('Section updated successfully');
+            dispatch({ type: ADD_ADMIN_GALLERYHEADER_RESET });
+            dispatch({ type: ADD_ADMIN_GALLERY_BODY_RESET });
+            dispatch({ type: ADD_ADMIN_GALLERY_IMAGE_RESET });
+            window.location.reload();
+        }
+
+        if (galleryError) {
+            window.alert(galleryError);
+            dispatch(clearErrors());
+        }
+    }, [dispatch, isUpdated, newGallery, galleryError]);
+
+
+    const handelHeaderImage = (e) => {
+        setHeaderImage(e.target.files[0]);
+    }
+
+
+    const handleHeaderSubmit = (e) => {
+        e.preventDefault();
+        const formData = new FormData();
+        formData.append("header", header);
+        formData.append("caption", caption);
+        formData.append('headerImage', headerImage);
+
+        dispatch(createGalleryHeader(formData));
+    }
+
+    const handleBodySubmit = (e) => {
+        e.preventDefault();
+        const formData = new FormData();
+        formData.append("galleryHeader", galleryHeader);
+        formData.append("galleryContent", galleryContent);
+
+        dispatch(createGalleryBody(formData));
+    }
+
+
+    const handelGalleryImageChange = (e) => {
+        setImage(e.target.files[0])
+    }
+
+    const handelGalleryImageSubmit = (e) => {
+        e.preventDefault();
+        const formData = new FormData();
+        formData.append('image', image);
+
+        dispatch(createGalleryImage(formData))
+    }
+
+
+    const { isUpdated: imageUpdate, error: imageError } = useSelector((state) => state.GalleryReducer);
+
+
+    const [showEditModal, setShowEditModal] = useState(false);
+    const [selectedItem, setSelectedItem] = useState(null);
+
+    const handleShowEditModal = (item) => {
+        setSelectedItem(item);
+        setShowEditModal(true);
+    };
+
+    const handleCloseEditModal = () => {
+        setSelectedItem(null);
+        setShowEditModal(false);
+    };
+
+    const handleUpdate = (e) => {
+        e.preventDefault();
+        const formData = new FormData();
+        if (image) {
+            formData.append('image', image);
+        }
+
+        dispatch(updateGalleryImage(selectedItem._id, formData));
+        setShowEditModal(false);
+    };
+
+    const handleUpdateGalleryImageChange = (e) => {
+        setImage(e.target.files[0]);
+    };
+
+    useEffect(() => {
+        if (imageUpdate) {
+            window.alert('Service updated successfully');
+            dispatch({ type: UPDATE_ADMIN_GALLERY_IMAGE_RESET });
+            window.location.reload();
+        }
+        if (imageError) {
+            window.alert(imageError);
+        }
+    }, [imageUpdate, imageError]);
 
 
     return (
@@ -73,13 +188,15 @@ const Gallery = () => {
                                 <Modal.Title>Gallery Header</Modal.Title>
                             </Modal.Header>
                             <Modal.Body>
-                                <Form>
+                                <Form onSubmit={handleHeaderSubmit}>
 
                                     <Form.Group className="mb-3" controlId="formHeadingInput">
                                         <Form.Label>Heading</Form.Label>
                                         <Form.Control
                                             type="text"
                                             placeholder="Enter the Heading"
+                                            value={header}
+                                            onChange={(e) => setHeader(e.target.value)}
                                         />
                                     </Form.Group>
                                     <Form.Group className="mb-3" controlId="formSubHeadingInput">
@@ -87,6 +204,8 @@ const Gallery = () => {
                                         <Form.Control
                                             type="text"
                                             placeholder="Enter the Caption"
+                                            value={caption}
+                                            onChange={(e) => setCaption(e.target.value)}
                                         />
                                     </Form.Group>
                                     <Form.Group className="mb-3">
@@ -94,6 +213,7 @@ const Gallery = () => {
                                         <Form.Control
                                             type="file"
                                             placeholder="Enter any Image"
+                                            onChange={handelHeaderImage}
                                         />
                                     </Form.Group>
                                     <Button variant="primary" type="submit">
@@ -158,12 +278,14 @@ const Gallery = () => {
                                 <Modal.Title>Gallery Heading</Modal.Title>
                             </Modal.Header>
                             <Modal.Body>
-                                <Form>
+                                <Form onSubmit={handleBodySubmit}>
                                     <Form.Group className="mb-3" controlId="formHeadingInput">
                                         <Form.Label>Heading</Form.Label>
                                         <Form.Control
                                             type="text"
                                             placeholder="Enter the Heading"
+                                            value={galleryHeader}
+                                            onChange={(e) => setGalleryHeader(e.target.value)}
                                         />
                                     </Form.Group>
                                     <Form.Group className="mb-3" controlId="formSubHeadingInput">
@@ -171,6 +293,8 @@ const Gallery = () => {
                                         <Form.Control
                                             type="text"
                                             placeholder="Enter the Sub Heading"
+                                            value={galleryContent}
+                                            onChange={(e) => setGalleryContent(e.target.value)}
                                         />
                                     </Form.Group>
                                     <Button variant="primary" type="submit">
@@ -188,12 +312,13 @@ const Gallery = () => {
                                 <Modal.Title>Gallery Image</Modal.Title>
                             </Modal.Header>
                             <Modal.Body>
-                                <Form>
+                                <Form onSubmit={handelGalleryImageSubmit}>
                                     <Form.Group className="mb-3">
                                         <Form.Label>Image</Form.Label>
                                         <Form.Control
                                             type="file"
                                             placeholder="Enter any Image"
+                                            onChange={handelGalleryImageChange}
                                         />
                                     </Form.Group>
                                     <Button variant="primary" type="submit">
@@ -226,24 +351,52 @@ const Gallery = () => {
                         <table className="table table-striped">
                             <thead>
                                 <tr>
+                                    <th scope="col">#</th>
                                     <th scope="col">Image</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {galleryImages.map((gallery) => (
+                                {galleryImages.map((gallery, index) => (
                                     <tr key={gallery._id}>
+                                        <th scope="row">{index + 1}</th>
                                         <td>
                                             <img
                                                 src={gallery.image.url}
                                                 alt={gallery.title}
                                                 className="image"
+                                                width="100"
                                             />
+                                        </td>
+                                        <td>
+                                            <Button variant="primary" onClick={() => handleShowEditModal(gallery)}>
+                                                Edit
+                                            </Button>
                                         </td>
                                     </tr>
                                 ))}
                             </tbody>
                         </table>
                     </main>
+
+                    <Modal show={showEditModal} onHide={handleCloseEditModal}>
+                        <Modal.Header closeButton>
+                            <Modal.Title>Edit Image</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                            <Form onSubmit={handleUpdate}>
+                                <Form.Group className="mb-3">
+                                    <Form.Label>Image</Form.Label>
+                                    <Form.Control
+                                        type="file"
+                                        onChange={handleUpdateGalleryImageChange}
+                                    />
+                                </Form.Group>
+                                <Button variant="primary" type="submit">
+                                    Submit
+                                </Button>
+                            </Form>
+                        </Modal.Body>
+                    </Modal>
 
                 </div>
             </div>

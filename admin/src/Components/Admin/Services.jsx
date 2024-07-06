@@ -7,7 +7,8 @@ import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import './AdminHome.css';
 import { useSelector, useDispatch } from 'react-redux';
-import { getServices, clearErrors } from '../../Actions/ServicesActions';
+import { getServices, clearErrors, createServicesHeader, createServices, createServicesImage, updateServiceImage } from '../../Actions/ServicesActions';
+import { ADD_ADMIN_SERVICES_RESET, ADD_ADMIN_SERVICESHEADER_RESET, ADD_ADMIN_SERVICESIMAGE_RESET } from '../../Constants/ServicesConstants';
 
 const Services = () => {
     const [showHeaderForm, setShowHeaderForm] = useState(false);
@@ -52,6 +53,123 @@ const Services = () => {
         }
     }, [error, dispatch]);
 
+    const { services: addServices, isUpdated, error: servicesError } = useSelector(state => state.newServicesData);
+
+
+    const [header, setHeader] = useState('');
+    const [caption, setCaption] = useState('');
+    const [headerImage, setHeaderImage] = useState([]);
+
+    const [servicesBodyHeader, setServicesBodyHeader] = useState('');
+    const [servicesBodyContent, setServicesBodyContent] = useState('');
+
+
+    const [title, setTitle] = useState('');
+    const [description, setDescription] = useState('');
+    const [image, setImage] = useState(null);
+
+
+    useEffect(() => {
+        if (addServices) {
+            setHeader(addServices.header);
+            setCaption(addServices.caption);
+            setServicesBodyHeader(addServices.servicesBodyHeader);
+            setServicesBodyContent(addServices.servicesBodyContent);
+            setTitle(addServices.title);
+            setDescription(addServices.description);
+        }
+
+        if (isUpdated) {
+            window.alert('Section updated successfully');
+            dispatch({ type: ADD_ADMIN_SERVICESHEADER_RESET });
+            dispatch({ type: ADD_ADMIN_SERVICES_RESET });
+            dispatch({ type: ADD_ADMIN_SERVICESIMAGE_RESET });
+            window.location.reload()
+        }
+
+        if (servicesError) {
+            window.alert(servicesError);
+            dispatch(clearErrors());
+        }
+    }, [dispatch, isUpdated, addServices, servicesError])
+
+
+    const handelHeaderImage = (e) => {
+        setHeaderImage(e.target.files[0]);
+    }
+
+    const handleHeaderSubmit = (e) => {
+        e.preventDefault();
+        const formData = new FormData();
+        formData.append("header", header);
+        formData.append("caption", caption);
+        formData.append('headerImage', headerImage);
+
+        dispatch(createServicesHeader(formData));
+    }
+
+    const handleServiceSubmit = (e) => {
+        e.preventDefault();
+        const formData = new FormData();
+        formData.append("servicesBodyHeader", servicesBodyHeader);
+        formData.append("servicesBodyContent", servicesBodyContent);
+        dispatch(createServices(formData));
+    }
+
+    const handelServiceImageChange = (e) => {
+        setImage(e.target.files[0])
+    }
+
+    const handelServiceImageSubmit = (e) => {
+        e.preventDefault();
+        const formData = new FormData();
+        formData.append("title", title);
+        formData.append("description", description);
+        formData.append('image', image);
+
+        dispatch(createServicesImage(formData))
+    }
+
+    const { isUpdated: serviceUpdate, error: serviceError } = useSelector((state) => state.Service);
+
+    const [showEditModal, setShowEditModal] = useState(false);
+    const [selectedItem, setSelectedItem] = useState({});
+
+    const handleShowEditModal = (item) => {
+        setSelectedItem(item);
+        setTitle(item.title);
+        setDescription(item.description);
+        setImage(item.image.url);
+        setShowEditModal(true);
+    };
+
+    const handleCloseEditModal = () => setShowEditModal(false);
+
+    const handleUpdate = (e) => {
+        e.preventDefault();
+        const formData = new FormData();
+        formData.append('title', title);
+        formData.append('description', description);
+        if (image) {
+            formData.append('image', image);
+        }
+        dispatch(updateServiceImage(selectedItem._id, formData));
+        setShowEditModal(false);
+    };
+
+    const handleUpdateServiceImageChange = (e) => {
+        setImage(e.target.files[0]);
+    };
+
+    useEffect(() => {
+        if (serviceUpdate) {
+            window.alert('Service updated successfully');
+            window.location.reload();
+        }
+        if (serviceError) {
+            window.alert(serviceError);
+        }
+    }, [serviceUpdate, serviceError]);
 
 
 
@@ -74,13 +192,15 @@ const Services = () => {
                                 <Modal.Title>Services Header</Modal.Title>
                             </Modal.Header>
                             <Modal.Body>
-                                <Form>
+                                <Form onSubmit={handleHeaderSubmit}>
 
                                     <Form.Group className="mb-3" controlId="formHeadingInput">
                                         <Form.Label>Carousel Heading</Form.Label>
                                         <Form.Control
                                             type="text"
                                             placeholder="Enter the Heading"
+                                            value={header}
+                                            onChange={(e) => setHeader(e.target.value)}
                                         />
                                     </Form.Group>
                                     <Form.Group className="mb-3" controlId="formSubHeadingInput">
@@ -88,6 +208,8 @@ const Services = () => {
                                         <Form.Control
                                             type="text"
                                             placeholder="Enter the Caption"
+                                            value={caption}
+                                            onChange={(e) => setCaption(e.target.value)}
                                         />
                                     </Form.Group>
                                     <Form.Group className="mb-3">
@@ -95,6 +217,7 @@ const Services = () => {
                                         <Form.Control
                                             type="file"
                                             placeholder="Enter any Image"
+                                            onChange={handelHeaderImage}
                                         />
                                     </Form.Group>
                                     <Button variant="primary" type="submit">
@@ -157,12 +280,14 @@ const Services = () => {
                                 <Modal.Title>Services Heading</Modal.Title>
                             </Modal.Header>
                             <Modal.Body>
-                                <Form>
+                                <Form onSubmit={handleServiceSubmit}>
                                     <Form.Group className="mb-3" controlId="formHeadingInput">
                                         <Form.Label>Heading</Form.Label>
                                         <Form.Control
                                             type="text"
                                             placeholder="Enter the Heading"
+                                            value={servicesBodyHeader}
+                                            onChange={(e) => setServicesBodyHeader(e.target.value)}
                                         />
                                     </Form.Group>
                                     <Form.Group className="mb-3" controlId="formSubHeadingInput">
@@ -170,6 +295,8 @@ const Services = () => {
                                         <Form.Control
                                             type="text"
                                             placeholder="Enter the Sub Heading"
+                                            value={servicesBodyContent}
+                                            onChange={(e) => setServicesBodyContent(e.target.value)}
                                         />
                                     </Form.Group>
                                     <Button variant="primary" type="submit">
@@ -187,13 +314,14 @@ const Services = () => {
                                 <Modal.Title>Services Image</Modal.Title>
                             </Modal.Header>
                             <Modal.Body>
-                                <Form>
-
+                                <Form onSubmit={handelServiceImageSubmit}>
                                     <Form.Group className="mb-3" controlId="updateFormHeadingInput">
                                         <Form.Label>Title</Form.Label>
                                         <Form.Control
                                             type="text"
                                             placeholder="Enter the Heading"
+                                            value={title}
+                                            onChange={(e) => setTitle(e.target.value)}
                                         />
                                     </Form.Group>
                                     <Form.Group className="mb-3" controlId="updateFormSubHeadingInput">
@@ -201,6 +329,8 @@ const Services = () => {
                                         <Form.Control
                                             type="text"
                                             placeholder="Enter the Sub Heading"
+                                            value={description}
+                                            onChange={(e) => setDescription(e.target.value)}
                                         />
                                     </Form.Group>
                                     <Form.Group className="mb-3">
@@ -208,6 +338,7 @@ const Services = () => {
                                         <Form.Control
                                             type="file"
                                             placeholder="Enter any Image"
+                                            onChange={handelServiceImageChange}
                                         />
                                     </Form.Group>
                                     <Button variant="primary" type="submit">
@@ -229,8 +360,8 @@ const Services = () => {
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>{services[0].header}</td>
-                                    <td>{services[0].caption}</td>
+                                    <td>{services[0].servicesBodyHeader}</td>
+                                    <td>{services[0].servicesBodyContent}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -241,6 +372,7 @@ const Services = () => {
                         <table className="table table-striped">
                             <thead>
                                 <tr>
+                                    <th scope="col">#</th>
                                     <th scope="col">Title</th>
                                     <th scope="col">Description</th>
                                     <th scope="col">Image</th>
@@ -248,22 +380,61 @@ const Services = () => {
                             </thead>
                             <tbody>
 
-                                {ourServices.map((service) => (
+                                {ourServices.map((service, index) => (
                                     <tr key={service._id}>
+                                        <th scope="row">{index + 1}</th>
                                         <td>{service.title}</td>
                                         <td>{service.description}</td>
                                         <td>
-                                            <img
-                                                src={service.image.url}
-                                                alt={service.title}
-                                                className="image"
-                                            />
+                                            <img src={service.image.url} alt={service.title} className="image" width="100" />
+                                        </td>
+                                        <td>
+                                            <Button variant="primary" onClick={() => handleShowEditModal(service)}>
+                                                Edit
+                                            </Button>
                                         </td>
                                     </tr>
                                 ))}
                             </tbody>
                         </table>
                     </main>
+
+                    <Modal show={showEditModal} onHide={handleCloseEditModal}>
+                            <Modal.Header closeButton>
+                                <Modal.Title>Edit Service</Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>
+                                <Form onSubmit={handleUpdate}>
+                                    <Form.Group className="mb-3" controlId="formTitle">
+                                        <Form.Label>Title</Form.Label>
+                                        <Form.Control
+                                            type="text"
+                                            value={title}
+                                            onChange={(e) => setTitle(e.target.value)}
+                                        />
+                                    </Form.Group>
+                                    <Form.Group className="mb-3" controlId="formTitle">
+                                        <Form.Label>Description</Form.Label>
+                                        <Form.Control
+                                            type="text"
+                                            value={description}
+                                            onChange={(e) => setDescription(e.target.value)}
+                                        />
+                                    </Form.Group>
+                                    <Form.Group className="mb-3" controlId="formImage">
+                                        <Form.Label>Image</Form.Label>
+                                        <Form.Control
+                                            type="file"
+                                            onChange={handleUpdateServiceImageChange}
+                                        />
+                                    </Form.Group>
+
+                                    <Button variant="primary" type="submit">
+                                        Update
+                                    </Button>
+                                </Form>
+                            </Modal.Body>
+                        </Modal>
 
 
                 </div>

@@ -3,6 +3,15 @@ import {
     GET_ADMIN_SERVICES_SUCCESS,
     GET_ADMIN_SERVICES_FAIL,
     CLEAR_ERRORS,
+    ADD_ADMIN_SERVICESHEADER_REQUEST,
+    ADD_ADMIN_SERVICESHEADER_SUCCESS,
+    ADD_ADMIN_SERVICESHEADER_FAIL,
+    ADD_ADMIN_SERVICES_REQUEST,
+    ADD_ADMIN_SERVICES_SUCCESS,
+    ADD_ADMIN_SERVICES_FAIL,
+    UPDATE_ADMIN_SERVICESIMAGE_REQUEST,
+    UPDATE_ADMIN_SERVICESIMAGE_SUCCESS,
+    UPDATE_ADMIN_SERVICESIMAGE_FAIL,
 } from '../Constants/ServicesConstants';
 import axios from 'axios';
 
@@ -17,6 +26,101 @@ export const getServices = () => async (dispatch) => {
         dispatch({ type: GET_ADMIN_SERVICES_FAIL, payload: error.response.data.message });
     }
 };
+
+export const createServicesHeader = (HeaderData) => async(dispatch) =>{
+    try {
+        dispatch({ type: ADD_ADMIN_SERVICESHEADER_REQUEST });
+
+        const config = {
+            headers: { "Content-Type": "multipart/form-data" },
+        }
+
+        const { data } = await axios.post(`/api/v1/services/create-servicesHeader`, HeaderData, config);
+
+        dispatch({
+            type: ADD_ADMIN_SERVICESHEADER_SUCCESS,
+            payload: data.success
+        });
+
+    } catch (error) {
+        dispatch({
+            type: ADD_ADMIN_SERVICESHEADER_FAIL,
+            payload: error.response.data.message,
+        });
+    }
+}
+
+export const createServices = (servicesData) => async(dispatch) =>{
+    try {
+        dispatch({ type: ADD_ADMIN_SERVICES_REQUEST });
+
+        const config = {
+            headers: { "Content-Type": "multipart/form-data" },
+        }
+
+        const { data } = await axios.post(`/api/v1/services/create-servicesBody`, servicesData, config);
+
+        dispatch({
+            type: ADD_ADMIN_SERVICES_SUCCESS,
+            payload: data.success
+        });
+
+    } catch (error) {
+        dispatch({
+            type: ADD_ADMIN_SERVICES_FAIL,
+            payload: error.response.data.message,
+        });
+    }
+}
+
+export const createServicesImage = (imageData) => async(dispatch) =>{
+    try {
+        dispatch({ type: ADD_ADMIN_SERVICES_REQUEST });
+
+        const config = {
+            headers: { "Content-Type": "multipart/form-data" },
+        }
+
+        const { data } = await axios.post(`/api/v1/services/create-ourservices`, imageData, config);
+
+        dispatch({
+            type: ADD_ADMIN_SERVICES_SUCCESS,
+            payload: data.success
+        });
+
+    } catch (error) {
+        dispatch({
+            type: ADD_ADMIN_SERVICES_FAIL,
+            payload: error.response.data.message,
+        });
+    }
+}
+
+export const updateServiceImage = (id, imageData) => async (dispatch) => {
+    try {
+      dispatch({ type: UPDATE_ADMIN_SERVICESIMAGE_REQUEST });
+  
+      const config = {
+        headers: {"Content-Type": "multipart/form-data" },
+      };
+  
+      const { data } = await axios.put(
+        `/api/v1/services/update-ourservices/${id}`,
+        imageData,
+        config
+      );
+  
+      dispatch({
+        type: UPDATE_ADMIN_SERVICESIMAGE_SUCCESS,
+        payload: data.success,
+      });
+    } catch (error) {
+      dispatch({
+        type: UPDATE_ADMIN_SERVICESIMAGE_FAIL,
+        payload: error.response.data.message,
+      });
+    }
+  };
 
 export const clearErrors = () => async (dispatch) => {
     dispatch({ type: CLEAR_ERRORS });
