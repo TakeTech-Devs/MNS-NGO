@@ -36,3 +36,9 @@
 /* .admin-header-right ul li:hover {
   background-color: #1e81ce;
 } */
+
+@media (max-width: 768px) {
+  .admin-header-right ul li {
+    margin-right: 70px;
+  }
+}
