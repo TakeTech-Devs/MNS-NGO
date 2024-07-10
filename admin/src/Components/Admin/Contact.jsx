@@ -17,8 +17,13 @@ const Contact = () => {
     const handleShowHeaderForm = () => setShowHeaderForm(true);
     const handleCloseHeaderUpdate = () => setShowHeaderForm(false);
 
-    const [showContactForm, setShowContactForm] = useState(false);
+    const [showHeaderImageForm, setShowHeaderImageForm] = useState(false);
 
+
+    const handleShowHeaderImageForm = () => setShowHeaderImageForm(true);
+    const handleCloseHeaderImageUpdate = () => setShowHeaderImageForm(false);
+
+    const [showContactForm, setShowContactForm] = useState(false);
 
 
     const handleShowContactForm = () => setShowContactForm(true);
@@ -47,21 +52,29 @@ const Contact = () => {
 
     const { contact: addContact, error: newHomeDataError, isUpdated } = useSelector(state => state.newContactData);
 
-    const [header, setHeader] = useState('');
-    const [caption, setCaption] = useState('');
+    const [headerData, setHeaderData] = useState({
+        header: '',
+        caption: '',
+    })
     const [headerImage, setHeaderImage] = useState([]);
 
 
-    const [phone, setphone] = useState('');
-    const [email, setEmail] = useState('');
+    const [contactData, setContactData] = useState({
+        phone: '',
+        email: '',
+    })
 
 
     useEffect(() => {
         if (addContact) {
-            setHeader(contact.header || "");
-            setCaption(contact.caption || "");
-            setphone(contact.phone || "");
-            setEmail(contact.email || "");
+            setHeaderData({
+                header: addContact.header,
+                caption: addContact.caption,
+            })
+            setContactData({
+                phone: addContact.phone,
+                email: addContact.email,
+            })
 
         }
         if (isUpdated) {
@@ -84,21 +97,36 @@ const Contact = () => {
     const handleHeaderSubmit = (e) => {
         e.preventDefault();
         const formData = new FormData();
-        formData.append("header", header);
-        formData.append("caption", caption);
         formData.append('headerImage', headerImage);
 
         dispatch(createContactHeader(formData));
     }
 
+    const handelHeaderInput = (e) =>{
+        setHeaderData({
+            ...headerData,
+            [e.target.name]: e.target.value,
+        })
+    }
+
+    const handelHeaderInputSubmit = (e) =>{
+        e.preventDefault();
+        dispatch(createContactHeader(headerData));
+    }
+
+
+    const handelInfoInput = (e) =>{
+        setContactData({
+            ...contactData,
+            [e.target.name]: e.target.value,
+        })
+    }
+
     
     const handleInfoSubmit = (e) => {
         e.preventDefault();
-        const formData = new FormData();
-        formData.append("phone", phone);
-        formData.append("email", email);
 
-        dispatch(createContactInfo(formData));
+        dispatch(createContactInfo(contactData));
     }
 
 
@@ -121,25 +149,43 @@ const Contact = () => {
                                 <Modal.Title>Contact Header</Modal.Title>
                             </Modal.Header>
                             <Modal.Body>
-                                <Form onSubmit={handleHeaderSubmit}>
+                                <Form onSubmit={handelHeaderInputSubmit}>
                                     <Form.Group className="mb-3" controlId="formHeadingInput">
                                         <Form.Label>Heading</Form.Label>
                                         <Form.Control
                                             type="text"
                                             placeholder="Enter the Heading"
-                                            value={header}
-                                            onChange={(e) => setHeader(e.target.value)}
+                                            name='header'
+                                            value={headerData.header}
+                                            onChange={handelHeaderInput}
                                         />
                                     </Form.Group>
                                     <Form.Group className="mb-3" controlId="formSubHeadingInput">
                                         <Form.Label>Caption</Form.Label>
                                         <Form.Control
-                                            type="text"
+                                            as="textarea"
                                             placeholder="Enter the Caption"
-                                            value={caption}
-                                            onChange={(e) => setCaption(e.target.value)}
+                                            name='caption'
+                                            value={headerData.caption}
+                                            onChange={handelHeaderInput}
                                         />
                                     </Form.Group>
+                                    <Button variant="primary" type="submit">
+                                        Submit
+                                    </Button>
+                                </Form>
+                            </Modal.Body>
+                        </Modal>
+                        {' '}
+                        <Button variant="primary" size="sm" onClick={handleShowHeaderImageForm}>
+                            Add/Update Header
+                        </Button>
+                        <Modal show={showHeaderImageForm} onHide={handleCloseHeaderImageUpdate}>
+                            <Modal.Header closeButton>
+                                <Modal.Title>Grievance Header</Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>
+                                <Form onSubmit={handleHeaderSubmit}>
                                     <Form.Group className="mb-3">
                                         <Form.Label>Image</Form.Label>
                                         <Form.Control
@@ -154,7 +200,6 @@ const Contact = () => {
                                 </Form>
                             </Modal.Body>
                         </Modal>
-                        {' '}
                     </div>
 
 
@@ -214,8 +259,9 @@ const Contact = () => {
                                         <Form.Control
                                             type="text"
                                             placeholder="Enter the Heading"
-                                            value={phone}
-                                            onChange={(e) => setphone(e.target.value)}
+                                            name='phone'
+                                            value={contactData.phone}
+                                            onChange={handelInfoInput}
                                         />
                                     </Form.Group>
                                     <Form.Group className="mb-3" controlId="formHeadingInput">
@@ -223,8 +269,9 @@ const Contact = () => {
                                         <Form.Control
                                             type="email"
                                             placeholder="Enter the Heading"
-                                            value={email}
-                                            onChange={(e) => setEmail(e.target.value)}
+                                            name='email'
+                                            value={contactData.email}
+                                            onChange={handelInfoInput}
                                         />
                                     </Form.Group>
                                     <Button variant="primary" type="submit">

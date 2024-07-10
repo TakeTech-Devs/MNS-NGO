@@ -17,8 +17,13 @@ const Governing = () => {
     const handleShowHeaderForm = () => setShowHeaderForm(true);
     const handleCloseHeaderUpdate = () => setShowHeaderForm(false);
 
-    const [showBodyForm, setShowBodyForm] = useState(false);
+    const [showHeaderImageForm, setShowHeaderImageForm] = useState(false);
 
+
+    const handleShowHeaderImageForm = () => setShowHeaderImageForm(true);
+    const handleCloseHeaderImageUpdate = () => setShowHeaderImageForm(false);
+
+    const [showBodyForm, setShowBodyForm] = useState(false);
 
 
     const handleShowBodyForm = () => setShowBodyForm(true);
@@ -33,31 +38,35 @@ const Governing = () => {
 
     const dispatch = useDispatch();
     const { goveringBody, loading, error } = useSelector(state => state.adminGoverning);
-    
+
     useEffect(() => {
         dispatch(getGoverning());
     }, [dispatch]);
-    
+
     useEffect(() => {
         if (error) {
             alert(error);
             dispatch(clearErrors());
         }
     }, [error, dispatch]);
-    
-    const { governing, isUpdated, error: governingError} = useSelector(state => state.newGoverningData);
 
-    const [header, setHeader] = useState('');
-    const [caption, setCaption] = useState('');
+    const { governing, isUpdated, error: governingError } = useSelector(state => state.newGoverningData);
+
+    const [headerData, setHeaderData] = useState({
+        header: '',
+        caption: '',
+    })
     const [headerImage, setHeaderImage] = useState([]);
 
     const [goveringBodyHeader, setGoveringBodyHeader] = useState('');
     const [goveringBodyContent, setGoveringBodyContent] = useState('');
 
     useEffect(() => {
-        if(governing){
-            setHeader(governing.header);
-            setCaption(governing.caption);
+        if (governing) {
+            setHeaderData({
+                header: governing.header,
+                caption: governing.caption,
+            })
             setGoveringBodyHeader(governing.goveringBodyHeader);
             setGoveringBodyContent(governing.goveringBodyContent);
         }
@@ -69,11 +78,11 @@ const Governing = () => {
             window.location.reload()
         }
 
-        if(governingError){
+        if (governingError) {
             window.alert(governingError);
             dispatch(clearErrors());
         }
-    },[dispatch, isUpdated, governing, governingError])
+    }, [dispatch, isUpdated, governing, governingError])
 
     const handelHeaderImage = (e) => {
         setHeaderImage(e.target.files[0]);
@@ -83,11 +92,21 @@ const Governing = () => {
     const handleHeaderSubmit = (e) => {
         e.preventDefault();
         const formData = new FormData();
-        formData.append("header", header);
-        formData.append("caption", caption);
         formData.append('headerImage', headerImage);
 
         dispatch(createGoverningHeader(formData));
+    }
+
+    const handelHeaderInput = (e) => {
+        setHeaderData({
+            ...headerData,
+            [e.target.name]: e.target.value,
+        })
+    }
+
+    const handelHeaderInputSubmit = (e) => {
+        e.preventDefault();
+        dispatch(createGoverningHeader(headerData));
     }
 
 
@@ -120,25 +139,43 @@ const Governing = () => {
                                 <Modal.Title>Governing Header</Modal.Title>
                             </Modal.Header>
                             <Modal.Body>
-                                <Form onSubmit={handleHeaderSubmit}>
+                                <Form onSubmit={handelHeaderInputSubmit}>
                                     <Form.Group className="mb-3" controlId="formHeadingInput">
                                         <Form.Label>Heading</Form.Label>
                                         <Form.Control
                                             type="text"
                                             placeholder="Enter the Heading"
-                                            value={header}
-                                            onChange={(e) => setHeader(e.target.value)}
+                                            name='header'
+                                            value={headerData.header}
+                                            onChange={handelHeaderInput}
                                         />
                                     </Form.Group>
                                     <Form.Group className="mb-3" controlId="formSubHeadingInput">
                                         <Form.Label>Caption</Form.Label>
                                         <Form.Control
-                                            type="text"
+                                            as="textarea"
                                             placeholder="Enter the Caption"
-                                            value={caption}
-                                            onChange={(e) => setCaption(e.target.value)}
+                                            name='caption'
+                                            value={headerData.caption}
+                                            onChange={handelHeaderInput}
                                         />
                                     </Form.Group>
+                                    <Button variant="primary" type="submit">
+                                        Submit
+                                    </Button>
+                                </Form>
+                            </Modal.Body>
+                        </Modal>
+                        {' '}
+                        <Button variant="primary" size="sm" onClick={handleShowHeaderImageForm}>
+                            Add/Update Header
+                        </Button>
+                        <Modal show={showHeaderImageForm} onHide={handleCloseHeaderImageUpdate}>
+                            <Modal.Header closeButton>
+                                <Modal.Title>Grievance Header</Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>
+                                <Form onSubmit={handleHeaderSubmit}>
                                     <Form.Group className="mb-3">
                                         <Form.Label>Image</Form.Label>
                                         <Form.Control
@@ -153,7 +190,6 @@ const Governing = () => {
                                 </Form>
                             </Modal.Body>
                         </Modal>
-                        {' '}
                     </div>
 
 
@@ -220,7 +256,7 @@ const Governing = () => {
                                     <Form.Group className="mb-3" controlId="formHeadingInput">
                                         <Form.Label>Body Caption</Form.Label>
                                         <Form.Control
-                                            type="text"
+                                            as="textarea"
                                             placeholder="Enter the Heading"
                                             value={goveringBodyContent}
                                             onChange={(e) => setGoveringBodyContent(e.target.value)}

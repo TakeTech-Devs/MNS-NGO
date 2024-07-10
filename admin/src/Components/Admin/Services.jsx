@@ -20,6 +20,12 @@ const Services = () => {
 
     const [showServicesForm, setShowServicesForm] = useState(false);
 
+    const [showHeaderImageForm, setShowHeaderImageForm] = useState(false);
+
+
+    const handleShowHeaderImageForm = () => setShowHeaderImageForm(true);
+    const handleCloseHeaderImageUpdate = () => setShowHeaderImageForm(false);
+
 
 
     const handleShowServicesForm = () => setShowServicesForm(true);
@@ -56,8 +62,12 @@ const Services = () => {
     const { services: addServices, isUpdated, error: servicesError } = useSelector(state => state.newServicesData);
 
 
-    const [header, setHeader] = useState('');
-    const [caption, setCaption] = useState('');
+    // const [header, setHeader] = useState('');
+    // const [caption, setCaption] = useState('');
+    const [headerData, setHeaderData] = useState({
+        header: '',
+        caption: '',
+    })
     const [headerImage, setHeaderImage] = useState([]);
 
     const [servicesBodyHeader, setServicesBodyHeader] = useState('');
@@ -71,8 +81,10 @@ const Services = () => {
 
     useEffect(() => {
         if (addServices) {
-            setHeader(addServices.header);
-            setCaption(addServices.caption);
+            setHeaderData({
+                header: addServices.header,
+                caption: addServices.caption,
+            })
             setServicesBodyHeader(addServices.servicesBodyHeader);
             setServicesBodyContent(addServices.servicesBodyContent);
             setTitle(addServices.title);
@@ -101,11 +113,21 @@ const Services = () => {
     const handleHeaderSubmit = (e) => {
         e.preventDefault();
         const formData = new FormData();
-        formData.append("header", header);
-        formData.append("caption", caption);
         formData.append('headerImage', headerImage);
 
         dispatch(createServicesHeader(formData));
+    }
+
+    const handelHeaderInput = (e) =>{
+        setHeaderData({
+            ...headerData,
+            [e.target.name]: e.target.value,
+        })
+    }
+
+    const handelHeaderInputSubmit = (e) =>{
+        e.preventDefault();
+        dispatch(createServicesHeader(headerData));
     }
 
     const handleServiceSubmit = (e) => {
@@ -192,28 +214,46 @@ const Services = () => {
                                 <Modal.Title>Services Header</Modal.Title>
                             </Modal.Header>
                             <Modal.Body>
-                                <Form onSubmit={handleHeaderSubmit}>
+                                <Form onSubmit={handelHeaderInputSubmit}>
 
                                     <Form.Group className="mb-3" controlId="formHeadingInput">
                                         <Form.Label>Carousel Heading</Form.Label>
                                         <Form.Control
                                             type="text"
                                             placeholder="Enter the Heading"
-                                            value={header}
-                                            onChange={(e) => setHeader(e.target.value)}
+                                            name='header'
+                                            value={headerData.header}
+                                            onChange={handelHeaderInput}
                                         />
                                     </Form.Group>
                                     <Form.Group className="mb-3" controlId="formSubHeadingInput">
                                         <Form.Label>Carousel Caption</Form.Label>
                                         <Form.Control
-                                            type="text"
+                                            as="textarea"
                                             placeholder="Enter the Caption"
-                                            value={caption}
-                                            onChange={(e) => setCaption(e.target.value)}
+                                            name='caption'
+                                            value={headerData.caption}
+                                            onChange={handelHeaderInput}
                                         />
                                     </Form.Group>
+                                    <Button variant="primary" type="submit">
+                                        Submit
+                                    </Button>
+                                </Form>
+                            </Modal.Body>
+                        </Modal>
+                        {' '}
+                        <Button variant="primary" size="sm" onClick={handleShowHeaderImageForm}>
+                            Add/Update Header
+                        </Button>
+                        <Modal show={showHeaderImageForm} onHide={handleCloseHeaderImageUpdate}>
+                            <Modal.Header closeButton>
+                                <Modal.Title>Grievance Header</Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>
+                                <Form onSubmit={handleHeaderSubmit}>
                                     <Form.Group className="mb-3">
-                                        <Form.Label>Carousel Image</Form.Label>
+                                        <Form.Label>Image</Form.Label>
                                         <Form.Control
                                             type="file"
                                             placeholder="Enter any Image"
@@ -226,7 +266,6 @@ const Services = () => {
                                 </Form>
                             </Modal.Body>
                         </Modal>
-                        {' '}
                     </div>
 
 
@@ -293,7 +332,7 @@ const Services = () => {
                                     <Form.Group className="mb-3" controlId="formSubHeadingInput">
                                         <Form.Label>Caption</Form.Label>
                                         <Form.Control
-                                            type="text"
+                                            as="textarea"
                                             placeholder="Enter the Sub Heading"
                                             value={servicesBodyContent}
                                             onChange={(e) => setServicesBodyContent(e.target.value)}
@@ -327,7 +366,7 @@ const Services = () => {
                                     <Form.Group className="mb-3" controlId="updateFormSubHeadingInput">
                                         <Form.Label>Description</Form.Label>
                                         <Form.Control
-                                            type="text"
+                                            as="textarea"
                                             placeholder="Enter the Sub Heading"
                                             value={description}
                                             onChange={(e) => setDescription(e.target.value)}
@@ -400,41 +439,41 @@ const Services = () => {
                     </main>
 
                     <Modal show={showEditModal} onHide={handleCloseEditModal}>
-                            <Modal.Header closeButton>
-                                <Modal.Title>Edit Service</Modal.Title>
-                            </Modal.Header>
-                            <Modal.Body>
-                                <Form onSubmit={handleUpdate}>
-                                    <Form.Group className="mb-3" controlId="formTitle">
-                                        <Form.Label>Title</Form.Label>
-                                        <Form.Control
-                                            type="text"
-                                            value={title}
-                                            onChange={(e) => setTitle(e.target.value)}
-                                        />
-                                    </Form.Group>
-                                    <Form.Group className="mb-3" controlId="formTitle">
-                                        <Form.Label>Description</Form.Label>
-                                        <Form.Control
-                                            type="text"
-                                            value={description}
-                                            onChange={(e) => setDescription(e.target.value)}
-                                        />
-                                    </Form.Group>
-                                    <Form.Group className="mb-3" controlId="formImage">
-                                        <Form.Label>Image</Form.Label>
-                                        <Form.Control
-                                            type="file"
-                                            onChange={handleUpdateServiceImageChange}
-                                        />
-                                    </Form.Group>
+                        <Modal.Header closeButton>
+                            <Modal.Title>Edit Service</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                            <Form onSubmit={handleUpdate}>
+                                <Form.Group className="mb-3" controlId="formTitle">
+                                    <Form.Label>Title</Form.Label>
+                                    <Form.Control
+                                        type="text"
+                                        value={title}
+                                        onChange={(e) => setTitle(e.target.value)}
+                                    />
+                                </Form.Group>
+                                <Form.Group className="mb-3" controlId="formTitle">
+                                    <Form.Label>Description</Form.Label>
+                                    <Form.Control
+                                        as="textarea"
+                                        value={description}
+                                        onChange={(e) => setDescription(e.target.value)}
+                                    />
+                                </Form.Group>
+                                <Form.Group className="mb-3" controlId="formImage">
+                                    <Form.Label>Image</Form.Label>
+                                    <Form.Control
+                                        type="file"
+                                        onChange={handleUpdateServiceImageChange}
+                                    />
+                                </Form.Group>
 
-                                    <Button variant="primary" type="submit">
-                                        Update
-                                    </Button>
-                                </Form>
-                            </Modal.Body>
-                        </Modal>
+                                <Button variant="primary" type="submit">
+                                    Update
+                                </Button>
+                            </Form>
+                        </Modal.Body>
+                    </Modal>
 
 
                 </div>

@@ -46,6 +46,13 @@ const Home = () => {
     const handleShowAboutForm = () => setShowAboutForm(true);
     const handleCloseAboutUpdate = () => setShowAboutForm(false);
 
+    const [showAboutImageForm, setShowAboutImageForm] = useState(false);
+
+
+
+    const handleShowAboutImageForm = () => setShowAboutImageForm(true);
+    const handleCloseAboutImageUpdate = () => setShowAboutImageForm(false);
+
 
     const [showServicesForm, setShowServicesForm] = useState(false);
 
@@ -69,6 +76,13 @@ const Home = () => {
 
     const handleShowJoinUsForm = () => setJoinUsVisionForm(true);
     const handleCloseJoinUsUpdate = () => setJoinUsVisionForm(false);
+
+    const [showJoinUsImageForm, setJoinUsVisionImageForm] = useState(false);
+
+
+
+    const handleShowJoinUsImageForm = () => setJoinUsVisionImageForm(true);
+    const handleCloseJoinUsImageUpdate = () => setJoinUsVisionImageForm(false);
 
 
     const [showCarousel, setShowCarousel] = useState(false);
@@ -152,9 +166,17 @@ const Home = () => {
 
 
     // about
-    const [aboutHeader, setAboutHeader] = useState('');
-    const [aboutCaption, setAboutCaption] = useState('');
-    const [aboutContent, setAboutContent] = useState('');
+
+    const [aboutData, setAboutData] = useState({
+        aboutHeader: '',
+        aboutCaption: '',
+        aboutContent: '',
+        // aboutImage: [],  
+    })
+
+    // const [aboutHeader, setAboutHeader] = useState('');
+    // const [aboutCaption, setAboutCaption] = useState('');
+    // const [aboutContent, setAboutContent] = useState('');
     const [aboutImage, setaboutImage] = useState([]);
 
     // vision
@@ -171,13 +193,15 @@ const Home = () => {
     const [visionCaptionThird, setVisionCaptionThird] = useState('');
 
     // Join Us 
-    const [joinUsHeader, setJoinUsHeader] = useState('');
-    const [joinUsCaption, setJoinUsCaption] = useState('');
+    const [joinUsData, setJoinUsData] = useState({
+        joinUsHeader: '',
+        joinUsCaption: '',
+    })
     const [joinUsImage, setJoinUsImage] = useState(null);
 
     // service head
 
-    const [serviceData, setServiceData] = useState ({
+    const [serviceData, setServiceData] = useState({
         serviceHeader: '',
         serviceCaption: ''
     })
@@ -209,10 +233,6 @@ const Home = () => {
             formData.append('image', image);
         }
 
-        for (let [key, value] of formData.entries()) {
-            console.log(`${key}:`, value);
-        }
-
         dispatch(updateServiceCarousel(selectedItem._id, formData));
         setShowEditModal(false);
     };
@@ -239,51 +259,67 @@ const Home = () => {
     useEffect(() => {
         if (highlight) {
             setFormData({
-                highlightHeaderFirst: highlight.highlightHeaderFirst || '',
-                highlightCaptionFirst: highlight.highlightCaptionFirst || '',
-                highlightHeaderSecond: highlight.highlightHeaderSecond || '',
-                highlightCaptionSecond: highlight.highlightCaptionSecond || '',
-                highlightHeaderThird: highlight.highlightHeaderThird || '',
-                highlightCaptionThird: highlight.highlightCaptionThird || ''
+                highlightHeaderFirst: highlight.highlightHeaderFirst,
+                highlightCaptionFirst: highlight.highlightCaptionFirst,
+                highlightHeaderSecond: highlight.highlightHeaderSecond,
+                highlightCaptionSecond: highlight.highlightCaptionSecond,
+                highlightHeaderThird: highlight.highlightHeaderThird,
+                highlightCaptionThird: highlight.highlightCaptionThird,
             });
         }
 
         if (carouselSection) {
-            setCarouselText(carouselSection.carouselText || '');
-            setCarouselCaption(carouselSection.carouselCaption || '');
+            setCarouselText(carouselSection.carouselText);
+            setCarouselCaption(carouselSection.carouselCaption);
         }
 
+
         if (about) {
-            setAboutHeader(about.aboutHeader || '');
-            setAboutCaption(about.aboutCaption || '');
-            setAboutContent(about.aboutContent || '');
+            setAboutData({
+                aboutHeader: about.aboutHeader,
+                aboutCaption: about.aboutCaption,
+                aboutContent: about.aboutContent,
+                // aboutImage: about.aboutImage || [] 
+            });
         }
+
+        // if (about) {
+        //     setAboutHeader(about.aboutHeader || '');
+        //     setAboutCaption(about.aboutCaption || '');
+        //     setAboutContent(about.aboutContent || '');
+        // }
 
         if (serviceHead) {
             setServiceData({
-                servicesHeader: serviceHead.servicesHeader || '',
-                servicesCaption: serviceHead.servicesCaption || ''
+                servicesHeader: serviceHead.servicesHeader,
+                servicesCaption: serviceHead.servicesCaption
             })
         }
 
         if (service) {
-            setTitle(service.title || '');
+            setTitle(service.title);
+        }
+        if (vision) {
+            setVisionHeader(vision.visionHeader);
+            setVisionCaption(vision.visionCaption);
+            setVisionHeaderFirst(vision.visionHeaderFirst);
+            setVisionCaptionFirst(vision.visionCaptionFirst);
+            setVisionHeaderSecond(vision.visionHeaderSecond);
+            setVisionCaptionSecond(vision.visionCaptionSecond);
+            setVisionHeaderThird(vision.visionHeaderThird);
+            setVisionCaptionThird(vision.visionCaptionThird);
         }
 
-        if (vision) {
-            setVisionHeader(vision.visionHeader || '');
-            setVisionCaption(vision.visionCaption || '');
-            setVisionHeaderFirst(vision.visionHeaderFirst || '');
-            setVisionCaptionFirst(vision.visionCaptionFirst || '');
-            setVisionHeaderSecond(vision.visionHeaderSecond || '');
-            setVisionCaptionSecond(vision.visionCaptionSecond || '');
-            setVisionHeaderThird(vision.visionHeaderThird || '');
-            setVisionCaptionThird(vision.visionCaptionThird || '');
-        }
+        // if (joinUs) {
+        //     setJoinUsHeader(joinUs.joinUsHeader);
+        //     setJoinUsCaption(joinUs.joinUsCaption);
+        // }
 
         if (joinUs) {
-            setJoinUsHeader(joinUs.joinUsHeader || '');
-            setJoinUsCaption(joinUs.joinUsCaption || '');
+            setJoinUsData({
+                joinUsHeader: joinUs.joinUsHeader,
+                joinUsCaption: joinUs.joinUsCaption,
+            })
         }
 
 
@@ -302,9 +338,9 @@ const Home = () => {
             dispatch({ type: ADD_VISION_HOME_RESET });
             dispatch({ type: ADD_JOINUS_HOME_RESET });
             window.location.reload()
-        }
+        };
 
-    }, [dispatch, highlight, newHomeDataError, isUpdated, carouselSection, about, vision, joinUs, service, serviceHead])
+    }, [dispatch, highlight, newHomeDataError, isUpdated, carouselSection, about, vision, joinUs, service, serviceHead]);
 
 
     // highlight
@@ -344,22 +380,44 @@ const Home = () => {
 
 
     // about
-    const handleAboutImageChange = (e) => {
-        setaboutImage([...e.target.files]);
-    };
+    // const handleAboutImageChange = (e) => {
+    //     setaboutImage([...e.target.files]);
+    // };
+
+    const handleAboutInput = (e) => {
+        setAboutData({
+            ...aboutData,
+            [e.target.name]: e.target.value
+        });
+    }
 
     const handleAboutSubmit = (e) => {
         e.preventDefault();
 
-        const formData = new FormData();
+        // const formData = new FormData();
 
-        formData.append("aboutHeader", aboutHeader);
-        formData.append("aboutCaption", aboutCaption);
-        formData.append("aboutContent", aboutContent);
+        // formData.append("aboutHeader", aboutHeader);
+        // formData.append("aboutCaption", aboutCaption);
+        // formData.append("aboutContent", aboutContent);
+        // aboutImage.forEach(image => formData.append('aboutImage', image));
+
+        dispatch(createAbout(aboutData));
+    }
+
+    const handleAboutImageChange = (e) => {
+        setaboutImage([...e.target.files]);
+    };
+
+    const handleAboutImageSubmit = (e) => {
+        e.preventDefault();
+
+        const formData = new FormData();
         aboutImage.forEach(image => formData.append('aboutImage', image));
 
         dispatch(createAbout(formData));
+
     }
+
 
     // vision
 
@@ -401,23 +459,35 @@ const Home = () => {
     const handleJoinUsSubmit = (e) => {
         e.preventDefault();
         const formData = new FormData();
-        formData.append("joinUsHeader", joinUsHeader);
-        formData.append("joinUsCaption", joinUsCaption);
+        // formData.append("joinUsHeader", joinUsHeader);
+        // formData.append("joinUsCaption", joinUsCaption);
         formData.append('joinUsImage', joinUsImage);
 
         dispatch(createJoinUs(formData));
     }
 
+    const handleJoinUsInputChange = (e) =>{
+        setJoinUsData({
+            ...joinUsData,
+            [e.target.name]: e.target.value
+        })
+    }
+
+    const handleJoinUsInputSubmit = (e) =>{
+        e.preventDefault();
+        dispatch(createJoinUs(joinUsData));
+    }
+
     // service head
 
-    const handelServiceHeadChange = (e) =>{
+    const handelServiceHeadChange = (e) => {
         setServiceData({
             ...serviceData,
             [e.target.name]: e.target.value
         })
     }
 
-    const handelServiceHeadSubmit = (e) =>{
+    const handelServiceHeadSubmit = (e) => {
         e.preventDefault();
         dispatch(createServiceHead(serviceData));
     }
@@ -473,7 +543,7 @@ const Home = () => {
                                             <Form.Group className="mb-3" controlId="formSubHeadingInput">
                                                 <Form.Label>Carousel Caption</Form.Label>
                                                 <Form.Control
-                                                    type="text"
+                                                    as="textarea"
                                                     placeholder="Enter the Caption"
                                                     value={carouselCaption}
                                                     onChange={(e) => setCarouselCaption(e.target.value)}
@@ -568,7 +638,7 @@ const Home = () => {
                                         <Form.Group className="mb-3" controlId="formHeadingInput">
                                             <Form.Label>First Caption</Form.Label>
                                             <Form.Control
-                                                type="text"
+                                                as="textarea"
                                                 placeholder="Enter the Heading"
                                                 name="highlightCaptionFirst"
                                                 value={formData.highlightCaptionFirst}
@@ -588,7 +658,7 @@ const Home = () => {
                                         <Form.Group className="mb-3" controlId="formSubHeadingInput">
                                             <Form.Label>Second Caption</Form.Label>
                                             <Form.Control
-                                                type="text"
+                                                as="textarea"
                                                 placeholder="Enter the Sub Heading"
                                                 name="highlightCaptionSecond"
                                                 value={formData.highlightCaptionSecond}
@@ -608,7 +678,7 @@ const Home = () => {
                                         <Form.Group className="mb-3" controlId="formSubHeadingInput">
                                             <Form.Label>Third Caption</Form.Label>
                                             <Form.Control
-                                                type="text"
+                                                as="textarea"
                                                 placeholder="Enter the Sub Heading"
                                                 name="highlightCaptionThird"
                                                 value={formData.highlightCaptionThird}
@@ -670,32 +740,60 @@ const Home = () => {
                                     <Form onSubmit={handleAboutSubmit}>
 
                                         <Form.Group className="mb-3" controlId="formHeadingInput">
-                                            <Form.Label></Form.Label>
+                                        <Form.Label>About Header</Form.Label>
                                             <Form.Control
                                                 type="text"
                                                 placeholder="Enter the Heading"
-                                                value={aboutHeader}
-                                                onChange={(e) => setAboutHeader(e.target.value)}
+                                                name="aboutHeader"
+                                                value={aboutData.aboutHeader}
+                                                onChange={handleAboutInput}
                                             />
                                         </Form.Group>
                                         <Form.Group className="mb-3" controlId="formSubHeadingInput">
                                             <Form.Label>About Caption</Form.Label>
                                             <Form.Control
-                                                type="text"
+                                                as="textarea"
                                                 placeholder="Enter the Sub Heading"
-                                                value={aboutCaption}
-                                                onChange={(e) => setAboutCaption(e.target.value)}
+                                                name="aboutCaption"
+                                                value={aboutData.aboutCaption}
+                                                onChange={handleAboutInput}
                                             />
                                         </Form.Group>
                                         <Form.Group className="mb-3" controlId="formSubHeadingInput">
                                             <Form.Label>About Content</Form.Label>
                                             <Form.Control
-                                                type="text"
+                                                as="textarea"
                                                 placeholder="Enter the Sub Heading"
-                                                value={aboutContent}
-                                                onChange={(e) => setAboutContent(e.target.value)}
+                                                name="aboutContent"
+                                                value={aboutData.aboutContent}
+                                                onChange={handleAboutInput}
                                             />
                                         </Form.Group>
+                                        {/* <Form.Group className="mb-3">
+                                            <Form.Label>Image</Form.Label>
+                                            <Form.Control
+                                                type="file"
+                                                placeholder="Enter any Image"
+                                                onChange={handleAboutImageChange}
+                                            />
+                                        </Form.Group> */}
+                                        <Button variant="primary" type="submit">
+                                            Submit
+                                        </Button>
+                                    </Form>
+                                </Modal.Body>
+                            </Modal>
+                            {' '}
+
+                            <Button variant="primary" size="sm" onClick={handleShowAboutImageForm}>
+                                Add/Update Image
+                            </Button>
+                            <Modal show={showAboutImageForm} onHide={handleCloseAboutImageUpdate}>
+                                <Modal.Header closeButton>
+                                    <Modal.Title>Home About</Modal.Title>
+                                </Modal.Header>
+                                <Modal.Body>
+                                    <Form onSubmit={handleAboutImageSubmit}>
                                         <Form.Group className="mb-3">
                                             <Form.Label>Image</Form.Label>
                                             <Form.Control
@@ -710,7 +808,6 @@ const Home = () => {
                                     </Form>
                                 </Modal.Body>
                             </Modal>
-                            {' '}
                         </div>
 
 
@@ -794,7 +891,7 @@ const Home = () => {
                             </Modal>
                             {' '}
                             <Button variant="primary" size="sm" onClick={handleShowUpdateModal}>
-                            Add Services Head
+                                Add Services Head
                             </Button>
                             <Modal show={showUpdateModal} onHide={handleCloseUpdateModal}>
                                 <Modal.Header closeButton>
@@ -1140,33 +1237,53 @@ const Home = () => {
                         <div className="mb-2 my-3 mx-3">
                             <h2>Home JoinUs</h2>
                             <Button variant="primary" size="sm" onClick={handleShowJoinUsForm}>
-                                Add/Update Join Us 
+                                Add/Update Join Us
                             </Button>
                             <Modal show={showJoinUsForm} onHide={handleCloseJoinUsUpdate}>
                                 <Modal.Header closeButton>
                                     <Modal.Title>Home JoinUs</Modal.Title>
                                 </Modal.Header>
                                 <Modal.Body>
-                                    <Form onSubmit={handleJoinUsSubmit}>
+                                    <Form onSubmit={handleJoinUsInputSubmit}>
 
                                         <Form.Group className="mb-3" controlId="formHeadingInput">
                                             <Form.Label>Join Us Heading</Form.Label>
                                             <Form.Control
                                                 type="text"
                                                 placeholder="Enter the Heading"
-                                                value={joinUsHeader}
-                                                onChange={(e) => setJoinUsHeader(e.target.value)}
+                                                name='joinUsHeader'
+                                                value={joinUsData.joinUsHeader}
+                                                onChange={handleJoinUsInputChange}
                                             />
                                         </Form.Group>
                                         <Form.Group className="mb-3" controlId="formSubHeadingInput">
                                             <Form.Label>Join Us Caption</Form.Label>
                                             <Form.Control
-                                                type="text"
+                                                as="textarea"
                                                 placeholder="Enter the Sub Heading"
-                                                value={joinUsCaption}
-                                                onChange={(e) => setJoinUsCaption(e.target.value)}
+                                                name='joinUsCaption'
+                                                value={joinUsData.joinUsCaption}
+                                                onChange={handleJoinUsInputChange}
                                             />
                                         </Form.Group>
+                                        <Button variant="primary" type="submit">
+                                            Submit
+                                        </Button>
+                                    </Form>
+                                </Modal.Body>
+                            </Modal>
+                            {' '}
+
+                            <Button variant="primary" size="sm" onClick={handleShowJoinUsImageForm}>
+                                Add/Update Join Us
+                            </Button>
+
+                            <Modal show={showJoinUsImageForm} onHide={handleCloseJoinUsImageUpdate}>
+                                <Modal.Header closeButton>
+                                    <Modal.Title>Home JoinUs</Modal.Title>
+                                </Modal.Header>
+                                <Modal.Body>
+                                    <Form onSubmit={handleJoinUsSubmit}>
                                         <Form.Group className="mb-3">
                                             <Form.Label>Join Us Image</Form.Label>
                                             <Form.Control
@@ -1181,7 +1298,6 @@ const Home = () => {
                                     </Form>
                                 </Modal.Body>
                             </Modal>
-                            {' '}
                         </div>
 
 

@@ -17,6 +17,13 @@ const Grievance = () => {
     const handleShowHeaderForm = () => setShowHeaderForm(true);
     const handleCloseHeaderUpdate = () => setShowHeaderForm(false);
 
+
+    const [showHeaderImageForm, setShowHeaderImageForm] = useState(false);
+
+
+    const handleShowHeaderImageForm = () => setShowHeaderImageForm(true);
+    const handleCloseHeaderImageUpdate = () => setShowHeaderImageForm(false);
+
     const [showCarousel, setShowCarousel] = useState(false);
 
 
@@ -40,14 +47,19 @@ const Grievance = () => {
 
     const { grievance:addGrievance, isUpdated, error: grievanceError} = useSelector(state => state.newGrievanceData);
 
-    const [header, setHeader] = useState('');
-    const [caption, setCaption] = useState('');
+
+    const [headerData, setHeaderData] = useState({
+        header: '',
+        caption: '',
+    })
     const [headerImage, setHeaderImage] = useState([]);
 
     useEffect(() => {
         if(addGrievance){
-            setHeader(addGrievance.header);
-            setCaption(addGrievance.caption);
+            setHeaderData({
+                header: addGrievance.header,
+                caption: addGrievance.caption,
+            })
         }
 
         if (isUpdated) {
@@ -69,11 +81,21 @@ const Grievance = () => {
     const handleHeaderSubmit = (e) => {
         e.preventDefault();
         const formData = new FormData();
-        formData.append("header", header);
-        formData.append("caption", caption);
         formData.append('headerImage', headerImage);
 
         dispatch(createGrievanceHeader(formData));
+    }
+
+    const handelHeaderInput = (e) =>{
+        setHeaderData({
+            ...headerData,
+            [e.target.name]: e.target.value,
+        })
+    }
+
+    const handelHeaderInputSubmit = (e) =>{
+        e.preventDefault();
+        dispatch(createGrievanceHeader(headerData));
     }
 
 
@@ -97,25 +119,43 @@ const Grievance = () => {
                                 <Modal.Title>Grievance Header</Modal.Title>
                             </Modal.Header>
                             <Modal.Body>
-                                <Form onSubmit={handleHeaderSubmit}>
+                                <Form onSubmit={handelHeaderInputSubmit}>
                                     <Form.Group className="mb-3" controlId="formHeadingInput">
                                         <Form.Label>Heading</Form.Label>
                                         <Form.Control
                                             type="text"
                                             placeholder="Enter the Heading"
-                                            value={header}
-                                            onChange={(e) => setHeader(e.target.value)}
+                                            name='header'
+                                            value={headerData.header}
+                                            onChange={handelHeaderInput}
                                         />
                                     </Form.Group>
                                     <Form.Group className="mb-3" controlId="formSubHeadingInput">
                                         <Form.Label>Caption</Form.Label>
                                         <Form.Control
-                                            type="text"
+                                            as="textarea"
                                             placeholder="Enter the Caption"
-                                            value={caption}
-                                            onChange={(e) => setCaption(e.target.value)}
+                                            name='caption'
+                                            value={headerData.caption}
+                                            onChange={handelHeaderInput}
                                         />
                                     </Form.Group>
+                                    <Button variant="primary" type="submit">
+                                        Submit
+                                    </Button>
+                                </Form>
+                            </Modal.Body>
+                        </Modal>
+                        {' '}
+                        <Button variant="primary" size="sm" onClick={handleShowHeaderImageForm}>
+                            Add/Update Header
+                        </Button>
+                        <Modal show={showHeaderImageForm} onHide={handleCloseHeaderImageUpdate}>
+                            <Modal.Header closeButton>
+                                <Modal.Title>Grievance Header</Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>
+                                <Form onSubmit={handleHeaderSubmit}>
                                     <Form.Group className="mb-3">
                                         <Form.Label>Image</Form.Label>
                                         <Form.Control
@@ -130,7 +170,6 @@ const Grievance = () => {
                                 </Form>
                             </Modal.Body>
                         </Modal>
-                        {' '}
                     </div>
 
 

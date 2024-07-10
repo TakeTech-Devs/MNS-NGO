@@ -8,54 +8,82 @@ const ourValues = require('../models/ourValuesModel');
 // Header Section
 
 exports.headerSection = catchAsyncError(async (req, res, next) => {
-    if (!req.files || !req?.files?.headerImage) {
-        return res.status(400).json({
-            success: false,
-            message: "Missing required parameter - files"
-        });
-    }
+    // if (!req.files || !req?.files?.headerImage) {
+    //     return res.status(400).json({
+    //         success: false,
+    //         message: "Missing required parameter - files"
+    //     });
+    // }
 
-    const file = req?.files?.headerImage;
-
-
-    const aboutHeaderSection = await About.findOne();
-
-    if (aboutHeaderSection && aboutHeaderSection.headerImage && aboutHeaderSection.headerImage.public_id) {
-        try {
-            await cloudinary.uploader.destroy(aboutHeaderSection.headerImage.public_id);
-        } catch (error) {
-            return res.status(500).json({
-                success: false,
-                message: "Error deleting old image",
-                error: error.message,
-            });
-        }
-    }
+    // const file = req?.files?.headerImage;
 
 
-    let headerImage;
-    try {
-        headerImage = await cloudinary.v2.uploader.upload(file.tempFilePath, {
-            folder: 'MNS/About Us/Header',
-        });
-    } catch (error) {
+    // const aboutHeaderSection = await About.findOne();
 
-        return res.status(500).json({
-            success: false,
-            message: "Error uploading new image",
-            error: error.message,
-        });
-    }
+    // if (aboutHeaderSection && aboutHeaderSection.headerImage && aboutHeaderSection.headerImage.public_id) {
+    //     try {
+    //         await cloudinary.uploader.destroy(aboutHeaderSection.headerImage.public_id);
+    //     } catch (error) {
+    //         return res.status(500).json({
+    //             success: false,
+    //             message: "Error deleting old image",
+    //             error: error.message,
+    //         });
+    //     }
+    // }
 
+
+    // let headerImage;
+    // try {
+    //     headerImage = await cloudinary.v2.uploader.upload(file.tempFilePath, {
+    //         folder: 'MNS/About Us/Header',
+    //     });
+    // } catch (error) {
+
+    //     return res.status(500).json({
+    //         success: false,
+    //         message: "Error uploading new image",
+    //         error: error.message,
+    //     });
+    // }
+
+    // const { header, caption } = req.body;
+
+    // const update = {
+    //     header,
+    //     caption,
+    //     headerImage: {
+    //         public_id: headerImage.public_id,
+    //         url: headerImage.secure_url,
+    //     }
+    // };
+
+    // const options = {
+    //     new: true,
+    //     upsert: true,
+    //     useFindAndModify: false
+    // };
+
+    // try {
+    //     const updatedAboutHeader = await About.findOneAndUpdate({}, update, options);
+
+    //     res.status(200).json({
+    //         success: true,
+    //         message: "About Us Header Updated",
+    //         aboutHeader: updatedAboutHeader,
+    //     });
+    // } catch (error) {
+    //     res.status(500).json({
+    //         success: false,
+    //         message: "Error updating the database",
+    //         error: error.message,
+    //     });
+    // }
     const { header, caption } = req.body;
 
     const update = {
         header,
         caption,
-        headerImage: {
-            public_id: headerImage.public_id,
-            url: headerImage.secure_url,
-        }
     };
 
     const options = {
@@ -64,21 +92,53 @@ exports.headerSection = catchAsyncError(async (req, res, next) => {
         useFindAndModify: false
     };
 
-    try {
-        const updatedAboutHeader = await About.findOneAndUpdate({}, update, options);
+    if (req.files && req.files.headerImage) {
+        const file = req.files.headerImage;
 
-        res.status(200).json({
-            success: true,
-            message: "About Us Header Updated",
-            aboutHeader: updatedAboutHeader,
-        });
-    } catch (error) {
-        res.status(500).json({
-            success: false,
-            message: "Error updating the database",
-            error: error.message,
-        });
+        const aboutSection = await About.findOne();
+        
+        if (aboutSection && aboutSection.headerImage && aboutSection.headerImage.public_id) {
+            try {
+                await cloudinary.uploader.destroy(aboutSection.headerImage.public_id);
+            } catch (error) {
+                return res.status(500).json({
+                    success: false,
+                    message: "Error deleting old image",
+                    error: error.message,
+                });
+            }
+        }
+
+        
+        let headerImage;
+        try {
+            headerImage = await cloudinary.v2.uploader.upload(file.tempFilePath, {
+                folder: 'MNS/About Us/Header',
+            });
+
+        } catch (error) {
+            return res.status(500).json({
+                success: false,
+                message: "Error uploading new image",
+                error: error.message,
+            });
+        }
+
+        
+        update.headerImage = {
+            public_id: headerImage.public_id,
+            url: headerImage.secure_url,
+        };
     }
+
+    const updatedAboutHeader = await About.findOneAndUpdate({}, update, options);
+
+    res.status(200).json({
+        success: true,
+        message: "About Us Section Updated",
+        updatedAboutHeader,
+    });
+    
 })
 
 
@@ -294,51 +354,11 @@ exports.updateourValuesImages = catchAsyncError(async(req,res,next) =>{
 
 exports.getInvolvedSection = catchAsyncError(async(req,res,next) =>{
 
-    if (!req.files || !req?.files?.getInvolvedImage) {
-        return res.status(400).json({
-            success: false,
-            message: "Missing required parameter - files"
-        });
-    }
-
-    const file = req?.files?.getInvolvedImage;
-    const getInvolvedSection = await About.findOne();
-
-    if (getInvolvedSection && getInvolvedSection.getInvolvedImage && getInvolvedSection.getInvolvedImage.public_id) {
-        try {
-            await cloudinary.uploader.destroy(getInvolvedSection.getInvolvedImage.public_id);
-        } catch (error) {
-            return res.status(500).json({
-                success: false,
-                message: "Error deleting old image",
-                error: error.message,
-            });
-        }
-    }
-
-
-    let getInvolvedImage;
-    try {
-        getInvolvedImage = await cloudinary.v2.uploader.upload(file.tempFilePath, {
-            folder: 'MNS/About Us/Involved',
-        });
-    } catch (error) {
-        return res.status(500).json({
-            success: false,
-            message: "Error uploading new image",
-            error: error.message,
-        });
-    }
-
     const { getInvolvedHeader, getInvolvedCaption } = req.body;
 
     const update = {
         getInvolvedHeader,
         getInvolvedCaption,
-        getInvolvedImage: {
-            public_id: getInvolvedImage.public_id,
-            url: getInvolvedImage.secure_url,
-        }
     };
 
     const options = {
@@ -346,6 +366,41 @@ exports.getInvolvedSection = catchAsyncError(async(req,res,next) =>{
         upsert: true,
         useFindAndModify: false
     };
+
+    if (req.files && req.files.getInvolvedImage) {
+        const file = req.files.getInvolvedImage;
+        const getInvolvedSection = await About.findOne();
+
+        if (getInvolvedSection && getInvolvedSection.getInvolvedImage && getInvolvedSection.getInvolvedImage.public_id) {
+            try {
+                await cloudinary.uploader.destroy(getInvolvedSection.getInvolvedImage.public_id);
+            } catch (error) {
+                return res.status(500).json({
+                    success: false,
+                    message: "Error deleting old image",
+                    error: error.message,
+                });
+            }
+        }
+
+        let getInvolvedImage;
+        try {
+            getInvolvedImage = await cloudinary.v2.uploader.upload(file.tempFilePath, {
+                folder: 'MNS/About Us/Involved',
+            });
+        } catch (error) {
+            return res.status(500).json({
+                success: false,
+                message: "Error uploading new image",
+                error: error.message,
+            });
+        }
+
+        update.getInvolvedImage = {
+            public_id: getInvolvedImage.public_id,
+            url: getInvolvedImage.secure_url,
+        };
+    }
 
     try {
         const updatedGetInvolvedSection = await About.findOneAndUpdate({}, update, options);
@@ -362,6 +417,7 @@ exports.getInvolvedSection = catchAsyncError(async(req,res,next) =>{
             error: error.message,
         });
     }
+    
 })
 
 

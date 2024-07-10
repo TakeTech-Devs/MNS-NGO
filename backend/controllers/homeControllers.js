@@ -103,54 +103,17 @@ exports.highlightSection = catchAsyncError(async (req, res, next) => {
 
 exports.aboutSection = catchAsyncError(async (req, res, next) => {
 
-    if (!req.files || !req?.files?.aboutImage) {
-        return res.status(400).json({
-            success: false,
-            message: "Missing required parameter - files"
-        });
-    }
 
-    const file = req?.files?.aboutImage;
-
-    const aboutSection = await Home.findOne();
-
-    if (aboutSection && aboutSection.aboutImage && aboutSection.aboutImage.public_id) {
-        try {
-            await cloudinary.uploader.destroy(aboutSection.aboutImage.public_id);
-        } catch (error) {
-            return res.status(500).json({
-                success: false,
-                message: "Error deleting old image",
-                error: error.message,
-            });
-        }
-    }
-
-
-    let aboutImage;
-    try {
-        aboutImage = await cloudinary.v2.uploader.upload(file.tempFilePath, {
-            folder: 'MNS/Home/about',
-        });
-
-    } catch (error) {
-        return res.status(500).json({
-            success: false,
-            message: "Error uploading new image",
-            error: error.message,
-        });
-    }
-
-    const { aboutHeader, aboutCaption, aboutContent } = req.body;
+    const { 
+        aboutHeader, 
+        aboutCaption, 
+        aboutContent 
+    } = req.body;
 
     const update = {
         aboutHeader,
         aboutCaption,
         aboutContent,
-        aboutImage: {
-            public_id: aboutImage.public_id,
-            url: aboutImage.secure_url,
-        }
     };
 
     const options = {
@@ -159,21 +122,70 @@ exports.aboutSection = catchAsyncError(async (req, res, next) => {
         useFindAndModify: false
     };
 
-    try {
-        const updatedAboutSection = await Home.findOneAndUpdate({}, update, options);
+    if (req.files && req.files.aboutImage) {
+        const file = req.files.aboutImage;
 
-        res.status(200).json({
-            success: true,
-            message: "About Us Section Updated",
-            aboutSection: updatedAboutSection,
-        });
-    } catch (error) {
-        res.status(500).json({
-            success: false,
-            message: "Error updating the database",
-            error: error.message,
-        });
+        const aboutSection = await Home.findOne();
+        
+        if (aboutSection && aboutSection.aboutImage && aboutSection.aboutImage.public_id) {
+            try {
+                await cloudinary.uploader.destroy(aboutSection.aboutImage.public_id);
+            } catch (error) {
+                return res.status(500).json({
+                    success: false,
+                    message: "Error deleting old image",
+                    error: error.message,
+                });
+            }
+        }
+
+        
+        let aboutImage;
+        try {
+            aboutImage = await cloudinary.v2.uploader.upload(file.tempFilePath, {
+                folder: 'MNS/Home/about',
+            });
+
+        } catch (error) {
+            return res.status(500).json({
+                success: false,
+                message: "Error uploading new image",
+                error: error.message,
+            });
+        }
+
+        
+        update.aboutImage = {
+            public_id: aboutImage.public_id,
+            url: aboutImage.secure_url,
+        };
     }
+
+    const updatedAboutSection = await Home.findOneAndUpdate({}, update, options);
+
+    res.status(200).json({
+        success: true,
+        message: "About Us Section Updated",
+        updatedAboutSection,
+    });
+
+    // try {
+    //     const updatedAboutSection = await Home.findOneAndUpdate({}, update, options);
+
+    //     res.status(200).json({
+    //         success: true,
+    //         message: "About Us Section Updated",
+    //         aboutSection: updatedAboutSection,
+    //     });
+
+    // } catch (error) {
+    //     res.status(500).json({
+    //         success: false,
+    //         message: "Error updating the database",
+    //         error: error.message,
+    //     });
+    // }
+
 
 })
 
@@ -404,51 +416,11 @@ exports.visionSection = catchAsyncError(async (req, res, next) => {
 
 exports.joinUsSection = catchAsyncError(async(req,res,next) =>{
 
-    if (!req.files || !req?.files?.joinUsImage) {
-        return res.status(400).json({
-            success: false,
-            message: "Missing required parameter - files"
-        });
-    }
-
-    const file = req?.files?.joinUsImage;
-
-    const joinUsSection = await Home.findOne();
-
-    if (joinUsSection && joinUsSection.joinUsImage && joinUsSection.joinUsImage.public_id) {
-        try {
-            await cloudinary.uploader.destroy(joinUsSection.joinUsImage.public_id);
-        } catch (error) {
-            return res.status(500).json({
-                success: false,
-                message: "Error deleting old image",
-                error: error.message,
-            });
-        }
-    }
-
-    let joinUsImage;
-    try {
-        joinUsImage = await cloudinary.v2.uploader.upload(file.tempFilePath, {
-            folder: 'MNS/Home/joinUs',
-        });
-    } catch (error) {
-        return res.status(500).json({
-            success: false,
-            message: "Error uploading new image",
-            error: error.message,
-        });
-    }
-
     const { joinUsHeader, joinUsCaption } = req.body;
 
     const update = {
         joinUsHeader,
         joinUsCaption,
-        joinUsImage: {
-            public_id: joinUsImage.public_id,
-            url: joinUsImage.secure_url,
-        }
     };
 
     const options = {
@@ -456,6 +428,42 @@ exports.joinUsSection = catchAsyncError(async(req,res,next) =>{
         upsert: true,
         useFindAndModify: false
     };
+
+    if (req.files && req.files.joinUsImage) {
+        const file = req.files.joinUsImage;
+
+        const joinUsSection = await Home.findOne();
+
+        if (joinUsSection && joinUsSection.joinUsImage && joinUsSection.joinUsImage.public_id) {
+            try {
+                await cloudinary.uploader.destroy(joinUsSection.joinUsImage.public_id);
+            } catch (error) {
+                return res.status(500).json({
+                    success: false,
+                    message: "Error deleting old image",
+                    error: error.message,
+                });
+            }
+        }
+
+        let joinUsImage;
+        try {
+            joinUsImage = await cloudinary.v2.uploader.upload(file.tempFilePath, {
+                folder: 'MNS/Home/joinUs',
+            });
+        } catch (error) {
+            return res.status(500).json({
+                success: false,
+                message: "Error uploading new image",
+                error: error.message,
+            });
+        }
+
+        update.joinUsImage = {
+            public_id: joinUsImage.public_id,
+            url: joinUsImage.secure_url,
+        };
+    }
 
     try {
         const updatedJoinUsSection = await Home.findOneAndUpdate({}, update, options);

@@ -19,6 +19,12 @@ const About = () => {
     const handleShowHeaderForm = () => setShowHeaderForm(true);
     const handleCloseHeaderUpdate = () => setShowHeaderForm(false);
 
+    const [showHeaderImageForm, setShowHeaderImageForm] = useState(false);
+
+
+    const handleShowHeaderImageForm = () => setShowHeaderImageForm(true);
+    const handleCloseHeaderImageUpdate = () => setShowHeaderImageForm(false);
+
 
     const [showImageForm, setShowImageForm] = useState(false);
 
@@ -49,6 +55,13 @@ const About = () => {
 
     const handleShowInvolvedForm = () => setShowInvolvedForm(true);
     const handleCloseInvolvedForm = () => setShowInvolvedForm(false);
+
+    const [showInvolvedImageForm, setShowInvolvedImageForm] = useState(false);
+
+
+
+    const handleShowInvolvedImageForm = () => setShowInvolvedImageForm(true);
+    const handleCloseInvolvedImageForm = () => setShowInvolvedImageForm(false);
 
     const [showCarousel, setShowCarousel] = useState(false);
 
@@ -113,30 +126,37 @@ const About = () => {
 
     const { about: newAbout, isUpdated, error: aboutError,  } = useSelector(state => state.newAboutData);
 
-    const [getInvolvedHeader, setGetInvolvedHeader] = useState('');
-    const [getInvolvedCaption, setGetInvolvedCaption] = useState('');
+    const [getInvolvedData, setGetInvolvedData] = useState({
+        getInvolvedHeader: '',
+        getInvolvedCaption: '',
+    })
     const [getInvolvedImage, setGetInvolvedImage] = useState([]);
 
-    // const [images, setImages] = useState([]);    
 
     const [firstImage, setFirstImage] = useState(null);
     const [secondImage, setSecondImage] = useState(null);
     const [thirdImage, setThirdImage] = useState(null);
     const [fourthImage, setFourthImage] = useState(null);
 
-    const [header, setHeader] = useState('');
-    const [caption, setCaption] = useState('');
+    const [headerData, setHeaderData] = useState({
+        header: '',
+        caption: ''
+    })
     const [headerImage, setHeaderImage] = useState([]);
 
 
 
     useEffect(() => {
         if (newAbout) {
-            setHeader(newAbout.header);
-            setCaption(newAbout.caption);
+            setHeaderData({
+                header: newAbout.header,
+                caption: newAbout.caption,
+            })
             setTitle(newAbout.title)
-            setGetInvolvedHeader(newAbout.getInvolvedHeader);
-            setGetInvolvedCaption(newAbout.getInvolvedCaption);
+            setGetInvolvedData({
+                getInvolvedHeader: newAbout.getInvolvedHeader,
+                getInvolvedCaption: newAbout.getInvolvedCaption,
+            })
         }
 
         if (isUpdated) {
@@ -161,11 +181,21 @@ const About = () => {
     const handleHeaderSubmit = (e) => {
         e.preventDefault();
         const formData = new FormData();
-        formData.append("header", header);
-        formData.append("caption", caption);
         formData.append('headerImage', headerImage);
 
         dispatch(createAboutHeader(formData));
+    }
+
+    const handelHeaderInput = (e) =>{
+        setHeaderData({
+            ...headerData,
+            [e.target.name]: e.target.value,
+        })
+    }
+
+    const handelHeaderInputSubmit = (e) =>{
+        e.preventDefault();
+        dispatch(createAboutHeader(headerData));
     }
 
     const handleImageUpload = (e, setImage) => {
@@ -263,11 +293,21 @@ const About = () => {
     const handleInvolvedSubmit = (e) => {
         e.preventDefault();
         const formData = new FormData();
-        formData.append("getInvolvedHeader", getInvolvedHeader);
-        formData.append("getInvolvedCaption", getInvolvedCaption);
         formData.append('getInvolvedImage', getInvolvedImage);
 
         dispatch(createAboutInvolbed(formData));
+    }
+
+    const handleInvolvedInputChange = (e) =>{
+        setGetInvolvedData({
+            ...getInvolvedData,
+            [e.target.name]: e.target.value,
+        });
+    }
+
+    const handleInvolvedInputSubmit = (e) =>{
+        e.preventDefault();
+        dispatch(createAboutInvolbed(getInvolvedData));
     }
 
 
@@ -291,25 +331,43 @@ const About = () => {
                                 <Modal.Title>About Header</Modal.Title>
                             </Modal.Header>
                             <Modal.Body>
-                                <Form onSubmit={handleHeaderSubmit}>
+                                <Form onSubmit={handelHeaderInputSubmit}>
                                     <Form.Group className="mb-3" controlId="formHeadingInput">
                                         <Form.Label>Heading</Form.Label>
                                         <Form.Control
                                             type="text"
                                             placeholder="Enter the Heading"
-                                            value={header}
-                                            onChange={(e) => setHeader(e.target.value)}
+                                            name='header'
+                                            value={headerData.header}
+                                            onChange={handelHeaderInput}
                                         />
                                     </Form.Group>
                                     <Form.Group className="mb-3" controlId="formSubHeadingInput">
                                         <Form.Label>Caption</Form.Label>
                                         <Form.Control
-                                            type="text"
+                                            as="textarea"
                                             placeholder="Enter the Caption"
-                                            value={caption}
-                                            onChange={(e) => setCaption(e.target.value)}
+                                            name='caption'
+                                            value={headerData.caption}
+                                            onChange={handelHeaderInput}
                                         />
                                     </Form.Group>
+                                    <Button variant="primary" type="submit">
+                                        Submit
+                                    </Button>
+                                </Form>
+                            </Modal.Body>
+                        </Modal>
+                        {' '}
+                        <Button variant="primary" size="sm" onClick={handleShowHeaderImageForm}>
+                            Add/Update Header Image
+                        </Button>
+                        <Modal show={showHeaderImageForm} onHide={handleCloseHeaderImageUpdate}>
+                            <Modal.Header closeButton>
+                                <Modal.Title>About Header</Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>
+                                <Form onSubmit={handleHeaderSubmit}>
                                     <Form.Group className="mb-3">
                                         <Form.Label>Image</Form.Label>
                                         <Form.Control
@@ -324,7 +382,6 @@ const About = () => {
                                 </Form>
                             </Modal.Body>
                         </Modal>
-                        {' '}
                     </div>
 
 
@@ -653,25 +710,51 @@ const About = () => {
                                 <Modal.Title>About Get Involved</Modal.Title>
                             </Modal.Header>
                             <Modal.Body>
-                                <Form onSubmit={handleInvolvedSubmit}>
+                                <Form onSubmit={handleInvolvedInputSubmit}>
                                     <Form.Group className="mb-3" controlId="formHeadingInput">
                                         <Form.Label>Get Involved Heading</Form.Label>
                                         <Form.Control
                                             type="text"
                                             placeholder="Enter the Heading"
-                                            value={getInvolvedHeader}
-                                            onChange={(e) => setGetInvolvedHeader(e.target.value)}
+                                            name="getInvolvedHeader"
+                                            value={getInvolvedData.getInvolvedHeader}
+                                            onChange={handleInvolvedInputChange}
                                         />
                                     </Form.Group>
                                     <Form.Group className="mb-3" controlId="formSubHeadingInput">
                                         <Form.Label>Get Involved Caption</Form.Label>
                                         <Form.Control
-                                            type="text"
+                                            as="textarea"
                                             placeholder="Enter the Sub Heading"
-                                            value={getInvolvedCaption}
-                                            onChange={(e) => setGetInvolvedCaption(e.target.value)}
+                                            name="getInvolvedCaption"
+                                            value={getInvolvedData.getInvolvedCaption}
+                                            onChange={handleInvolvedInputChange}
                                         />
                                     </Form.Group>
+                                    {/* <Form.Group className="mb-3">
+                                        <Form.Label>Image</Form.Label>
+                                        <Form.Control
+                                            type="file"
+                                            placeholder="Enter any Image"
+                                            onChange={handelInvolvedImage}
+                                        />
+                                    </Form.Group> */}
+                                    <Button variant="primary" type="submit">
+                                        Submit
+                                    </Button>
+                                </Form>
+                            </Modal.Body>
+                        </Modal>
+                        {' '}
+                        <Button variant="primary" size="sm" onClick={handleShowInvolvedImageForm}>
+                            Add/Update Get Involved Image
+                        </Button>
+                        <Modal show={showInvolvedImageForm} onHide={handleCloseInvolvedImageForm}>
+                            <Modal.Header closeButton>
+                                <Modal.Title>About Get Involved</Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>
+                                <Form onSubmit={handleInvolvedSubmit}>
                                     <Form.Group className="mb-3">
                                         <Form.Label>Image</Form.Label>
                                         <Form.Control
@@ -686,7 +769,6 @@ const About = () => {
                                 </Form>
                             </Modal.Body>
                         </Modal>
-                        {' '}
                     </div>
 
 

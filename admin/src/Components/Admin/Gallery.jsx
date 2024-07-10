@@ -32,9 +32,13 @@ const Gallery = () => {
     const handleShowHeaderForm = () => setShowHeaderForm(true);
     const handleCloseHeaderUpdate = () => setShowHeaderForm(false);
 
+    const [showHeaderImageForm, setShowHeaderImageForm] = useState(false);
+
+
+    const handleShowHeaderImageForm = () => setShowHeaderImageForm(true);
+    const handleCloseHeaderImageUpdate = () => setShowHeaderImageForm(false);
+
     const [showGalleryHeaderForm, setShowGalleryHeaderForm] = useState(false);
-
-
 
     const handleShowGalleryHeaderForm = () => setShowGalleryHeaderForm(true);
     const handleCloseGalleryHeaderForm = () => setShowGalleryHeaderForm(false);
@@ -56,8 +60,12 @@ const Gallery = () => {
 
     const { gallery: newGallery, isUpdated, error: galleryError, } = useSelector(state => state.newGalleryData);
 
-    const [header, setHeader] = useState('');
-    const [caption, setCaption] = useState('');
+    const [headerData, setHeaderData] = useState({
+        header: '',
+        caption: '',
+        galleryHeader: '',
+        galleryContent: '',
+    })
     const [headerImage, setHeaderImage] = useState([]);
 
     const [galleryHeader, setGalleryHeader] = useState('');
@@ -68,10 +76,14 @@ const Gallery = () => {
 
     useEffect(() => {
         if (newGallery) {
-            setHeader(newGallery.header);
-            setCaption(newGallery.caption);
-            setGalleryHeader(newGallery.galleryHeader);
-            setGalleryContent(newGallery.galleryContent);
+            setHeaderData({
+                header: newGallery.header,
+                caption: newGallery.caption,
+                galleryHeader: newGallery.galleryHeader,
+                galleryContent: newGallery.galleryContent,
+            })
+            // setGalleryHeader(newGallery.galleryHeader);
+            // setGalleryContent(newGallery.galleryContent);
         }
 
         if (isUpdated) {
@@ -97,20 +109,31 @@ const Gallery = () => {
     const handleHeaderSubmit = (e) => {
         e.preventDefault();
         const formData = new FormData();
-        formData.append("header", header);
-        formData.append("caption", caption);
         formData.append('headerImage', headerImage);
 
         dispatch(createGalleryHeader(formData));
     }
 
+    const handelHeaderInput = (e) =>{
+        setHeaderData({
+            ...headerData,
+            [e.target.name]: e.target.value,
+        })
+    }
+
+    const handelHeaderInputSubmit = (e) =>{
+        e.preventDefault();
+        dispatch(createGalleryHeader(headerData));
+    }
+
+
     const handleBodySubmit = (e) => {
         e.preventDefault();
-        const formData = new FormData();
-        formData.append("galleryHeader", galleryHeader);
-        formData.append("galleryContent", galleryContent);
+        // const formData = new FormData();
+        // formData.append("galleryHeader", galleryHeader);
+        // formData.append("galleryContent", galleryContent);
 
-        dispatch(createGalleryBody(formData));
+        dispatch(createGalleryBody(headerData));
     }
 
 
@@ -188,26 +211,44 @@ const Gallery = () => {
                                 <Modal.Title>Gallery Header</Modal.Title>
                             </Modal.Header>
                             <Modal.Body>
-                                <Form onSubmit={handleHeaderSubmit}>
+                                <Form onSubmit={handelHeaderInputSubmit}>
 
                                     <Form.Group className="mb-3" controlId="formHeadingInput">
                                         <Form.Label>Heading</Form.Label>
                                         <Form.Control
                                             type="text"
                                             placeholder="Enter the Heading"
-                                            value={header}
-                                            onChange={(e) => setHeader(e.target.value)}
+                                            name='header'
+                                            value={headerData.header}
+                                            onChange={handelHeaderInput}
                                         />
                                     </Form.Group>
                                     <Form.Group className="mb-3" controlId="formSubHeadingInput">
                                         <Form.Label>Caption</Form.Label>
                                         <Form.Control
-                                            type="text"
+                                            as="textarea"
                                             placeholder="Enter the Caption"
-                                            value={caption}
-                                            onChange={(e) => setCaption(e.target.value)}
+                                            name='caption'
+                                            value={headerData.caption}
+                                            onChange={handelHeaderInput}
                                         />
                                     </Form.Group>
+                                    <Button variant="primary" type="submit">
+                                        Submit
+                                    </Button>
+                                </Form>
+                            </Modal.Body>
+                        </Modal>
+                        {' '}
+                        <Button variant="primary" size="sm" onClick={handleShowHeaderImageForm}>
+                            Add/Update Header
+                        </Button>
+                        <Modal show={showHeaderImageForm} onHide={handleCloseHeaderImageUpdate}>
+                            <Modal.Header closeButton>
+                                <Modal.Title>Grievance Header</Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>
+                                <Form onSubmit={handleHeaderSubmit}>
                                     <Form.Group className="mb-3">
                                         <Form.Label>Image</Form.Label>
                                         <Form.Control
@@ -222,7 +263,6 @@ const Gallery = () => {
                                 </Form>
                             </Modal.Body>
                         </Modal>
-                        {' '}
                     </div>
 
 
@@ -284,17 +324,19 @@ const Gallery = () => {
                                         <Form.Control
                                             type="text"
                                             placeholder="Enter the Heading"
-                                            value={galleryHeader}
-                                            onChange={(e) => setGalleryHeader(e.target.value)}
+                                            name='galleryHeader'
+                                            value={headerData.galleryHeader}
+                                            onChange={handelHeaderInput}
                                         />
                                     </Form.Group>
                                     <Form.Group className="mb-3" controlId="formSubHeadingInput">
                                         <Form.Label>Caption</Form.Label>
                                         <Form.Control
-                                            type="text"
+                                            as="textarea"
                                             placeholder="Enter the Sub Heading"
-                                            value={galleryContent}
-                                            onChange={(e) => setGalleryContent(e.target.value)}
+                                            name='galleryContent'
+                                            value={headerData.galleryContent}
+                                            onChange={handelHeaderInput}
                                         />
                                     </Form.Group>
                                     <Button variant="primary" type="submit">

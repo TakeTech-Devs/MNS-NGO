@@ -7,51 +7,11 @@ const OurServices = require('../models/ourServicesModel');
 // Header Section
 
 exports.servicesHeaderSection = catchAsyncError(async (req, res, next) => {
-    if (!req.files || !req?.files?.headerImage) {
-        return res.status(400).json({
-            success: false,
-            message: "Missing required parameter - files"
-        });
-    }
-
-    const file = req?.files?.headerImage;
-
-    const servicesHeaderSection = await Services.findOne();
-
-    if (servicesHeaderSection && servicesHeaderSection.headerImage && servicesHeaderSection.headerImage.public_id) {
-        try {
-            await cloudinary.uploader.destroy(servicesHeaderSection.headerImage.public_id);
-        } catch (error) {
-            return res.status(500).json({
-                success: false,
-                message: "Error deleting old image",
-                error: error.message,
-            });
-        }
-    }
-
-    let headerImage;
-    try {
-        headerImage = await cloudinary.v2.uploader.upload(file.tempFilePath, {
-            folder: 'MNS/Services/Header',
-        });
-    } catch (error) {
-        return res.status(500).json({
-            success: false,
-            message: "Error uploading new image",
-            error: error.message,
-        });
-    }
-
     const { header, caption } = req.body;
 
     const update = {
         header,
         caption,
-        headerImage: {
-            public_id: headerImage.public_id,
-            url: headerImage.secure_url,
-        }
     };
 
     const options = {
@@ -59,6 +19,42 @@ exports.servicesHeaderSection = catchAsyncError(async (req, res, next) => {
         upsert: true,
         useFindAndModify: false
     };
+
+    if (req.files && req.files.headerImage) {
+        const file = req.files.headerImage;
+
+        const servicesHeaderSection = await Services.findOne();
+
+        if (servicesHeaderSection && servicesHeaderSection.headerImage && servicesHeaderSection.headerImage.public_id) {
+            try {
+                await cloudinary.uploader.destroy(servicesHeaderSection.headerImage.public_id);
+            } catch (error) {
+                return res.status(500).json({
+                    success: false,
+                    message: "Error deleting old image",
+                    error: error.message,
+                });
+            }
+        }
+
+        let headerImage;
+        try {
+            headerImage = await cloudinary.v2.uploader.upload(file.tempFilePath, {
+                folder: 'MNS/Services/Header',
+            });
+        } catch (error) {
+            return res.status(500).json({
+                success: false,
+                message: "Error uploading new image",
+                error: error.message,
+            });
+        }
+
+        update.headerImage = {
+            public_id: headerImage.public_id,
+            url: headerImage.secure_url,
+        };
+    }
 
     try {
         const updatedServicesHeader = await Services.findOneAndUpdate({}, update, options);
@@ -75,7 +71,6 @@ exports.servicesHeaderSection = catchAsyncError(async (req, res, next) => {
             error: error.message,
         });
     }
-
 })
 
 
