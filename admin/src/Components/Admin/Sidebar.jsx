@@ -39,6 +39,7 @@ const Sidebar = () => {
           <li><Link to="/gallery">Gallery</Link></li>
           <li><Link to="/contact">Contact Us</Link></li>
           <li><Link to="/form">Form</Link></li>
+          <li><Link to="/user">User</Link></li>
           <li><Link to="/">Logout</Link></li>
         </ul>
       </div>

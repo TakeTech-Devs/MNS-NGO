@@ -2,7 +2,7 @@ import React from 'react'
 import Sidebar from './Sidebar'
 import AdminHeader from './AdminHeader'
 
-const GrievanceForm = () => {
+const User = () => {
     return (
         <>
             <div className="admin-dashboard">
@@ -41,4 +41,4 @@ const GrievanceForm = () => {
     )
 }
 
-export default GrievanceForm
+export default User

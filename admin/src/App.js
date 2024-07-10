@@ -28,7 +28,8 @@ function App() {
         <Route path="/login" element={<Login />} />      
         <Route path="/form" element={<FormControl />} />      
         <Route path="/grievanceform" element={<GrievanceForm />} />      
-        <Route path="/allform" element={<AllForm />} />      
+        <Route path="/allform" element={<AllForm />} />    
+        <Route path="/user" element={<AllForm />} />    
       </Routes>
     </Router>
   );
