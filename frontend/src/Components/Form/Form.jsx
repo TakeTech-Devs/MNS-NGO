@@ -23,38 +23,30 @@ const Form = () => {
         }
     }, [error, dispatch]);
     return (
-        contact && contact.length > 0 && (
-        <div class="form-container">
+        <div className="form-container">
             <h1 className='formheading'>Get in Touch With Us</h1>
             <form className='form'>
-                {/* <span class='formlable'>Name</span> */}
                 <input type="text" id="name" name="name" className='forminput' placeholder="Name" required />
-
-                {/* <label for="email" className='formlable'>Email</label> */}
                 <input type="email" id="email" name="email" className='forminput' placeholder='Email' required />
-
-                {/* <label for="phone" className='formlable'>Phone Number</label> */}
                 <input type="tel" id="phone" name="phone" className='forminput' placeholder='Phone Number' required />
-
-                {/* <label for="message" className='formlable'>Message</label> */}
                 <textarea id="message" name="message" className='forminput' rows="4" placeholder='Message' required></textarea>
-
                 <button type="submit" className='formbtn'>Submit</button>
             </form>
-            <div className="form-footer">
-                <div className="left-align">
-                    <span>{contact[0].email}</span>
-                    <span>{contact[0].phone}</span>
+            {contact && contact.length > 0 && (
+                <div className="form-footer">
+                    <div className="left-align">
+                        <span>{contact[0]?.email}</span>
+                        <span>{contact[0]?.phone}</span>
+                    </div>
+                    <div className="right-align">
+                        <img src={img1} alt="Footer Image" />
+                        <img src={img4} alt="Footer Image" />
+                        <img src={img2} alt="Footer Image" />
+                        <img src={img3} alt="Footer Image" />
+                    </div>
                 </div>
-                <div className="right-align">
-                    <img src={img1} alt="Footer Image" />
-                    <img src={img4} alt="Footer Image" />
-                    <img src={img2} alt="Footer Image" />
-                    <img src={img3} alt="Footer Image" />
-                </div>
-            </div>
+            )}
         </div>
-        )
     )
 }
 

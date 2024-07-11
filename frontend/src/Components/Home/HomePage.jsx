@@ -73,7 +73,6 @@ const HomePage = () => {
 	console.log("img", home.carouselImage)
 
 	return (
-		home && (
 			<>
 				<div className="home-page">
 					<div className="carousel">
@@ -236,7 +235,6 @@ const HomePage = () => {
 				</div>
 			</>
 		)
-	);
 }
 
 export default HomePage;

@@ -32,18 +32,17 @@ const Grievance = () => {
         }
     }, [error, dispatch, contactError]);
     return (
-        grievance && grievance.length > 0 && (
         <>
             <div className="commonBanner-wrapper grievance" style={{
-                                background: `url(${grievance[0].headerImage.url}) 50% / cover no-repeat, linear-gradient(#D9D9D9, #D9D9D9)`
-                            }}>
-				<div className="common-banner">
-					<h1 className="our-team-heading">{grievance[0].header}</h1>
-					<p className="our-team-caption">{grievance[0].caption}</p>
-				</div>
-			</div>
-         
-            <div class="form-container">
+                background: grievance && grievance.length > 0 ? `url(${grievance[0]?.headerImage?.url}) 50% / cover no-repeat, linear-gradient(#D9D9D9, #D9D9D9)` : ""
+            }}>
+                <div className="common-banner">
+                    <h1 className="our-team-heading">{grievance && grievance.length > 0 ? grievance[0]?.header : ""}</h1>
+                    <p className="our-team-caption">{grievance && grievance.length > 0 ? grievance[0]?.caption : ""}</p>
+                </div>
+            </div>
+
+            <div className="form-container">
                 <h1 className='formheading'>Raise a Ticket</h1>
                 <form className='form'>
                     <select>
@@ -56,24 +55,23 @@ const Grievance = () => {
                     <textarea id="message" name="message" className='forminput' rows="4" placeholder='Message' required></textarea>
                     <button type="submit" className='formbtn'>Submit</button>
                 </form>
-                {contact && contact.length > 0 &&(
-                <div className="form-footer">
-                    <div className="left-align">
-                        <span>{contact[0].email}</span>
-                        <span>{contact[0].phone}</span>
+                {contact && contact.length > 0 && (
+                    <div className="form-footer">
+                        <div className="left-align">
+                            <span>{contact[0]?.email}</span>
+                            <span>{contact[0]?.phone}</span>
+                        </div>
+                        <div className="right-align">
+                            <img src={img1} alt="Footer Image" />
+                            <img src={img4} alt="Footer Image" />
+                            <img src={img2} alt="Footer Image" />
+                            <img src={img3} alt="Footer Image" />
+                        </div>
                     </div>
-                    <div className="right-align">
-                        <img src={img1} alt="Footer Image" />
-                        <img src={img4} alt="Footer Image" />
-                        <img src={img2} alt="Footer Image" />
-                        <img src={img3} alt="Footer Image" />
-                    </div>
-                </div>
                 )}
             </div>
 
         </>
-        )
     )
 }
 

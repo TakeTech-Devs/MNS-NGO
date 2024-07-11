@@ -17,7 +17,7 @@ import {
             return {
                 ...state,
                 loading: false,
-                about: action.payload.about,
+                about: action.payload.about[0],
                 valueImage: action.payload.valueImage,
             };
         case GET_ABOUT_FAIL:
