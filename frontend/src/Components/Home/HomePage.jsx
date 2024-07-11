@@ -29,7 +29,7 @@ const responsive = {
 
 const HomePage = () => {
 	const dispatch = useDispatch();
-	const { home, homeCarousel, loading, error } = useSelector(state => state.home);
+	const { home, homeCarousel, brand, loading, error } = useSelector(state => state.home);
 
 	const [currentIndex, setCurrentIndex] = useState(0);
 	const totalSlides = homeCarousel.length;
@@ -205,7 +205,12 @@ const HomePage = () => {
 						</div>
 						<div className="brand-logo-section">
 							<ul>
-								<li>
+								{brand.map((item, index) =>(
+									<li key={index}>
+										<img src={item.brandImage.url} alt={item.brandName} />
+									</li>
+								))}
+								{/* <li>
 									<span> BRAND </span>
 								</li>
 								<li >
@@ -228,7 +233,7 @@ const HomePage = () => {
 								</li>
 								<li>
 									<span> BRAND </span>
-								</li>
+								</li> */}
 							</ul>
 						</div>
 					</div>

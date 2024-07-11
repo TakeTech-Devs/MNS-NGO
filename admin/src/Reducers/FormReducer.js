@@ -1,27 +1,25 @@
 import {
-    GET_HOME_REQUEST,
-    GET_HOME_SUCCESS,
-    GET_HOME_FAIL,
+    GET_ADMIN_FORM_REQUEST,
+    GET_ADMIN_FORM_SUCCESS,
+    GET_ADMIN_FORM_FAIL,
     CLEAR_ERRORS,
-} from '../Constants/HomeConstants';
+} from '../Constants/FormConstants';
 
 
-export const homeReducer = (state = { home: {}, homeCarousel: [], brand:[] }, action) => {
+export const formReducer = (state = { form: [] }, action) => {
     switch (action.type) {
-        case GET_HOME_REQUEST:
+        case GET_ADMIN_FORM_REQUEST:
             return {
                 ...state,
                 loading: true,
             };
-        case GET_HOME_SUCCESS:
+        case GET_ADMIN_FORM_SUCCESS:
             return {
                 ...state,
                 loading: false,
-                home: action.payload.home[0],
-                homeCarousel: action.payload.homeCarousel,
-                brand: action.payload.brand
+                form: action.payload,
             };
-        case GET_HOME_FAIL:
+        case GET_ADMIN_FORM_FAIL:
             return {
                 ...state,
                 loading: false,

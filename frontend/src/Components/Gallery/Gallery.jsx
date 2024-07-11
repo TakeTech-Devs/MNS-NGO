@@ -58,26 +58,26 @@ const Gallery = () => {
         Over the years, Mallarpur Naisuva has made significant strides in empowering communities and fostering positive change. From education and healthcare initiatives to women's empowerment programs and environmental conservation efforts, our impact is felt across various sectors.
     </div> */}
             </div>
-            {/* <div class="parent-container">
-    <div class="child-container" id="one">
-        <img src={g3} width="100%" height="auto" />
-        <img src={g1} width="100%" height="auto" />
-        <img src={g2} width="100%" height="auto" />
-    </div>
-    <div class="child-container" id="two">
-        <img src={g4} width="100%" height="auto" />
-        <img src={g5} height="auto" />
-        <img src={g6} width="100%" height="auto" />
-        <img src={g7} width="100%" height="auto" />
+            <div class="parent-container">
+                <div class="child-container" id="one">
+                    <img src={g3} width="100%" height="auto" />
+                    <img src={g1} width="100%" height="auto" />
+                    <img src={g2} width="100%" height="auto" />
+                </div>
+                <div class="child-container" id="two">
+                    <img src={g4} width="100%" height="auto" />
+                    <img src={g5} height="auto" />
+                    <img src={g6} width="100%" height="auto" />
+                    <img src={g7} width="100%" height="auto" />
 
-    </div>
-    <div class="child-container" id="three">
-        <img src={g8} width="100%" height="auto" />
-        <img src={g9} width="100%" height="auto" />
-    </div>
-</div> */}
+                </div>
+                <div class="child-container" id="three">
+                    <img src={g8} width="100%" height="auto" />
+                    <img src={g9} width="100%" height="auto" />
+                </div>
+            </div>
 
-            <div className="parent-container">
+            {/* <div className="parent-container">
                 {columns && columns.length > 0 && columns.map((column, columnIndex) => (
                     <div className="child-container" key={columnIndex}>
                         {column.map(image => (
@@ -91,7 +91,7 @@ const Gallery = () => {
                         ))}
                     </div>
                 ))}
-            </div>
+            </div> */}
 
         </>
     )

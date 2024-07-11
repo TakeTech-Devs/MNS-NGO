@@ -141,7 +141,7 @@ const homeSchema = new mongoose.Schema({
 
             default: null
         },
-    }
+    },
 }, {
     timestamps: true,
 })
