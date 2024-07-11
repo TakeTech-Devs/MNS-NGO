@@ -52,6 +52,7 @@ const Grievance = () => {
                         <option value="donation">Donation</option>
                         <option value="health">Health</option>
                     </select>
+                    <input type="email" id="email" name="email" className='forminput' placeholder='Enter Your Email' required />
                     <textarea id="message" name="message" className='forminput' rows="4" placeholder='Message' required></textarea>
                     <button type="submit" className='formbtn'>Submit</button>
                 </form>
