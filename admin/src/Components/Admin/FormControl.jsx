@@ -25,7 +25,7 @@ const FormControl = () => {
                 <div className="mb-2 my-3 mx-3">
                     <h2>Form Header</h2>
                     <Button href="/allform" variant="primary" size="sm">
-                        All Queries ({form.length})
+                        Contact Form ({form.length})
                     </Button>
                     
                     {' '}

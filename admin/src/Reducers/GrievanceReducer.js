@@ -28,7 +28,7 @@ export const grievanceReducer = (state = { grievance: [] }, action) => {
             return {
                 ...state,
                 loading: false,
-                grievance: action.payload,
+                grievance: action.payload.grievance[0],
             };
         case GET_ADMIN_GRIEVANCE_FAIL:
             return {

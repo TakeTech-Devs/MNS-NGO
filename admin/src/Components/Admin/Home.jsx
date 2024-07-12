@@ -177,12 +177,8 @@ const Home = () => {
         aboutHeader: '',
         aboutCaption: '',
         aboutContent: '',
-        // aboutImage: [],  
     })
 
-    // const [aboutHeader, setAboutHeader] = useState('');
-    // const [aboutCaption, setAboutCaption] = useState('');
-    // const [aboutContent, setAboutContent] = useState('');
     const [aboutImage, setaboutImage] = useState([]);
 
     // vision
@@ -287,7 +283,7 @@ const Home = () => {
         setShowBrandModal(true)
     }
 
-    const handleCloseBrandEditModal = () => setSelectedBrand(false)
+    const handleCloseBrandEditModal = () => setShowBrandModal(false)
 
     const handleBrandImageChange = (e) =>{
         setBrandImage(e.target.files[0])
@@ -335,15 +331,9 @@ const Home = () => {
                 aboutHeader: about.aboutHeader,
                 aboutCaption: about.aboutCaption,
                 aboutContent: about.aboutContent,
-                // aboutImage: about.aboutImage || [] 
             });
         }
 
-        // if (about) {
-        //     setAboutHeader(about.aboutHeader || '');
-        //     setAboutCaption(about.aboutCaption || '');
-        //     setAboutContent(about.aboutContent || '');
-        // }
 
         if (serviceHead) {
             setServiceData({
@@ -365,11 +355,6 @@ const Home = () => {
             setVisionHeaderThird(vision.visionHeaderThird);
             setVisionCaptionThird(vision.visionCaptionThird);
         }
-
-        // if (joinUs) {
-        //     setJoinUsHeader(joinUs.joinUsHeader);
-        //     setJoinUsCaption(joinUs.joinUsCaption);
-        // }
 
         if (joinUs) {
             setJoinUsData({
@@ -436,11 +421,6 @@ const Home = () => {
 
 
 
-    // about
-    // const handleAboutImageChange = (e) => {
-    //     setaboutImage([...e.target.files]);
-    // };
-
     const handleAboutInput = (e) => {
         setAboutData({
             ...aboutData,
@@ -450,14 +430,6 @@ const Home = () => {
 
     const handleAboutSubmit = (e) => {
         e.preventDefault();
-
-        // const formData = new FormData();
-
-        // formData.append("aboutHeader", aboutHeader);
-        // formData.append("aboutCaption", aboutCaption);
-        // formData.append("aboutContent", aboutContent);
-        // aboutImage.forEach(image => formData.append('aboutImage', image));
-
         dispatch(createAbout(aboutData));
     }
 
@@ -516,8 +488,6 @@ const Home = () => {
     const handleJoinUsSubmit = (e) => {
         e.preventDefault();
         const formData = new FormData();
-        // formData.append("joinUsHeader", joinUsHeader);
-        // formData.append("joinUsCaption", joinUsCaption);
         formData.append('joinUsImage', joinUsImage);
 
         dispatch(createJoinUs(formData));
@@ -653,7 +623,7 @@ const Home = () => {
                                                                 <Carousel.Item key={index}>
                                                                     <img
                                                                         className="d-block w-100"
-                                                                        src={item.url} // Assuming 'image' is the property holding the URL
+                                                                        src={item.url} 
                                                                         alt={`Slide ${index + 1}`}
                                                                     />
                                                                 </Carousel.Item>
@@ -695,7 +665,7 @@ const Home = () => {
                                         <Form.Label>First Caption</Form.Label>
                                         <Form.Control
                                             as="textarea"
-                                            placeholder="Enter the Heading"
+                                            placeholder="Enter the Caption"
                                             name="highlightCaptionFirst"
                                             value={formData.highlightCaptionFirst}
                                             onChange={handleInputChange}
@@ -705,7 +675,7 @@ const Home = () => {
                                         <Form.Label>Second Header</Form.Label>
                                         <Form.Control
                                             type="text"
-                                            placeholder="Enter the Sub Heading"
+                                            placeholder="Enter the Heading"
                                             name="highlightHeaderSecond"
                                             value={formData.highlightHeaderSecond}
                                             onChange={handleInputChange}
@@ -715,7 +685,7 @@ const Home = () => {
                                         <Form.Label>Second Caption</Form.Label>
                                         <Form.Control
                                             as="textarea"
-                                            placeholder="Enter the Sub Heading"
+                                            placeholder="Enter the Caption"
                                             name="highlightCaptionSecond"
                                             value={formData.highlightCaptionSecond}
                                             onChange={handleInputChange}
@@ -725,7 +695,7 @@ const Home = () => {
                                         <Form.Label>Third Header</Form.Label>
                                         <Form.Control
                                             type="text"
-                                            placeholder="Enter the Sub Heading"
+                                            placeholder="Enter the Heading"
                                             name="highlightHeaderThird"
                                             value={formData.highlightHeaderThird}
                                             onChange={handleInputChange}
@@ -735,7 +705,7 @@ const Home = () => {
                                         <Form.Label>Third Caption</Form.Label>
                                         <Form.Control
                                             as="textarea"
-                                            placeholder="Enter the Sub Heading"
+                                            placeholder="Enter the Caption"
                                             name="highlightCaptionThird"
                                             value={formData.highlightCaptionThird}
                                             onChange={handleInputChange}
@@ -809,7 +779,7 @@ const Home = () => {
                                         <Form.Label>About Caption</Form.Label>
                                         <Form.Control
                                             as="textarea"
-                                            placeholder="Enter the Sub Heading"
+                                            placeholder="Enter the Caption"
                                             name="aboutCaption"
                                             value={aboutData.aboutCaption}
                                             onChange={handleAboutInput}
@@ -819,20 +789,12 @@ const Home = () => {
                                         <Form.Label>About Content</Form.Label>
                                         <Form.Control
                                             as="textarea"
-                                            placeholder="Enter the Sub Heading"
+                                            placeholder="Enter the Content"
                                             name="aboutContent"
                                             value={aboutData.aboutContent}
                                             onChange={handleAboutInput}
                                         />
                                     </Form.Group>
-                                    {/* <Form.Group className="mb-3">
-                                            <Form.Label>Image</Form.Label>
-                                            <Form.Control
-                                                type="file"
-                                                placeholder="Enter any Image"
-                                                onChange={handleAboutImageChange}
-                                            />
-                                        </Form.Group> */}
                                     <Button variant="primary" type="submit">
                                         Submit
                                     </Button>
@@ -926,7 +888,7 @@ const Home = () => {
                                         <Form.Label>Titel</Form.Label>
                                         <Form.Control
                                             type="text"
-                                            placeholder="Enter the Sub Heading"
+                                            placeholder="Enter the Titel"
                                             value={title}
                                             onChange={(e) => setTitle(e.target.value)}
                                         />
@@ -969,7 +931,7 @@ const Home = () => {
                                         <Form.Label>Service Caption</Form.Label>
                                         <Form.Control
                                             type="text"
-                                            placeholder="Enter the Sub Heading"
+                                            placeholder="Enter the Caption"
                                             name='servicesCaption'
                                             value={formData.servicesCaption}
                                             onChange={handelServiceHeadChange}
@@ -1086,7 +1048,7 @@ const Home = () => {
                                         <Form.Label>Vision Caption</Form.Label>
                                         <Form.Control
                                             type="text"
-                                            placeholder="Enter the Sub Heading"
+                                            placeholder="Enter the Caption"
                                             value={visionCaption}
                                             onChange={(e) => setVisionCaption(e.target.value)}
                                         />
@@ -1113,7 +1075,7 @@ const Home = () => {
                                         <Form.Label>First Vision Caption</Form.Label>
                                         <Form.Control
                                             type="text"
-                                            placeholder="Enter the Sub Heading"
+                                            placeholder="Enter the Caption"
                                             value={visionCaptionFirst}
                                             onChange={(e) => setVisionCaptionFirst(e.target.value)}
                                         />
@@ -1140,7 +1102,7 @@ const Home = () => {
                                         <Form.Label>Second Vision Caption</Form.Label>
                                         <Form.Control
                                             type="text"
-                                            placeholder="Enter the Sub Heading"
+                                            placeholder="Enter the Caption"
                                             value={visionCaptionSecond}
                                             onChange={(e) => setVisionCaptionSecond(e.target.value)}
                                         />
@@ -1167,7 +1129,7 @@ const Home = () => {
                                         <Form.Label>Third Vision Caption</Form.Label>
                                         <Form.Control
                                             type="text"
-                                            placeholder="Enter the Sub Heading"
+                                            placeholder="Enter the Caption"
                                             value={visionCaptionThird}
                                             onChange={(e) => setVisionCaptionThird(e.target.value)}
                                         />
@@ -1316,7 +1278,7 @@ const Home = () => {
                                         <Form.Label>Join Us Caption</Form.Label>
                                         <Form.Control
                                             as="textarea"
-                                            placeholder="Enter the Sub Heading"
+                                            placeholder="Enter the Caption"
                                             name='joinUsCaption'
                                             value={joinUsData.joinUsCaption}
                                             onChange={handleJoinUsInputChange}
@@ -1412,7 +1374,7 @@ const Home = () => {
                                         <Form.Label>Name</Form.Label>
                                         <Form.Control
                                             type="text"
-                                            placeholder="Enter the Sub Heading"
+                                            placeholder="Enter the Name"
                                             value={brandName}
                                             onChange={(e) => setBrandName(e.target.value)}
                                         />

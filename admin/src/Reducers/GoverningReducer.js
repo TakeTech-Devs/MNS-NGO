@@ -24,7 +24,7 @@ export const governingReducer = (state = { goveringBody: [] }, action) => {
             return {
                 ...state,
                 loading: false,
-                goveringBody: action.payload,
+                goveringBody: action.payload.goveringBody[0],
             };
         case GET_ADMIN_GOVERNING_FAIL:
             return {

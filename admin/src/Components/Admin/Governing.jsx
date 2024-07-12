@@ -122,7 +122,6 @@ const Governing = () => {
 
 
     return (
-        goveringBody && goveringBody.length > 0 && (
             <div className="admin-dashboard">
                 <Sidebar />
                 <div className="admin-main" style={{ height: "100vh" }}>
@@ -206,11 +205,11 @@ const Governing = () => {
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>{goveringBody[0].header}</td>
-                                    <td>{goveringBody[0].caption}</td>
+                                    <td>{goveringBody?.header}</td>
+                                    <td>{goveringBody?.caption}</td>
                                     <td>
                                         <div class="container">
-                                            <img src={goveringBody[0].headerImage.url} alt="Image" className="image" />
+                                            <img src={goveringBody?.headerImage?.url} alt="Image" className="image" />
                                             <div class="overlay">
                                                 <i class="fa-regular fa-eye" onClick={handleShowCarouse}></i>
                                                 <Modal show={showCarousel} onHide={handleCloseCarouse}>
@@ -220,7 +219,7 @@ const Governing = () => {
                                                     <Modal.Body>
                                                         <img
                                                             className="d-block w-100"
-                                                            src={goveringBody[0].headerImage.url}
+                                                            src={goveringBody?.headerImage?.url}
                                                         />
                                                     </Modal.Body>
                                                 </Modal>
@@ -232,7 +231,7 @@ const Governing = () => {
                         </table>
                     </main>
 
-                    {/* Governing Highlight */}
+                    {/* Governing Body */}
                     <div className="mb-2 my-3 mx-3">
                         <h2>Governing Body</h2>
                         <Button variant="primary" size="sm" onClick={handleShowBodyForm}>
@@ -282,8 +281,8 @@ const Governing = () => {
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>{goveringBody[0].goveringBodyHeader}</td>
-                                    <td>{goveringBody[0].goveringBodyContent}</td>
+                                    <td>{goveringBody?.goveringBodyHeader}</td>
+                                    <td>{goveringBody?.goveringBodyContent}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -293,7 +292,6 @@ const Governing = () => {
 
                 </div>
             </div>
-        )
     )
 }
 

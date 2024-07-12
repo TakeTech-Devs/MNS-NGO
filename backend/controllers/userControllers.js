@@ -35,3 +35,11 @@ exports.loginAdmin = catchAsyncError(async (req, res, next) => {
     })
 
 })
+
+exports.getAllAdmins = catchAsyncError(async(req, res, next) =>{
+    const users = await User.find();
+    res.status(200).json({
+        success: true,
+        users
+    })
+})

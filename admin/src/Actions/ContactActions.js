@@ -18,7 +18,7 @@ export const getContact = () => async (dispatch) => {
 
         const { data } = await axios.get(`/api/v1/contact/get-contact`);
 
-        dispatch({ type: GET_ADMIN_CONTACT_SUCCESS, payload: data.contact });
+        dispatch({ type: GET_ADMIN_CONTACT_SUCCESS, payload: data });
     } catch (error) {
         dispatch({ type: GET_ADMIN_CONTACT_FAIL, payload: error.response.data.message });
     }

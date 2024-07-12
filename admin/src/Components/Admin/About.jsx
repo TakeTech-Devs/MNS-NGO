@@ -124,7 +124,7 @@ const About = () => {
         }
     }, [error, dispatch]);
 
-    const { about: newAbout, isUpdated, error: aboutError,  } = useSelector(state => state.newAboutData);
+    const { about: newAbout, isUpdated, error: aboutError, } = useSelector(state => state.newAboutData);
 
     const [getInvolvedData, setGetInvolvedData] = useState({
         getInvolvedHeader: '',
@@ -186,14 +186,14 @@ const About = () => {
         dispatch(createAboutHeader(formData));
     }
 
-    const handelHeaderInput = (e) =>{
+    const handelHeaderInput = (e) => {
         setHeaderData({
             ...headerData,
             [e.target.name]: e.target.value,
         })
     }
 
-    const handelHeaderInputSubmit = (e) =>{
+    const handelHeaderInputSubmit = (e) => {
         e.preventDefault();
         dispatch(createAboutHeader(headerData));
     }
@@ -233,7 +233,7 @@ const About = () => {
 
     const { isUpdated: valuesUpdate, error: valuesError } = useSelector((state) => state.aboutValues);
 
-    useEffect(() =>{
+    useEffect(() => {
         if (valuesUpdate) {
             window.alert('Section updated successfully');
             dispatch({ type: UPDATE_SERVICE_HOME_RESET });
@@ -241,7 +241,7 @@ const About = () => {
         }
 
 
-        if(valuesError){
+        if (valuesError) {
             window.alert(valuesError);
             dispatch(clearErrors());
         }
@@ -298,14 +298,14 @@ const About = () => {
         dispatch(createAboutInvolbed(formData));
     }
 
-    const handleInvolvedInputChange = (e) =>{
+    const handleInvolvedInputChange = (e) => {
         setGetInvolvedData({
             ...getInvolvedData,
             [e.target.name]: e.target.value,
         });
     }
 
-    const handleInvolvedInputSubmit = (e) =>{
+    const handleInvolvedInputSubmit = (e) => {
         e.preventDefault();
         dispatch(createAboutInvolbed(getInvolvedData));
     }
@@ -314,500 +314,506 @@ const About = () => {
 
 
     return (
-        about && about.length > 0 && (
-            <div className="admin-dashboard">
-                <Sidebar />
-                <div className="admin-main">
-                    <AdminHeader />
+        <div className="admin-dashboard">
+            <Sidebar />
+            <div className="admin-main">
+                <AdminHeader />
 
-                    {/* About Header */}
-                    <div className="mb-2 my-3 mx-3">
-                        <h2>About Header</h2>
-                        <Button variant="primary" size="sm" onClick={handleShowHeaderForm}>
-                            Add/Update Header
-                        </Button>
-                        <Modal show={showHeaderForm} onHide={handleCloseHeaderUpdate}>
-                            <Modal.Header closeButton>
-                                <Modal.Title>About Header</Modal.Title>
-                            </Modal.Header>
-                            <Modal.Body>
-                                <Form onSubmit={handelHeaderInputSubmit}>
-                                    <Form.Group className="mb-3" controlId="formHeadingInput">
-                                        <Form.Label>Heading</Form.Label>
-                                        <Form.Control
-                                            type="text"
-                                            placeholder="Enter the Heading"
-                                            name='header'
-                                            value={headerData.header}
-                                            onChange={handelHeaderInput}
-                                        />
-                                    </Form.Group>
-                                    <Form.Group className="mb-3" controlId="formSubHeadingInput">
-                                        <Form.Label>Caption</Form.Label>
-                                        <Form.Control
-                                            as="textarea"
-                                            placeholder="Enter the Caption"
-                                            name='caption'
-                                            value={headerData.caption}
-                                            onChange={handelHeaderInput}
-                                        />
-                                    </Form.Group>
-                                    <Button variant="primary" type="submit">
-                                        Submit
-                                    </Button>
-                                </Form>
-                            </Modal.Body>
-                        </Modal>
-                        {' '}
-                        <Button variant="primary" size="sm" onClick={handleShowHeaderImageForm}>
-                            Add/Update Header Image
-                        </Button>
-                        <Modal show={showHeaderImageForm} onHide={handleCloseHeaderImageUpdate}>
-                            <Modal.Header closeButton>
-                                <Modal.Title>About Header</Modal.Title>
-                            </Modal.Header>
-                            <Modal.Body>
-                                <Form onSubmit={handleHeaderSubmit}>
-                                    <Form.Group className="mb-3">
-                                        <Form.Label>Image</Form.Label>
-                                        <Form.Control
-                                            type="file"
-                                            placeholder="Enter any Image"
-                                            onChange={handelHeaderImage}
-                                        />
-                                    </Form.Group>
-                                    <Button variant="primary" type="submit">
-                                        Submit
-                                    </Button>
-                                </Form>
-                            </Modal.Body>
-                        </Modal>
-                    </div>
-
-
-
-
-                    <main className="admin-content">
-                        <table className="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Heading</th>
-                                    <th scope="col">Caption</th>
-                                    <th scope="col">Image</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>{about[0].header}</td>
-                                    <td>{about[0].caption}</td>
-                                    <td>
-                                        <div class="container">
-                                            <img src={about[0].headerImage.url} alt="Image" className="image" />
-                                            <div class="overlay">
-                                                <i class="fa-regular fa-eye" onClick={handleShowCarouse}></i>
-                                                <Modal show={showCarousel} onHide={handleCloseCarouse}>
-                                                    <Modal.Header closeButton>
-                                                    </Modal.Header>
-                                                    <Modal.Body>
-                                                        <img src={about[0].headerImage.url} alt="Image" className="d-block w-100" />
-                                                    </Modal.Body>
-                                                </Modal>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </main>
-
-                    {/* About Highlight */}
-                    <div className="mb-2 my-3 mx-3">
-                        <h2>About Images</h2>
-                        <Button variant="primary" size="sm" onClick={handleShowImageForm}>
-                            Add/Update Image
-                        </Button>
-                        <Modal show={showImageForm} onHide={handleCloseImageForm}>
-                            <Modal.Header closeButton>
-                                <Modal.Title>About Image</Modal.Title>
-                            </Modal.Header>
-                            <Modal.Body>
-                                <Form onSubmit={handleImageSubmit}>
-                                    <Form.Group className="mb-3">
-                                        <Form.Label>First Image</Form.Label>
-                                        <Form.Control
-                                            type="file"
-                                            placeholder="Enter any Image"
-                                            onChange={(e) => handleImageUpload(e, setFirstImage)}
-                                        />
-                                    </Form.Group>
-                                    <Form.Group className="mb-3">
-                                        <Form.Label>Second Image</Form.Label>
-                                        <Form.Control
-                                            type="file"
-                                            placeholder="Enter any Image"
-                                            onChange={(e) => handleImageUpload(e, setSecondImage)}
-                                        />
-                                    </Form.Group>
-                                    <Form.Group className="mb-3">
-                                        <Form.Label>Third Image</Form.Label>
-                                        <Form.Control
-                                            type="file"
-                                            placeholder="Enter any Image"
-                                            onChange={(e) => handleImageUpload(e, setThirdImage)}
-                                        />
-                                    </Form.Group>
-                                    <Form.Group className="mb-3">
-                                        <Form.Label>Forth Image</Form.Label>
-                                        <Form.Control
-                                            type="file"
-                                            placeholder="Enter any Image"
-                                            onChange={(e) => handleImageUpload(e, setFourthImage)}
-                                        />
-                                    </Form.Group>
-                                    <Button variant="primary" type="submit">
-                                        Submit
-                                    </Button>
-                                </Form>
-                            </Modal.Body>
-                        </Modal>
-                        {' '}
-                    </div>
-
-
-                    <main className="admin-content">
-                        <table className="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th scope="col">First</th>
-                                    <th scope="col">Second</th>
-                                    <th scope="col">Third</th>
-                                    <th scope="col">Forth</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <div class="container">
-                                            <img src={about[0].images[0].url} alt="Image" className="image" />
-                                            <div class="overlay">
-                                                <i class="fa-regular fa-eye" onClick={handleShowImageOne}></i>
-                                                <Modal show={showImageOne} onHide={handleCloseImageOne}>
-                                                    <Modal.Header closeButton>
-                                                    </Modal.Header>
-                                                    <Modal.Body>
-                                                        <img src={about[0].images[0].url} alt="Image" className="d-block w-100" />
-                                                    </Modal.Body>
-                                                </Modal>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="container">
-                                            <img src={about[0].images[1].url} alt="Image" className="image" />
-                                            <div class="overlay">
-                                                <i class="fa-regular fa-eye" onClick={handleShowImageTwo}></i>
-                                                <Modal show={showImageTwo} onHide={handleCloseImageTwo}>
-                                                    <Modal.Header closeButton>
-                                                    </Modal.Header>
-                                                    <Modal.Body>
-                                                        <img src={about[0].images[1].url} alt="Image" className="d-block w-100" />
-                                                    </Modal.Body>
-                                                </Modal>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="container">
-                                            <img src={about[0].images[2].url} alt="Image" className="image" />
-                                            <div class="overlay">
-                                                <i class="fa-regular fa-eye" onClick={handleShowImageThree}></i>
-                                                <Modal show={showImageThree} onHide={handleCloseImageThree}>
-                                                    <Modal.Header closeButton>
-                                                    </Modal.Header>
-                                                    <Modal.Body>
-                                                        <img src={about[0].images[2].url} alt="Image" className="d-block w-100" />
-                                                    </Modal.Body>
-                                                </Modal>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="container">
-                                            <img src={about[0].images[3].url} alt="Image" className="image" />
-                                            <div class="overlay">
-                                                <i class="fa-regular fa-eye" onClick={handleShowImageFour}></i>
-                                                <Modal show={showImageFour} onHide={handleCloseImageFour}>
-                                                    <Modal.Header closeButton>
-                                                    </Modal.Header>
-                                                    <Modal.Body>
-                                                        <img src={about[0].images[3].url} alt="Image" className="d-block w-100" />
-                                                    </Modal.Body>
-                                                </Modal>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </main>
-
-
-                    {/* About About */}
-
-                    <div className="mb-2 my-3 mx-3">
-                        <h2>About Values</h2>
-                        <Button variant="primary" size="sm" onClick={handleShowValuesForm}>
-                            Add/Update Values
-                        </Button>
-                        <Modal show={showValuesForm} onHide={handleCloseValuesForm}>
-                            <Modal.Header closeButton>
-                                <Modal.Title>About Values</Modal.Title>
-                            </Modal.Header>
-                            <Modal.Body>
-                                <Form>
-                                    <Form.Group className="mb-3" controlId="formHeadingInput">
-                                        <Form.Label>Value Header</Form.Label>
-                                        <Form.Control
-                                            type="text"
-                                            placeholder="Enter the Heading"
-                                        />
-                                    </Form.Group>
-                                    <Form.Group className="mb-3" controlId="formSubHeadingInput">
-                                        <Form.Label>Value Caption</Form.Label>
-                                        <Form.Control
-                                            type="text"
-                                            placeholder="Enter the Sub Heading"
-                                        />
-                                    </Form.Group>
-                                    <Button variant="primary" type="submit">
-                                        Submit
-                                    </Button>
-                                </Form>
-                            </Modal.Body>
-                        </Modal>
-                        {' '}
-                        <Button variant="primary" size="sm" onClick={handleShowValueImageForm}>
-                            Add Value Image
-                        </Button>
-                        <Modal show={showValueImageForm} onHide={handleCloseValueImageForm}>
-                            <Modal.Header closeButton>
-                                <Modal.Title>Service Image</Modal.Title>
-                            </Modal.Header>
-                            <Modal.Body>
-                                <Form onSubmit={handelValuesSubmit}>
-                                    <Form.Group className="mb-3" controlId="updateFormHeadingInput">
-                                        <Form.Label>Title</Form.Label>
-                                        <Form.Control
-                                            type="text"
-                                            placeholder="Enter the Heading"
-                                            value={title}
-                                            onChange={(e) => setTitle(e.target.value)}
-                                        />
-                                    </Form.Group>
-                                    <Form.Group className="mb-3">
-                                        <Form.Label>Image</Form.Label>
-                                        <Form.Control
-                                            type="file"
-                                            placeholder="Enter any Image"
-                                            onChange={handelValuesChange}
-                                        />
-                                    </Form.Group>
-                                    <Button variant="primary" type="submit">
-                                        Submit
-                                    </Button>
-                                </Form>
-                            </Modal.Body>
-                        </Modal>
-                    </div>
-
-
-                    <main className="admin-content">
-                        <table className="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Value Header</th>
-                                    <th scope="col">Value Caption</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>{about[0].ourValuesHeader}</td>
-                                    <td>{about[0].ourValuesContent}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </main>
-
-                    <main className="admin-content">
-                        <table className="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Title</th>
-                                    <th scope="col">Image</th>
-                                    <th scope="col">Edit</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {valueImage && valueImage.map((value, index) => (
-                                    <tr key={value._id} className="ValuePoints">
-                                        <td>{value.title}</td>
-                                        <td>
-                                            <img src={value.image.url} alt={value.title} className="image" />
-                                        </td>
-                                        <td>
-                                            <Button variant="primary" onClick={() => handleShowEditModal(value)}>
-                                                Edit
-                                            </Button>
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </main>
-
-                    <Modal show={showEditModal} onHide={handleCloseEditModal}>
-                            <Modal.Header closeButton>
-                                <Modal.Title>Edit Service</Modal.Title>
-                            </Modal.Header>
-                            <Modal.Body>
-                                <Form onSubmit={handleUpdate}>
-                                    <Form.Group className="mb-3" controlId="formTitle">
-                                        <Form.Label>Title</Form.Label>
-                                        <Form.Control
-                                            type="text"
-                                            value={title}
-                                            onChange={(e) => setTitle(e.target.value)}
-                                        />
-                                    </Form.Group>
-
-                                    <Form.Group className="mb-3" controlId="formImage">
-                                        <Form.Label>Image</Form.Label>
-                                        <Form.Control
-                                            type="file"
-                                            onChange={handleUpdateValuesImageChange}
-                                        />
-                                    </Form.Group>
-
-                                    <Button variant="primary" type="submit">
-                                        Update
-                                    </Button>
-                                </Form>
-                            </Modal.Body>
-                        </Modal>
-
-
-
-                    {/* About Services */}
-
-
-                    <div className="mb-2 my-3 mx-3">
-                        <h2>About Get Involved</h2>
-                        <Button variant="primary" size="sm" onClick={handleShowInvolvedForm}>
-                            Add/Update Get Involved
-                        </Button>
-                        <Modal show={showInvolvedForm} onHide={handleCloseInvolvedForm}>
-                            <Modal.Header closeButton>
-                                <Modal.Title>About Get Involved</Modal.Title>
-                            </Modal.Header>
-                            <Modal.Body>
-                                <Form onSubmit={handleInvolvedInputSubmit}>
-                                    <Form.Group className="mb-3" controlId="formHeadingInput">
-                                        <Form.Label>Get Involved Heading</Form.Label>
-                                        <Form.Control
-                                            type="text"
-                                            placeholder="Enter the Heading"
-                                            name="getInvolvedHeader"
-                                            value={getInvolvedData.getInvolvedHeader}
-                                            onChange={handleInvolvedInputChange}
-                                        />
-                                    </Form.Group>
-                                    <Form.Group className="mb-3" controlId="formSubHeadingInput">
-                                        <Form.Label>Get Involved Caption</Form.Label>
-                                        <Form.Control
-                                            as="textarea"
-                                            placeholder="Enter the Sub Heading"
-                                            name="getInvolvedCaption"
-                                            value={getInvolvedData.getInvolvedCaption}
-                                            onChange={handleInvolvedInputChange}
-                                        />
-                                    </Form.Group>
-                                    {/* <Form.Group className="mb-3">
-                                        <Form.Label>Image</Form.Label>
-                                        <Form.Control
-                                            type="file"
-                                            placeholder="Enter any Image"
-                                            onChange={handelInvolvedImage}
-                                        />
-                                    </Form.Group> */}
-                                    <Button variant="primary" type="submit">
-                                        Submit
-                                    </Button>
-                                </Form>
-                            </Modal.Body>
-                        </Modal>
-                        {' '}
-                        <Button variant="primary" size="sm" onClick={handleShowInvolvedImageForm}>
-                            Add/Update Get Involved Image
-                        </Button>
-                        <Modal show={showInvolvedImageForm} onHide={handleCloseInvolvedImageForm}>
-                            <Modal.Header closeButton>
-                                <Modal.Title>About Get Involved</Modal.Title>
-                            </Modal.Header>
-                            <Modal.Body>
-                                <Form onSubmit={handleInvolvedSubmit}>
-                                    <Form.Group className="mb-3">
-                                        <Form.Label>Image</Form.Label>
-                                        <Form.Control
-                                            type="file"
-                                            placeholder="Enter any Image"
-                                            onChange={handelInvolvedImage}
-                                        />
-                                    </Form.Group>
-                                    <Button variant="primary" type="submit">
-                                        Submit
-                                    </Button>
-                                </Form>
-                            </Modal.Body>
-                        </Modal>
-                    </div>
-
-
-                    <main className="admin-content">
-                        <table className="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Get Involved Heading</th>
-                                    <th scope="col">Get Involved Caption</th>
-                                    <th scope="col">Image</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>{about[0].getInvolvedHeader}</td>
-                                    <td>{about[0].getInvolvedCaption}</td>
-                                    <td>
-                                        <div class="container">
-                                            <img src={about[0].getInvolvedImage.url} alt="Image" className="image" />
-                                            <div class="overlay">
-                                                <i class="fa-regular fa-eye" onClick={handleShowImageInvolved}></i>
-                                                <Modal show={showImageInvolved} onHide={handleCloseImageInvolved}>
-                                                    <Modal.Header closeButton>
-                                                    </Modal.Header>
-                                                    <Modal.Body>
-                                                        <img src={about[0].getInvolvedImage.url} alt="Image" className="d-block w-100" />
-                                                    </Modal.Body>
-                                                </Modal>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </main>
-
+                {/* About Header */}
+                <div className="mb-2 my-3 mx-3">
+                    <h2>About Header</h2>
+                    <Button variant="primary" size="sm" onClick={handleShowHeaderForm}>
+                        Add/Update Header
+                    </Button>
+                    <Modal show={showHeaderForm} onHide={handleCloseHeaderUpdate}>
+                        <Modal.Header closeButton>
+                            <Modal.Title>About Header</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                            <Form onSubmit={handelHeaderInputSubmit}>
+                                <Form.Group className="mb-3" controlId="formHeadingInput">
+                                    <Form.Label>Heading</Form.Label>
+                                    <Form.Control
+                                        type="text"
+                                        placeholder="Enter the Heading"
+                                        name='header'
+                                        value={headerData.header}
+                                        onChange={handelHeaderInput}
+                                    />
+                                </Form.Group>
+                                <Form.Group className="mb-3" controlId="formSubHeadingInput">
+                                    <Form.Label>Caption</Form.Label>
+                                    <Form.Control
+                                        as="textarea"
+                                        placeholder="Enter the Caption"
+                                        name='caption'
+                                        value={headerData.caption}
+                                        onChange={handelHeaderInput}
+                                    />
+                                </Form.Group>
+                                <Button variant="primary" type="submit">
+                                    Submit
+                                </Button>
+                            </Form>
+                        </Modal.Body>
+                    </Modal>
+                    {' '}
+                    <Button variant="primary" size="sm" onClick={handleShowHeaderImageForm}>
+                        Add/Update Header Image
+                    </Button>
+                    <Modal show={showHeaderImageForm} onHide={handleCloseHeaderImageUpdate}>
+                        <Modal.Header closeButton>
+                            <Modal.Title>About Header</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                            <Form onSubmit={handleHeaderSubmit}>
+                                <Form.Group className="mb-3">
+                                    <Form.Label>Image</Form.Label>
+                                    <Form.Control
+                                        type="file"
+                                        placeholder="Enter any Image"
+                                        onChange={handelHeaderImage}
+                                    />
+                                </Form.Group>
+                                <Button variant="primary" type="submit">
+                                    Submit
+                                </Button>
+                            </Form>
+                        </Modal.Body>
+                    </Modal>
                 </div>
+
+
+
+
+                <main className="admin-content">
+                    <table className="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">Heading</th>
+                                <th scope="col">Caption</th>
+                                <th scope="col">Image</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{about?.header}</td>
+                                <td>{about?.caption}</td>
+                                <td>
+                                    <div class="container">
+                                        <img src={about?.headerImage?.url} alt="Image" className="image" />
+                                        <div class="overlay">
+                                            <i class="fa-regular fa-eye" onClick={handleShowCarouse}></i>
+                                            <Modal show={showCarousel} onHide={handleCloseCarouse}>
+                                                <Modal.Header closeButton>
+                                                </Modal.Header>
+                                                <Modal.Body>
+                                                    <img src={about?.headerImage?.url} alt="Image" className="d-block w-100" />
+                                                </Modal.Body>
+                                            </Modal>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </main>
+
+                {/* About Image */}
+                <div className="mb-2 my-3 mx-3">
+                    <h2>About Images</h2>
+                    <Button variant="primary" size="sm" onClick={handleShowImageForm}>
+                        Add/Update Image
+                    </Button>
+                    <Modal show={showImageForm} onHide={handleCloseImageForm}>
+                        <Modal.Header closeButton>
+                            <Modal.Title>About Image</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                            <Form onSubmit={handleImageSubmit}>
+                                <Form.Group className="mb-3">
+                                    <Form.Label>First Image</Form.Label>
+                                    <Form.Control
+                                        type="file"
+                                        placeholder="Enter any Image"
+                                        onChange={(e) => handleImageUpload(e, setFirstImage)}
+                                    />
+                                </Form.Group>
+                                <Form.Group className="mb-3">
+                                    <Form.Label>Second Image</Form.Label>
+                                    <Form.Control
+                                        type="file"
+                                        placeholder="Enter any Image"
+                                        onChange={(e) => handleImageUpload(e, setSecondImage)}
+                                    />
+                                </Form.Group>
+                                <Form.Group className="mb-3">
+                                    <Form.Label>Third Image</Form.Label>
+                                    <Form.Control
+                                        type="file"
+                                        placeholder="Enter any Image"
+                                        onChange={(e) => handleImageUpload(e, setThirdImage)}
+                                    />
+                                </Form.Group>
+                                <Form.Group className="mb-3">
+                                    <Form.Label>Forth Image</Form.Label>
+                                    <Form.Control
+                                        type="file"
+                                        placeholder="Enter any Image"
+                                        onChange={(e) => handleImageUpload(e, setFourthImage)}
+                                    />
+                                </Form.Group>
+                                <Button variant="primary" type="submit">
+                                    Submit
+                                </Button>
+                            </Form>
+                        </Modal.Body>
+                    </Modal>
+                    {' '}
+                </div>
+
+
+                <main className="admin-content">
+                    <table className="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">First</th>
+                                <th scope="col">Second</th>
+                                <th scope="col">Third</th>
+                                <th scope="col">Forth</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="container">
+                                        {about?.images?.[0]?.url && (
+                                            <>
+                                                <img src={about.images[0].url} alt="Image" className="image" />
+                                                <div className="overlay">
+                                                    <i className="fa-regular fa-eye" onClick={handleShowImageOne}></i>
+                                                    <Modal show={showImageOne} onHide={handleCloseImageOne}>
+                                                        <Modal.Header closeButton>
+                                                        </Modal.Header>
+                                                        <Modal.Body>
+                                                            <img src={about.images[0].url} alt="Image" className="d-block w-100" />
+                                                        </Modal.Body>
+                                                    </Modal>
+                                                </div>
+                                            </>
+                                        )}
+                                    </div>
+                                </td>
+                                <td>
+                                    <div className="container">
+                                        {about?.images?.[1]?.url && (
+                                            <>
+                                                <img src={about.images[1].url} alt="Image" className="image" />
+                                                <div className="overlay">
+                                                    <i className="fa-regular fa-eye" onClick={handleShowImageTwo}></i>
+                                                    <Modal show={showImageTwo} onHide={handleCloseImageTwo}>
+                                                        <Modal.Header closeButton>
+                                                        </Modal.Header>
+                                                        <Modal.Body>
+                                                            <img src={about.images[1].url} alt="Image" className="d-block w-100" />
+                                                        </Modal.Body>
+                                                    </Modal>
+                                                </div>
+                                            </>
+                                        )}
+                                    </div>
+                                </td>
+                                <td>
+                                    <div className="container">
+                                        {about?.images?.[2]?.url && (
+                                            <>
+                                                <img src={about.images[2].url} alt="Image" className="image" />
+                                                <div className="overlay">
+                                                    <i className="fa-regular fa-eye" onClick={handleShowImageThree}></i>
+                                                    <Modal show={showImageThree} onHide={handleCloseImageThree}>
+                                                        <Modal.Header closeButton>
+                                                        </Modal.Header>
+                                                        <Modal.Body>
+                                                            <img src={about.images[2].url} alt="Image" className="d-block w-100" />
+                                                        </Modal.Body>
+                                                    </Modal>
+                                                </div>
+                                            </>
+                                        )}
+                                    </div>
+                                </td>
+                                <td>
+                                    <div className="container">
+                                        {about?.images?.[3]?.url && (
+                                            <>
+                                                <img src={about.images[3].url} alt="Image" className="image" />
+                                                <div className="overlay">
+                                                    <i className="fa-regular fa-eye" onClick={handleShowImageFour}></i>
+                                                    <Modal show={showImageFour} onHide={handleCloseImageFour}>
+                                                        <Modal.Header closeButton>
+                                                        </Modal.Header>
+                                                        <Modal.Body>
+                                                            <img src={about.images[3].url} alt="Image" className="d-block w-100" />
+                                                        </Modal.Body>
+                                                    </Modal>
+                                                </div>
+                                            </>
+                                        )}
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </main>
+
+
+                {/* About Values */}
+
+                <div className="mb-2 my-3 mx-3">
+                    <h2>About Values</h2>
+                    <Button variant="primary" size="sm" onClick={handleShowValuesForm}>
+                        Add/Update Values
+                    </Button>
+                    <Modal show={showValuesForm} onHide={handleCloseValuesForm}>
+                        <Modal.Header closeButton>
+                            <Modal.Title>About Values</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                            <Form>
+                                <Form.Group className="mb-3" controlId="formHeadingInput">
+                                    <Form.Label>Value Header</Form.Label>
+                                    <Form.Control
+                                        type="text"
+                                        placeholder="Enter the Heading"
+                                    />
+                                </Form.Group>
+                                <Form.Group className="mb-3" controlId="formSubHeadingInput">
+                                    <Form.Label>Value Caption</Form.Label>
+                                    <Form.Control
+                                        type="text"
+                                        placeholder="Enter the Caption"
+                                    />
+                                </Form.Group>
+                                <Button variant="primary" type="submit">
+                                    Submit
+                                </Button>
+                            </Form>
+                        </Modal.Body>
+                    </Modal>
+                    {' '}
+                    <Button variant="primary" size="sm" onClick={handleShowValueImageForm}>
+                        Add Value Image
+                    </Button>
+                    <Modal show={showValueImageForm} onHide={handleCloseValueImageForm}>
+                        <Modal.Header closeButton>
+                            <Modal.Title>Service Image</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                            <Form onSubmit={handelValuesSubmit}>
+                                <Form.Group className="mb-3" controlId="updateFormHeadingInput">
+                                    <Form.Label>Title</Form.Label>
+                                    <Form.Control
+                                        type="text"
+                                        placeholder="Enter the Title"
+                                        value={title}
+                                        onChange={(e) => setTitle(e.target.value)}
+                                    />
+                                </Form.Group>
+                                <Form.Group className="mb-3">
+                                    <Form.Label>Image</Form.Label>
+                                    <Form.Control
+                                        type="file"
+                                        placeholder="Enter any Image"
+                                        onChange={handelValuesChange}
+                                    />
+                                </Form.Group>
+                                <Button variant="primary" type="submit">
+                                    Submit
+                                </Button>
+                            </Form>
+                        </Modal.Body>
+                    </Modal>
+                </div>
+
+
+                <main className="admin-content">
+                    <table className="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">Value Header</th>
+                                <th scope="col">Value Caption</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{about?.ourValuesHeader}</td>
+                                <td>{about?.ourValuesContent}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </main>
+
+                <main className="admin-content">
+                    <table className="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">Title</th>
+                                <th scope="col">Image</th>
+                                <th scope="col">Edit</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {valueImage && valueImage.map((value, index) => (
+                                <tr key={value._id} className="ValuePoints">
+                                    <td>{value.title}</td>
+                                    <td>
+                                        <img src={value.image.url} alt={value.title} className="image" />
+                                    </td>
+                                    <td>
+                                        <Button variant="primary" onClick={() => handleShowEditModal(value)}>
+                                            Edit
+                                        </Button>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </main>
+
+                <Modal show={showEditModal} onHide={handleCloseEditModal}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Edit Service</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <Form onSubmit={handleUpdate}>
+                            <Form.Group className="mb-3" controlId="formTitle">
+                                <Form.Label>Title</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    value={title}
+                                    onChange={(e) => setTitle(e.target.value)}
+                                />
+                            </Form.Group>
+
+                            <Form.Group className="mb-3" controlId="formImage">
+                                <Form.Label>Image</Form.Label>
+                                <Form.Control
+                                    type="file"
+                                    onChange={handleUpdateValuesImageChange}
+                                />
+                            </Form.Group>
+
+                            <Button variant="primary" type="submit">
+                                Update
+                            </Button>
+                        </Form>
+                    </Modal.Body>
+                </Modal>
+
+
+
+                {/* About Get Involved */}
+
+
+                <div className="mb-2 my-3 mx-3">
+                    <h2>About Get Involved</h2>
+                    <Button variant="primary" size="sm" onClick={handleShowInvolvedForm}>
+                        Add/Update Get Involved
+                    </Button>
+                    <Modal show={showInvolvedForm} onHide={handleCloseInvolvedForm}>
+                        <Modal.Header closeButton>
+                            <Modal.Title>About Get Involved</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                            <Form onSubmit={handleInvolvedInputSubmit}>
+                                <Form.Group className="mb-3" controlId="formHeadingInput">
+                                    <Form.Label>Get Involved Heading</Form.Label>
+                                    <Form.Control
+                                        type="text"
+                                        placeholder="Enter the Heading"
+                                        name="getInvolvedHeader"
+                                        value={getInvolvedData.getInvolvedHeader}
+                                        onChange={handleInvolvedInputChange}
+                                    />
+                                </Form.Group>
+                                <Form.Group className="mb-3" controlId="formSubHeadingInput">
+                                    <Form.Label>Get Involved Caption</Form.Label>
+                                    <Form.Control
+                                        as="textarea"
+                                        placeholder="Enter the Caption"
+                                        name="getInvolvedCaption"
+                                        value={getInvolvedData.getInvolvedCaption}
+                                        onChange={handleInvolvedInputChange}
+                                    />
+                                </Form.Group>
+                                <Button variant="primary" type="submit">
+                                    Submit
+                                </Button>
+                            </Form>
+                        </Modal.Body>
+                    </Modal>
+                    {' '}
+                    <Button variant="primary" size="sm" onClick={handleShowInvolvedImageForm}>
+                        Add/Update Get Involved Image
+                    </Button>
+                    <Modal show={showInvolvedImageForm} onHide={handleCloseInvolvedImageForm}>
+                        <Modal.Header closeButton>
+                            <Modal.Title>About Get Involved</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                            <Form onSubmit={handleInvolvedSubmit}>
+                                <Form.Group className="mb-3">
+                                    <Form.Label>Image</Form.Label>
+                                    <Form.Control
+                                        type="file"
+                                        placeholder="Enter any Image"
+                                        onChange={handelInvolvedImage}
+                                    />
+                                </Form.Group>
+                                <Button variant="primary" type="submit">
+                                    Submit
+                                </Button>
+                            </Form>
+                        </Modal.Body>
+                    </Modal>
+                </div>
+
+
+                <main className="admin-content">
+                    <table className="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">Get Involved Heading</th>
+                                <th scope="col">Get Involved Caption</th>
+                                <th scope="col">Image</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{about?.getInvolvedHeader}</td>
+                                <td>{about?.getInvolvedCaption}</td>
+                                <td>
+                                    <div class="container">
+                                        <img src={about?.getInvolvedImage?.url} alt="Image" className="image" />
+                                        <div class="overlay">
+                                            <i class="fa-regular fa-eye" onClick={handleShowImageInvolved}></i>
+                                            <Modal show={showImageInvolved} onHide={handleCloseImageInvolved}>
+                                                <Modal.Header closeButton>
+                                                </Modal.Header>
+                                                <Modal.Body>
+                                                    <img src={about?.getInvolvedImage?.url} alt="Image" className="d-block w-100" />
+                                                </Modal.Body>
+                                            </Modal>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </main>
+
             </div>
-        )
+        </div>
     )
 }
 

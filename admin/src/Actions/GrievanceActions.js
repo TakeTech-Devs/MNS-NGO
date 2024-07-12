@@ -22,7 +22,7 @@ export const getGrievance = () => async (dispatch) => {
         const { data } = await axios.get(`/api/v1/grievance/get-grievance`);
 
 
-        dispatch({ type: GET_ADMIN_GRIEVANCE_SUCCESS, payload: data.grievance });
+        dispatch({ type: GET_ADMIN_GRIEVANCE_SUCCESS, payload: data });
     } catch (error) {
         dispatch({ type: GET_ADMIN_GRIEVANCE_FAIL, payload: error.response.data.message });
     }
