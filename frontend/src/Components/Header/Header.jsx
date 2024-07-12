@@ -2,8 +2,26 @@ import React, { useState, useEffect } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import PhoneSVG from "../../assets/vectors/vector_x2.svg";
 import "./../Home/HomePage.css";
+import { useSelector, useDispatch } from 'react-redux';
+import { getContact, clearErrors } from '../../Actions/ContactActions';
+
 
 const Header = () => {
+
+    const dispatch = useDispatch();
+    const { contact, loading, error } = useSelector(state => state.contact)
+
+    useEffect(() => {
+        dispatch(getContact());
+    }, [dispatch]);
+
+    useEffect(() => {
+        if (error) {
+            alert(error);
+            dispatch(clearErrors());
+        }
+    }, [error, dispatch]);
+
     const [isSidePanelOpen, setIsSidePanelOpen] = useState(false);
     const [activeLink, setActiveLink] = useState('/');
     const location = useLocation();
@@ -21,6 +39,7 @@ const Header = () => {
     };
 
     return (
+        contact && contact.length > 0 && (
         <div className="navbar-section">
             <Link to='/' className="logo-1"></Link>
             <div className="navbar">
@@ -77,7 +96,8 @@ const Header = () => {
                                 alt='phone'
                             />
                         </div>
-                        <div className="navbar">+000 000 0000</div>
+                        
+                        <div className="navbar">{contact[0].phone}</div>
                     </div>
                     <button type="submit" className="donatebtn">Donate</button>
                     <div className="hamburger-menu" onClick={toggleSidePanel}>
@@ -135,6 +155,7 @@ const Header = () => {
                 </div>
             </div>
         </div>
+        )
     );
 };
 

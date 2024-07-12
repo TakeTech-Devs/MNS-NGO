@@ -6,16 +6,14 @@ import SVG2 from "../../assets/vectors/capable.svg";
 import SVG3 from "../../assets/vectors/teamwork.svg";
 import Carousel from 'react-multi-carousel';
 import "react-multi-carousel/lib/styles.css";
-import img1 from "../../assets/images/rectangle8.png";
-import img2 from "../../assets/images/rectangle9.png";
-import img3 from "../../assets/images/rectangle10.png";
-
+import { getHome, clearErrors } from '../../Actions/HomeActions';
+import { useSelector, useDispatch } from 'react-redux';
 
 const responsive = {
 	desktop: {
 		breakpoint: { max: 3000, min: 1024 },
 		items: 3,
-		slidesToSlide: 3// optional, default to 1.
+		slidesToSlide: 3 // optional, default to 1.
 	},
 	tablet: {
 		breakpoint: { max: 1024, min: 768 },
@@ -27,275 +25,221 @@ const responsive = {
 		items: 1,
 		slidesToSlide: 1 // optional, default to 1.
 	}
-}
-
-
-const sliderImageUrl = [
-	{
-		url: img1,
-		text: "FINANCIAL INCLUSION",
-	},
-	{
-		url: img2,
-		text: "EDUCATIONAL ACTIVITY",
-	},
-	{
-		url: img3,
-		text: "HEALTH ABD HYGIENE",
-	},
-	{
-		url: img2,
-		text: "AWARENESS PROGRAMMS",
-	},
-	{
-		url: img3,
-		text: "WOMEN EMPOWERMENT",
-	},
-	{
-		url: img1,
-		text: "YOUTH DEVELOPMENT",
-	},
-	{
-		url: img3,
-		text: "CHILD DEVELOPMENT",
-	},
-	{
-		url: img1,
-		text: "AGRICULTURAL DEVELOPMENT",
-	},
-];
-
+};
 
 const HomePage = () => {
+	const dispatch = useDispatch();
+	const { home, homeCarousel, brand, loading, error } = useSelector(state => state.home);
+
 	const [currentIndex, setCurrentIndex] = useState(0);
+	const totalSlides = homeCarousel.length;
 
-	const carouselItems = [
-		require('../../assets/images/rectangle4.png'),
-		require('../../assets/images/rectangle7.png'),
-		require('../../assets/images/rectangle8.png'),
-		require('../../assets/images/rectangle10.png')
-	];
+	useEffect(() => {
+		dispatch(getHome());
+	}, [dispatch]);
 
-	const totalSlides = carouselItems.length;
-
-	function goToSlide(index) {
-		setCurrentIndex(index);
-	}
+	useEffect(() => {
+		if (error) {
+			alert(error);
+			dispatch(clearErrors());
+		}
+	}, [error, dispatch]);
 
 	const nextSlide = useCallback(() => {
-		if (currentIndex < totalSlides - 1) {
-			setCurrentIndex(currentIndex + 1);
-		} else {
-			setCurrentIndex(0);
+		if (home?.carouselImage?.length) {
+			setCurrentIndex(prevIndex => (prevIndex + 1) % home.carouselImage.length);
 		}
-	}, [currentIndex, totalSlides]);
+	}, [home?.carouselImage?.length]);
 
-	function prevSlide() {
-		if (currentIndex > 0) {
-			setCurrentIndex(currentIndex - 1);
-		} else {
-			setCurrentIndex(totalSlides - 1);
+	const prevSlide = () => {
+		if (home?.carouselImage?.length) {
+			setCurrentIndex(prevIndex => (prevIndex - 1 + home.carouselImage.length) % home.carouselImage.length);
 		}
-	}
+	};
 
 	useEffect(() => {
 		const interval = setInterval(nextSlide, 5000);
 		return () => clearInterval(interval);
-	}, [currentIndex, nextSlide]);
+	}, [nextSlide]);
 
-	// const [menuOpen, setMenuOpen] = useState(false);
+	// if (loading) {
+	//     return <div>Loading...</div>;
+	// }
 
-	// const toggleMenu = () => {
-	//     setMenuOpen(!menuOpen);
-	// };
+	// if (!home || home.length === 0) {
+	// 	return <div>No data available</div>;
+	// }
+
+	console.log("img", home.carouselImage)
+
 	return (
-		<>
-			<div className="home-page">
-				<div className="carousel">
-					{carouselItems.map((item, index) => (
-						<div
-							key={index}
-							className="background-image"
-							style={{ backgroundImage: `url(${item})`, display: index === currentIndex ? 'block' : 'none' }}
-						></div>
-					))}
-					<button className="prev-btn" onClick={prevSlide}>&#10094;</button>
-					<button className="next-btn" onClick={nextSlide}>&#10095;</button>
-
-
-
-					<div className="carousel-heading">Empowering Communities, Transforming Lives</div>
-					<div
-						className="carousel-caption"
-					>
-						Join Mallarpur Naisuva in our mission to break the cycle of poverty and foster inclusive development.
-					</div>
-					<div className="carousel-indicate">
-						{Array.from({ length: totalSlides }).map((_, index) => (
+			<>
+				<div className="home-page">
+					<div className="carousel">
+						{home?.carouselImage?.map((item, index) => (
 							<div
-								key={index}
-								className={`ellipse indicator ${index === currentIndex ? 'active' : ''}`}
-								onClick={() => goToSlide(index)}
+								key={item._id}
+								className="background-image"
+								style={{
+									backgroundImage: `url(${item.url})`,
+									display: index === currentIndex ? 'block' : 'none'
+								}}
 							></div>
 						))}
-					</div>
-				</div>
-
-
-
-				<div>
-					<ul className="highlight-section">
-						<li>
-							<h2>Compassion</h2>
-							<p>Embracing empathy, fostering kindness</p>
-						</li>
-						<li>
-							<h2>Integrity</h2>
-							<p> Upholding ethics, ensuring trustworthiness</p>
-						</li>
-						<li>
-							<h2>Empowerment</h2>
-							<p>Inspiring growth, nurturing resilience</p>
-						</li>
-					</ul>
-				</div>
-				<div className="our-team-section">
-					<div className="our-team-heading">About Mallarpur Naisuva</div>
-					<div
-						className="our-team-caption"
-					>
-						Empowering communities, transforming lives. Join us in breaking the cycle of poverty and fostering inclusive development.
-					</div>
-					<div className="our-team-container">
-						<div className="our-team-img">
-
+						<button className="prev-btn" onClick={prevSlide}>&#10094;</button>
+						<button className="next-btn" onClick={nextSlide}>&#10095;</button>
+						<div className="carousel-heading">{home.carouselText}</div>
+						<div className="carousel-caption">
+							{home.carouselCaption}
 						</div>
-						<div className="our-team-content">
-							<p>
-								Mallarpur Naisuva is a beacon of hope, dedicated to uplifting the most vulnerable segments of our society. Founded on principles of compassion and social responsibility, our journey began with a vision to extend a helping hand to those in dire need – the poor, elderly, sick, women, and children.
-							</p>
-
-							<p>
-								Established under the West Bengal Societies Registration Act (XXI) of 1961, Mallarpur Naisuva embodies a commitment to transparency, integrity, and unwavering dedication to our cause. For over three decades, we have remained steadfast in our mission to foster a society where every individual can thrive with dignity.
-							</p>
-
+						<div className="carousel-indicate">
+							{Array.from({ length: home?.carouselImage?.length }).map((_, index) => (
+								<div
+									key={index}
+									className={`ellipse indicator ${index === currentIndex ? 'active' : ''}`}
+									onClick={() => setCurrentIndex(index)}
+								></div>
+							))}
 						</div>
 					</div>
-				</div>
 
-				<div className="our-work-section">
-					<div className="our-team-heading">Our Services</div>
-					<div
-						className="our-team-caption"
-					>
-						Empowering Communities Through Compassionate Initiatives
-					</div>
-
-				</div>
-				<div className="parent">
-					<Carousel
-						responsive={responsive}
-						autoPlay={true}
-						swipeable={true}
-						draggable={true}
-						// showDots={true}
-						infinite={true}
-						partialVisible={false}
-					// arrows={false}
-					// dotListClass="custom-dot-list-style"
-					>
-						{sliderImageUrl.map((item, index) => {
-							return (
-								<div className="slider" key={index}>
-									<img src={item.url} alt="movie" />
-									<div class="overlay">
-										<p class="text">{item.text}</p>
-									</div>
-								</div>
-							);
-						})}
-					</Carousel>
-				</div>
-
-				<div class="our-achievement">
-					<div class="our-team-heading">Vision of the Organization</div>
-					<div class="our-team-caption">
-						Organization aims to break the vicious cycle of poverty and social isolation and to restore hope for a better future. We believe that every person has the right to access resources and opportunities in order to live and develop with dignity and to become an active and contributing member of our society.
-					</div>
-					<ul>
-						<li>
-							<div class="our-achievement-svg">
-								<img src={SVG3} alt='svg1' />
-							</div>
-							<h3>People's Organizations</h3>
-							<p>We empower individuals and build their capacities.</p>
-						</li>
-						<li>
-							<div class="our-achievement-svg">
-								<img src={SVG2} alt='svg1' />
-							</div>
-							<h3>Empowering Women</h3>
-							<p>We support women to reach their full potential.</p>
-						</li>
-						<li>
-							<div class="our-achievement-svg">
-								<img src={SVG1} alt='svg1' />
-							</div>
-							<h3>Sustainable Development</h3>
-							<p>We implement sustainable models for community health and rural development.</p>
-						</li>
-					</ul>
-				</div>
-
-
-				<div className="img-section home">
-					<div className="img-section-overlay"></div>
-					<div className="img-section-heading">Join Us in Creating Positive Change</div>
-					<span
-						className="img-section-caption"
-					>
-						Join Mallarpur Naisuva in our mission to empower communities, uplift the vulnerable, and build a brighter future for all.
-					</span>
-				</div>
-				<div className="brand-section">
-					<div className="our-team-heading">Our Collaborative Partners</div>
-					<div
-						className="our-team-caption"
-					>
-						We are proud to collaborate with the following brands and organizations who share our commitment to positive change:
-					</div>
-					<div className="brand-logo-section">
-						<ul>
+					<div>
+						<ul className="highlight-section">
 							<li>
-								<span> BRAND </span>
-							</li>
-							<li >
-								<span> BRAND </span>
-							</li>
-							<li >
-								<span > BRAND </span>
-							</li>
-							<li >
-								<span > BRAND </span>
+								<h2>{home.highlightHeaderFirst}</h2>
+								<p>{home.highlightCaptionFirst}</p>
 							</li>
 							<li>
-								<span> BRAND </span>
+								<h2>{home.highlightHeaderSecond}</h2>
+								<p>{home.highlightCaptionSecond}</p>
 							</li>
 							<li>
-								<span> BRAND </span>
-							</li>
-							<li>
-								<span> BRAND </span>
-							</li>
-							<li>
-								<span> BRAND </span>
+								<h2>{home.highlightHeaderThird}</h2>
+								<p>{home.highlightCaptionThird}</p>
 							</li>
 						</ul>
 					</div>
+					<div className="our-team-section">
+						<div className="our-team-heading">{home.aboutHeader}</div>
+						<div className="our-team-caption">{home.aboutCaption}</div>
+						<div className="our-team-container">
+							<div className="our-team-img">
+								{home[0]?.aboutImage?.url && (
+									<img src={home[0].aboutImage.url} alt="About Us" />
+								)}
+							</div>
+							<div className="our-team-content">
+								<p>{home.aboutContent}</p>
+							</div>
+						</div>
+					</div>
+
+					<div className="our-work-section">
+						<div className="our-team-heading">{home.servicesHeader}</div>
+						<div className="our-team-caption">{home.servicesCaption}</div>
+					</div>
+					<div className="parent">
+						<Carousel
+							responsive={responsive}
+							autoPlay={true}
+							swipeable={true}
+							draggable={true}
+							infinite={true}
+						>
+							{homeCarousel.map((item, index) => (
+								<div className="slider" key={index}>
+									<img src={item.image.url} alt="carousel" />
+									<div className="overlay">
+										<p className="text">{item.title}</p>
+									</div>
+								</div>
+							))}
+						</Carousel>
+					</div>
+
+					<div className="our-achievement">
+						<div className="our-team-heading">{home.visionHeader}</div>
+						<div className="our-team-caption">{home.visionCaption}</div>
+						<ul>
+							<li>
+								<div className="our-achievement-svg">
+									{home.visionImageFirst?.url && (
+										<img src={home.visionImageFirst.url} alt='svg1' />
+									)}
+								</div>
+								<h3>{home.visionHeaderFirst}</h3>
+								<p>{home.visionCaptionFirst}</p>
+							</li>
+							<li>
+								<div className="our-achievement-svg">
+									{home.visionImageSecond?.url && (
+										<img src={home.visionImageSecond.url} alt='svg2' />
+									)}
+								</div>
+								<h3>{home.visionHeaderSecond}</h3>
+								<p>{home.visionCaptionSecond}</p>
+							</li>
+							<li>
+								<div className="our-achievement-svg">
+									{home.visionImageThird?.url && (
+										<img src={home.visionImageThird.url} alt='svg3' />
+									)}
+								</div>
+								<h3>{home.visionHeaderThird}</h3>
+								<p>{home.visionCaptionThird}</p>
+							</li>
+						</ul>
+					</div>
+
+					<div className="img-section home" style={{
+						background: `url(${home.joinUsImage?.url}) 50% / cover no-repeat, linear-gradient(#D9D9D9, #D9D9D9)`
+					}}>
+						<div className="img-section-overlay"></div>
+						<div className="img-section-heading">{home.joinUsHeader}</div>
+						<span className="img-section-caption">{home.joinUsCaption}</span>
+					</div>
+					<div className="brand-section">
+						<div className="our-team-heading">Our Collaborative Partners</div>
+						<div className="our-team-caption">
+							We are proud to collaborate with the following brands and organizations who share our commitment to positive change:
+						</div>
+						<div className="brand-logo-section">
+							<ul>
+								{brand.map((item, index) =>(
+									<li key={index}>
+										<img src={item.brandImage.url} alt={item.brandName} />
+									</li>
+								))}
+								{/* <li>
+									<span> BRAND </span>
+								</li>
+								<li >
+									<span> BRAND </span>
+								</li>
+								<li >
+									<span > BRAND </span>
+								</li>
+								<li >
+									<span > BRAND </span>
+								</li>
+								<li>
+									<span> BRAND </span>
+								</li>
+								<li>
+									<span> BRAND </span>
+								</li>
+								<li>
+									<span> BRAND </span>
+								</li>
+								<li>
+									<span> BRAND </span>
+								</li> */}
+							</ul>
+						</div>
+					</div>
 				</div>
-			</div>
-		</>
-	)
+			</>
+		)
 }
 
-export default HomePage
+export default HomePage;

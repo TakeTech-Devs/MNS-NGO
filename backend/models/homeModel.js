@@ -16,6 +16,9 @@ const homeSchema = new mongoose.Schema({
     carouselText:{
         type: String,
     },
+    carouselCaption:{
+        type: String,
+    },
     highlightHeaderFirst: {
         type: String
     },
@@ -99,7 +102,6 @@ const homeSchema = new mongoose.Schema({
     },
     visionHeaderSecond:{
         type: String,
-        //required: true,
     },
     visionCaptionSecond:{
         type: String,
@@ -139,7 +141,7 @@ const homeSchema = new mongoose.Schema({
 
             default: null
         },
-    }
+    },
 }, {
     timestamps: true,
 })

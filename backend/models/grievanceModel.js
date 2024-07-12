@@ -16,12 +16,6 @@ const grievanceSchema = new mongoose.Schema({
             type: String,
             default: null
         },
-    },
-    grievanceBodyHeader:{
-        type: String,
-    },
-    grievanceBodyContent:{
-        type: String,
     }
 })
 

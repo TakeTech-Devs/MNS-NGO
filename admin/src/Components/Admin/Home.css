@@ -1,0 +1,48 @@
+.container {
+    position: relative;
+}
+
+.image {
+    opacity: 1;
+    display: block;
+    width: 120px;
+    height: auto;
+    transition: .5s ease-in-out;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    /* left: 0; */
+    /* right: 0; */
+    height: 100%;
+    width: 120px;
+    opacity: 0;
+    transition: .5s ease-in-out;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.overlay i {
+    color: white;
+    font-size: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    cursor: pointer;
+}
+
+.container:hover .image {
+    opacity: 0.3;
+}
+
+.container:hover .overlay {
+    opacity: 1;
+}
+
+.td-img{
+    width: 120px;
+
+}

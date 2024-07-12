@@ -1,14 +1,19 @@
 const express = require('express');
-const { grievanceHeaderSection, updateGrievanceHeaderSection, grievanceBodySection, updateGrievanceBodySection } = require('../controllers/grievanceControllers');
+const { grievanceHeaderSection, getGrievancePage, sendGrievance, getMessages, updateGrievanceRequest } = require('../controllers/grievanceControllers');
 const router = express.Router();
 
 
 router.route('/create-grievanceHeader').post( grievanceHeaderSection);
-router.route('/create-grievanceBody').post( grievanceBodySection);
+router.route('/create-grievance').post( sendGrievance);
 
 
-router.route('/update-grievanceHeader/:id').put(updateGrievanceHeaderSection);
-router.route('/update-grievanceBody/:id').put(updateGrievanceBodySection);
+
+router.route('/update-grievance/:id').put( updateGrievanceRequest);
+
+
+
+router.route('/get-grievance').get(getGrievancePage);
+router.route('/get-grievanceMessages').get(getMessages);
 
 
 module.exports = router;
