@@ -14,12 +14,13 @@ import {
     UPDATE_ADMIN_SERVICESIMAGE_FAIL,
 } from '../Constants/ServicesConstants';
 import axios from 'axios';
+import baseUrl from '../helper'
 
 export const getServices = () => async (dispatch) => {
     try {
         dispatch({ type: GET_ADMIN_SERVICES_REQUEST });
 
-        const { data } = await axios.get(`/api/v1/services/get-services`);
+        const { data } = await axios.get(`${baseUrl}/api/v1/services/get-services`);
 
         dispatch({ type: GET_ADMIN_SERVICES_SUCCESS, payload: data });
     } catch (error) {
@@ -35,7 +36,7 @@ export const createServicesHeader = (HeaderData) => async(dispatch) =>{
             headers: { "Content-Type": "multipart/form-data" },
         }
 
-        const { data } = await axios.post(`/api/v1/services/create-servicesHeader`, HeaderData, config);
+        const { data } = await axios.post(`${baseUrl}/api/v1/services/create-servicesHeader`, HeaderData, config);
 
         dispatch({
             type: ADD_ADMIN_SERVICESHEADER_SUCCESS,
@@ -58,7 +59,7 @@ export const createServices = (servicesData) => async(dispatch) =>{
             headers: { "Content-Type": "multipart/form-data" },
         }
 
-        const { data } = await axios.post(`/api/v1/services/create-servicesBody`, servicesData, config);
+        const { data } = await axios.post(`${baseUrl}/api/v1/services/create-servicesBody`, servicesData, config);
 
         dispatch({
             type: ADD_ADMIN_SERVICES_SUCCESS,
@@ -81,7 +82,7 @@ export const createServicesImage = (imageData) => async(dispatch) =>{
             headers: { "Content-Type": "multipart/form-data" },
         }
 
-        const { data } = await axios.post(`/api/v1/services/create-ourservices`, imageData, config);
+        const { data } = await axios.post(`${baseUrl}/api/v1/services/create-ourservices`, imageData, config);
 
         dispatch({
             type: ADD_ADMIN_SERVICES_SUCCESS,
@@ -105,7 +106,7 @@ export const updateServiceImage = (id, imageData) => async (dispatch) => {
       };
   
       const { data } = await axios.put(
-        `/api/v1/services/update-ourservices/${id}`,
+        `${baseUrl}/api/v1/services/update-ourservices/${id}`,
         imageData,
         config
       );

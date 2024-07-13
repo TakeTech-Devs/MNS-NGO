@@ -9,12 +9,13 @@ import {
     SUBMIT_FORM_SUCCESS,
     SUBMIT_FORM_FAIL,
 } from '../Constants/grievanceConstants';
+import baseUrl from '../helper';
 
 export const getGrievance = () => async (dispatch) => {
     try {
         dispatch({ type: GET_GRIEVANCE_REQUEST });
 
-        const { data } = await axios.get(`/api/v1/grievance/get-grievance`);
+        const { data } = await axios.get(`${baseUrl}/api/v1/grievance/get-grievance`);
 
 
         dispatch({ type: GET_GRIEVANCE_SUCCESS, payload: data.grievance });
@@ -28,7 +29,7 @@ export const submitForm = (formData) => {
       dispatch({ type: SUBMIT_FORM_REQUEST });
   
       try {
-        const response = await axios.post(`/api/v1/grievance/create-grievance`, formData, {
+        const response = await axios.post(`${baseUrl}/api/v1/grievance/create-grievance`, formData, {
           headers: {
             'Content-Type': 'application/json',
           },

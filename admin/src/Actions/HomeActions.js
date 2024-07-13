@@ -35,13 +35,15 @@ import {
     ADD_BRAND_HOME_FAIL,
 } from '../Constants/HomeConstants';
 
+import baseUrl from '../helper'
+
 import axios from 'axios';
 
 export const getHome = () => async (dispatch) => {
     try {
         dispatch({ type: GET_ADMIN_HOME_REQUEST });
 
-        const { data } = await axios.get(`/api/v1/home/get-home`);
+        const { data } = await axios.get(`${baseUrl}/api/v1/home/get-home`);
 
         dispatch({ type: GET_ADMIN_HOME_SUCCESS, payload: data });
     } catch (error) {
@@ -57,7 +59,7 @@ export const createHomeHeader = (carouselData) => async (dispatch) => {
             headers: { "Content-Type": "multipart/form-data" },
         }
 
-        const { data } = await axios.post(`/api/v1/home/create-carousel`, carouselData, config);
+        const { data } = await axios.post(`${baseUrl}/api/v1/home/create-carousel`, carouselData, config);
 
         dispatch({
             type: ADD_HOMEHEADER_HOME_SUCCESS,
@@ -80,7 +82,7 @@ export const createHighlight = (highlightData) => async (dispatch) => {
             headers: { "Content-Type": "multipart/form-data" },
         }
 
-        const { data } = await axios.post(`/api/v1/home/create-highlight`, highlightData, config);
+        const { data } = await axios.post(`${baseUrl}/api/v1/home/create-highlight`, highlightData, config);
 
         dispatch({
             type: ADD_HIGHTLIGHT_HOME_SUCCESS,
@@ -104,7 +106,7 @@ export const createAbout = (aboutData) => async (dispatch) => {
             headers: { "Content-Type": "multipart/form-data" },
         }
 
-        const { data } = await axios.post(`/api/v1/home/create-about`, aboutData, config);
+        const { data } = await axios.post(`${baseUrl}/api/v1/home/create-about`, aboutData, config);
 
         dispatch({
             type: ADD_ABOUT_HOME_SUCCESS,
@@ -128,7 +130,7 @@ export const createVision = (visionData) => async (dispatch) => {
             headers: { "Content-Type": "multipart/form-data" },
         }
 
-        const { data } = await axios.post(`/api/v1/home/create-vision`, visionData, config);
+        const { data } = await axios.post(`${baseUrl}/api/v1/home/create-vision`, visionData, config);
 
         dispatch({
             type: ADD_VISION_HOME_SUCCESS,
@@ -151,7 +153,7 @@ export const createJoinUs = (joinUsData) => async (dispatch) => {
             headers: { "Content-Type": "multipart/form-data" },
         }
 
-        const { data } = await axios.post(`/api/v1/home/create-joinus`, joinUsData, config);
+        const { data } = await axios.post(`${baseUrl}/api/v1/home/create-joinus`, joinUsData, config);
 
         dispatch({
             type: ADD_JOINUS_HOME_SUCCESS,
@@ -175,7 +177,7 @@ export const createServiceHead = (serviceHeadData) => async (dispatch) => {
             headers: { "Content-Type": "multipart/form-data" },
         }
 
-        const { data } = await axios.post(`/api/v1/home/create-services`, serviceHeadData, config);
+        const { data } = await axios.post(`${baseUrl}/api/v1/home/create-services`, serviceHeadData, config);
 
         dispatch({
             type: ADD_SERVICEHEAD_HOME_SUCCESS,
@@ -199,7 +201,7 @@ export const createServiceCarousel = (serviceData) => async (dispatch) => {
             headers: { "Content-Type": "multipart/form-data" },
         }
 
-        const { data } = await axios.post(`/api/v1/home/create-servicesCarousel`, serviceData, config);
+        const { data } = await axios.post(`${baseUrl}/api/v1/home/create-servicesCarousel`, serviceData, config);
 
         dispatch({
             type: ADD_ABOUT_HOME_SUCCESS,
@@ -223,7 +225,7 @@ export const updateServiceCarousel = (id, serviceData) => async (dispatch) => {
         };
 
         const { data } = await axios.put(
-            `/api/v1/home/update-servicesCarousel/${id}`,
+            `${baseUrl}/api/v1/home/update-servicesCarousel/${id}`,
             serviceData,
             config
         );
@@ -249,7 +251,7 @@ export const createBrand = (brandData) => async (dispatch) => {
             headers: { "Content-Type": "multipart/form-data" },
         }
 
-        const { data } = await axios.post(`/api/v1/home/create-brand`, brandData, config);
+        const { data } = await axios.post(`${baseUrl}/api/v1/home/create-brand`, brandData, config);
 
         dispatch({
             type: ADD_BRAND_HOME_SUCCESS,
@@ -273,7 +275,7 @@ export const updateBrand = (id, brandData) => async (dispatch) => {
         };
 
         const { data } = await axios.put(
-            `/api/v1/home/update-brand/${id}`,
+            `${baseUrl}/api/v1/home/update-brand/${id}`,
             brandData,
             config
         );
@@ -295,7 +297,7 @@ export const deleteBrand = (id) => async (dispatch) => {
     try {
       dispatch({ type: DELETE_BRAND_HOME_REQUEST });
   
-      const { data } = await axios.delete(`/api/v1/home/delete-brand/${id}`);
+      const { data } = await axios.delete(`${baseUrl}/api/v1/home/delete-brand/${id}`);
   
       dispatch({
         type: DELETE_BRAND_HOME_SUCCESS,

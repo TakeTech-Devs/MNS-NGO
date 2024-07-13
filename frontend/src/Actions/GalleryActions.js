@@ -5,12 +5,13 @@ import {
     GET_GALLERY_FAIL,
     CLEAR_ERRORS,
 } from '../Constants/GalleryConstants';
+import baseUrl from '../helper';
 
 export const getGallery = () => async (dispatch) => {
     try {
         dispatch({ type: GET_GALLERY_REQUEST });
 
-        const { data } = await axios.get(`/api/v1/gallery/get-gallery`);
+        const { data } = await axios.get(`${baseUrl}/api/v1/gallery/get-gallery`);
 
         dispatch({ type: GET_GALLERY_SUCCESS, payload: data });
     } catch (error) {
