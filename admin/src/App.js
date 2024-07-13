@@ -12,6 +12,7 @@ import Login from './Components/Login/Login';
 import FormControl from './Components/Admin/FormControl';
 import GrievanceForm from './Components/Admin/GrievanceForm';
 import AllForm from './Components/Admin/AllForm';
+import UserList from './Components/User/User'
 
 function App() {
   return (
@@ -29,7 +30,7 @@ function App() {
         <Route path="/form" element={<FormControl />} />      
         <Route path="/grievanceform" element={<GrievanceForm />} />      
         <Route path="/allform" element={<AllForm />} />    
-        <Route path="/user" element={<AllForm />} />    
+        <Route path="/user" element={<UserList />} />    
       </Routes>
     </Router>
   );

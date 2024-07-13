@@ -23,7 +23,7 @@ export const contactReducer = (state = { contact: [] }, action) => {
             return {
                 ...state,
                 loading: false,
-                contact: action.payload,
+                contact: action.payload.contact[0],
             }
         case GET_ADMIN_CONTACT_FAIL:
             return {

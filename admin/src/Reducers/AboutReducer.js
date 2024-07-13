@@ -22,6 +22,7 @@ import {
     ADD_INVOLVED_ABOUT_REQUEST,
     ADD_INVOLVED_ABOUT_SUCCESS,
     ADD_INVOLVED_ABOUT_RESET,
+    ADD_INVOLVED_ABOUT_FAIL,
  } from '../Constants/AboutConstants';
 
  export const aboutReducer = (state = { about: [], valueImage: [] }, action) => {
@@ -35,7 +36,7 @@ import {
             return {
                 ...state,
                 loading: false,
-                about: action.payload.about,
+                about: action.payload.about[0],
                 valueImage: action.payload.valueImage,
             };
         case GET_ADMIN_ABOUT_FAIL:
@@ -76,7 +77,7 @@ export const newAboutData = (state = { about: {} }, action) => {
         case ADD_ABOUTHEADER_ABOUT_FAIL:
         case ADD_IMAGE_ABOUT_FAIL:
         case ADD_VALUES_ABOUT_FAIL:
-        case ADD_VALUES_ABOUT_FAIL:
+        case ADD_INVOLVED_ABOUT_FAIL:
             return {
                 ...state,
                 loading: false,

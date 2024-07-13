@@ -33,7 +33,7 @@ export const galleryReducer = (state = { gallery: [], galleryImages: [] }, actio
             return {
                 ...state,
                 loading: false,
-                gallery: action.payload.gallery,
+                gallery: action.payload.gallery[0],
                 galleryImages: action.payload.galleryImages,
             };
         case GET_ADMIN_GALLERY_FAIL:

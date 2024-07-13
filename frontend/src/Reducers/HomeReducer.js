@@ -6,7 +6,7 @@ import {
 } from '../Constants/HomeConstants';
 
 
-export const homeReducer = (state = { home: {}, homeCarousel: [] }, action) => {
+export const homeReducer = (state = { home: {}, homeCarousel: [], brand:[] }, action) => {
     switch (action.type) {
         case GET_HOME_REQUEST:
             return {
@@ -19,6 +19,7 @@ export const homeReducer = (state = { home: {}, homeCarousel: [] }, action) => {
                 loading: false,
                 home: action.payload.home[0],
                 homeCarousel: action.payload.homeCarousel,
+                brand: action.payload.brand
             };
         case GET_HOME_FAIL:
             return {

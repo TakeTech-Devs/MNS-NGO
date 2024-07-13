@@ -19,7 +19,7 @@ export const getGoverning = () => async (dispatch) => {
         const { data } = await axios.get(`/api/v1/goveringBody/get-goveringBody`);
 
 
-        dispatch({ type: GET_ADMIN_GOVERNING_SUCCESS, payload: data.goveringBody });
+        dispatch({ type: GET_ADMIN_GOVERNING_SUCCESS, payload: data });
     } catch (error) {
         dispatch({ type: GET_ADMIN_GOVERNING_FAIL, payload: error.response.data.message });
     }

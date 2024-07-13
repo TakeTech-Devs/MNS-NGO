@@ -102,7 +102,6 @@ const Grievance = () => {
 
 
     return (
-        grievance && grievance.length > 0 && (
             <div className="admin-dashboard">
                 <Sidebar />
                 <div className="admin-main" style={{ height: "100vh" }}>
@@ -186,18 +185,18 @@ const Grievance = () => {
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>{grievance[0].header}</td>
-                                    <td>{grievance[0].caption}</td>
+                                    <td>{grievance?.header}</td>
+                                    <td>{grievance?.caption}</td>
                                     <td>
                                     <div class="container">
-                                            <img src={grievance[0].headerImage.url} alt="Image" className="image" />
+                                            <img src={grievance?.headerImage?.url} alt="Image" className="image" />
                                             <div class="overlay">
                                                 <i class="fa-regular fa-eye" onClick={handleShowCarouse}></i>
                                                 <Modal show={showCarousel} onHide={handleCloseCarouse}>
                                                     <Modal.Header closeButton>
                                                     </Modal.Header>
                                                     <Modal.Body>
-                                                        <img src={grievance[0].headerImage.url} alt="Image" className="d-block w-100" />
+                                                        <img src={grievance[0]?.headerImage?.url} alt="Image" className="d-block w-100" />
                                                     </Modal.Body>
                                                 </Modal>
                                             </div>
@@ -211,7 +210,6 @@ const Grievance = () => {
 
                 </div>
             </div>
-        )
     )
 }
 

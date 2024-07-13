@@ -82,8 +82,6 @@ const Gallery = () => {
                 galleryHeader: newGallery.galleryHeader,
                 galleryContent: newGallery.galleryContent,
             })
-            // setGalleryHeader(newGallery.galleryHeader);
-            // setGalleryContent(newGallery.galleryContent);
         }
 
         if (isUpdated) {
@@ -129,10 +127,6 @@ const Gallery = () => {
 
     const handleBodySubmit = (e) => {
         e.preventDefault();
-        // const formData = new FormData();
-        // formData.append("galleryHeader", galleryHeader);
-        // formData.append("galleryContent", galleryContent);
-
         dispatch(createGalleryBody(headerData));
     }
 
@@ -194,7 +188,6 @@ const Gallery = () => {
 
 
     return (
-        gallery && gallery.length > 0 && (
             <div className="admin-dashboard">
                 <Sidebar />
                 <div className="admin-main">
@@ -279,11 +272,11 @@ const Gallery = () => {
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>{gallery[0].header}</td>
-                                    <td>{gallery[0].caption}</td>
+                                    <td>{gallery?.header}</td>
+                                    <td>{gallery?.caption}</td>
                                     <td>
                                         <div class="container">
-                                            <img src={gallery[0].headerImage.url} alt="Image" className="image" />
+                                            <img src={gallery?.headerImage?.url} alt="Image" className="image" />
                                             <div class="overlay">
                                                 <i class="fa-regular fa-eye" onClick={handleShowCarouse}></i>
                                                 <Modal show={showCarousel} onHide={handleCloseCarouse}>
@@ -293,7 +286,7 @@ const Gallery = () => {
                                                     <Modal.Body>
                                                         <img
                                                             className="d-block w-100"
-                                                            src={gallery[0].headerImage.url}
+                                                            src={gallery?.headerImage?.url}
                                                         />
                                                     </Modal.Body>
                                                 </Modal>
@@ -305,7 +298,7 @@ const Gallery = () => {
                         </table>
                     </main>
 
-                    {/* Gallery Services */}
+                    {/* Gallery Image */}
 
 
                     <div className="mb-2 my-3 mx-3">
@@ -382,8 +375,8 @@ const Gallery = () => {
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>{gallery[0].galleryHeader}</td>
-                                    <td>{gallery[0].galleryContent}</td>
+                                    <td>{gallery?.galleryHeader}</td>
+                                    <td>{gallery?.galleryContent}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -442,7 +435,6 @@ const Gallery = () => {
 
                 </div>
             </div>
-        )
     )
 }
 

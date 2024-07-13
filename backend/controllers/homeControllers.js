@@ -2,6 +2,7 @@ const catchAsyncError = require('../middleware/catchAsyncError');
 const cloudinary = require('cloudinary');
 const Home = require('../models/homeModel');
 const HomeCarousel = require('../models/homeServicesCarouselModel')
+const Brand = require('../models/brandModel');
 
 
 
@@ -485,16 +486,115 @@ exports.joinUsSection = catchAsyncError(async(req,res,next) =>{
 })
 
 
+//Brand Section
+
+exports.brandSection = catchAsyncError(async(req,res,next) =>{
+    const { brandName } = req.body;
+    const brandImage = req?.files?.brandImage;
+
+    const BrandImage = await cloudinary.v2.uploader.upload(brandImage.tempFilePath,{
+        folder: 'MNS/Home/brand',
+    })
+
+    const brandSection = await Brand.create({
+        brandName,
+        brandImage: {
+            public_id: BrandImage.public_id,
+            url: BrandImage.secure_url,
+        }
+    })
+
+    res.status(200).json({
+        success: true,
+        message: "Brand Add",
+        brand: brandSection,
+    })
+})
+
+
+exports.updateBrand = catchAsyncError(async(req,res,next) =>{
+    const newData = {
+        brandName: req?.body?.brandName,
+    }
+
+    const brand = await Brand.findById(req.params.id);
+
+    if(!brand){
+        return res.status(404).json({
+            success: false,
+            message: "Brand not found"
+        });
+    }
+
+    if(req.files && req?.files?.brandImage){
+        const imageID = brand.brandImage.public_id;
+
+        if (imageID){
+            await cloudinary.v2.uploader.destroy(imageID);
+        }
+
+        const brandImage = req?.files?.brandImage;
+
+        const BrandImage = await cloudinary.v2.uploader.upload(brandImage.tempFilePath,{
+            folder: 'MNS/Home/brand',
+        })
+
+        newData.brandImage = {
+            public_id: BrandImage.public_id,
+            url: BrandImage.secure_url,
+        }
+    }
+
+    const brandSection = await Brand.findByIdAndUpdate(req.params.id, newData,{
+        new: true,
+        runValidators: true,
+        useFindAndModify: false
+    })
+
+    res.status(200).json({
+        success: true,
+        message: "Brand Update",
+        brand: brandSection,
+    })
+})
+
+exports.deleteBrand = catchAsyncError(async(req,res,next) =>{
+    const brand = await Brand.findById(req.params.id);
+
+    if(!brand){
+        return res.status(404).json({
+            success: false,
+            message: "Brand not found"
+        });
+    }
+    if(req.files && req?.files?.brandImage){
+        const imageID = brand.brandImage.public_id;
+
+        if (imageID){
+            await cloudinary.v2.uploader.destroy(imageID);
+        }
+    }
+
+    await brand.deleteOne({ _id: req.params.id });
+
+    res.status(200).json({
+        success: true,
+        message: "Brand Delete",
+    })
+})
+
 
 exports.getHomePage = catchAsyncError(async (req, res, next) => {
-    const [home, homeCarousel] = await Promise.all([
+    const [home, homeCarousel, brand] = await Promise.all([
         Home.find(),
         HomeCarousel.find(),
+        Brand.find(),
     ]);
 
     res.status(200).json({
         success: true,
         home,
-        homeCarousel
+        homeCarousel,
+        brand
     })
 })

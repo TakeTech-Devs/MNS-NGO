@@ -63,6 +63,9 @@ ul.highlight-section li h2 {margin-block-end:8px;}
 .brand-logo-section ul li:nth-child(6) {background-color:rgba(255, 146, 3, 0.196); color:#ff9203;}
 .brand-logo-section ul li:nth-child(7) {background-color:rgba(255, 0, 0, 0.132); color:#ff0000;}
 .brand-logo-section ul li:nth-child(8) {background-color:rgba(249, 0, 199, 0.143); color:#f900c7;}
+.brand-logo-section ul li img{
+    width: 150px;
+}
 .hamburger-menu {display:none;}
 .side-panel {display:none;}
 

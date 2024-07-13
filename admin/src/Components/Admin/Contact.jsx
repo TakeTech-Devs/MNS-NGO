@@ -132,7 +132,7 @@ const Contact = () => {
 
 
     return (
-        contact && contact.length > 0 && (
+        // contact && contact.length > 0 && (
             <div className="admin-dashboard">
                 <Sidebar />
                 <div className="admin-main" style={{ height: "100vh" }}>
@@ -216,11 +216,11 @@ const Contact = () => {
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>{contact[0].header}</td>
-                                    <td>{contact[0].caption}</td>
+                                    <td>{contact?.header}</td>
+                                    <td>{contact?.caption}</td>
                                     <td>
                                         <div class="container">
-                                            <img src={contact[0].headerImage.url} alt="Image" className="image" />
+                                            <img src={contact?.headerImage?.url} alt="Image" className="image" />
                                             <div class="overlay">
                                                 <i class="fa-regular fa-eye" onClick={handleShowCarouse}></i>
                                                 <Modal show={showCarousel} onHide={handleCloseCarouse}>
@@ -230,7 +230,7 @@ const Contact = () => {
                                                     <Modal.Body>
                                                         <img
                                                             className="d-block w-100"
-                                                            src={contact[0].headerImage.url}
+                                                            src={contact?.headerImage?.url}
                                                         />
                                                     </Modal.Body>
                                                 </Modal>
@@ -242,7 +242,7 @@ const Contact = () => {
                         </table>
                     </main>
 
-                    {/* Contact Contact */}
+                    {/* Contact Info */}
                     <div className="mb-2 my-3 mx-3">
                         <h2>Contact Info</h2>
                         <Button variant="primary" size="sm" onClick={handleShowContactForm}>
@@ -294,8 +294,8 @@ const Contact = () => {
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>{contact[0].phone}</td>
-                                    <td>{contact[0].email}</td>
+                                    <td>{contact?.phone}</td>
+                                    <td>{contact?.email}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -303,7 +303,7 @@ const Contact = () => {
 
                 </div>
             </div>
-        )
+        // )
     )
 }
 

@@ -68,43 +68,42 @@ const Service = () => {
     };
 
     return (
-        services && services.length > 0 && (
         <>
             <div className="commonBanner-wrapper service" style={{
-                    background: services.length > 0 ? `url(${services[0].headerImage.url}) 50% / cover no-repeat, linear-gradient(#D9D9D9, #D9D9D9)` : ''
-                }}>
-				<div className="common-banner">
-					<h1 className="our-team-heading">{services[0].header}</h1>
-					<p className="our-team-caption">{services[0].caption}</p>
-				</div>
-			</div>
-         
+                background: services && services.length > 0 ? `url(${services[0]?.headerImage?.url}) 50% / cover no-repeat, linear-gradient(#D9D9D9, #D9D9D9)` : ''
+            }}>
+                <div className="common-banner">
+                    <h1 className="our-team-heading">{services && services.length > 0 ? services[0]?.header : ''}</h1>
+                    <p className="our-team-caption">{services && services.length > 0 ? services[0]?.caption : ''}</p>
+                </div>
+            </div>
+
             <div className="image-gallery">
-                <h1 className='our-team-heading'>{services[0].servicesBodyContent}</h1>
-                <p className='our-team-caption'>{services[0].servicesBodyHeader}</p>
+                <h1 className='our-team-heading'>{services && services.length > 0 ? services[0]?.servicesBodyHeader : ''}</h1>
+                <p className='our-team-caption'>{services && services.length > 0 ? services[0]?.servicesBodyContent : ''}</p>
                 <ul className="image-grid">
                     {/* {images.map((image) => (
-                        <li key={image.id}>
-                        <div className='image-box'>
-                        <img
-                            src={image.url}
-                            alt={`Thumbnail ${image.id}`}
-                            onClick={() => handleClick(image.id)}
-                        />
-                            {selectedImage === image.id && (
-                                <div className="dropdown">
-                                    <p>{image.text}</p>
-                                </div>
-                            )}
-                        </div>
-                            <p className='service-name'>Services</p>
-                        </li>
-                    ))} */}
-                    {ourServices.map((service) => (
+            <li key={image.id}>
+            <div className='image-box'>
+            <img
+                src={image.url}
+                alt={`Thumbnail ${image.id}`}
+                onClick={() => handleClick(image.id)}
+            />
+                {selectedImage === image.id && (
+                    <div className="dropdown">
+                        <p>{image.text}</p>
+                    </div>
+                )}
+            </div>
+                <p className='service-name'>Services</p>
+            </li>
+        ))} */}
+                    {ourServices && ourServices.length > 0 && ourServices.map((service) => (
                         <li key={service._id}>
                             <div className='image-box'>
                                 <img
-                                    src={service.image.url}
+                                    src={service.image?.url}
                                     alt={service.title}
                                     onClick={() => handleClick(service._id)}
                                 />
@@ -120,7 +119,6 @@ const Service = () => {
                 </ul>
             </div>
         </>
-        )
     )
 }
 

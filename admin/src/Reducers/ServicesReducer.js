@@ -33,7 +33,7 @@ export const servicesReducer = (state = { services: [], ourServices: [] }, actio
             return {
                 ...state,
                 loading: false,
-                services: action.payload.services,
+                services: action.payload.services[0],
                 ourServices: action.payload.ourServices,
             };
         case GET_ADMIN_SERVICES_FAIL:

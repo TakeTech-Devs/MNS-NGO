@@ -3,11 +3,13 @@ import {thunk} from 'redux-thunk';
 import { composeWithDevTools } from '@redux-devtools/extension';
 import { homeReducer, homeServiceReducer, newHomeData } from './Reducers/HomeReducer';
 import { aboutReducer, aboutValuesReducer, newAboutData } from './Reducers/AboutReducer';
-import { grievanceReducer, newGrievanceData } from './Reducers/GrievanceReducer';
+import { grievanceFormReducer, grievanceReducer, grievanceRequestReducer, newGrievanceData } from './Reducers/GrievanceReducer';
 import { newServicesData, ServiceReducer, servicesReducer } from './Reducers/ServicesReducer';
 import { governingReducer, newGoverningData } from './Reducers/GoverningReducer';
 import { GalleryReducer, galleryReducer, newGalleryData } from './Reducers/GalleryReducer';
 import { contactReducer, newContactData } from './Reducers/ContactReducer';
+import { formReducer } from './Reducers/FormReducer';
+import { adminReducer, authReducer } from './Reducers/AdminReducer';
 
 
 const reducer = combineReducers({
@@ -28,7 +30,12 @@ const reducer = combineReducers({
     newServicesData: newServicesData,
     Service: ServiceReducer,
     newGalleryData: newGalleryData,
-    GalleryReducer: GalleryReducer
+    GalleryReducer: GalleryReducer,
+    formReducer: formReducer,
+    grievanceForm: grievanceFormReducer,
+    grievanceRequest: grievanceRequestReducer,
+    admin: authReducer,
+    admins: adminReducer,
 })
 
 

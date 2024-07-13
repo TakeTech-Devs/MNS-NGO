@@ -36,6 +36,8 @@ const services = require("./routes/servicesRoute");
 const goveringBody = require('./routes/goveringBodyRoute');
 const gallery = require('./routes/galleryRoute');
 const contact = require('./routes/contactRoute');
+const getTouch = require('./routes/getTouchRoute');
+const admin = require('./routes/userRoute');
 
 app.use("/api/v1/carousel", carousel);
 app.use("/api/v1/home", home);
@@ -45,6 +47,8 @@ app.use("/api/v1/services", services)
 app.use("/api/v1/goveringBody", goveringBody)
 app.use("/api/v1/gallery", gallery)
 app.use("/api/v1/contact", contact)
+app.use("/api/v1/touch", getTouch)
+app.use("/api/v1/admin", admin)
 
 
 
