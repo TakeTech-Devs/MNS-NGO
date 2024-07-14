@@ -20,12 +20,14 @@ import {
     ADD_INVOLVED_ABOUT_FAIL,
 } from '../Constants/AboutConstants';
 import axios from 'axios';
+import baseUrl from '../helper'
+
 
 export const getAbout = () => async (dispatch) => {
     try {
         dispatch({ type: GET_ADMIN_ABOUT_REQUEST });
 
-        const { data } = await axios.get('/api/v1/about/get-about');
+        const { data } = await axios.get(`${baseUrl}/api/v1/about/get-about`);
 
         dispatch({ type: GET_ADMIN_ABOUT_SUCCESS, payload: data });
     } catch (error) {
@@ -41,7 +43,7 @@ export const createAboutHeader = (HeaderData) => async (dispatch) => {
             headers: { "Content-Type": "multipart/form-data" },
         }
 
-        const { data } = await axios.post(`/api/v1/about/create-aboutHeader`, HeaderData, config);
+        const { data } = await axios.post(`${baseUrl}/api/v1/about/create-aboutHeader`, HeaderData, config);
 
         dispatch({
             type: ADD_ABOUTHEADER_ABOUT_SUCCESS,
@@ -64,7 +66,7 @@ export const createAboutImage = (ImageData) => async (dispatch) => {
             headers: { "Content-Type": "multipart/form-data" },
         }
 
-        const { data } = await axios.post(`/api/v1/about/create-aboutImage`, ImageData, config);
+        const { data } = await axios.post(`${baseUrl}/api/v1/about/create-aboutImage`, ImageData, config);
 
         dispatch({
             type: ADD_IMAGE_ABOUT_SUCCESS,
@@ -87,7 +89,7 @@ export const createAboutValues = (valuesData) => async (dispatch) => {
             headers: { "Content-Type": "multipart/form-data" },
         }
 
-        const { data } = await axios.post(`/api/v1/about/create-ourValuesImage`, valuesData, config);
+        const { data } = await axios.post(`${baseUrl}/api/v1/about/create-ourValuesImage`, valuesData, config);
 
         dispatch({
             type: ADD_VALUES_ABOUT_SUCCESS,
@@ -111,7 +113,7 @@ export const updateAboutValues = (id, valuesData) => async (dispatch) => {
         };
 
         const { data } = await axios.put(
-            `/api/v1/about/update-ourValuesImage/${id}`,
+            `${baseUrl}/api/v1/about/update-ourValuesImage/${id}`,
             valuesData,
             config
         );
@@ -137,7 +139,7 @@ export const createAboutInvolbed = (InvolbedData) => async (dispatch) => {
             headers: { "Content-Type": "multipart/form-data" },
         }
 
-        const { data } = await axios.post(`/api/v1/about/create-involved`, InvolbedData, config);
+        const { data } = await axios.post(`${baseUrl}/api/v1/about/create-involved`, InvolbedData, config);
 
         dispatch({
             type: ADD_INVOLVED_ABOUT_SUCCESS,

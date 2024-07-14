@@ -5,12 +5,13 @@ import {
     GET_SERVICES_FAIL,
     CLEAR_ERRORS,
 } from '../Constants/ServicesConstants';
+import baseUrl from '../helper';
 
 export const getServices = () => async (dispatch) => {
     try {
         dispatch({ type: GET_SERVICES_REQUEST });
 
-        const { data } = await axios.get(`/api/v1/services/get-services`);
+        const { data } = await axios.get(`${baseUrl}/api/v1/services/get-services`);
 
         dispatch({ type: GET_SERVICES_SUCCESS, payload: data });
     } catch (error) {

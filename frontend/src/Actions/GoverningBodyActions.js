@@ -5,12 +5,13 @@ import {
     CLEAR_ERRORS,
 } from '../Constants/GoverningBodyConstants';
 import axios from 'axios';
+import baseUrl from '../helper';
 
 export const getGoverning = () => async (dispatch) => {
     try {
         dispatch({ type: GET_GOVERNING_REQUEST });
 
-        const { data } = await axios.get(`/api/v1/goveringBody/get-goveringBody`);
+        const { data } = await axios.get(`${baseUrl}/api/v1/goveringBody/get-goveringBody`);
 
 
         dispatch({ type: GET_GOVERNING_SUCCESS, payload: data.goveringBody });
