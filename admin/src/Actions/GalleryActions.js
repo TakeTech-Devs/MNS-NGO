@@ -17,12 +17,13 @@ import {
     UPDATE_ADMIN_GALLERY_IMAGE_FAIL
 } from '../Constants/GalleryConstants';
 import axios from 'axios';
+import baseUrl from '../helper';
 
 export const getGallery = () => async (dispatch) => {
     try {
         dispatch({ type: GET_ADMIN_GALLERY_REQUEST });
 
-        const { data } = await axios.get(`/api/v1/gallery/get-gallery`);
+        const { data } = await axios.get(`${baseUrl}/api/v1/gallery/get-gallery`);
 
         dispatch({ type: GET_ADMIN_GALLERY_SUCCESS, payload: data });
     } catch (error) {
@@ -38,7 +39,7 @@ export const createGalleryHeader = (HeaderData) => async (dispatch) => {
             headers: { "Content-Type": "multipart/form-data" },
         }
 
-        const { data } = await axios.post(`/api/v1/gallery/create-galleryHeader`, HeaderData, config);
+        const { data } = await axios.post(`${baseUrl}/api/v1/gallery/create-galleryHeader`, HeaderData, config);
 
         dispatch({
             type: ADD_ADMIN_GALLERYHEADER_SUCCESS,
@@ -61,7 +62,7 @@ export const createGalleryBody = (bodyData) => async (dispatch) => {
             headers: { "Content-Type": "multipart/form-data" },
         }
 
-        const { data } = await axios.post(`/api/v1/gallery/create-galleryBody`, bodyData, config);
+        const { data } = await axios.post(`${baseUrl}/api/v1/gallery/create-galleryBody`, bodyData, config);
 
         dispatch({
             type: ADD_ADMIN_GALLERY_BODY_SUCCESS,
@@ -85,7 +86,7 @@ export const createGalleryImage = (imageData) => async (dispatch) => {
             headers: { "Content-Type": "multipart/form-data" },
         }
 
-        const { data } = await axios.post(`/api/v1/gallery/create-galleryImage`, imageData, config);
+        const { data } = await axios.post(`${baseUrl}/api/v1/gallery/create-galleryImage`, imageData, config);
 
         dispatch({
             type: ADD_ADMIN_GALLERY_IMAGE_SUCCESS,
@@ -109,7 +110,7 @@ export const updateGalleryImage = (id, imageData) => async (dispatch) => {
         };
 
         const { data } = await axios.put(
-            `/api/v1/gallery/update-galleryImage/${id}`,
+            `${baseUrl}/api/v1/gallery/update-galleryImage/${id}`,
             imageData,
             config
         );

@@ -5,12 +5,13 @@ import {
     CLEAR_ERRORS,
 } from '../Constants/FormConstants';
 import axios from 'axios';
+import baseUrl from "../helper";
 
 export const getFormData = () => async (dispatch) => {
     try {
         dispatch({ type: GET_ADMIN_FORM_REQUEST });
 
-        const { data } = await axios.get(`/api/v1/touch/get-touch`);
+        const { data } = await axios.get(`${baseUrl}/api/v1/touch/get-touch`);
 
         dispatch({ type: GET_ADMIN_FORM_SUCCESS, payload: data.messages });
     } catch (error) {

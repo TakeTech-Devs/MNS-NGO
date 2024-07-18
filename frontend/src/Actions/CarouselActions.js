@@ -4,7 +4,7 @@ import {
     NEW_CAROUSEL_FAIL,
     CLEAR_ERROR,
 } from "../Constants/CarouselConstants";
-
+import baseUrl from '../helper';
 import axios from 'axios';
 
 // Add new carousel item
@@ -19,7 +19,7 @@ export const createCarousel = (carouselData) => async (dispatch) => {
             },
         };
 
-        const { data } = await axios.post(`/api/v1/carousel/create-carousel`, carouselData, config);
+        const { data } = await axios.post(`${baseUrl}/api/v1/carousel/create-carousel`, carouselData, config);
 
         dispatch({
             type: NEW_CAROUSEL_SUCCESS,

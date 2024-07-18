@@ -11,12 +11,13 @@ import {
     ADD_CONTACTINFO_CONTACT_FAIL
 } from '../Constants/ContactConstants';
 import axios from 'axios';
+import baseUrl from '../helper';
 
 export const getContact = () => async (dispatch) => {
     try {
         dispatch({ type: GET_ADMIN_CONTACT_REQUEST });
 
-        const { data } = await axios.get(`/api/v1/contact/get-contact`);
+        const { data } = await axios.get(`${baseUrl}/api/v1/contact/get-contact`);
 
         dispatch({ type: GET_ADMIN_CONTACT_SUCCESS, payload: data });
     } catch (error) {
@@ -32,7 +33,7 @@ export const createContactHeader = (HeaderData) => async(dispatch) =>{
             headers: { "Content-Type": "multipart/form-data" },
         }
 
-        const { data } = await axios.post(`/api/v1/contact/create-contactHeader`, HeaderData, config);
+        const { data } = await axios.post(`${baseUrl}/api/v1/contact/create-contactHeader`, HeaderData, config);
 
         dispatch({
             type: ADD_CONTACTHEADER_CONTACT_SUCCESS,
@@ -55,7 +56,7 @@ export const createContactInfo = (infoData) => async(dispatch) =>{
             headers: { "Content-Type": "multipart/form-data" },
         }
 
-        const { data } = await axios.post(`/api/v1/contact/create-contact`, infoData, config);
+        const { data } = await axios.post(`${baseUrl}/api/v1/contact/create-contact`, infoData, config);
 
         dispatch({
             type: ADD_CONTACTINFO_CONTACT_SUCCESS,

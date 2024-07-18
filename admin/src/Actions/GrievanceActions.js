@@ -14,12 +14,13 @@ import {
     UPDATE_ADMIN_GRIEVANCE_MESSAGES_FAIL
 } from '../Constants/GrievanceConstants';
 import axios from 'axios';
+import baseUrl from '../helper'
 
 export const getGrievance = () => async (dispatch) => {
     try {
         dispatch({ type: GET_ADMIN_GRIEVANCE_REQUEST });
 
-        const { data } = await axios.get(`/api/v1/grievance/get-grievance`);
+        const { data } = await axios.get(`${baseUrl}/api/v1/grievance/get-grievance`);
 
 
         dispatch({ type: GET_ADMIN_GRIEVANCE_SUCCESS, payload: data });
@@ -36,7 +37,7 @@ export const createGrievanceHeader = (HeaderData) => async(dispatch) =>{
             headers: { "Content-Type": "multipart/form-data" },
         }
 
-        const { data } = await axios.post(`/api/v1/grievance/create-grievanceHeader`, HeaderData, config);
+        const { data } = await axios.post(`${baseUrl}/api/v1/grievance/create-grievanceHeader`, HeaderData, config);
 
         dispatch({
             type: ADD_GRIEVANCEHEADER_GRIEVANCE_SUCCESS,
@@ -55,7 +56,7 @@ export const getGrievanceFormData = () => async (dispatch) => {
     try {
         dispatch({ type: GET_ADMIN_GRIEVANCE_MESSAGES_REQUEST });
 
-        const { data } = await axios.get(`/api/v1/grievance/get-grievanceMessages`);
+        const { data } = await axios.get(`${baseUrl}/api/v1/grievance/get-grievanceMessages`);
 
         dispatch({ type: GET_ADMIN_GRIEVANCE_MESSAGES_SUCCESS, payload: data.messages });
     } catch (error) {
@@ -72,7 +73,7 @@ export const updateGrievanceFormData = (id, requestData) => async (dispatch) => 
         };
 
         const { data } = await axios.put(
-            `/api/v1/grievance/update-grievance/${id}`,
+            `${baseUrl}/api/v1/grievance/update-grievance/${id}`,
             requestData,
             config
         );
