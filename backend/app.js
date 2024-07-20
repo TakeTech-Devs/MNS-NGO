@@ -5,6 +5,7 @@ const cors = require('cors');
 const fileUpload = require("express-fileupload");
 const bodyParser = require('body-parser');
 const errorMiddleware = require('./middleware/error');
+const cookieParser = require('cookie-parser');
 
 dotenv.config({path: "config/config.env"});
 
@@ -13,9 +14,24 @@ dotenv.config({path: "config/config.env"});
 //     methods: ['GET', 'POST', 'PUT', 'DELETE'], // Specify allowed HTTP methods
 //     allowedHeaders: ['Content-Type', 'Authorization'] // Specify allowed headers
 // }));
-app.use(cors());
+
+const allowedOrigins = ['http://localhost:3000', 'http://localhost:3001'];
+
+const corsOptions = {
+    origin: function (origin, callback) {
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
+    credentials: true, 
+};
+
+app.use(cors(corsOptions));
 
 app.use(express.json());
+app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 // app.use(fileUpload());
 
@@ -38,6 +54,7 @@ const gallery = require('./routes/galleryRoute');
 const contact = require('./routes/contactRoute');
 const getTouch = require('./routes/getTouchRoute');
 const admin = require('./routes/userRoute');
+const other = require('./routes/otherRoute');
 
 app.use("/api/v1/carousel", carousel);
 app.use("/api/v1/home", home);
@@ -49,6 +66,7 @@ app.use("/api/v1/gallery", gallery)
 app.use("/api/v1/contact", contact)
 app.use("/api/v1/touch", getTouch)
 app.use("/api/v1/admin", admin)
+app.use("/api/v1/other", other)
 
 
 

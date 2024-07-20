@@ -3,12 +3,15 @@ import "./../Home/HomePage.css";
 import "./../About/About.css";
 import { useSelector, useDispatch } from 'react-redux';
 import { getGoverning, clearErrors } from '../../Actions/GoverningBodyActions';
+import { getHome } from '../../Actions/HomeActions';
 
 const Governing = () => {
     const dispatch = useDispatch();
     const { goveringBody, loading, error } = useSelector(state => state.governing)
+    const { member } = useSelector(state => state.home);
 
     useEffect(() => {
+        dispatch(getHome());
         dispatch(getGoverning());
     }, [dispatch]);
 
@@ -34,10 +37,45 @@ const Governing = () => {
                 </div>
             </div>
             <div className="our-story-section our-service">
-                <div className="our-team-heading">{goveringBody && goveringBody.length > 0 ? goveringBody[0]?.goveringBodyContent : ''}</div>
+                <div className="our-team-heading">{goveringBody && goveringBody.length > 0 ? goveringBody[0]?.goveringBodyHeader : ''}</div>
                 <div className="our-team-caption">
-                    {goveringBody && goveringBody.length > 0 ? goveringBody[0]?.goveringBodyHeader : ''}
+                {goveringBody && goveringBody.length > 0 ? goveringBody[0]?.goveringBodyContent : ''}
                 </div>
+                <div className="brand-logo-section">
+							<ul>
+								{member.map((item, index) =>(
+									<li>
+										<img src={item.membersImage.url} alt={item.name} />
+										<h3>{item.name}</h3>
+										<p>{item.details}</p>
+									</li>
+								))}
+								{/* <li>
+									<span> BRAND </span>
+								</li>
+								<li >
+									<span> BRAND </span>
+								</li>
+								<li >
+									<span > BRAND </span>
+								</li>
+								<li >
+									<span > BRAND </span>
+								</li>
+								<li>
+									<span> BRAND </span>
+								</li>
+								<li>
+									<span> BRAND </span>
+								</li>
+								<li>
+									<span> BRAND </span>
+								</li>
+								<li>
+									<span> BRAND </span>
+								</li> */}
+							</ul>
+						</div>
                 {/* <div className="our-team-caption">
         Mallarpur Naisuva was founded with a vision to make a difference in the lives of those most in need. What began as a small group of individuals inspired by the spirit of social work has evolved into a full-fledged NGO dedicated to rural development and community empowerment.
     </div>

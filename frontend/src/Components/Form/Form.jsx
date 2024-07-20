@@ -8,11 +8,21 @@ import img4 from '../../assets/images/linkedin25.png';
 import { useSelector, useDispatch } from 'react-redux';
 import { getContact, clearErrors } from '../../Actions/ContactActions';
 import { submitForm } from '../../Actions/FormAction';
+import { getOther } from '../../Actions/OtherActions';
 
 const Form = () => {
     const dispatch = useDispatch();
     const { contact, loading, error } = useSelector(state => state.contact)
     const { loading: formLoading, error: formError } = useSelector((state) => state.touchForm);
+
+    const { other, loading: otherLoading, error: otherError } = useSelector(state => state.other);
+
+    useEffect(() => {
+        dispatch(getOther());
+        if(otherError){
+            window.alert(otherError)
+        }
+    }, [dispatch, otherError])
 
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -35,7 +45,11 @@ const Form = () => {
             alert(error);
             dispatch(clearErrors());
         }
-    }, [error, dispatch]);
+        if(formError){
+            window.alert(formError)
+            dispatch(clearErrors());
+        }
+    }, [error, dispatch, formError]);
     return (
         <div className="form-container">
             <h1 className='formheading'>Get in Touch With Us</h1>
@@ -53,10 +67,11 @@ const Form = () => {
                         <span>{contact[0]?.phone}</span>
                     </div>
                     <div className="right-align">
-                        <img src={img1} alt="Footer Image" />
-                        <img src={img4} alt="Footer Image" />
-                        <img src={img2} alt="Footer Image" />
-                        <img src={img3} alt="Footer Image" />
+                        <a href='' target='_blank'><img src={img1} alt="Footer Image" /></a>
+                        <a href={other?.linkedinLink} target='_blank'><img src={img4} alt="Footer Image" /></a>
+                        <a href={other?.whatsAppLink} target='_blank'><img src={img2} alt="Footer Image" /></a>
+                        <a href={other?.facebookLink} target='_blank'><img src={img3} alt="Footer Image" /></a>
+                        
                     </div>
                 </div>
             )}

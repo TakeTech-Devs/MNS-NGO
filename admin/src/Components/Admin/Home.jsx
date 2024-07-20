@@ -11,7 +11,8 @@ import img from "../../assets/images/rectangle4.png";
 import Carousel from 'react-bootstrap/Carousel';
 import { getHome, clearErrors, createHighlight, createHomeHeader, createAbout, createVision, createJoinUs, createServiceCarousel, updateServiceCarousel, createServiceHead, updateBrand, deleteBrand, createBrand } from '../../Actions/HomeActions';
 import { useSelector, useDispatch } from 'react-redux';
-import { ADD_ABOUT_HOME_RESET, ADD_BRAND_HOME_RESET, ADD_HIGHTLIGHT_HOME_RESET, ADD_HOMEHEADER_HOME_RESET, ADD_JOINUS_HOME_RESET, ADD_SERVICEHEAD_HOME_RESET, ADD_SERVICE_HOME_RESET, ADD_VISION_HOME_RESET, UPDATE_BRAND_HOME_RESET, UPDATE_SERVICE_HOME_RESET } from '../../Constants/HomeConstants';
+import { ADD_ABOUT_HOME_RESET, ADD_MEMBER_HOME_RESET, ADD_HIGHTLIGHT_HOME_RESET, ADD_HOMEHEADER_HOME_RESET, ADD_JOINUS_HOME_RESET, ADD_SERVICEHEAD_HOME_RESET, ADD_SERVICE_HOME_RESET, ADD_VISION_HOME_RESET, UPDATE_MEMBER_HOME_RESET, UPDATE_SERVICE_HOME_RESET } from '../../Constants/HomeConstants';
+import Loader from '../Layouts/Loader';
 
 const Home = () => {
     const [showFormModal, setShowFormModal] = useState(false);
@@ -132,7 +133,7 @@ const Home = () => {
 
 
     const dispatch = useDispatch();
-    const { home, homeCarousel, brand, loading, error } = useSelector(state => state.adminHome);
+    const { home, homeCarousel, member, loading, error } = useSelector(state => state.adminHome);
 
     useEffect(() => {
         dispatch(getHome());
@@ -247,7 +248,7 @@ const Home = () => {
         if (serviceUpdate) {
             window.alert('Service updated successfully');
             dispatch({ type: UPDATE_SERVICE_HOME_RESET })
-            dispatch({ type: UPDATE_BRAND_HOME_RESET })
+            dispatch({ type: UPDATE_MEMBER_HOME_RESET })
             window.location.reload();
         }
         if (serviceError) {
@@ -257,18 +258,20 @@ const Home = () => {
 
 
     // Brand 
-    const [brandName, setBrandName] = useState('');
-    const [brandImage, setBrandImage] = useState(null);
+    const [name, setName] = useState('');
+    const [details, setDetails] = useState('');
+    const [membersImage, setMembersImage] = useState(null);
 
-    const handleBrandImage = (e) =>{
-        setBrandImage(e.target.files[0]);
+    const handleBrandImage = (e) => {
+        setMembersImage(e.target.files[0]);
     }
 
-    const handleBrandSumbit = (e) =>{
+    const handleBrandSumbit = (e) => {
         e.preventDefault();
         const formData = new FormData();
-        formData.append('brandName', brandName);
-        formData.append('brandImage', brandImage);
+        formData.append('name', name);
+        formData.append('details', details);
+        formData.append('membersImage', membersImage);
 
         dispatch(createBrand(formData))
     }
@@ -277,29 +280,31 @@ const Home = () => {
     const [showBrandModal, setShowBrandModal] = useState(false);
     const [selectedBrand, setSelectedBrand] = useState({});
 
-    const handleShowBrandEditModal = (item) =>{
+    const handleShowBrandEditModal = (item) => {
         setSelectedBrand(item);
-        setBrandName(item.brandName);
+        setName(item.name);
+        setDetails(item.details);
         setShowBrandModal(true)
     }
 
     const handleCloseBrandEditModal = () => setShowBrandModal(false)
 
-    const handleBrandImageChange = (e) =>{
-        setBrandImage(e.target.files[0])
+    const handleBrandImageChange = (e) => {
+        setMembersImage(e.target.files[0])
     }
 
-    const handleBrandUpdate = (e) =>{
+    const handleBrandUpdate = (e) => {
         e.preventDefault();
         const formData = new FormData();
-        formData.append('brandName', brandName);
-        if (brandImage) {
-            formData.append('brandImage', brandImage);
+        formData.append('name', name);
+        formData.append('details', details);
+        if (membersImage) {
+            formData.append('membersImage', membersImage);
         }
         dispatch(updateBrand(selectedBrand._id, formData));
     }
 
-    const handleBrandDelete = (id) =>{
+    const handleBrandDelete = (id) => {
         dispatch(deleteBrand(id));
     }
 
@@ -378,7 +383,7 @@ const Home = () => {
             dispatch({ type: ADD_SERVICE_HOME_RESET });
             dispatch({ type: ADD_VISION_HOME_RESET });
             dispatch({ type: ADD_JOINUS_HOME_RESET });
-            dispatch({ type: ADD_BRAND_HOME_RESET });
+            dispatch({ type: ADD_MEMBER_HOME_RESET });
             window.location.reload()
         };
 
@@ -538,6 +543,7 @@ const Home = () => {
 
     return (
         <>
+            {loading && <Loader />}
             <div className="admin-dashboard">
                 <Sidebar />
                 <div className="admin-main">
@@ -623,7 +629,7 @@ const Home = () => {
                                                                 <Carousel.Item key={index}>
                                                                     <img
                                                                         className="d-block w-100"
-                                                                        src={item.url} 
+                                                                        src={item.url}
                                                                         alt={`Slide ${index + 1}`}
                                                                     />
                                                                 </Carousel.Item>
@@ -1357,26 +1363,35 @@ const Home = () => {
                     </main>
 
 
-                    {/* Brand */}
+                    {/* Member */}
 
                     <div className="mb-2 my-3 mx-3">
-                        <h2>Brand</h2>
+                        <h2>Members</h2>
                         <Button variant="primary" size="sm" onClick={handleShowBrandForm}>
-                            Add Brand
+                            Add Member
                         </Button>
                         <Modal show={showBrandForm} onHide={handleCloseBrandUpdate}>
                             <Modal.Header closeButton>
-                                <Modal.Title>New Brand</Modal.Title>
+                                <Modal.Title>New Member</Modal.Title>
                             </Modal.Header>
                             <Modal.Body>
                                 <Form onSubmit={handleBrandSumbit}>
                                     <Form.Group className="mb-3" controlId="formSubHeadingInput">
-                                        <Form.Label>Name</Form.Label>
+                                        <Form.Label>Member Name</Form.Label>
                                         <Form.Control
                                             type="text"
                                             placeholder="Enter the Name"
-                                            value={brandName}
-                                            onChange={(e) => setBrandName(e.target.value)}
+                                            value={name}
+                                            onChange={(e) => setName(e.target.value)}
+                                        />
+                                    </Form.Group>
+                                    <Form.Group className="mb-3" controlId="formSubHeadingInput">
+                                        <Form.Label>Member Details</Form.Label>
+                                        <Form.Control
+                                            type="text"
+                                            placeholder="Enter the Details"
+                                            value={details}
+                                            onChange={(e) => setDetails(e.target.value)}
                                         />
                                     </Form.Group>
                                     <Form.Group className="mb-3">
@@ -1401,17 +1416,19 @@ const Home = () => {
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">Brand Name</th>
-                                    <th scope="col">Brand Image</th>
+                                    <th scope="col">Member Name</th>
+                                    <th scope="col">Member Details</th>
+                                    <th scope="col">Member Image</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {brand.map((item, index) =>(
+                                {member.map((item, index) => (
                                     <tr key={item._id}>
                                         <th scope="row">{index + 1}</th>
-                                        <td>{item.brandName}</td>
+                                        <td>{item.name}</td>
+                                        <td>{item.details}</td>
                                         <td>
-                                            <img src={item.brandImage.url} width='100'/>
+                                            <img src={item.membersImage.url} width='100' />
                                         </td>
                                         <td>
                                             <Button variant='primary' onClick={() => handleShowBrandEditModal(item)}>
@@ -1430,20 +1447,27 @@ const Home = () => {
                     </main>
 
                     <Modal show={showBrandModal} onHide={handleCloseBrandEditModal}>
-                    <Modal.Header closeButton>
-                            <Modal.Title>Edit Brand</Modal.Title>
+                        <Modal.Header closeButton>
+                            <Modal.Title>Edit Member</Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
                             <Form onSubmit={handleBrandUpdate}>
                                 <Form.Group className="mb-3" controlId="formTitle">
-                                    <Form.Label>Brand Name</Form.Label>
+                                    <Form.Label>Member Name</Form.Label>
                                     <Form.Control
                                         type="text"
-                                        value={brandName}
-                                        onChange={(e) => setBrandName(e.target.value)}
+                                        value={name}
+                                        onChange={(e) => setName(e.target.value)}
                                     />
                                 </Form.Group>
-
+                                <Form.Group className="mb-3" controlId="formTitle">
+                                    <Form.Label>Member Name</Form.Label>
+                                    <Form.Control
+                                        type="text"
+                                        value={details}
+                                        onChange={(e) => setDetails(e.target.value)}
+                                    />
+                                </Form.Group>
                                 <Form.Group className="mb-3" controlId="formImage">
                                     <Form.Label>Image</Form.Label>
                                     <Form.Control

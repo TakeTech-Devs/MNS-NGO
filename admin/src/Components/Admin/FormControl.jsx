@@ -6,10 +6,11 @@ import './AdminHome.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { getFormData } from '../../Actions/FormActions';
 import { getGrievanceFormData } from '../../Actions/GrievanceActions';
+import Loader from '../Layouts/Loader';
 
 const FormControl = () => {
     const dispatch = useDispatch();
-    const { form } = useSelector(state => state.formReducer);
+    const { form, loading } = useSelector(state => state.formReducer);
     const { form: grievanceForm } = useSelector(state => state.grievanceForm);
     useEffect(() => {
         dispatch(getFormData());
@@ -17,6 +18,8 @@ const FormControl = () => {
     }, [dispatch]);
     return (
 
+        <>
+         {loading && <Loader />}
         <div className="admin-dashboard">
             <Sidebar />
             <div className="admin-main" style={{ height: "100vh" }}>
@@ -36,6 +39,7 @@ const FormControl = () => {
                 </div>
             </div>
         </div>
+        </>
 
     )
 }

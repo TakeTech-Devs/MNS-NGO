@@ -1,5 +1,6 @@
 const catchAsyncError = require('../middleware/catchAsyncError');
 const User = require('../models/userModel');
+const sendToken = require('../utils/jwtToken');
 
 exports.addNewAdmin = catchAsyncError(async (req, res, next) => {
     const { name, email, password } = req.body;
@@ -29,12 +30,30 @@ exports.loginAdmin = catchAsyncError(async (req, res, next) => {
     if (user.password !== password) {
         return res.status(400).json({ msg: 'Invalid credentials' });
     }
-    res.status(200).json({
-        success: true,
-        user
-    })
+    sendToken(user, 200, res);
 
 })
+
+exports.logout = catchAsyncError(async (req, res, next) => {
+    res.cookie("token", null, {
+        expires: new Date(),
+        httpOnly: true
+    });
+    res.status(200).json({
+        success: true,
+        message: "Logged out successfully",
+    });
+});
+
+exports.    getUserProfile = catchAsyncError(async (req, res, next) => {
+    const user = await User.findById(req.user.id);
+
+    res.status(200).json({
+        success: true,
+        user,
+    });
+});
+
 
 exports.getAllAdmins = catchAsyncError(async(req, res, next) =>{
     const users = await User.find();

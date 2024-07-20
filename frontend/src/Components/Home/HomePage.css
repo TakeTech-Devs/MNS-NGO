@@ -55,16 +55,29 @@ ul.highlight-section li h2 {margin-block-end:8px;}
 .brand-section {margin-block:100px; padding-inline:5%;}
 .brand-logo-section ul {display:flex; justify-content:center; align-items:center; gap:40px; flex-wrap:wrap;}
 .brand-logo-section ul li {width:calc((100% - 120px) / 4); display:flex; align-items:center; justify-content:center; padding:20px; font-size:40px; font-weight:700; border-radius:30px 0px 30px 0px;}
-.brand-logo-section ul li:nth-child(1) {background-color:rgba(204, 115, 237, 0.196); color:#cf54f8;}
+/* .brand-logo-section ul li:nth-child(1) {background-color:rgba(204, 115, 237, 0.196); color:#cf54f8;}
 .brand-logo-section ul li:nth-child(2) {background-color:rgba(3, 17, 212, 0.196); color:#0311d2;}
 .brand-logo-section ul li:nth-child(3) {background-color:rgba(0, 251, 255, 0.16); color:#04b2b5;}
 .brand-logo-section ul li:nth-child(4) {background-color:rgba(0, 189, 25, 0.196); color:#00bd19;}
 .brand-logo-section ul li:nth-child(5) {background-color:rgba(247, 255, 4, 0.196); color:#dce307;}
 .brand-logo-section ul li:nth-child(6) {background-color:rgba(255, 146, 3, 0.196); color:#ff9203;}
 .brand-logo-section ul li:nth-child(7) {background-color:rgba(255, 0, 0, 0.132); color:#ff0000;}
-.brand-logo-section ul li:nth-child(8) {background-color:rgba(249, 0, 199, 0.143); color:#f900c7;}
+.brand-logo-section ul li:nth-child(8) {background-color:rgba(249, 0, 199, 0.143); color:#f900c7;} */
+/* .brand-logo-section ul li img {
+    height: 50%;
+    width: 50%;
+} */
+.brand-logo-section ul li {
+    flex-direction: column;
+    font-size: larger;
+    color: #145A98;
+}
+
 .brand-logo-section ul li img{
     width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 1px solid #145A98;
 }
 .hamburger-menu {display:none;}
 .side-panel {display:none;}
