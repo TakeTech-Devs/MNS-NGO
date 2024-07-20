@@ -9,7 +9,8 @@ import { governingReducer, newGoverningData } from './Reducers/GoverningReducer'
 import { GalleryReducer, galleryReducer, newGalleryData } from './Reducers/GalleryReducer';
 import { contactReducer, newContactData } from './Reducers/ContactReducer';
 import { formReducer } from './Reducers/FormReducer';
-import { adminReducer, authReducer } from './Reducers/AdminReducer';
+import { adminReducer, authReducer, userReducer } from './Reducers/AdminReducer';
+import { newData, otherReducer } from './Reducers/OtherReducer';
 
 
 const reducer = combineReducers({
@@ -36,6 +37,9 @@ const reducer = combineReducers({
     grievanceRequest: grievanceRequestReducer,
     admin: authReducer,
     admins: adminReducer,
+    user: userReducer,
+    other: otherReducer,
+    newOther: newData,
 })
 
 

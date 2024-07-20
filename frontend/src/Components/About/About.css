@@ -3,6 +3,8 @@
 .commonBanner-wrapper.governing {background:url('../../assets/images/gb.png') 50% / cover no-repeat, linear-gradient(#D9D9D9, #D9D9D9);}
 .commonBanner-wrapper.grievance {background:url('../../assets/images/grivance.png') 50% / cover no-repeat, linear-gradient(#D9D9D9, #D9D9D9);}
 .commonBanner-wrapper.service {background:url('../../assets/images/service.png') 50% / cover no-repeat, linear-gradient(#D9D9D9, #D9D9D9);}
+.commonBanner-wrapper.terms {background:url('../../assets/images/service.png') 50% / cover no-repeat, linear-gradient(#D9D9D9, #D9D9D9);}
+.commonBanner-wrapper.policy {background:url('../../assets/images/service.png') 50% / cover no-repeat, linear-gradient(#D9D9D9, #D9D9D9);}
 .img-section.about {background:url('../../assets/images/rectangle25.png'), linear-gradient(#D9D9D9, #D9D9D9);}
 .commonBanner-wrapper {position:relative; margin-bottom:67px; display:flex; flex-direction:column; align-items:center; padding:34px 35px 80px 31px; width:100%; box-sizing:border-box; justify-content:end; height:100vh;}
 .commonBanner-wrapper.about {background:url('../../assets/images/rectangle41.png') 50% / cover no-repeat, linear-gradient(#D9D9D9, #D9D9D9);}

@@ -9,6 +9,7 @@ import './AdminHome.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { getGallery, clearErrors, createGalleryHeader, createGalleryBody, createGalleryImage, updateGalleryImage } from '../../Actions/GalleryActions';
 import { ADD_ADMIN_GALLERY_BODY_RESET, ADD_ADMIN_GALLERY_IMAGE_RESET, ADD_ADMIN_GALLERYHEADER_RESET, UPDATE_ADMIN_GALLERY_IMAGE_RESET } from '../../Constants/GalleryConstants';
+import Loader from '../Layouts/Loader';
 
 const Gallery = () => {
 
@@ -58,7 +59,7 @@ const Gallery = () => {
     const handleCloseCarouse = () => setShowCarousel(false);
 
 
-    const { gallery: newGallery, isUpdated, error: galleryError, } = useSelector(state => state.newGalleryData);
+    const { gallery: newGallery, isUpdated, error: galleryError, loading: updateLoding } = useSelector(state => state.newGalleryData);
 
     const [headerData, setHeaderData] = useState({
         header: '',
@@ -112,14 +113,14 @@ const Gallery = () => {
         dispatch(createGalleryHeader(formData));
     }
 
-    const handelHeaderInput = (e) =>{
+    const handelHeaderInput = (e) => {
         setHeaderData({
             ...headerData,
             [e.target.name]: e.target.value,
         })
     }
 
-    const handelHeaderInputSubmit = (e) =>{
+    const handelHeaderInputSubmit = (e) => {
         e.preventDefault();
         dispatch(createGalleryHeader(headerData));
     }
@@ -188,6 +189,9 @@ const Gallery = () => {
 
 
     return (
+        <>
+            {loading && <Loader />}
+            {updateLoding && <Loader />}
             <div className="admin-dashboard">
                 <Sidebar />
                 <div className="admin-main">
@@ -435,6 +439,7 @@ const Gallery = () => {
 
                 </div>
             </div>
+        </>
     )
 }
 

@@ -24,15 +24,15 @@ import {
     ADD_SERVICEHEAD_HOME_REQUEST,
     ADD_SERVICEHEAD_HOME_SUCCESS,
     ADD_SERVICEHEAD_HOME_FAIL,
-    UPDATE_BRAND_HOME_REQUEST,
-    UPDATE_BRAND_HOME_SUCCESS,
-    UPDATE_BRAND_HOME_FAIL,
-    DELETE_BRAND_HOME_REQUEST,
-    DELETE_BRAND_HOME_SUCCESS,
-    DELETE_BRAND_HOME_FAIL,
-    ADD_BRAND_HOME_REQUEST,
-    ADD_BRAND_HOME_SUCCESS,
-    ADD_BRAND_HOME_FAIL,
+    UPDATE_MEMBER_HOME_REQUEST,
+    UPDATE_MEMBER_HOME_SUCCESS,
+    UPDATE_MEMBER_HOME_FAIL,
+    DELETE_MEMBER_HOME_REQUEST,
+    DELETE_MEMBER_HOME_SUCCESS,
+    DELETE_MEMBER_HOME_FAIL,
+    ADD_MEMBER_HOME_REQUEST,
+    ADD_MEMBER_HOME_SUCCESS,
+    ADD_MEMBER_HOME_FAIL,
 } from '../Constants/HomeConstants';
 
 import baseUrl from '../helper'
@@ -245,22 +245,22 @@ export const updateServiceCarousel = (id, serviceData) => async (dispatch) => {
 
 export const createBrand = (brandData) => async (dispatch) => {
     try {
-        dispatch({ type: ADD_BRAND_HOME_REQUEST });
+        dispatch({ type: ADD_MEMBER_HOME_REQUEST });
 
         const config = {
             headers: { "Content-Type": "multipart/form-data" },
         }
 
-        const { data } = await axios.post(`${baseUrl}/api/v1/home/create-brand`, brandData, config);
+        const { data } = await axios.post(`${baseUrl}/api/v1/home/create-member`, brandData, config);
 
         dispatch({
-            type: ADD_BRAND_HOME_SUCCESS,
+            type: ADD_MEMBER_HOME_SUCCESS,
             payload: data.success
         });
 
     } catch (error) {
         dispatch({
-            type: ADD_BRAND_HOME_FAIL,
+            type: ADD_MEMBER_HOME_FAIL,
             payload: error.response.data.message,
         });
     }
@@ -268,25 +268,25 @@ export const createBrand = (brandData) => async (dispatch) => {
 
 export const updateBrand = (id, brandData) => async (dispatch) => {
     try {
-        dispatch({ type: UPDATE_BRAND_HOME_REQUEST });
+        dispatch({ type: UPDATE_MEMBER_HOME_REQUEST });
 
         const config = {
             headers: { "Content-Type": "multipart/form-data" },
         };
 
         const { data } = await axios.put(
-            `${baseUrl}/api/v1/home/update-brand/${id}`,
+            `${baseUrl}/api/v1/home/update-member/${id}`,
             brandData,
             config
         );
 
         dispatch({
-            type: UPDATE_BRAND_HOME_SUCCESS,
+            type: UPDATE_MEMBER_HOME_SUCCESS,
             payload: data.success,
         });
     } catch (error) {
         dispatch({
-            type: UPDATE_BRAND_HOME_FAIL,
+            type: UPDATE_MEMBER_HOME_FAIL,
             payload: error.response.data.message,
         });
     }
@@ -295,17 +295,17 @@ export const updateBrand = (id, brandData) => async (dispatch) => {
 
 export const deleteBrand = (id) => async (dispatch) => {
     try {
-      dispatch({ type: DELETE_BRAND_HOME_REQUEST });
+      dispatch({ type: DELETE_MEMBER_HOME_REQUEST });
   
-      const { data } = await axios.delete(`${baseUrl}/api/v1/home/delete-brand/${id}`);
+      const { data } = await axios.delete(`${baseUrl}/api/v1/home/delete-member/${id}`);
   
       dispatch({
-        type: DELETE_BRAND_HOME_SUCCESS,
+        type: DELETE_MEMBER_HOME_SUCCESS,
         payload: data.success,
       });
     } catch (error) {
       dispatch({
-        type: DELETE_BRAND_HOME_FAIL,
+        type: DELETE_MEMBER_HOME_FAIL,
         payload: error.response.data.message,
       });
     }

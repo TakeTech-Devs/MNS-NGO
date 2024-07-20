@@ -12,14 +12,20 @@ import Gallery from './Components/Gallery/Gallery';
 import Contact from './Components/Contact/Contact';
 import F1 from './Components/Folder/f1';
 import Header from './Components/Header/Header';
+import TermsofService from './Components/Terms of Service/TermsofService';
+import PrivacyPolicy from './Components/Privacy Policy/PrivacyPolicy';
+import MetaData from './Components/Layout/MetaData';
 
 function AppContent() {
   const location = useLocation();
   const isGrievancePage = location.pathname === '/grievance';
+  const isTermsPage = location.pathname === '/terms';
+  const isPolicy = location.pathname === '/policy';
   // const isAdminPage = location.pathname === '/admin';
 
   return (
     <>
+    <MetaData/>
       {/* {!isAdminPage && <Header />} */}
       <Header />
       <Routes>
@@ -31,11 +37,14 @@ function AppContent() {
         <Route path="/governing" element={<Governing />} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/terms" element={<TermsofService />} />
+        <Route path="/policy" element={<PrivacyPolicy />} />
+
         <Route path="/f1" element={<F1 />} />
       </Routes>
       {/* {!isGrievancePage && !isAdminPage && <Form />}
       {!isAdminPage && <Footer />} */}
-      {!isGrievancePage && <Form />}
+      {!isGrievancePage && !isTermsPage && !isPolicy && <Form />}
       <Footer />
     </>
   );

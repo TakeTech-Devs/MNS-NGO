@@ -4,10 +4,12 @@ import AdminHeader from './AdminHeader'
 import { useSelector, useDispatch } from 'react-redux';
 import { getFormData } from '../../Actions/FormActions';
 import { clearErrors } from '../../Actions/HomeActions';
+import Loader from '../Layouts/Loader';
 
 const AllForm = () => {
     const dispatch = useDispatch();
-    const { form, error } = useSelector(state => state.formReducer);
+    const { form, error, loading } = useSelector(state => state.formReducer);
+
 
     useEffect(() => {
         dispatch(getFormData());
@@ -21,6 +23,7 @@ const AllForm = () => {
     }, [error, dispatch]);
     return (
         <>
+            {loading && <Loader />}
             <div className="admin-dashboard">
                 <Sidebar />
                 <div className="admin-main" style={{ height: "100vh" }}>
@@ -49,7 +52,7 @@ const AllForm = () => {
                                             <td>{item.name}</td>
                                             <td>{item.email}</td>
                                             <td>{item.phone}</td>
-                                            <td style={{width: "550px"}}>{item.message}</td>
+                                            <td style={{ width: "550px" }}>{item.message}</td>
                                         </tr>
                                     ))
                                 ) : (

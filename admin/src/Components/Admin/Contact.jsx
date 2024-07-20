@@ -9,6 +9,7 @@ import './AdminHome.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { getContact, clearErrors, createContactHeader, createContactInfo } from '../../Actions/ContactActions';
 import { ADD_CONTACTHEADER_CONTACT_RESET, ADD_CONTACTINFO_CONTACT_RESET } from '../../Constants/ContactConstants';
+import Loader from '../Layouts/Loader';
 
 const Contact = () => {
     const [showHeaderForm, setShowHeaderForm] = useState(false);
@@ -50,7 +51,7 @@ const Contact = () => {
         }
     }, [error, dispatch]);
 
-    const { contact: addContact, error: newHomeDataError, isUpdated } = useSelector(state => state.newContactData);
+    const { contact: addContact, error: newHomeDataError, isUpdated, loading:  updateLoding} = useSelector(state => state.newContactData);
 
     const [headerData, setHeaderData] = useState({
         header: '',
@@ -132,7 +133,9 @@ const Contact = () => {
 
 
     return (
-        // contact && contact.length > 0 && (
+        <>
+        {loading && <Loader />}
+        {updateLoding && <Loader />}
             <div className="admin-dashboard">
                 <Sidebar />
                 <div className="admin-main" style={{ height: "100vh" }}>
@@ -303,7 +306,7 @@ const Contact = () => {
 
                 </div>
             </div>
-        // )
+        </>
     )
 }
 

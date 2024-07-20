@@ -7,11 +7,12 @@ import Button from 'react-bootstrap/esm/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import { UPDATE_ADMIN_GRIEVANCE_MESSAGES_RESET } from '../../Constants/GrievanceConstants';
+import Loader from '../Layouts/Loader';
 
 const GrievanceForm = () => {
     const dispatch = useDispatch();
-    const { form, error } = useSelector(state => state.grievanceForm);
-    const { isUpdated, error: requestError } = useSelector((state) => state.grievanceRequest);
+    const { form, error, loading } = useSelector(state => state.grievanceForm);
+    const { isUpdated, error: requestError, loading: updateLoding } = useSelector((state) => state.grievanceRequest);
 
     useEffect(() => {
         dispatch(getGrievanceFormData());
@@ -58,6 +59,8 @@ const GrievanceForm = () => {
 
     return (
         <>
+        {loading && <Loader />}
+        {updateLoding && <Loader />}
             <div className="admin-dashboard">
                 <Sidebar />
                 <div className="admin-main">

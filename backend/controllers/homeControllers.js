@@ -2,7 +2,7 @@ const catchAsyncError = require('../middleware/catchAsyncError');
 const cloudinary = require('cloudinary');
 const Home = require('../models/homeModel');
 const HomeCarousel = require('../models/homeServicesCarouselModel')
-const Brand = require('../models/brandModel');
+const Menbers = require('../models/membersModel');
 
 
 
@@ -486,66 +486,68 @@ exports.joinUsSection = catchAsyncError(async(req,res,next) =>{
 })
 
 
-//Brand Section
+//Member Section
 
-exports.brandSection = catchAsyncError(async(req,res,next) =>{
-    const { brandName } = req.body;
-    const brandImage = req?.files?.brandImage;
+exports.membersSection = catchAsyncError(async(req,res,next) =>{
+    const { name, details } = req.body;
+    const membersImage = req?.files?.membersImage;
 
-    const BrandImage = await cloudinary.v2.uploader.upload(brandImage.tempFilePath,{
-        folder: 'MNS/Home/brand',
+    const MemberImage = await cloudinary.v2.uploader.upload(membersImage.tempFilePath,{
+        folder: 'MNS/Home/members',
     })
 
-    const brandSection = await Brand.create({
-        brandName,
-        brandImage: {
-            public_id: BrandImage.public_id,
-            url: BrandImage.secure_url,
+    const memberSection = await Menbers.create({
+        name,
+        details,
+        membersImage: {
+            public_id: MemberImage.public_id,
+            url: MemberImage.secure_url,
         }
     })
 
     res.status(200).json({
         success: true,
-        message: "Brand Add",
-        brand: brandSection,
+        message: "Member Add",
+        member: memberSection,
     })
 })
 
 
-exports.updateBrand = catchAsyncError(async(req,res,next) =>{
+exports.updateMember = catchAsyncError(async(req,res,next) =>{
     const newData = {
-        brandName: req?.body?.brandName,
+        name: req?.body?.name,
+        details: req?.body?.details,
     }
 
-    const brand = await Brand.findById(req.params.id);
+    const member = await Menbers.findById(req.params.id);
 
-    if(!brand){
+    if(!member){
         return res.status(404).json({
             success: false,
-            message: "Brand not found"
+            message: "Member not found"
         });
     }
 
-    if(req.files && req?.files?.brandImage){
-        const imageID = brand.brandImage.public_id;
+    if(req.files && req?.files?.membersImage){
+        const imageID = member.membersImage.public_id;
 
         if (imageID){
             await cloudinary.v2.uploader.destroy(imageID);
         }
 
-        const brandImage = req?.files?.brandImage;
+        const membersImage = req?.files?.membersImage;
 
-        const BrandImage = await cloudinary.v2.uploader.upload(brandImage.tempFilePath,{
-            folder: 'MNS/Home/brand',
+        const MemberImage = await cloudinary.v2.uploader.upload(membersImage.tempFilePath,{
+            folder: 'MNS/Home/members',
         })
 
-        newData.brandImage = {
-            public_id: BrandImage.public_id,
-            url: BrandImage.secure_url,
+        newData.membersImage = {
+            public_id: MemberImage.public_id,
+            url: MemberImage.secure_url,
         }
     }
 
-    const brandSection = await Brand.findByIdAndUpdate(req.params.id, newData,{
+    const memberSection = await Menbers.findByIdAndUpdate(req.params.id, newData,{
         new: true,
         runValidators: true,
         useFindAndModify: false
@@ -553,48 +555,48 @@ exports.updateBrand = catchAsyncError(async(req,res,next) =>{
 
     res.status(200).json({
         success: true,
-        message: "Brand Update",
-        brand: brandSection,
+        message: "Member Update",
+        member: memberSection,
     })
 })
 
-exports.deleteBrand = catchAsyncError(async(req,res,next) =>{
-    const brand = await Brand.findById(req.params.id);
+exports.deleteMember = catchAsyncError(async(req,res,next) =>{
+    const member = await Menbers.findById(req.params.id);
 
-    if(!brand){
+    if(!member){
         return res.status(404).json({
             success: false,
-            message: "Brand not found"
+            message: "Member not found"
         });
     }
-    if(req.files && req?.files?.brandImage){
-        const imageID = brand.brandImage.public_id;
+    if(req.files && req?.files?.membersImage){
+        const imageID = member.membersImage.public_id;
 
         if (imageID){
             await cloudinary.v2.uploader.destroy(imageID);
         }
     }
 
-    await brand.deleteOne({ _id: req.params.id });
+    await member.deleteOne({ _id: req.params.id });
 
     res.status(200).json({
         success: true,
-        message: "Brand Delete",
+        message: "Member Delete",
     })
 })
 
 
 exports.getHomePage = catchAsyncError(async (req, res, next) => {
-    const [home, homeCarousel, brand] = await Promise.all([
+    const [home, homeCarousel, member] = await Promise.all([
         Home.find(),
         HomeCarousel.find(),
-        Brand.find(),
+        Menbers.find(),
     ]);
 
     res.status(200).json({
         success: true,
         home,
         homeCarousel,
-        brand
+        member
     })
 })

@@ -9,6 +9,7 @@ import './AdminHome.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { getGrievance, clearErrors, createGrievanceHeader } from '../../Actions/GrievanceActions';
 import { ADD_GRIEVANCEHEADER_GRIEVANCE_RESET } from '../../Constants/GrievanceConstants';
+import Loader from '../Layouts/Loader';
 
 const Grievance = () => {
     const [showHeaderForm, setShowHeaderForm] = useState(false);
@@ -45,7 +46,7 @@ const Grievance = () => {
         }
     }, [error, dispatch]);
 
-    const { grievance:addGrievance, isUpdated, error: grievanceError} = useSelector(state => state.newGrievanceData);
+    const { grievance: addGrievance, isUpdated, error: grievanceError, loading: updateLoding } = useSelector(state => state.newGrievanceData);
 
 
     const [headerData, setHeaderData] = useState({
@@ -55,7 +56,7 @@ const Grievance = () => {
     const [headerImage, setHeaderImage] = useState([]);
 
     useEffect(() => {
-        if(addGrievance){
+        if (addGrievance) {
             setHeaderData({
                 header: addGrievance.header,
                 caption: addGrievance.caption,
@@ -68,11 +69,11 @@ const Grievance = () => {
             window.location.reload()
         }
 
-        if(grievanceError){
+        if (grievanceError) {
             window.alert(grievanceError);
             dispatch(clearErrors());
         }
-    },[dispatch, isUpdated, addGrievance, grievanceError])
+    }, [dispatch, isUpdated, addGrievance, grievanceError])
 
     const handelHeaderImage = (e) => {
         setHeaderImage(e.target.files[0]);
@@ -86,14 +87,14 @@ const Grievance = () => {
         dispatch(createGrievanceHeader(formData));
     }
 
-    const handelHeaderInput = (e) =>{
+    const handelHeaderInput = (e) => {
         setHeaderData({
             ...headerData,
             [e.target.name]: e.target.value,
         })
     }
 
-    const handelHeaderInputSubmit = (e) =>{
+    const handelHeaderInputSubmit = (e) => {
         e.preventDefault();
         dispatch(createGrievanceHeader(headerData));
     }
@@ -102,6 +103,9 @@ const Grievance = () => {
 
 
     return (
+        <>
+        {loading && <Loader />}
+        {updateLoding && <Loader />}
             <div className="admin-dashboard">
                 <Sidebar />
                 <div className="admin-main" style={{ height: "100vh" }}>
@@ -188,7 +192,7 @@ const Grievance = () => {
                                     <td>{grievance?.header}</td>
                                     <td>{grievance?.caption}</td>
                                     <td>
-                                    <div class="container">
+                                        <div class="container">
                                             <img src={grievance?.headerImage?.url} alt="Image" className="image" />
                                             <div class="overlay">
                                                 <i class="fa-regular fa-eye" onClick={handleShowCarouse}></i>
@@ -210,6 +214,7 @@ const Grievance = () => {
 
                 </div>
             </div>
+        </>
     )
 }
 

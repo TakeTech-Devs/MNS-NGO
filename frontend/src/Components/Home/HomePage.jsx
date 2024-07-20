@@ -8,6 +8,7 @@ import Carousel from 'react-multi-carousel';
 import "react-multi-carousel/lib/styles.css";
 import { getHome, clearErrors } from '../../Actions/HomeActions';
 import { useSelector, useDispatch } from 'react-redux';
+import { getGoverning } from '../../Actions/GoverningBodyActions';
 
 const responsive = {
 	desktop: {
@@ -29,13 +30,15 @@ const responsive = {
 
 const HomePage = () => {
 	const dispatch = useDispatch();
-	const { home, homeCarousel, brand, loading, error } = useSelector(state => state.home);
+	const { home, homeCarousel, member, loading, error } = useSelector(state => state.home);
+	const { goveringBody } = useSelector(state => state.governing)
 
 	const [currentIndex, setCurrentIndex] = useState(0);
 	const totalSlides = homeCarousel.length;
 
 	useEffect(() => {
 		dispatch(getHome());
+		dispatch(getGoverning());
 	}, [dispatch]);
 
 	useEffect(() => {
@@ -123,10 +126,11 @@ const HomePage = () => {
 						<div className="our-team-heading">{home.aboutHeader}</div>
 						<div className="our-team-caption">{home.aboutCaption}</div>
 						<div className="our-team-container">
-							<div className="our-team-img">
-								{home[0]?.aboutImage?.url && (
+							<div className="our-team-img" style = {{ background: home?.aboutImage?.url ? `url(${home?.aboutImage?.url}) 50% / cover no-repeat, linear-gradient(#D9D9D9, #D9D9D9)`  : '' }}>
+
+								{/* {home[0]?.aboutImage?.url && (
 									<img src={home[0].aboutImage.url} alt="About Us" />
-								)}
+								)} */}
 							</div>
 							<div className="our-team-content">
 								<p>{home.aboutContent}</p>
@@ -158,6 +162,7 @@ const HomePage = () => {
 					</div>
 
 					<div className="our-achievement">
+					
 						<div className="our-team-heading">{home.visionHeader}</div>
 						<div className="our-team-caption">{home.visionCaption}</div>
 						<ul>
@@ -199,15 +204,17 @@ const HomePage = () => {
 						<span className="img-section-caption">{home.joinUsCaption}</span>
 					</div>
 					<div className="brand-section">
-						<div className="our-team-heading">Our Collaborative Partners</div>
+						<div className="our-team-heading">{goveringBody && goveringBody.length > 0 ? goveringBody[0]?.goveringBodyHeader : ''}</div>
 						<div className="our-team-caption">
-							We are proud to collaborate with the following brands and organizations who share our commitment to positive change:
+						{goveringBody && goveringBody.length > 0 ? goveringBody[0]?.goveringBodyContent : ''}
 						</div>
 						<div className="brand-logo-section">
 							<ul>
-								{brand.map((item, index) =>(
-									<li key={index}>
-										<img src={item.brandImage.url} alt={item.brandName} />
+								{member.map((item, index) =>(
+									<li>
+										<img src={item.membersImage.url} alt={item.name} />
+										<h3>{item.name}</h3>
+										<p>{item.details}</p>
 									</li>
 								))}
 								{/* <li>

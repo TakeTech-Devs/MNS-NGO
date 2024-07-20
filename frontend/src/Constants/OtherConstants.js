@@ -1,0 +1,5 @@
+export const GET_OTHER_REQUEST = "GET_OTHER_REQUEST";
+export const GET_OTHER_SUCCESS = "GET_OTHER_SUCCESS";
+export const GET_OTHER_FAIL = "GET_OTHER_FAIL";
+
+export const CLEAR_ERRORS = "CLEAR_ERRORS"
