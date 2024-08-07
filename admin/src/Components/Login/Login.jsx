@@ -39,7 +39,6 @@ const Login = () => {
 
     return (
         <>
-            {loading && <Loader />}
             <div className="login-page">
                 <div className="login-container">
                     <div className="signin-form">

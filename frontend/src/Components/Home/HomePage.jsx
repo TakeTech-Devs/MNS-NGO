@@ -210,8 +210,8 @@ const HomePage = () => {
 						</div>
 						<div className="brand-logo-section">
 							<ul>
-								{member.map((item, index) =>(
-									<li>
+								{member?.map((item, index) =>(
+									<li key={index}>
 										<img src={item.membersImage.url} alt={item.name} />
 										<h3>{item.name}</h3>
 										<p>{item.details}</p>

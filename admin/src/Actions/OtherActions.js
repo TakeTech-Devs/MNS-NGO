@@ -15,6 +15,15 @@ import {
     ADD_SOCIAL_REQUEST,
     ADD_SOCIAL_SUCCESS,
     ADD_SOCIAL_FAIL,
+    GET_ADMIN_ANNOUNCEMENT_REQUEST,
+    GET_ADMIN_ANNOUNCEMENT_SUCCESS,
+    GET_ADMIN_ANNOUNCEMENT_FAIL,
+    ADD_ADMIN_ANNOUNCEMENT_REQUEST,
+    ADD_ADMIN_ANNOUNCEMENT_SUCCESS,
+    ADD_ADMIN_ANNOUNCEMENT_FAIL,
+    SHOW_ANNOUNCEMENT_REQUEST,
+    SHOW_ANNOUNCEMENT_SUCCESS,
+    SHOW_ANNOUNCEMENT_FAIL,
 } from '../Constants/OtherConstants';
 import axios from 'axios';
 import baseUrl from '../helper'
@@ -121,6 +130,63 @@ export const createSocial = (socialData) => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: ADD_SOCIAL_FAIL,
+            payload: error.response.data.message,
+        });
+    }
+}
+
+
+export const getAnnouncement = () => async (dispatch) => {
+    try {
+        dispatch({ type: GET_ADMIN_ANNOUNCEMENT_REQUEST });
+
+        const { data } = await axios.get(`${baseUrl}/api/v1/other/get-announcement`);
+
+
+        dispatch({ type: GET_ADMIN_ANNOUNCEMENT_SUCCESS, payload: data });
+    } catch (error) {
+        dispatch({ type: GET_ADMIN_ANNOUNCEMENT_FAIL, payload: error.response.data.message });
+    }
+};
+
+export const createAnnouncement = (announcementData) => async (dispatch) => {
+    try {
+        dispatch({ type: ADD_ADMIN_ANNOUNCEMENT_REQUEST });
+
+        const config = {
+            headers: { "Content-Type": "multipart/form-data" },
+        }
+
+        const { data } = await axios.post(`${baseUrl}/api/v1/other/create-announcement`, announcementData, config);
+
+        dispatch({
+            type: ADD_ADMIN_ANNOUNCEMENT_SUCCESS,
+            payload: data.success
+        });
+
+    } catch (error) {
+        dispatch({
+            type: ADD_ADMIN_ANNOUNCEMENT_FAIL,
+            payload: error.response.data.message,
+        });
+    }
+}
+
+
+export const showAnnouncement = (id) => async (dispatch) => {
+    try {
+        dispatch({ type: SHOW_ANNOUNCEMENT_REQUEST });
+
+        const { data } = await axios.put(`${baseUrl}/api/v1/other/show-announcement/${id}`);
+
+        dispatch({
+            type: SHOW_ANNOUNCEMENT_SUCCESS,
+            payload: data.success
+        });
+
+    } catch (error) {
+        dispatch({
+            type: SHOW_ANNOUNCEMENT_FAIL,
             payload: error.response.data.message,
         });
     }

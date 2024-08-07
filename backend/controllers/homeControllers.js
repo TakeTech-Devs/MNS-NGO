@@ -2,7 +2,7 @@ const catchAsyncError = require('../middleware/catchAsyncError');
 const cloudinary = require('cloudinary');
 const Home = require('../models/homeModel');
 const HomeCarousel = require('../models/homeServicesCarouselModel')
-const Menbers = require('../models/membersModel');
+const Members = require('../models/membersModel');
 
 
 
@@ -496,7 +496,7 @@ exports.membersSection = catchAsyncError(async(req,res,next) =>{
         folder: 'MNS/Home/members',
     })
 
-    const memberSection = await Menbers.create({
+    const memberSection = await Members.create({
         name,
         details,
         membersImage: {
@@ -519,7 +519,7 @@ exports.updateMember = catchAsyncError(async(req,res,next) =>{
         details: req?.body?.details,
     }
 
-    const member = await Menbers.findById(req.params.id);
+    const member = await Members.findById(req.params.id);
 
     if(!member){
         return res.status(404).json({
@@ -547,7 +547,7 @@ exports.updateMember = catchAsyncError(async(req,res,next) =>{
         }
     }
 
-    const memberSection = await Menbers.findByIdAndUpdate(req.params.id, newData,{
+    const memberSection = await Members.findByIdAndUpdate(req.params.id, newData,{
         new: true,
         runValidators: true,
         useFindAndModify: false
@@ -561,7 +561,7 @@ exports.updateMember = catchAsyncError(async(req,res,next) =>{
 })
 
 exports.deleteMember = catchAsyncError(async(req,res,next) =>{
-    const member = await Menbers.findById(req.params.id);
+    const member = await Members.findById(req.params.id);
 
     if(!member){
         return res.status(404).json({
@@ -590,7 +590,7 @@ exports.getHomePage = catchAsyncError(async (req, res, next) => {
     const [home, homeCarousel, member] = await Promise.all([
         Home.find(),
         HomeCarousel.find(),
-        Menbers.find(),
+        Members.find(),
     ]);
 
     res.status(200).json({

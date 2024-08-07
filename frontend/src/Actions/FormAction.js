@@ -7,12 +7,14 @@ import {
 
 import axios from "axios";
 
+import baseUrl from '../helper';
+
 export const submitForm = (formData) => {
     return async (dispatch) => {
         dispatch({ type: SUBMIT_FORM_REQUEST });
 
         try {
-            const response = await axios.post(`/api/v1/touch/create-touch`, formData, {
+            const response = await axios.post(`${baseUrl}/api/v1/touch/create-touch`, formData, {
                 headers: {
                     'Content-Type': 'application/json',
                 },

@@ -10,7 +10,7 @@ import { galleryReducer } from './Reducers/GalleryReducer';
 import { homeReducer } from './Reducers/HomeReducer';
 import { aboutReducer } from './Reducers/AboutUsReducer';
 import { touchFormReducer } from './Reducers/FormReducer';
-import { otherReducer } from './Reducers/OtherReducer';
+import { announcementReducer, otherReducer } from './Reducers/OtherReducer';
 
 
 const reducer = combineReducers({
@@ -25,6 +25,7 @@ const reducer = combineReducers({
    form: formReducer,
    touchForm: touchFormReducer,
    other: otherReducer,
+   announcement: announcementReducer,
 });
 
 

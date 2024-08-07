@@ -6,9 +6,9 @@ import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { clearErrors, createMetaData, createPolicy, createSocial, createTerms, getOther } from '../../Actions/OtherActions';
+import { clearErrors, createAnnouncement, createMetaData, createPolicy, createSocial, createTerms, getAnnouncement, getOther, showAnnouncement } from '../../Actions/OtherActions';
 import Loader from '../Layouts/Loader';
-import { ADD_METADATA_RESET, ADD_POLICY_RESET, ADD_SOCIAL_RESET, ADD_TERMS_RESET } from '../../Constants/OtherConstants';
+import { ADD_ADMIN_ANNOUNCEMENT_RESET, ADD_METADATA_RESET, ADD_POLICY_RESET, ADD_SOCIAL_RESET, ADD_TERMS_RESET, SHOW_ANNOUNCEMENT_RESET } from '../../Constants/OtherConstants';
 
 const Settings = () => {
 
@@ -43,6 +43,13 @@ const Settings = () => {
     const handleShowSocialLinksForm = () => setShowSocialLinksForm(true);
     const handleCloseSocialLinksUpdate = () => setShowSocialLinksForm(false);
 
+
+    const [showAnnouncementForm, setShowAnnouncementForm] = useState(false);
+
+
+    const handleShowAnnouncementForm = () => setShowAnnouncementForm(true);
+    const handleCloseAnnouncementUpdate = () => setShowAnnouncementForm(false);
+
     const [showCarousel, setShowCarousel] = useState(false);
 
 
@@ -53,15 +60,22 @@ const Settings = () => {
 
     const dispatch = useDispatch();
     const { other, loading, error } = useSelector(state => state.other);
+    const { announcement, loading: announcementLoading, error: announcementError } = useSelector(state => state.announcement);
 
     useEffect(() => {
         dispatch(getOther());
         if (error) {
             window.alert(error)
         }
-    }, [dispatch, error])
+        dispatch(getAnnouncement());
+        if (announcementError) {
+            window.alert(announcementError)
+        }
+    }, [dispatch, error, announcementError])
 
-    const { policy, terms, meta, social, isUpdated, error: newError } = useSelector(state => state.newOther)
+
+    const { policy, terms, meta, social, announcement: newAnnouncement, isUpdated, error: newError } = useSelector(state => state.newOther)
+    // const { announcement: newAnnouncement, error: newAnnouncementError } = useSelector(state => state.newAnnouncement)
 
     // Policy
 
@@ -75,6 +89,8 @@ const Settings = () => {
         instagramLink: '',
         linkedinLink: '',
         whatsAppLink: '',
+        title: "",
+        announcement: "",
     })
 
     const [metaIcon, setMetaIcon] = useState([]);
@@ -105,19 +121,26 @@ const Settings = () => {
                 whatsAppLink: social.whatsAppLink,
             })
         }
+        if (newAnnouncement) {
+            setFormData({
+                title: newAnnouncement.title,
+                announcement: newAnnouncement.announcement,
+            })
+        }
         if (isUpdated) {
             window.alert('Section updated successfully');
             dispatch({ type: ADD_POLICY_RESET });
             dispatch({ type: ADD_TERMS_RESET });
             dispatch({ type: ADD_METADATA_RESET });
             dispatch({ type: ADD_SOCIAL_RESET });
+            dispatch({ type: ADD_ADMIN_ANNOUNCEMENT_RESET });
             window.location.reload()
         }
         if (newError) {
             window.alert(newError)
             dispatch(clearErrors());
         }
-    }, [dispatch, policy, terms, meta, isUpdated, newError]);
+    }, [dispatch, policy, terms, meta, social, newAnnouncement, isUpdated, newError]);
 
     // policy
 
@@ -184,11 +207,50 @@ const Settings = () => {
         dispatch(createSocial(formData));
     }
 
+    // announcements
+
+    const handleAnnouncementsInput = (e) => {
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value,
+        });
+    };
+    const handleAnnouncementsSubmit = (e) => {
+        e.preventDefault();
+        dispatch(createAnnouncement(formData));
+    }
+
+
+    const { loading: newAnnouncementLoading, error: newAnnouncementError, isAnnouncement } = useSelector(state => state.updateAnnouncement);
+
+    useEffect(() => {
+        if (newAnnouncementError) {
+            window.alert(newAnnouncementError)
+            dispatch(clearErrors())
+        }
+        if(isAnnouncement){
+            window.alert('Section updated successfully');
+            dispatch({type: SHOW_ANNOUNCEMENT_RESET})
+            window.location.reload()
+        }
+    }, [dispatch, newAnnouncementError, isAnnouncement ])
+
+
+
+    const handleEdit = (id) => {
+        // window.alert('Section updated successfully');
+        window.alert(`${announcement?.show ? 'Not Showing' : 'Showing'}`);
+        dispatch(showAnnouncement(id));
+        window.location.reload()
+    };
+
+
 
 
     return (
         <>
             {loading && <Loader />}
+            {newAnnouncementLoading && <Loader />}
             <div className="admin-dashboard">
                 <Sidebar />
                 <div className="admin-main">
@@ -478,6 +540,72 @@ const Settings = () => {
                                 <tr>
                                     <td>WhatsApp</td>
                                     <td><a href={other?.whatsAppLink} target='_blank'>Link</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </main>
+
+                    <div className="mb-2 my-3 mx-3">
+                        <h2>Announcement</h2>
+                        <Button variant="primary" size="sm" onClick={handleShowAnnouncementForm}>
+                            Add/Update Announcement
+                        </Button>
+                        <Modal show={showAnnouncementForm} onHide={handleCloseAnnouncementUpdate}>
+                            <Modal.Header closeButton>
+                                <Modal.Title>Announcement</Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>
+                                <Form onSubmit={handleAnnouncementsSubmit}>
+                                    <Form.Group className="mb-3" controlId="formHeadingInput">
+                                        <Form.Label>Announcement Title</Form.Label>
+                                        <Form.Control
+                                            type="text"
+                                            placeholder="Enter the Announcement Title"
+                                            name="title"
+                                            value={formData.title}
+                                            onChange={handleAnnouncementsInput}
+                                        />
+                                    </Form.Group>
+                                    <Form.Group className="mb-3" controlId="formSubHeadingInput">
+                                        <Form.Label>Announcement</Form.Label>
+                                        <Form.Control
+                                            as="textarea"
+                                            placeholder="Enter the Announcement"
+                                            name="announcement"
+                                            value={formData.announcement}
+                                            onChange={handleAnnouncementsInput}
+                                        />
+                                    </Form.Group>
+                                    <Button variant="primary" type="submit">
+                                        Submit
+                                    </Button>
+                                </Form>
+                            </Modal.Body>
+                        </Modal>
+                        {' '}
+                    </div>
+
+                    <main className="admin-content">
+                        <table className="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Announcement Title</th>
+                                    <th scope="col">Announcement</th>
+                                    <th scope="col">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{announcement?.title}</td>
+                                    <td>{announcement?.announcement}</td>
+                                    <td>
+                                        <Button
+                                            onClick={() => handleEdit(announcement?._id)}
+                                            variant="primary"
+                                        >
+                                            {announcement?.show ? 'Showing' : 'Not Showing'}
+                                        </Button>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>

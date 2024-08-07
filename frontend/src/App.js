@@ -15,6 +15,7 @@ import Header from './Components/Header/Header';
 import TermsofService from './Components/Terms of Service/TermsofService';
 import PrivacyPolicy from './Components/Privacy Policy/PrivacyPolicy';
 import MetaData from './Components/Layout/MetaData';
+import WelcomeModal from './Components/Layout/WelcomeModal';
 
 function AppContent() {
   const location = useLocation();
@@ -28,6 +29,7 @@ function AppContent() {
     <MetaData/>
       {/* {!isAdminPage && <Header />} */}
       <Header />
+      <WelcomeModal />
       <Routes>
         {/* <Route path="/admin" element={<Dashboard />} /> */}
         <Route path="/" element={<HomePage />} />

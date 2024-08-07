@@ -1,6 +1,7 @@
 const catchAsyncError = require('../middleware/catchAsyncError');
 const cloudinary = require('cloudinary');
 const Other = require('../models/otherModel');
+const Welcome = require('../models/welcomeModalModel');
 
 
 exports.addPolicy = catchAsyncError(async (req, res, next) => {
@@ -129,5 +130,59 @@ exports.getOther = catchAsyncError(async(req,res,next) =>{
     res.status(200).json({
         success: true,
         other,
+    })
+})
+
+
+exports.addWelcomeModal = catchAsyncError(async(req, res, next) =>{
+    const { title, announcement } = req.body;
+
+    const update = { title, announcement };
+
+    const options = {
+        new: true,
+        upsert: true,
+        useFindAndModify: false
+    };
+
+    const announcements = await Welcome.findOneAndUpdate({}, update, options)
+
+    res.status(200).json({
+        success: true,
+        message: "Announcement Add",
+        announcements
+    })
+
+})
+
+exports.showWelcomeModal = catchAsyncError(async(req, res, next) =>{
+
+    const welcomeModal = await Welcome.findById(req.params.id);
+
+    if(!welcomeModal){
+        return res.status(404).json({
+            success: false,
+            message: "Announcement not found",
+            error: error.message,
+        });
+    }
+
+    welcomeModal.show = !welcomeModal.show;
+
+    await welcomeModal.save();
+
+    const message = welcomeModal.show ? "Announcement Showing" : "Announcement not Showing";
+
+    res.status(200).json({
+        success: true,
+        message: message,
+    });
+})
+
+exports.getWelcomeModal = catchAsyncError(async(req, res, next) =>{
+    const announcement = await Welcome.find();
+    res.status(200).json({
+        success: true,
+        announcement
     })
 })

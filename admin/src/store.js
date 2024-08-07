@@ -10,7 +10,7 @@ import { GalleryReducer, galleryReducer, newGalleryData } from './Reducers/Galle
 import { contactReducer, newContactData } from './Reducers/ContactReducer';
 import { formReducer } from './Reducers/FormReducer';
 import { adminReducer, authReducer, userReducer } from './Reducers/AdminReducer';
-import { newData, otherReducer } from './Reducers/OtherReducer';
+import { announcementReducer, newAnnouncement, newData, otherReducer } from './Reducers/OtherReducer';
 
 
 const reducer = combineReducers({
@@ -40,6 +40,8 @@ const reducer = combineReducers({
     user: userReducer,
     other: otherReducer,
     newOther: newData,
+    announcement: announcementReducer,
+    updateAnnouncement: newAnnouncement
 })
 
 

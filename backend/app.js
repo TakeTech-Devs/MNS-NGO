@@ -15,7 +15,7 @@ dotenv.config({path: "config/config.env"});
 //     allowedHeaders: ['Content-Type', 'Authorization'] // Specify allowed headers
 // }));
 
-const allowedOrigins = ['http://localhost:3000', 'http://localhost:3001'];
+const allowedOrigins = ['http://localhost:3000', 'http://localhost:3001', 'https://mallarpurnaisuva.org', 'https://cp.mallarpurnaisuva.org'];
 
 const corsOptions = {
     origin: function (origin, callback) {
@@ -25,10 +25,16 @@ const corsOptions = {
             callback(new Error('Not allowed by CORS'));
         }
     },
-    credentials: true, 
+    credentials: true,
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+    allowedHeaders: 'Content-Type,Authorization',
+    optionsSuccessStatus: 204
 };
 
 app.use(cors(corsOptions));
+
+app.options('*', cors(corsOptions));
+
 
 app.use(express.json());
 app.use(cookieParser());
